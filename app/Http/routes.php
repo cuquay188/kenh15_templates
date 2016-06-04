@@ -28,9 +28,9 @@ Route::get('/index', [
     'uses' => 'PageController@getIndex',
     'as' => 'index'
 ]);
-Route::get('/about', [
-    'uses' => 'PageController@getAbout',
-    'as' => 'about'
+Route::get('/author', [
+    'uses' => 'PageController@getAuthor',
+    'as' => 'author'
 ]);
 Route::get('/category', [
     'uses' => 'PageController@getCategory',
@@ -59,6 +59,14 @@ Route::post('/create/category', [
 Route::post('/create/author', [
     'uses' => 'PageController@postCreateAuthor',
     'as' => 'post_author'
+]);
+Route::post('/delete/article', [
+    'uses' => 'PageController@postDeleteArticle',
+    'as' => 'post_delete_article'
+]);
+Route::post('/edit/article',[
+    'uses'=>'PageController@postUpdateArticle',
+    'as'=>'post_update_article'
 ]);
 Route::get('/cards', function () {
     return view('card');

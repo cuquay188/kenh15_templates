@@ -16,13 +16,19 @@ class PageController extends Controller
     public function getIndex()
     {
         $articles = Article::all(); // SELECT * FROM articles
-        return view("index", ['articles' => $articles]);
+        $authors = Author::all();
+        $categories = Category::all();
+        return view('index', [
+            'articles' => $articles,
+            'authors' => $authors,
+            'categories' => $categories
+        ]);
     }
 
-    public function getAbout()
+    public function getAuthor()
     {
         $authors = Author::all();
-        return view('about', ['authors' => $authors]);
+        return view('author', ['authors' => $authors]);
     }
 
     public function getCategory()
@@ -55,7 +61,7 @@ class PageController extends Controller
         $article->category_id = $category_id;
         $article->save();
 
-        return $this->getCreateArticle();
+        return redirect()->back();
     }
 
     public function getCreateCategory()
@@ -72,7 +78,7 @@ class PageController extends Controller
 
         $category->save();
 
-        return $this->getCreateCategory();
+        return redirect()->back();
     }
 
     public function getCreateAuthor()
@@ -93,7 +99,32 @@ class PageController extends Controller
 
         $author->save();
 
-        return $this->getCreateAuthor();
+        return redirect()->back();
+    }
+
+    public function postDeleteArticle(Request $request)
+    {
+        $id = $request->article_id;
+        Article::where('id', $id)->delete();
+        return redirect()->back();
+    }
+
+    public function postUpdateArticle(Request $request)
+    {
+        $id = $request->article_id;
+        $title = $request->title;
+        $content = $request->data;
+        $category_id = $request->category_id;
+        $author_id = $request->author_id;
+
+        Article::where('id', $id)->update([
+            'title' => $title,
+            'content' => $content,
+            'category_id' => $category_id,
+            'author_id' => $author_id
+        ]);
+
+        return redirect()->back();
     }
 }
 

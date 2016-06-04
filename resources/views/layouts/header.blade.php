@@ -5,7 +5,7 @@
         </div>
         <ul class="nav navbar-nav">
             <li><a href="{{route('index')}}">Index</a></li>
-            <li><a href="{{route('about')}}">Author</a></li>
+            <li><a href="{{route('author')}}">Author</a></li>
             <li><a href="{{route('category')}}">Category</a></li>
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Create

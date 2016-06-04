@@ -14,9 +14,9 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>ID</th>
+                <th style="text-align: center">ID</th>
                 <th>Name</th>
-                <th>Age</th>
+                <th style="text-align: center">Age</th>
                 <th>Address</th>
                 <th>Function</th>
             </tr>
@@ -24,9 +24,9 @@
             <tbody>
             @foreach($authors as $author)
                 <tr style="font-size: 13px">
-                    <td>{{$author->id}}</td>
+                    <td style="text-align: center">{{$author->id}}</td>
                     <td>{{$author->name}}</td>
-                    <td>{{$author->age}}</td>
+                    <td style="text-align: center">{{$author->age}}</td>
                     <td>{{$author->address}}</td>
                     <td>
                         <button type="submit" class="btn btn-primary btn-xs">Edit</button>
