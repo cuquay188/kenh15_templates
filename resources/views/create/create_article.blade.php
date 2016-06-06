@@ -7,7 +7,7 @@
 @endsection
 @section("content")
     <div class="back">
-        <form action="{{route('index')}}" method="get">
+        <form action="{{route('article')}}" method="get">
             <button style="float: right;margin-bottom: 30px" type="submit" class="btn btn-danger">Back</button>
         </form>
     </div>

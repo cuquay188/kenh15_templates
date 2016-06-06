@@ -21,12 +21,18 @@
 //    return view('about');
 //})->name('about');
 
+Route::get('/cards', function () {
+    return view('card');
+});
+Route::get('/demo', function () {
+    return view('demo');
+});
 Route::get('/', [
-    'uses' => 'PageController@getIndex'
+    'uses' => 'PageController@getArticle'
 ]);
-Route::get('/index', [
-    'uses' => 'PageController@getIndex',
-    'as' => 'index'
+Route::get('/article', [
+    'uses' => 'PageController@getArticle',
+    'as' => 'article'
 ]);
 Route::get('/author', [
     'uses' => 'PageController@getAuthor',
@@ -64,13 +70,23 @@ Route::post('/delete/article', [
     'uses' => 'PageController@postDeleteArticle',
     'as' => 'post_delete_article'
 ]);
-Route::post('/edit/article',[
-    'uses'=>'PageController@postUpdateArticle',
-    'as'=>'post_update_article'
+Route::post('/edit/article', [
+    'uses' => 'PageController@postUpdateArticle',
+    'as' => 'post_update_article'
 ]);
-Route::get('/cards', function () {
-    return view('card');
-});
-Route::get('/demo', function () {
-    return view('demo');
-});
+Route::post('/delete/author', [
+    'uses' => 'PageController@postDeleteAuthor',
+    'as' => 'post_delete_author'
+]);
+Route::post('/edit/author', [
+    'uses' => 'PageController@postUpdateAuthor',
+    'as' => 'post_update_author'
+]);
+Route::post('/delete/category', [
+    'uses' => 'PageController@postDeleteCategory',
+    'as' => 'post_delete_category'
+]);
+Route::post('/edit/category', [
+    'uses' => 'PageController@postUpdateCategory',
+    'as' => 'post_update_category'
+]);

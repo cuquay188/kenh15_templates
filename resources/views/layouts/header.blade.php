@@ -1,10 +1,10 @@
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse" style="border-radius: 0px">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="{{route('index')}}">Kenh 15 Admin</a>
+            <a class="navbar-brand" href="{{route('article')}}">Kenh 15 Admin</a>
         </div>
         <ul class="nav navbar-nav">
-            <li><a href="{{route('index')}}">Index</a></li>
+            <li><a href="{{route('article')}}">Article</a></li>
             <li><a href="{{route('author')}}">Author</a></li>
             <li><a href="{{route('category')}}">Category</a></li>
             <li class="dropdown">

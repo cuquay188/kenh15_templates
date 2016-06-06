@@ -13,12 +13,12 @@ use App\Http\Requests;
 
 class PageController extends Controller
 {
-    public function getIndex()
+    public function getArticle()
     {
-        $articles = Article::all(); // SELECT * FROM articles
+        $articles = Article::all();
         $authors = Author::all();
         $categories = Category::all();
-        return view('index', [
+        return view('article', [
             'articles' => $articles,
             'authors' => $authors,
             'categories' => $categories
@@ -124,6 +124,44 @@ class PageController extends Controller
             'author_id' => $author_id
         ]);
 
+        return redirect()->back();
+    }
+
+    public function postDeleteAuthor(Request $request)
+    {
+        $id = $request->author_id;
+        Author::where('id', $id)->delete();
+        return redirect()->back();
+    }
+
+    public function postUpdateAuthor(Request $request)
+    {
+        $id = $request->author_id;
+        $name = $request->name;
+        $age = $request->age;
+        $address = $request->address;
+        Author::where('id', $id)->update([
+            'name' => $name,
+            'age' => $age,
+            'address' => $address
+        ]);
+        return redirect()->back();
+    }
+
+    public function postDeleteCategory(Request $request)
+    {
+        $id = $request->category_id;
+        Category::where('id', $id)->delete();
+        return redirect()->back();
+    }
+
+    public function postUpdateCategory(Request $request)
+    {
+        $id = $request->category_id;
+        $name = $request->name;
+        Category::where('id', $id)->update([
+            'name' => $name
+        ]);
         return redirect()->back();
     }
 }

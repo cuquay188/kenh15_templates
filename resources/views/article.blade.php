@@ -1,11 +1,13 @@
 @extends("layouts.master")
-@section("title")
-    Index
+@section("title",'Article')
+@section('styles')
+    <link rel="stylesheet" href="{{asset('/css/main.css')}}">
 @endsection
 @section("content")
     <div class="article-add">
         <form action="{{route('create_article')}}" method="get">
             <button type="submit" class="btn btn-primary" style="float: right;margin-bottom: 30px">Add</button>
+            <input type="hidden" value="{{Session::token()}}" name="_token">
         </form>
     </div>
     <div class="article-list">
@@ -34,9 +36,10 @@
                         </button>
                         <div class="modal fade" id="edit{{$article->id}}" role="dialog">
                             <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
+                                <div class="modal-content" style="height: 630px;">
                                     <div class="modal-header">
-                                        <h5 style="font-weight: bold">Edit Article: {{$article->title}}</h5>
+                                        <h5 style="font-weight: bold">Edit Article: "<span
+                                                    style="font-style: italic">{{$article->title}}</span>"</h5>
                                     </div>
                                     <form action="{{route('post_update_article')}}" method="post">
                                         <div class="modal-body">
@@ -52,7 +55,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="category_id">Category</label>
-                                                <select name="category_id" id="category_id" class="form-control">
+                                                <select name="category_id" id="category_id" class="form-control" style="width: 300px">
                                                     @foreach($categories as $category)
                                                         <option {{$category->id==$article->category->id?"selected=''":''}}
                                                                 value="{{$category->id}}">{{$category->name}}</option>
@@ -61,7 +64,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="author_id">Author</label>
-                                                <select name="author_id" id="author_id" class="form-control">
+                                                <select name="author_id" id="author_id" class="form-control" style="width: 300px">
                                                     @foreach($authors as $author)
                                                         <option {{$author->id==$article->author->id?"selected=''":''}}
                                                                 value="{{$author->id}}">{{$author->name}}</option>
@@ -71,7 +74,8 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="submit" class="btn btn-warning">Update</button>
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close
+                                            </button>
                                             <input name="article_id" value="{{$article->id}}" type="hidden">
                                             <input type="hidden" value="{{Session::token()}}" name="_token">
                                         </div>
@@ -80,14 +84,14 @@
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary btn-xs" data-toggle="modal"
-                                data-target="#delete{{$article->id}}">
-                            Delete
+                                data-target="#delete{{$article->id}}">Delete
                         </button>
                         <div class="modal fade" id="delete{{$article->id}}" role="dialog">
                             <div class="modal-dialog">
-                                <div class="modal-content">
+                                <div class="modal-content" style="height: 190px;">
                                     <div class="modal-header">
-                                        <h5 style="font-weight: bold">Delete Article: "{{$article->title}}"</h5>
+                                        <h5 style="font-weight: bold">Delete Article: "<span
+                                                    style="font-style: italic">{{$article->title}}</span>"</h5>
                                     </div>
                                     <div class="modal-body">
                                         <p>Do you want to delete this article?</p>
@@ -114,9 +118,10 @@
                                     </div>
                                     <div class="modal-body">
                                         <p>{{$article->content}}</p>
-                                        <p>Category: {{$article->category->name}}</p>
-                                        <p>Author: {{$article->author->name}}</p>
-                                        <p>Created: {{$article->created_at}}</p>
+                                        <p><span style="font-weight: bold">Category: </span>{{$article->category->name}}
+                                        </p>
+                                        <p><span style="font-weight: bold">Author: </span>{{$article->author->name}}</p>
+                                        <p><span style="font-weight: bold">Created: </span>{{$article->created_at}}</p>
                                     </div>
                                     <div class="modal-footer">
                                         <button class="btn btn-default" data-dismiss="modal">Close</button>
