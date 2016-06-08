@@ -9,8 +9,6 @@
 
 .navbar.navbar-inverse {
   border-radius: 0px;
-  background: #86015a;
-  border-color: #86015a;
   .nav.navbar-nav {
     li a {
       color: white;
@@ -26,32 +24,4 @@
   }
 }
 
-.btn.btn-primary {
-  background: #8d95fe;
-  border-color: #8d95fe;
-  color: black;
-  font-weight: bold;
-}
-
-.btn.btn-danger {
-  background: #f81348;
-  border-color: #f81348;
-  font-weight: bold;
-}
-
-.btn.btn-success {
-  background: #1ee07f;
-  border-color: #1ee07f;
-  font-weight: bold;
-  color: black;
-}
-.btn.btn-warning{
-  background: #fde61a;
-  border-color: #fde61a;
-  font-weight: bold;
-  color: black;
-}
-.btn.btn-default{
-  font-weight: bold;
-}
 
