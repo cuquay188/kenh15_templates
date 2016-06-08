@@ -42,6 +42,10 @@ Route::get('/category', [
     'uses' => 'PageController@getCategory',
     'as' => 'category'
 ]);
+Route::get('/tag', [
+    'uses' => 'PageController@getTag',
+    'as' => 'tag'
+]);
 Route::get('/create/article', [
     'uses' => 'PageController@getCreateArticle',
     'as' => 'create_article'
@@ -54,6 +58,10 @@ Route::get('/create/author', [
     'uses' => 'PageController@getCreateAuthor',
     'as' => 'create_author'
 ]);
+Route::get('/create/tag', [
+    'uses' => 'PageController@getCreateTag',
+    'as' => 'create_tag'
+]);
 Route::post('/create/article', [
     'uses' => 'PageController@postCreateArticle',
     'as' => 'post_article'
@@ -65,6 +73,10 @@ Route::post('/create/category', [
 Route::post('/create/author', [
     'uses' => 'PageController@postCreateAuthor',
     'as' => 'post_author'
+]);
+Route::post('/create/tag', [
+    'uses' => 'PageController@postCreateTag',
+    'as' => 'post_tag'
 ]);
 Route::post('/delete/article', [
     'uses' => 'PageController@postDeleteArticle',
@@ -89,4 +101,12 @@ Route::post('/delete/category', [
 Route::post('/edit/category', [
     'uses' => 'PageController@postUpdateCategory',
     'as' => 'post_update_category'
+]);
+Route::post('/edit/tag', [
+    'uses' => 'PageController@postUpdateTag',
+    'as' => 'post_update_tag'
+]);
+Route::post('/delete/tag', [
+    'uses' => 'PageController@postDeleteTag',
+    'as' => 'post_delete_tag'
 ]);

@@ -14,12 +14,13 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>ID</th>
+                <th style="text-align: center">ID</th>
                 <th>Title</th>
                 <th>Category</th>
-                <th>Created</th>
+                <th style="text-align: center">Created</th>
                 <th>Author</th>
-                <th>Function</th>
+                <th style="text-align: center">Tags</th>
+                <th style="text-align: center">Function</th>
             </tr>
             </thead>
             <tbody>
@@ -28,11 +29,16 @@
                     <td style="text-align: center">{{$article->id}}</td>
                     <td>{{$article->title}}</td>
                     <td>{{$article->category->name}}</td>
-                    <td>{{$article->created_at}}</td>
+                    <td style="text-align: center">{{$article->created_at}}</td>
                     <td>{{$article->author->name}}</td>
                     <td>
+                        @foreach($article->tags as $tag)
+                            <span>{{$tag->name}} | </span>
+                        @endforeach
+                    </td>
+                    <td>
                         <button type="submit" class="btn btn-primary btn-xs" data-toggle="modal"
-                                data-target="#edit{{$article->id}}">Edit
+                                data-target="#edit{{$article->id}}" style="text-align: center">Edit
                         </button>
                         <div class="modal fade" id="edit{{$article->id}}" role="dialog">
                             <div class="modal-dialog modal-lg">
@@ -55,7 +61,8 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="category_id">Category</label>
-                                                <select name="category_id" id="category_id" class="form-control" style="width: 300px">
+                                                <select name="category_id" id="category_id" class="form-control"
+                                                        style="width: 300px">
                                                     @foreach($categories as $category)
                                                         <option {{$category->id==$article->category->id?"selected=''":''}}
                                                                 value="{{$category->id}}">{{$category->name}}</option>
@@ -64,7 +71,8 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="author_id">Author</label>
-                                                <select name="author_id" id="author_id" class="form-control" style="width: 300px">
+                                                <select name="author_id" id="author_id" class="form-control"
+                                                        style="width: 300px">
                                                     @foreach($authors as $author)
                                                         <option {{$author->id==$article->author->id?"selected=''":''}}
                                                                 value="{{$author->id}}">{{$author->name}}</option>
@@ -84,11 +92,11 @@
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary btn-xs" data-toggle="modal"
-                                data-target="#delete{{$article->id}}">Delete
+                                data-target="#delete{{$article->id}}" style="text-align: center">Delete
                         </button>
                         <div class="modal fade" id="delete{{$article->id}}" role="dialog">
                             <div class="modal-dialog">
-                                <div class="modal-content" style="height: 190px;">
+                                <div class="modal-content" style="height: 190px; top: 150px;">
                                     <div class="modal-header">
                                         <h5 style="font-weight: bold">Delete Article: "<span
                                                     style="font-style: italic">{{$article->title}}</span>"</h5>
@@ -111,13 +119,18 @@
                                 data-target="#detail{{$article->id}}">Detail
                         </button>
                         <div class="modal fade" id="detail{{$article->id}}" role="dialog">
-                            <div class="modal-dialog">
+                            <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 style="font-weight: bold">{{$article->title}}</h5>
                                     </div>
                                     <div class="modal-body">
-                                        <p>{{$article->content}}</p>
+                                        <form role="form">
+                                            <div class="form-group">
+                                                <textarea name="detail" id="detail" cols="30" rows="10"
+                                                          class="form-control">{{$article->content}}</textarea>
+                                            </div>
+                                        </form>
                                         <p><span style="font-weight: bold">Category: </span>{{$article->category->name}}
                                         </p>
                                         <p><span style="font-weight: bold">Author: </span>{{$article->author->name}}</p>

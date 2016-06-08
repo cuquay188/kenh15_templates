@@ -6,6 +6,7 @@ use App\Article;
 use App\Author;
 
 use App\Category;
+use App\Tag;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -18,10 +19,12 @@ class PageController extends Controller
         $articles = Article::all();
         $authors = Author::all();
         $categories = Category::all();
+        $tags = Tag::all();
         return view('article', [
             'articles' => $articles,
             'authors' => $authors,
-            'categories' => $categories
+            'categories' => $categories,
+            'tags' => $tags
         ]);
     }
 
@@ -37,13 +40,21 @@ class PageController extends Controller
         return view('category', ['categories' => $categories]);
     }
 
+    public function getTag()
+    {
+        $tags = Tag::all();
+        return view('tag', ['tags' => $tags]);
+    }
+
     public function getCreateArticle()
     {
         $authors = Author::all();
         $categories = Category::all();
+        $tags = Tag::all();
         return view('create.create_article', [
             'authors' => $authors,
-            'categories' => $categories
+            'categories' => $categories,
+            'tags' => $tags
         ]);
     }
 
@@ -99,6 +110,20 @@ class PageController extends Controller
 
         $author->save();
 
+        return redirect()->back();
+    }
+
+    public function getCreateTag()
+    {
+        return view('create.create_tag');
+    }
+
+    public function postCreateTag(Request $request)
+    {
+        $name = $request->name;
+        $tag = new Tag();
+        $tag->name = $name;
+        $tag->save();
         return redirect()->back();
     }
 
@@ -162,6 +187,23 @@ class PageController extends Controller
         Category::where('id', $id)->update([
             'name' => $name
         ]);
+        return redirect()->back();
+    }
+
+    public function postUpdateTag(Request $request)
+    {
+        $id = $request->tag_id;
+        $name = $request->name;
+        Tag::where('id', $id)->update([
+            'name' => $name
+        ]);
+        return redirect()->back();
+    }
+
+    public function postDeleteTag(Request $request)
+    {
+        $id = $request->tag_id;
+        Tag::where('id', $id)->delete();
         return redirect()->back();
     }
 }

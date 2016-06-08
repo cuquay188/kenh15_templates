@@ -35,7 +35,7 @@
                         </button>
                         <div class="modal fade" role="dialog" id="edit{{$author->id}}">
                             <div class="modal-dialog">
-                                <div class="modal-content" style="height: 345px">
+                                <div class="modal-content" style="height: 345px; top: 90px">
                                     <div class="modal-header">
                                         <h5 style="font-weight: bold">Edit Author: "<span
                                                     style="font-style: italic">{{$author->name}}</span>"</h5>
@@ -77,7 +77,7 @@
                         </button>
                         <div class="modal fade" role="dialog" id="delete{{$author->id}}">
                             <div class="modal-dialog">
-                                <div class="modal-content" style="height: 190px">
+                                <div class="modal-content" style="height: 190px;top: 150px">
                                     <div class="modal-header">
                                         <h5 style="font-weight: bold">Delete Author:
                                             <span style="font-style: italic;font-weight: bold">{{$author->name}}</span>

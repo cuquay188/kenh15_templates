@@ -15,15 +15,28 @@
         <form action="{{route('post_article')}}" method="post" role="form">
             <div class="form-group">
                 <label for="title">Title</label>
-                <input type="text" class="form-control" id="title" name="title" placeholder="Enter title...">
+                <input type="text" class="form-control" id="title" name="title" placeholder="Enter title..."
+                       style="width: 150%">
             </div>
             <div class="form-group">
                 <label for="data">Content</label>
-                <textarea name="data" id="data" cols="30" rows="10" class="form-control" placeholder="Enter content..."></textarea>
+                <textarea name="data" id="data" cols="30" rows="20" class="form-control" placeholder="Enter content..."
+                          style="width: 200%"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="tags">Choose tags</label>
+                <div class="checkbox-tags"
+                     style="border: 1px solid #cccccc; border-radius: 4px; padding: 10px; width: 200%">
+                    @foreach($tags as $tag)
+                        <label style="font-weight: normal; border: hidden; margin-left: 10px; margin-bottom: 10px; width: 164px">
+                            <input type="checkbox" value="{{$tag->id}}"> {{$tag->name}}
+                        </label>
+                    @endforeach
+                </div>
             </div>
             <div class="form-group">
                 <label for="category_id">Category</label>
-                <select name="category_id" id="category_id" class="form-control">
+                <select name="category_id" id="category_id" class="form-control" style="width: 50%">
                     <option value="0" style="font-weight: bold">--Select a category--</option>
                     @foreach($categories as $category)
                         <option value="{{$category->id}}">{{$category->name}}</option>
@@ -32,7 +45,7 @@
             </div>
             <div class="form-group">
                 <label for="author_id">Author</label>
-                <select name="author_id" id="author_id" class="form-control">
+                <select name="author_id" id="author_id" class="form-control" style="width: 50%">
                     <option value="0" style="font-weight: bold">--Select an author--</option>
                     @foreach($authors as $author)
                         <option value="{{$author->id}}">{{$author->name}}</option>

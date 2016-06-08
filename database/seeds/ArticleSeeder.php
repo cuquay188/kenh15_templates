@@ -25,7 +25,7 @@ class ArticleSeeder extends Seeder
         odit placeat repellat sed totam vitae. Aut cupiditate dignissimos esse harum in, maxime minima nisi veniam';
         $article->author_id=2;
         $article->category_id=2;
-        $article->save();
+        $article->save(); 
 
 
         $article = new Article();
@@ -41,7 +41,7 @@ class ArticleSeeder extends Seeder
         odit placeat repellat sed totam vitae. Aut cupiditate dignissimos esse harum in, maxime minima nisi veniam';
         $article->author_id=1;
         $article->category_id=1;
-        $article->save();
+        $article->save(); 
 
         $article = new Article();
         $article->title='Lorem';
@@ -56,7 +56,7 @@ class ArticleSeeder extends Seeder
         odit placeat repellat sed totam vitae. Aut cupiditate dignissimos esse harum in, maxime minima nisi veniam';
         $article->author_id=4;
         $article->category_id=1;
-        $article->save();
+        $article->save(); 
         
     }
 }
