@@ -2,7 +2,6 @@
 <head>
     <title>@yield("title")</title>
     <meta charset="utf-8">
-    @yield("styles")
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--    BOOTSTRAP CDN-->
     <!-- Latest compiled and minified CSS -->
@@ -13,6 +12,8 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="{{asset('/bootstrap/js/bootstrap.min.js')}}"></script>
+
+    @yield("styles")
     @yield("scripts")
 </head>
 <body>

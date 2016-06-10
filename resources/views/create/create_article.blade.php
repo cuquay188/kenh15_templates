@@ -25,11 +25,10 @@
             </div>
             <div class="form-group">
                 <label for="tags">Choose tags</label>
-                <div class="checkbox-tags"
-                     style="border: 1px solid #cccccc; border-radius: 4px; padding: 10px; width: 200%">
+                <div class="checkbox-tags row">
                     @foreach($tags as $tag)
-                        <label style="font-weight: normal; border: hidden; margin-left: 10px; margin-bottom: 10px; width: 164px">
-                            <input type="checkbox" value="{{$tag->id}}"> {{$tag->name}}
+                        <label style="font-weight: normal" for="tag{{$tag->id}}" class="col col-sm-2">
+                            <input id="tag{{$tag->id}}" type="checkbox"  name="tags[]" value="{{$tag->id}}"> {{$tag->name}}
                         </label>
                     @endforeach
                 </div>

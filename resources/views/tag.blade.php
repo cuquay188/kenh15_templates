@@ -44,7 +44,7 @@
                                                 <input class="form-control" type="text" value="{{$tag->name}}" id="name"
                                                        name="name" placeholder="Enter name tag...">
                                             </div>
-                                            <div class="form-group">
+                                            <div class="form-group" style="float: right">
                                                 <input type="hidden" value="{{$tag->id}}" name="tag_id">
                                                 <input type="hidden" value="{{Session::token()}}" name="_token">
                                                 <button type="submit" class="btn btn-warning">Update</button>

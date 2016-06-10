@@ -57,7 +57,7 @@
                                                 <input type="text" class="form-control" name="address" id="address"
                                                        value="{{$author->address}}" placeholder="Enter address...">
                                             </div>
-                                            <div class="form-group">
+                                            <div class="form-group" style="float: right">
                                                 <button type="submit" class="btn btn-warning">Update</button>
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">
                                                     Close

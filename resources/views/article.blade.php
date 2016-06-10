@@ -5,10 +5,7 @@
 @endsection
 @section("content")
     <div class="article-add">
-        <form action="{{route('create_article')}}" method="get">
-            <button type="submit" class="btn btn-primary" style="float: right;margin-bottom: 30px">Add</button>
-            <input type="hidden" value="{{Session::token()}}" name="_token">
-        </form>
+        <a href="{{route('create_article')}}" class="btn btn-primary" style="float: right;margin-bottom: 30px">Add</a>
     </div>
     <div class="article-list">
         <table class="table table-striped">
@@ -32,8 +29,36 @@
                     <td style="text-align: center">{{$article->created_at}}</td>
                     <td>{{$article->author->name}}</td>
                     <td>
-                        @foreach($article->tags as $tag)
-                            <span>{{$tag->name}} | </span>
+                        <?php
+                        $tags = $article->tags;
+                        $result = array();
+                        if (!function_exists('search')) {
+                            function search($tag_id, $tags)
+                            {
+                                foreach ($tags as $tag) {
+                                    if ($tag->id == $tag_id) return true;
+                                }
+                                return false;
+                            }
+                        }
+                        for ($i = 0; $i < count($tags); $i++) {
+                            if (!search($tags[$i]->id, $result)) {
+                                array_push($result, $tags[$i]);
+                            }
+                        }
+                        ?>
+                        @foreach($result as $tag)
+                            <div class="tag-border">
+                                <span>{{$tag->name}}</span>
+                                <form style="margin-bottom: 0" action="{{route('post_delete_tag_article')}}" method="POST">
+                                    <input type="hidden" value="{{Session::token()}}" name="_token">
+                                    <input type="hidden" value="{{$tag->id}}" name="tag_id">
+                                    <input type="hidden" value="{{$article->id}}" name="article_id">
+                                    <button type="submit" class="close">
+                                        x
+                                    </button>
+                                </form>
+                            </div>
                         @endforeach
                     </td>
                     <td>
@@ -42,45 +67,67 @@
                         </button>
                         <div class="modal fade" id="edit{{$article->id}}" role="dialog">
                             <div class="modal-dialog modal-lg">
-                                <div class="modal-content" style="height: 630px;">
+                                <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 style="font-weight: bold">Edit Article: "<span
                                                     style="font-style: italic">{{$article->title}}</span>"</h5>
                                     </div>
-                                    <form action="{{route('post_update_article')}}" method="post">
-                                        <div class="modal-body">
-                                            <div class="form-group">
-                                                <label for="title">Title</label>
-                                                <input type="text" class="form-control" name="title" id="title"
-                                                       value="{{$article->title}}" placeholder="Enter title...">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="content">Content</label>
+                                    <form class="modal-body" style="margin-bottom:30px;" action="{{route('post_update_article')}}"
+                                          method="post">
+                                        <div class="form-group">
+                                            <label for="title">Title</label>
+                                            <input type="text" class="form-control" name="title" id="title"
+                                                   value="{{$article->title}}" placeholder="Enter title...">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="content">Content</label>
                                                 <textarea name="data" id="content" cols="30" rows="10"
                                                           class="form-control">{{$article->content}}</textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="category_id">Category</label>
-                                                <select name="category_id" id="category_id" class="form-control"
-                                                        style="width: 300px">
-                                                    @foreach($categories as $category)
-                                                        <option {{$category->id==$article->category->id?"selected=''":''}}
-                                                                value="{{$category->id}}">{{$category->name}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="author_id">Author</label>
-                                                <select name="author_id" id="author_id" class="form-control"
-                                                        style="width: 300px">
-                                                    @foreach($authors as $author)
-                                                        <option {{$author->id==$article->author->id?"selected=''":''}}
-                                                                value="{{$author->id}}">{{$author->name}}</option>
-                                                    @endforeach
-                                                </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="tags">Tags</label>
+                                            <div class="row">
+                                                <?php
+                                                if (!function_exists('tag_exist')) {
+                                                    function tag_exist($tag_id, $tags)
+                                                    {
+                                                        foreach ($tags as $tag)
+                                                            if ($tag->id == $tag_id) return true;
+                                                        return false;
+                                                    }
+                                                }
+                                                ?>
+                                                @foreach(App\Tag::all() as $tag)
+                                                    <label style="font-weight: normal" for="tag{{$tag->id}}"
+                                                           class="col col-sm-2">
+                                                        <input id="tag{{$tag->id}}"
+                                                               {{tag_exist($tag->id,$article->tags)?'checked':''}} type="checkbox"
+                                                               name="tags[]" value="{{$tag->id}}"> {{$tag->name}}
+                                                    </label>
+                                                @endforeach
                                             </div>
                                         </div>
-                                        <div class="modal-footer">
+                                        <div class="form-group">
+                                            <label for="category_id">Category</label>
+                                            <select name="category_id" id="category_id" class="form-control"
+                                                    style="width: 300px">
+                                                @foreach($categories as $category)
+                                                    <option {{$category->id==$article->category->id?"selected=''":''}}
+                                                            value="{{$category->id}}">{{$category->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="author_id">Author</label>
+                                            <select name="author_id" id="author_id" class="form-control"
+                                                    style="width: 300px">
+                                                @foreach($authors as $author)
+                                                    <option {{$author->id==$article->author->id?"selected=''":''}}
+                                                            value="{{$author->id}}">{{$author->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group" style="float: right">
                                             <button type="submit" class="btn btn-warning">Update</button>
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close
                                             </button>

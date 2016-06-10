@@ -110,3 +110,7 @@ Route::post('/delete/tag', [
     'uses' => 'PageController@postDeleteTag',
     'as' => 'post_delete_tag'
 ]);
+Route::post('/articletag',[
+    'uses'=>'PageController@postDeleteTagArticle',
+    'as'=>'post_delete_tag_article'
+]);

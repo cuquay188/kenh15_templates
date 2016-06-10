@@ -43,7 +43,7 @@
                                                 <input type="text" value="{{$category->name}}" name="name" id="name"
                                                        class="form-control" placeholder="Enter name...">
                                             </div>
-                                            <div class="form-group">
+                                            <div class="form-group" style="float: right">
                                                 <input type="hidden" value="{{$category->id}}" name="category_id">
                                                 <input type="hidden" value="{{Session::token()}}" name="_token">
                                                 <button type="submit" class="btn btn-warning">Update</button>

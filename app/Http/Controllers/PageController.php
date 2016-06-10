@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Author;
+use DB;
 
 use App\Category;
 use App\Tag;
@@ -71,6 +72,17 @@ class PageController extends Controller
         $article->author_id = $author_id;
         $article->category_id = $category_id;
         $article->save();
+
+        $article = Article::orderBy('id', 'desc')->first();
+
+//        $article->tags()->attach(1);  // gắn tag1 vào article cuối cùng
+        $tags = $request->tags;
+        if (!empty($tags))
+//            for ($i=0;$i<count($tags);$i++)
+//                $article->tags()->attach($tags[$i]);
+
+            foreach ($tags as $tag)
+                $article->tags()->attach($tag);
 
         return redirect()->back();
     }
@@ -148,6 +160,13 @@ class PageController extends Controller
             'category_id' => $category_id,
             'author_id' => $author_id
         ]);
+        $article = Article::find($id);
+        $tags = $request->tags;
+        if (!empty($tags)) {
+            foreach ($tags as $tag) {
+                $article->tags()->attach($tag);
+            }
+        }
 
         return redirect()->back();
     }
@@ -204,6 +223,14 @@ class PageController extends Controller
     {
         $id = $request->tag_id;
         Tag::where('id', $id)->delete();
+        return redirect()->back();
+    }
+
+    public function postDeleteTagArticle(Request $request)
+    {
+        $tag_id=$request->tag_id;
+        $article_id=$request->article_id;
+        DB::table('tag_article')->where('tag_id', $tag_id)->where('article_id', $article_id)->delete();
         return redirect()->back();
     }
 }
