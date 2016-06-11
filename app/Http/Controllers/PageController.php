@@ -31,14 +31,26 @@ class PageController extends Controller
 
     public function getAuthor()
     {
+        $tags = Tag::all();
+        $categories = Category::all();
         $authors = Author::all();
-        return view('author', ['authors' => $authors]);
+        return view('author', [
+            'tags' => $tags,
+            'categories' => $categories,
+            'authors' => $authors
+        ]);
     }
 
     public function getCategory()
     {
+        $tags = Tag::all();
         $categories = Category::all();
-        return view('category', ['categories' => $categories]);
+        $authors = Author::all();
+        return view('category', [
+            'tags' => $tags,
+            'categories' => $categories,
+            'authors' => $authors
+        ]);
     }
 
     public function getTag()
@@ -234,8 +246,8 @@ class PageController extends Controller
 
     public function postDeleteTagArticle(Request $request)
     {
-        $tag_id=$request->tag_id;
-        $article_id=$request->article_id;
+        $tag_id = $request->tag_id;
+        $article_id = $request->article_id;
         DB::table('tag_article')->where('tag_id', $tag_id)->where('article_id', $article_id)->delete();
         return redirect()->back();
     }
