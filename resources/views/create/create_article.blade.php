@@ -44,13 +44,6 @@
                 </select>
             </div>
             <div class="form-group">
-                {{--<label for="author_id">Author</label>--}}
-                {{--<select name="author_id" id="author_id" class="form-control" style="width: 50%">--}}
-                {{--<option value="0" style="font-weight: bold">--Select an author--</option>--}}
-                {{--@foreach($authors as $author)--}}
-                {{--<option value="{{$author->id}}">{{$author->name}}</option>--}}
-                {{--@endforeach--}}
-                {{--</select>--}}
                 <label for="authors">Choose Author(s)</label>
                 <div class="checkbox-style row">
                     @foreach($authors as $author)

@@ -61,7 +61,8 @@
                                                 <div class="form-group">
                                                     <label for="title">Title</label>
                                                     <input type="text" class="form-control" name="title" id="title"
-                                                           value="{{$article->title}}" placeholder="Enter title..." disabled>
+                                                           value="{{$article->title}}" placeholder="Enter title..."
+                                                           disabled>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="content">Content</label>
@@ -105,14 +106,30 @@
                                                     </select>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="author_id">Author</label>
-                                                    <select name="author_id" id="author_id" class="form-control"
-                                                            style="width: 300px" disabled>
-                                                        @foreach($authors as $author)
-                                                            <option {{$author->id==$article->author->id?"selected=''":''}}
-                                                                    value="{{$author->id}}">{{$author->name}}</option>
+                                                    <label for="authors">Choose Author(s)</label>
+                                                    <div class="checkbox-style row" style="width: 100%">
+                                                        <?php
+                                                        if (!function_exists('author_exist')) {
+                                                            function author_exist($author_id, $authors)
+                                                            {
+                                                                foreach ($authors as $author)
+                                                                    if ($author->id == $author_id) return true;
+                                                                return false;
+                                                            }
+                                                        }
+                                                        ?>
+                                                        @foreach(App\Author::all() as $author)
+                                                            <label for="author{{$author->id}}"
+                                                                   style="font-weight: normal"
+                                                                   class="col col-sm-4">
+                                                                <input type="checkbox" id="author{{$author->id}}"
+                                                                       {{author_exist($author->id,$article->authors)?'checked':''}}
+                                                                       name="authors[]" value="{{$author->id}}"
+                                                                       disabled>
+                                                                {{$author->name}}
+                                                            </label>
                                                         @endforeach
-                                                    </select>
+                                                    </div>
                                                 </div>
                                                 <div class="form-group" style="float: right">
                                                     <button type="submit" class="btn btn-warning">Update</button>

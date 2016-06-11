@@ -5,7 +5,8 @@
 @endsection
 @section("content")
     <div class="author-add">
-            <a href="{{route('create_author')}}" style="float: right;margin-bottom: 30px" type="submit" class="btn btn-primary">Add</a>
+        <a href="{{route('create_author')}}" style="float: right;margin-bottom: 30px" type="submit"
+           class="btn btn-primary">Add</a>
     </div>
     <div class="authors-info">
         <table class="table table-striped">
@@ -27,7 +28,24 @@
                     <td style="text-align: center">{{$author->age}}</td>
                     <td>{{$author->address}}</td>
                     <td>
-                        @foreach($author->articles as $article)
+                        <?php
+                        $articles = $author->articles;
+                        $articles_filter = array();
+                        if (!function_exists('search_article')) {
+                            function search_article($article_id, $articles)
+                            {
+                                foreach ($articles as $article) {
+                                    if ($article->id == $article_id) return true;
+                                }
+                                return false;
+                            }
+                        }
+                        foreach ($articles as $article) {
+                            if (!search_article($article->id, $articles_filter))
+                                array_push($articles_filter, $article);
+                        }
+                        ?>
+                        @foreach($articles_filter as $article)
                             <div class="tag-border">
                                 <a style="cursor:pointer;"
                                    data-toggle="modal"
@@ -40,12 +58,14 @@
                                                 <h5 style="font-weight: bold">Edit Article: "<span
                                                             style="font-style: italic">{{$article->title}}</span>"</h5>
                                             </div>
-                                            <form class="modal-body" style="margin-bottom:30px;" action="{{route('post_update_article')}}"
+                                            <form class="modal-body" style="margin-bottom:30px;"
+                                                  action="{{route('post_update_article')}}"
                                                   method="post">
                                                 <div class="form-group">
                                                     <label for="title">Title</label>
                                                     <input type="text" class="form-control" name="title" id="title"
-                                                           value="{{$article->title}}" placeholder="Enter title..." disabled>
+                                                           value="{{$article->title}}" placeholder="Enter title..."
+                                                           disabled>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="content">Content</label>
@@ -70,7 +90,8 @@
                                                                    class="col col-sm-2">
                                                                 <input id="tag{{$tag->id}}"
                                                                        {{tag_exist($tag->id,$article->tags)?'checked':''}} type="checkbox"
-                                                                       name="tags[]" value="{{$tag->id}}" disabled> {{$tag->name}}
+                                                                       name="tags[]" value="{{$tag->id}}"
+                                                                       disabled> {{$tag->name}}
                                                             </label>
                                                         @endforeach
                                                     </div>
@@ -86,18 +107,34 @@
                                                     </select>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="author_id">Author</label>
-                                                    <select name="author_id" id="author_id" class="form-control"
-                                                            style="width: 300px">
-                                                        @foreach($authors as $author)
-                                                            <option {{$author->id==$article->author->id?"selected=''":''}}
-                                                                    value="{{$author->id}}">{{$author->name}}</option>
+                                                    <label for="authors">Choose Author(s)</label>
+                                                    <div class="checkbox-style row" style="width: 100%">
+                                                        <?php
+                                                        if (!function_exists('author_exist')) {
+                                                            function author_exist($author_id, $authors)
+                                                            {
+                                                                foreach ($authors as $author)
+                                                                    if ($author->id == $author_id) return true;
+                                                                return false;
+                                                            }
+                                                        }
+                                                        ?>
+                                                        @foreach(App\Author::all() as $author)
+                                                            <label for="author{{$author->id}}"
+                                                                   style="font-weight: normal"
+                                                                   class="col col-sm-4">
+                                                                <input type="checkbox" id="author{{$author->id}}"
+                                                                       {{author_exist($author->id,$article->authors)?'checked disabled':''}}
+                                                                       name="authors[]" value="{{$author->id}}">
+                                                                {{$author->name}}
+                                                            </label>
                                                         @endforeach
-                                                    </select>
+                                                    </div>
                                                 </div>
                                                 <div class="form-group" style="float: right">
                                                     <button type="submit" class="btn btn-warning">Update</button>
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                        Close
                                                     </button>
                                                     <input name="article_id" value="{{$article->id}}" type="hidden">
                                                     <input type="hidden" value="{{Session::token()}}" name="_token">

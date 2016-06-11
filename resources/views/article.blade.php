@@ -31,7 +31,7 @@
                         {{--{{$article->author->name}}--}}
                         <?php
                         $authors = $article->authors;
-                        $result = array();
+                        $authors_filter = array();
                         if (!function_exists('search_author')) {
                             function search_author($author_id, $authors)
                             {
@@ -42,12 +42,12 @@
                             }
                         }
                         foreach ($authors as $author) {
-                            if (!search_author($author->id, $result))
-                                array_push($result, $author);
+                            if (!search_author($author->id, $authors_filter))
+                                array_push($authors_filter, $author);
                         }
                         ?>
-                        @foreach($result as $author)
-                                <span>{{$author->name}}</span><br>
+                        @foreach($authors_filter as $author)
+                            <span>{{$author->name}}</span><br>
                         @endforeach
                     </td>
                     <td>
@@ -143,11 +143,28 @@
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            {{--<label for="author_id">Author</label>--}}
-                                            {{--<select name="author_id" id="author_id" class="form-control"--}}
-                                                    {{--style="width: 300px">--}}
-                                                {{----}}
-                                            {{--</select>--}}
+                                            <label for="authors">Choose Author(s)</label>
+                                            <div class="checkbox-style row" style="width: 100%">
+                                                <?php
+                                                if (!function_exists('author_exist')) {
+                                                    function author_exist($author_id, $authors)
+                                                    {
+                                                        foreach ($authors as $author)
+                                                            if ($author->id == $author_id) return true;
+                                                        return false;
+                                                    }
+                                                }
+                                                ?>
+                                                @foreach(App\Author::all() as $author)
+                                                    <label for="author{{$author->id}}" style="font-weight: normal"
+                                                           class="col col-sm-4">
+                                                        <input type="checkbox" id="author{{$author->id}}"
+                                                               {{author_exist($author->id,$article->authors)?'checked':''}}
+                                                               name="authors[]" value="{{$author->id}}">
+                                                        {{$author->name}}
+                                                    </label>
+                                                @endforeach
+                                            </div>
                                         </div>
                                         <div class="form-group" style="float: right">
                                             <button type="submit" class="btn btn-warning">Update</button>
@@ -202,7 +219,15 @@
                                         </form>
                                         <p><span style="font-weight: bold">Category: </span>{{$article->category->name}}
                                         </p>
-                                        <p><span style="font-weight: bold">Author: </span></p>
+                                        <p>
+                                            <span style="font-weight: bold">Author: </span>
+                                            <?php
+                                            $authors_str = '';
+                                            foreach ($authors_filter as $author)
+                                                $authors_str .= $author->name . ', ';
+                                            echo substr($authors_str, 0, strlen($authors_str) - 2)
+                                            ?>
+                                        </p>
                                         <p><span style="font-weight: bold">Created: </span>{{$article->created_at}}</p>
                                     </div>
                                     <div class="modal-footer">
