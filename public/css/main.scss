@@ -3,8 +3,9 @@
   margin-top: 50px;
 }
 
-.btn {
-  margin-left: 10px;
+td .btn.btn-xs {
+  margin-right: 10px;
+  padding: 3px 6px;
 }
 
 .navbar.navbar-inverse {
@@ -26,7 +27,7 @@
 .table>tbody>tr>td{
   vertical-align: middle;
 }
-.article-list .table.table-striped .tag-border {
+.table.table-striped .tag-border {
   border: 1px solid #e2e2e2;
   border-radius: 4px;
   background-color: #e2e2e2;
