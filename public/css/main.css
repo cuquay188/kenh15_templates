@@ -17,7 +17,7 @@
 .table > tbody > tr > td {
   vertical-align: middle; }
 
-.article-list .table.table-striped .tag-border {
+.table.table-striped .tag-border {
   border: 1px solid #e2e2e2;
   border-radius: 4px;
   background-color: #e2e2e2;
@@ -31,12 +31,12 @@
   position: relative;
   display: inline-block;
   padding-right: 10px; }
-  .article-list .table.table-striped .tag-border .close {
+  .table.table-striped .tag-border .close {
     position: absolute;
     right: 2px;
     top: 0;
     font-size: 85%; }
-    .article-list .table.table-striped .tag-border .close a:hover {
+    .table.table-striped .tag-border .close a:hover {
       text-decoration: none; }
 
 .checkbox-tags {

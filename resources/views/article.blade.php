@@ -67,7 +67,7 @@
                         </button>
                         <div class="modal fade" id="edit{{$article->id}}" role="dialog">
                             <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
+                                <div class="modal-content" style="top:50px;">
                                     <div class="modal-header">
                                         <h5 style="font-weight: bold">Edit Article: "<span
                                                     style="font-style: italic">{{$article->title}}</span>"</h5>
@@ -167,7 +167,7 @@
                         </button>
                         <div class="modal fade" id="detail{{$article->id}}" role="dialog">
                             <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
+                                <div class="modal-content" style="top:50px;">
                                     <div class="modal-header">
                                         <h5 style="font-weight: bold">{{$article->title}}</h5>
                                     </div>

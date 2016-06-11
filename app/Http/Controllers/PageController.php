@@ -44,7 +44,13 @@ class PageController extends Controller
     public function getTag()
     {
         $tags = Tag::all();
-        return view('tag', ['tags' => $tags]);
+        $categories = Category::all();
+        $authors = Author::all();
+        return view('tag', [
+            'tags' => $tags,
+            'categories' => $categories,
+            'authors' => $authors
+        ]);
     }
 
     public function getCreateArticle()
