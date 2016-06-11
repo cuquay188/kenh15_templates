@@ -27,7 +27,29 @@
                     <td>{{$article->title}}</td>
                     <td>{{$article->category->name}}</td>
                     <td style="text-align: center">{{$article->created_at}}</td>
-                    <td>{{$article->author->name}}</td>
+                    <td>
+                        {{--{{$article->author->name}}--}}
+                        <?php
+                        $authors = $article->authors;
+                        $result = array();
+                        if (!function_exists('search_author')) {
+                            function search_author($author_id, $authors)
+                            {
+                                foreach ($authors as $author) {
+                                    if ($author->id == $author_id) return true;
+                                }
+                                return false;
+                            }
+                        }
+                        foreach ($authors as $author) {
+                            if (!search_author($author->id, $result))
+                                array_push($result, $author);
+                        }
+                        ?>
+                        @foreach($result as $author)
+                                <span>{{$author->name}}</span><br>
+                        @endforeach
+                    </td>
                     <td>
                         <?php
                         $tags = $article->tags;
@@ -50,7 +72,8 @@
                         @foreach($result as $tag)
                             <div class="tag-border">
                                 <span>{{$tag->name}}</span>
-                                <form style="margin-bottom: 0" action="{{route('post_delete_tag_article')}}" method="POST">
+                                <form style="margin-bottom: 0" action="{{route('post_delete_tag_article')}}"
+                                      method="POST">
                                     <input type="hidden" value="{{Session::token()}}" name="_token">
                                     <input type="hidden" value="{{$tag->id}}" name="tag_id">
                                     <input type="hidden" value="{{$article->id}}" name="article_id">
@@ -72,7 +95,8 @@
                                         <h5 style="font-weight: bold">Edit Article: "<span
                                                     style="font-style: italic">{{$article->title}}</span>"</h5>
                                     </div>
-                                    <form class="modal-body" style="margin-bottom:30px;" action="{{route('post_update_article')}}"
+                                    <form class="modal-body" style="margin-bottom:30px;"
+                                          action="{{route('post_update_article')}}"
                                           method="post">
                                         <div class="form-group">
                                             <label for="title">Title</label>
@@ -102,7 +126,8 @@
                                                            class="col col-sm-2">
                                                         <input id="tag{{$tag->id}}"
                                                                {{tag_exist($tag->id,$article->tags)?'checked':''}} type="checkbox"
-                                                               name="tags[]" value="{{$tag->id}}"> {{$tag->name}}
+                                                               name="tags[]" value="{{$tag->id}}">
+                                                        {{$tag->name}}
                                                     </label>
                                                 @endforeach
                                             </div>
@@ -118,14 +143,11 @@
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <label for="author_id">Author</label>
-                                            <select name="author_id" id="author_id" class="form-control"
-                                                    style="width: 300px">
-                                                @foreach($authors as $author)
-                                                    <option {{$author->id==$article->author->id?"selected=''":''}}
-                                                            value="{{$author->id}}">{{$author->name}}</option>
-                                                @endforeach
-                                            </select>
+                                            {{--<label for="author_id">Author</label>--}}
+                                            {{--<select name="author_id" id="author_id" class="form-control"--}}
+                                                    {{--style="width: 300px">--}}
+                                                {{----}}
+                                            {{--</select>--}}
                                         </div>
                                         <div class="form-group" style="float: right">
                                             <button type="submit" class="btn btn-warning">Update</button>
@@ -180,7 +202,7 @@
                                         </form>
                                         <p><span style="font-weight: bold">Category: </span>{{$article->category->name}}
                                         </p>
-                                        <p><span style="font-weight: bold">Author: </span>{{$article->author->name}}</p>
+                                        <p><span style="font-weight: bold">Author: </span></p>
                                         <p><span style="font-weight: bold">Created: </span>{{$article->created_at}}</p>
                                     </div>
                                     <div class="modal-footer">

@@ -11,6 +11,11 @@ class Article extends Model
         return $this->belongsTo('App\Author');
     }
 
+    public function authors()
+    {
+        return $this->belongsToMany('App\Author', 'author_article');
+    }
+
     public function category()
     {
         return $this->belongsTo('App\Category');
@@ -21,5 +26,5 @@ class Article extends Model
         return $this->belongsToMany('App\Tag', 'tag_article');
     }
 
- 
+
 }

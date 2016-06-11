@@ -27,6 +27,8 @@ Route::get('/cards', function () {
 Route::get('/demo', function () {
     return view('demo');
 });
+
+//Article
 Route::get('/', [
     'uses' => 'PageController@getArticle'
 ]);
@@ -34,49 +36,17 @@ Route::get('/article', [
     'uses' => 'PageController@getArticle',
     'as' => 'article'
 ]);
-Route::get('/author', [
-    'uses' => 'PageController@getAuthor',
-    'as' => 'author'
-]);
-Route::get('/category', [
-    'uses' => 'PageController@getCategory',
-    'as' => 'category'
-]);
-Route::get('/tag', [
-    'uses' => 'PageController@getTag',
-    'as' => 'tag'
-]);
 Route::get('/create/article', [
     'uses' => 'PageController@getCreateArticle',
     'as' => 'create_article'
-]);
-Route::get('/create/category', [
-    'uses' => 'PageController@getCreateCategory',
-    'as' => 'create_category'
-]);
-Route::get('/create/author', [
-    'uses' => 'PageController@getCreateAuthor',
-    'as' => 'create_author'
-]);
-Route::get('/create/tag', [
-    'uses' => 'PageController@getCreateTag',
-    'as' => 'create_tag'
 ]);
 Route::post('/create/article', [
     'uses' => 'PageController@postCreateArticle',
     'as' => 'post_article'
 ]);
-Route::post('/create/category', [
-    'uses' => 'PageController@postCreateCategory',
-    'as' => 'post_category'
-]);
-Route::post('/create/author', [
-    'uses' => 'PageController@postCreateAuthor',
-    'as' => 'post_author'
-]);
-Route::post('/create/tag', [
-    'uses' => 'PageController@postCreateTag',
-    'as' => 'post_tag'
+Route::post('/create/article1', [
+    'uses' => 'PageController@postCreateArticle1',
+    'as' => 'post_article_1'
 ]);
 Route::post('/delete/article', [
     'uses' => 'PageController@postDeleteArticle',
@@ -86,21 +56,23 @@ Route::post('/edit/article', [
     'uses' => 'PageController@postUpdateArticle',
     'as' => 'post_update_article'
 ]);
-Route::post('/delete/author', [
-    'uses' => 'PageController@postDeleteAuthor',
-    'as' => 'post_delete_author'
+Route::post('/articletag', [
+    'uses' => 'PageController@postDeleteTagArticle',
+    'as' => 'post_delete_tag_article'
 ]);
-Route::post('/edit/author', [
-    'uses' => 'PageController@postUpdateAuthor',
-    'as' => 'post_update_author'
+
+//Tag
+Route::get('/tag', [
+    'uses' => 'PageController@getTag',
+    'as' => 'tag'
 ]);
-Route::post('/delete/category', [
-    'uses' => 'PageController@postDeleteCategory',
-    'as' => 'post_delete_category'
+Route::get('/create/tag', [
+    'uses' => 'PageController@getCreateTag',
+    'as' => 'create_tag'
 ]);
-Route::post('/edit/category', [
-    'uses' => 'PageController@postUpdateCategory',
-    'as' => 'post_update_category'
+Route::post('/create/tag', [
+    'uses' => 'PageController@postCreateTag',
+    'as' => 'post_tag'
 ]);
 Route::post('/edit/tag', [
     'uses' => 'PageController@postUpdateTag',
@@ -110,7 +82,51 @@ Route::post('/delete/tag', [
     'uses' => 'PageController@postDeleteTag',
     'as' => 'post_delete_tag'
 ]);
-Route::post('/articletag',[
-    'uses'=>'PageController@postDeleteTagArticle',
-    'as'=>'post_delete_tag_article'
+
+//Author
+Route::get('/author', [
+    'uses' => 'PageController@getAuthor',
+    'as' => 'author'
+]);
+Route::get('/create/author', [
+    'uses' => 'PageController@getCreateAuthor',
+    'as' => 'create_author'
+]);
+Route::post('/create/author', [
+    'uses' => 'PageController@postCreateAuthor',
+    'as' => 'post_author'
+]);
+Route::post('/delete/author', [
+    'uses' => 'PageController@postDeleteAuthor',
+    'as' => 'post_delete_author'
+]);
+Route::post('/edit/author', [
+    'uses' => 'PageController@postUpdateAuthor',
+    'as' => 'post_update_author'
+]);
+Route::get('/create/authors', [
+    'uses' => 'PageController@getCreateAuthors',
+    'as' => 'create_authors'
+]);
+
+//Category
+Route::get('/category', [
+    'uses' => 'PageController@getCategory',
+    'as' => 'category'
+]);
+Route::get('/create/category', [
+    'uses' => 'PageController@getCreateCategory',
+    'as' => 'create_category'
+]);
+Route::post('/create/category', [
+    'uses' => 'PageController@postCreateCategory',
+    'as' => 'post_category'
+]);
+Route::post('/delete/category', [
+    'uses' => 'PageController@postDeleteCategory',
+    'as' => 'post_delete_category'
+]);
+Route::post('/edit/category', [
+    'uses' => 'PageController@postUpdateCategory',
+    'as' => 'post_update_category'
 ]);

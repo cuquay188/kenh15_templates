@@ -17,6 +17,7 @@
                     <li><a href="{{route('create_category')}}">Create Category</a></li>
                     <li><a href="{{route('create_author')}}">Create Author</a></li>
                     <li><a href="{{route('create_tag')}}">Create Tag</a></li>
+                    <li><a href="{{route('create_authors')}}">Create Authors</a></li>
                 </ul>
             </li>
         </ul>

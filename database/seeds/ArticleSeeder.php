@@ -23,7 +23,7 @@ class ArticleSeeder extends Seeder
         odit placeat repellat sed totam vitae. Aut cupiditate dignissimos esse harum in, maxime minima nisi veniamLorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur dignissimos doloremque hic magnam minus
         odit placeat repellat sed totam vitae. Aut cupiditate dignissimos esse harum in, maxime minima nisi veniamLorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur dignissimos doloremque hic magnam minus
         odit placeat repellat sed totam vitae. Aut cupiditate dignissimos esse harum in, maxime minima nisi veniam';
-        $article->author_id=2;
+//        $article->author_id=2;
         $article->category_id=2;
         $article->save(); 
 
@@ -39,7 +39,7 @@ class ArticleSeeder extends Seeder
         odit placeat repellat sed totam vitae. Aut cupiditate dignissimos esse harum in, maxime minima nisi veniamLorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur dignissimos doloremque hic magnam minus
         odit placeat repellat sed totam vitae. Aut cupiditate dignissimos esse harum in, maxime minima nisi veniamLorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur dignissimos doloremque hic magnam minus
         odit placeat repellat sed totam vitae. Aut cupiditate dignissimos esse harum in, maxime minima nisi veniam';
-        $article->author_id=1;
+//        $article->author_id=1;
         $article->category_id=1;
         $article->save(); 
 
@@ -54,7 +54,7 @@ class ArticleSeeder extends Seeder
         odit placeat repellat sed totam vitae. Aut cupiditate dignissimos esse harum in, maxime minima nisi veniamLorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur dignissimos doloremque hic magnam minus
         odit placeat repellat sed totam vitae. Aut cupiditate dignissimos esse harum in, maxime minima nisi veniamLorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur dignissimos doloremque hic magnam minus
         odit placeat repellat sed totam vitae. Aut cupiditate dignissimos esse harum in, maxime minima nisi veniam';
-        $article->author_id=4;
+//        $article->author_id=4;
         $article->category_id=1;
         $article->save(); 
         

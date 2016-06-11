@@ -21,8 +21,8 @@ class TagAticleSeeder extends Seeder
         Tag::find(2)->articles()->attach(3);
         Tag::find(3)->articles()->attach(1);
         Tag::find(3)->articles()->attach(2);
-        
-        
+
+
         Article::find(1)->tags()->attach(1);
         Article::find(1)->tags()->attach(2);
         Article::find(3)->tags()->attach(4);

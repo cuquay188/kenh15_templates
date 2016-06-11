@@ -29,24 +29,6 @@ class PageController extends Controller
         ]);
     }
 
-    public function getAuthor()
-    {
-        $authors = Author::all();
-        return view('author', ['authors' => $authors]);
-    }
-
-    public function getCategory()
-    {
-        $categories = Category::all();
-        return view('category', ['categories' => $categories]);
-    }
-
-    public function getTag()
-    {
-        $tags = Tag::all();
-        return view('tag', ['tags' => $tags]);
-    }
-
     public function getCreateArticle()
     {
         $authors = Author::all();
@@ -87,55 +69,31 @@ class PageController extends Controller
         return redirect()->back();
     }
 
-    public function getCreateCategory()
+    public function postCreateArticle1(Request $request)
     {
-        return view('create.create_category');
-    }
+        $title = $request->title;
+        $content = $request->data;
+        $category_id = $request->category_id;
 
-    public function postCreateCategory(Request $request)
-    {
-        $name = $request->category;
+        $article = new Article();
+        $article->title = $title;
+        $article->content = $content;
+        $article->category_id = $category_id;
+        $article->save();
 
-        $category = new Category();
-        $category->name = $name;
-
-        $category->save();
-
-        return redirect()->back();
-    }
-
-    public function getCreateAuthor()
-    {
-        return view('create.create_author');
-    }
-
-    public function postCreateAuthor(Request $request)
-    {
-        $name = $request->name;
-        $age = $request->age;
-        $address = $request->address;
-
-        $author = new Author();
-        $author->name = $name;
-        $author->age = $age;
-        $author->address = $address;
-
-        $author->save();
-
-        return redirect()->back();
-    }
-
-    public function getCreateTag()
-    {
-        return view('create.create_tag');
-    }
-
-    public function postCreateTag(Request $request)
-    {
-        $name = $request->name;
-        $tag = new Tag();
-        $tag->name = $name;
-        $tag->save();
+        $article = Article::orderBy('id', 'desc')->first();
+        $tags = $request->tags;
+        $authors = $request->authors;
+        if (!empty($tags)) {
+            foreach ($tags as $tag) {
+                $article->tags()->attach($tag);
+            }
+        }
+        if (!empty($authors)){
+            foreach ($authors as $author) {
+                $article->authors()->attach($author);
+            }
+        }
         return redirect()->back();
     }
 
@@ -171,6 +129,46 @@ class PageController extends Controller
         return redirect()->back();
     }
 
+    public function postDeleteTagArticle(Request $request)
+    {
+        $tag_id = $request->tag_id;
+        $article_id = $request->article_id;
+        DB::table('tag_article')->where('tag_id', $tag_id)->where('article_id', $article_id)->delete();
+        return redirect()->back();
+    }
+
+    public function getAuthor()
+    {
+        $authors = Author::all();
+        return view('author', ['authors' => $authors]);
+    }
+
+    public function getCreateAuthor()
+    {
+        return view('create.create_author');
+    }
+
+    public function getCreateAuthors()
+    {
+        return view('create.create_authors');
+    }
+
+    public function postCreateAuthor(Request $request)
+    {
+        $name = $request->name;
+        $age = $request->age;
+        $address = $request->address;
+
+        $author = new Author();
+        $author->name = $name;
+        $author->age = $age;
+        $author->address = $address;
+
+        $author->save();
+
+        return redirect()->back();
+    }
+
     public function postDeleteAuthor(Request $request)
     {
         $id = $request->author_id;
@@ -192,6 +190,30 @@ class PageController extends Controller
         return redirect()->back();
     }
 
+    public function getCategory()
+    {
+        $categories = Category::all();
+        return view('category', ['categories' => $categories]);
+    }
+
+
+    public function getCreateCategory()
+    {
+        return view('create.create_category');
+    }
+
+    public function postCreateCategory(Request $request)
+    {
+        $name = $request->category;
+
+        $category = new Category();
+        $category->name = $name;
+
+        $category->save();
+
+        return redirect()->back();
+    }
+
     public function postDeleteCategory(Request $request)
     {
         $id = $request->category_id;
@@ -209,6 +231,26 @@ class PageController extends Controller
         return redirect()->back();
     }
 
+    public function getTag()
+    {
+        $tags = Tag::all();
+        return view('tag', ['tags' => $tags]);
+    }
+
+    public function getCreateTag()
+    {
+        return view('create.create_tag');
+    }
+
+    public function postCreateTag(Request $request)
+    {
+        $name = $request->name;
+        $tag = new Tag();
+        $tag->name = $name;
+        $tag->save();
+        return redirect()->back();
+    }
+
     public function postUpdateTag(Request $request)
     {
         $id = $request->tag_id;
@@ -223,14 +265,6 @@ class PageController extends Controller
     {
         $id = $request->tag_id;
         Tag::where('id', $id)->delete();
-        return redirect()->back();
-    }
-
-    public function postDeleteTagArticle(Request $request)
-    {
-        $tag_id=$request->tag_id;
-        $article_id=$request->article_id;
-        DB::table('tag_article')->where('tag_id', $tag_id)->where('article_id', $article_id)->delete();
         return redirect()->back();
     }
 }

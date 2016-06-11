@@ -12,7 +12,7 @@
         </form>
     </div>
     <div class="content">
-        <form action="{{route('post_article')}}" method="post" role="form">
+        <form action="{{route('post_article_1')}}" method="post" role="form">
             <div class="form-group">
                 <label for="title">Title</label>
                 <input type="text" class="form-control" id="title" name="title" placeholder="Enter title..."
@@ -25,10 +25,11 @@
             </div>
             <div class="form-group">
                 <label for="tags">Choose tags</label>
-                <div class="checkbox-tags row">
+                <div class="checkbox-style row">
                     @foreach($tags as $tag)
                         <label style="font-weight: normal" for="tag{{$tag->id}}" class="col col-sm-2">
-                            <input id="tag{{$tag->id}}" type="checkbox"  name="tags[]" value="{{$tag->id}}"> {{$tag->name}}
+                            <input id="tag{{$tag->id}}" type="checkbox" name="tags[]" value="{{$tag->id}}">
+                            {{$tag->name}}
                         </label>
                     @endforeach
                 </div>
@@ -43,13 +44,22 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="author_id">Author</label>
-                <select name="author_id" id="author_id" class="form-control" style="width: 50%">
-                    <option value="0" style="font-weight: bold">--Select an author--</option>
+                {{--<label for="author_id">Author</label>--}}
+                {{--<select name="author_id" id="author_id" class="form-control" style="width: 50%">--}}
+                {{--<option value="0" style="font-weight: bold">--Select an author--</option>--}}
+                {{--@foreach($authors as $author)--}}
+                {{--<option value="{{$author->id}}">{{$author->name}}</option>--}}
+                {{--@endforeach--}}
+                {{--</select>--}}
+                <label for="authors">Choose Author(s)</label>
+                <div class="checkbox-style row">
                     @foreach($authors as $author)
-                        <option value="{{$author->id}}">{{$author->name}}</option>
+                        <label for="author{{$author->id}}" style="font-weight: normal" class="col col-sm-4">
+                            <input type="checkbox" id="author{{$author->id}}" name="authors[]" value="{{$author->id}}">
+                            {{$author->name}}
+                        </label>
                     @endforeach
-                </select>
+                </div>
             </div>
             <div>
                 <button type="submit" class="btn btn-success">Create</button>
