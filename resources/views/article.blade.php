@@ -17,7 +17,7 @@
                 <th style="text-align: center">Created</th>
                 <th>Author</th>
                 <th style="text-align: center">Tags</th>
-                <th style="text-align: center">Function</th>
+                <th>Function</th>
             </tr>
             </thead>
             <tbody>

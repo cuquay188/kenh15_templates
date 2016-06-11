@@ -5,10 +5,7 @@
 @endsection
 @section("content")
     <div class="author-add">
-        <form action="{{route('create_author')}}">
-            <button style="float: right;margin-bottom: 30px" type="submit" class="btn btn-primary">Add</button>
-            <input type="hidden" value="{{Session::token()}}" name="_token">
-        </form>
+            <a href="{{route('create_author')}}" style="float: right;margin-bottom: 30px" type="submit" class="btn btn-primary">Add</a>
     </div>
     <div class="authors-info">
         <table class="table table-striped">
@@ -34,9 +31,9 @@
                             <div class="tag-border">
                                 <a style="cursor:pointer;"
                                    data-toggle="modal"
-                                   data-target="#edit{{$article->id}}"
+                                   data-target="#editatc{{$article->id}}"
                                 >{{substr($article->title,0,10).'...'}}</a>
-                                <div class="modal fade" id="edit{{$article->id}}" role="dialog">
+                                <div class="modal fade" id="editatc{{$article->id}}" role="dialog">
                                     <div class="modal-dialog modal-lg">
                                         <div class="modal-content" style="top:50px;">
                                             <div class="modal-header">
@@ -48,12 +45,12 @@
                                                 <div class="form-group">
                                                     <label for="title">Title</label>
                                                     <input type="text" class="form-control" name="title" id="title"
-                                                           value="{{$article->title}}" placeholder="Enter title...">
+                                                           value="{{$article->title}}" placeholder="Enter title..." disabled>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="content">Content</label>
                                                 <textarea name="data" id="content" cols="30" rows="10"
-                                                          class="form-control">{{$article->content}}</textarea>
+                                                          class="form-control" disabled>{{$article->content}}</textarea>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="tags">Tags</label>
@@ -73,7 +70,7 @@
                                                                    class="col col-sm-2">
                                                                 <input id="tag{{$tag->id}}"
                                                                        {{tag_exist($tag->id,$article->tags)?'checked':''}} type="checkbox"
-                                                                       name="tags[]" value="{{$tag->id}}"> {{$tag->name}}
+                                                                       name="tags[]" value="{{$tag->id}}" disabled> {{$tag->name}}
                                                             </label>
                                                         @endforeach
                                                     </div>
@@ -81,7 +78,7 @@
                                                 <div class="form-group">
                                                     <label for="category_id">Category</label>
                                                     <select name="category_id" id="category_id" class="form-control"
-                                                            style="width: 300px">
+                                                            style="width: 300px" disabled>
                                                         @foreach($categories as $category)
                                                             <option {{$category->id==$article->category->id?"selected=''":''}}
                                                                     value="{{$category->id}}">{{$category->name}}</option>
