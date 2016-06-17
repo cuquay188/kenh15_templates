@@ -4,31 +4,35 @@
     <link rel="stylesheet" href="{{asset('/css/main.css')}}">
 @endsection
 @section("content")
-    <div class="article-add">
-        <a href="{{route('create_article')}}" class="btn btn-primary" style="float: right;margin-bottom: 30px">Add</a>
+    <input id="search" type="text" class="form-control col col-sm-4" placeholder="Search..." style="width: 33.33%">
+    <label class="glyphicon glyphicon-search col col-sm-1"
+           style="font-size: 20px; margin-left: -40px; margin-top: 5px"></label>
+    <div class="col col-sm-5"></div>
+    <div class="article-add col col-sm-2">
+        <a href="{{route('create_article')}}" class="btn btn-primary">Add</a>
     </div>
+    <div class="fix"></div>
     <div class="article-list">
         <table class="table table-striped">
             <thead>
             <tr>
                 <th style="text-align: center">ID</th>
-                <th>Title</th>
+                <th style="width: 15%">Title</th>
                 <th>Category</th>
                 <th style="text-align: center">Created</th>
                 <th>Author</th>
-                <th style="text-align: center">Tags</th>
+                <th style="width: 20%">Tags</th>
                 <th>Function</th>
             </tr>
             </thead>
             <tbody>
             @foreach($articles as $article)
                 <tr style="font-size: 13px">
-                    <td style="text-align: center">{{$article->id}}</td>
-                    <td>{{$article->title}}</td>
-                    <td>{{$article->category->name}}</td>
+                    <td id="id" style="text-align: center">{{$article->id}}</td>
+                    <td id="title">{{$article->title}}</td>
+                    <td id="category">{{$article->category->name}}</td>
                     <td style="text-align: center">{{$article->created_at}}</td>
-                    <td>
-                        {{--{{$article->author->name}}--}}
+                    <td id="authors">
                         <?php
                         $authors = $article->authors;
                         $authors_filter = array();
@@ -50,7 +54,7 @@
                             <span>{{$author->name}}</span><br>
                         @endforeach
                     </td>
-                    <td>
+                    <td id="tags">
                         <?php
                         $tags = $article->tags;
                         $result = array();
@@ -69,18 +73,38 @@
                             }
                         }
                         ?>
+
                         @foreach($result as $tag)
                             <div class="tag-border">
                                 <span>{{$tag->name}}</span>
-                                <form style="margin-bottom: 0" action="{{route('post_delete_tag_article')}}"
-                                      method="POST">
-                                    <input type="hidden" value="{{Session::token()}}" name="_token">
-                                    <input type="hidden" value="{{$tag->id}}" name="tag_id">
-                                    <input type="hidden" value="{{$article->id}}" name="article_id">
-                                    <button type="submit" class="close">
-                                        x
-                                    </button>
-                                </form>
+                                <button type="submit" class="close" data-toggle="modal"
+                                        data-target="#delete{{$tag->id}}{{$article->id}}">x
+                                </button>
+                                <div class="modal fade" role="dialog" id="delete{{$tag->id}}{{$article->id}}"
+                                     style="top: 150px">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 style="font-weight: bold">Delete Article's tag: "<span
+                                                            style="font-style: italic">{{$tag->name}}</span>"</h5>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Do you want to delete this tag?</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <form action="{{route('post_delete_tag_article')}}" method="POST">
+                                                    <input type="hidden" value="{{Session::token()}}" name="_token">
+                                                    <input type="hidden" value="{{$article->id}}" name="article_id">
+                                                    <input type="hidden" value="{{$tag->id}}" name="tag_id">
+                                                    <button class="btn btn-warning" type="submit">Yes</button>
+                                                    <button class="btn btn-default" type="button" data-dismiss="modal">
+                                                        No
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         @endforeach
                     </td>
@@ -125,7 +149,7 @@
                                                     <label style="font-weight: normal" for="tag{{$tag->id}}"
                                                            class="col col-sm-2">
                                                         <input id="tag{{$tag->id}}"
-                                                               {{tag_exist($tag->id,$article->tags)?'checked':''}} type="checkbox"
+                                                               {{tag_exist($tag->id,$article->tags)?'checked disabled':''}} type="checkbox"
                                                                name="tags[]" value="{{$tag->id}}">
                                                         {{$tag->name}}
                                                     </label>
@@ -159,7 +183,7 @@
                                                     <label for="author{{$author->id}}" style="font-weight: normal"
                                                            class="col col-sm-4">
                                                         <input type="checkbox" id="author{{$author->id}}"
-                                                               {{author_exist($author->id,$article->authors)?'checked':''}}
+                                                               {{author_exist($author->id,$article->authors)?'checked disabled':''}}
                                                                name="authors[]" value="{{$author->id}}">
                                                         {{$author->name}}
                                                     </label>
@@ -217,7 +241,18 @@
                                                           class="form-control">{{$article->content}}</textarea>
                                             </div>
                                         </form>
-                                        <p><span style="font-weight: bold">Category: </span>{{$article->category->name}}
+                                        <p>
+                                            <span style="font-weight: bold">Category: </span>{{$article->category->name}}
+                                        </p>
+                                        <p>
+                                            <span style="font-weight: bold">Tag(s): </span>
+                                            <?php
+                                            $tags_str = '';
+                                            foreach ($result as $tag) {
+                                                $tags_str .= $tag->name . ', ';
+                                            }
+                                            echo substr($tags_str, 0, strlen($tags_str) - 2)
+                                            ?>
                                         </p>
                                         <p>
                                             <span style="font-weight: bold">Author: </span>
@@ -242,4 +277,24 @@
             </tbody>
         </table>
     </div>
+    <script>
+        $('#search').on('keyup', function () {
+            var value = $(this).val().toLowerCase();
+            console.log(value);
+            $('table tbody tr').each(function (index) {
+                if (index !== 0) {
+                    var text = $(this).children('#title').text()
+                            + $(this).children('#category').text()
+                            + $(this).children('#authors').text()
+                            + $(this).children('#tags').text();
+                    text = text.toLowerCase();
+                    if (text.indexOf(value) == -1) {
+                        $(this).fadeOut(100);
+                    } else {
+                        $(this).fadeIn(100);
+                    }
+                }
+            })
+        })
+    </script>
 @endsection

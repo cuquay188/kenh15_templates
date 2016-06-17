@@ -3,6 +3,10 @@
   margin-top: 50px;
 }
 
+.article-add {
+  margin-bottom: 30px;
+}
+
 td .btn.btn-xs {
   margin-right: 10px;
   padding: 3px 6px;
@@ -24,9 +28,11 @@ td .btn.btn-xs {
     }
   }
 }
-.table>tbody>tr>td{
+
+.table > tbody > tr > td {
   vertical-align: middle;
 }
+
 .table.table-striped .tag-border {
   border: 1px solid #e2e2e2;
   border-radius: 4px;
@@ -46,17 +52,31 @@ td .btn.btn-xs {
     right: 2px;
     top: 0;
     font-size: 85%;
-    a:hover{
+    a:hover {
       text-decoration: none;
     }
   }
 
 }
-.checkbox-style{
+
+.checkbox-style {
   border: 1px solid #cccccc;
   border-radius: 4px;
   padding: 10px;
   width: 200%;
-  margin-left: 0
+  margin-left: 0;
+}
+
+.errors {
+  list-style: none;
+  padding-left: 0;
+  li {
+    color: red;
+    font-style: italic;
+  }
+}
+
+.fix {
+  clear: both;
 }
 

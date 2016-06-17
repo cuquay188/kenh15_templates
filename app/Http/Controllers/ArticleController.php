@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\DB;
 use App\Article;
 use App\Category;
 use App\Author;
@@ -40,34 +41,13 @@ class ArticleController extends Controller
 
     public function postCreateArticle(Request $request)
     {
-        $title = $request->title;
-        $content = $request->data;
-        $author_id = $request->author_id;
-        $category_id = $request->category_id;
+        $this->validate($request, [
+            'title' => 'required|between:5,80',
+            'data' => 'required|min:30',
+            'category_id' => 'numeric',
+            'authors' => 'required'
+        ]);
 
-        $article = new Article();
-        $article->title = $title;
-        $article->content = $content;
-        $article->author_id = $author_id;
-        $article->category_id = $category_id;
-        $article->save();
-
-        $article = Article::orderBy('id', 'desc')->first();
-
-//        $article->tags()->attach(1);  // gắn tag1 vào article cuối cùng
-        $tags = $request->tags;
-        if (!empty($tags))
-//            for ($i=0;$i<count($tags);$i++)
-//                $article->tags()->attach($tags[$i]);
-
-            foreach ($tags as $tag)
-                $article->tags()->attach($tag);
-
-        return redirect()->back();
-    }
-
-    public function postCreateArticle1(Request $request)
-    {
         $title = $request->title;
         $content = $request->data;
         $category_id = $request->category_id;
@@ -134,7 +114,7 @@ class ArticleController extends Controller
     {
         $tag_id = $request->tag_id;
         $article_id = $request->article_id;
-        DB::table('tag_article')->where('tag_id', $tag_id)->where('article_id', $article_id)->delete();
+        DB::table('tag_article')->where('article_id', $article_id)->where('tag_id', $tag_id)->delete();
         return redirect()->back();
     }
 }

@@ -35,6 +35,12 @@ class AuthorController extends Controller
 
     public function postCreateAuthor(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required|between:6,30',
+            'age' => 'required|digits_between:16,80',
+            'address' => 'required'
+        ]);
+
         $name = $request->name;
         $age = $request->age;
         $address = $request->address;

@@ -12,6 +12,13 @@
         </form>
     </div>
     <div class="content">
+        @if(count($errors)>0)
+            <ul class="errors">
+                @foreach($errors->all() as $error)
+                    <li>{{$error == 'The category id must be a number.'?'The category is required .':$error}}</li>
+                @endforeach
+            </ul>
+        @endif
         <form action="{{route('post_article_1')}}" method="post" role="form">
             <div class="form-group">
                 <label for="title">Title</label>
@@ -37,7 +44,7 @@
             <div class="form-group">
                 <label for="category_id">Category</label>
                 <select name="category_id" id="category_id" class="form-control" style="width: 50%">
-                    <option value="0" style="font-weight: bold">--Select a category--</option>
+                    <option value="null" style="font-weight: bold">--Select a category--</option>
                     @foreach($categories as $category)
                         <option value="{{$category->id}}">{{$category->name}}</option>
                     @endforeach

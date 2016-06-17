@@ -10,6 +10,13 @@
         </form>
     </div>
     <div class="content">
+        @if(count($errors)>0)
+            <ul class="errors">
+                @foreach($errors->all() as $error)
+                    <li>{{$error}}</li>
+                @endforeach
+            </ul>
+        @endif
         <form action="{{route('post_author')}}" method="post" role="form">
             <div class="form-group">
                 <label for="name">Name</label>

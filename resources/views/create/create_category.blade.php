@@ -10,10 +10,18 @@
         </form>
     </div>
     <div class="content">
+        @if(count($errors)>0)
+            <ul class="errors">
+                @foreach($errors->all() as $error)
+                    <li>{{$error}}</li>
+                @endforeach
+            </ul>
+        @endif
         <form action="{{route('post_category')}}" method="post" role="form">
             <div class="form-group">
                 <label for="category">Category</label>
-                <input type="text" id="category" name="category" class="form-control" placeholder="Enter category name...">
+                <input type="text" id="category" name="category" class="form-control"
+                       placeholder="Enter category name...">
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-success">Create</button>
