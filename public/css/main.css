@@ -1,6 +1,9 @@
 .content {
-  width: 40%;
-  margin-top: 50px; }
+  width: 60%;
+  margin: 50px auto; }
+
+.content.content-width {
+  width: 40%; }
 
 .article-add {
   margin-bottom: 30px; }
@@ -47,7 +50,7 @@ td .btn.btn-xs {
   border: 1px solid #cccccc;
   border-radius: 4px;
   padding: 10px;
-  width: 200%;
+  width: 100%;
   margin-left: 0; }
 
 .errors {

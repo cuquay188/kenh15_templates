@@ -9,7 +9,7 @@
             <button style="float: right;margin-bottom: 30px" type="submit" class="btn btn-danger">Back</button>
         </form>
     </div>
-    <div class="content">
+    <div class="content content-width">
         @if(count($errors)>0)
             <ul class="errors">
                 @foreach($errors->all() as $error)

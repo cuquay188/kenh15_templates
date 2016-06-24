@@ -24,7 +24,7 @@
                 <label for="title">Title</label>
                 <input type="text" class="form-control"
                        id="title" name="title" value="{!! old('title') !!}" placeholder="Enter title..."
-                       style="width: 150%">
+                      >
             </div>
             <div class="form-group">
                 <label for="data">Content</label>
@@ -44,7 +44,7 @@
             </div>
             <div class="form-group">
                 <label for="category_id">Category</label>
-                <select name="category_id" id="category_id" class="form-control" style="width: 50%">
+                <select name="category_id" id="category_id" class="form-control" style="width: 30%">
                     <option value="null" style="font-weight: bold">--Select a category--</option>
                     @foreach($categories as $category)
                         <option value="{{$category->id}}">{{$category->name}}</option>
