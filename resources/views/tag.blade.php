@@ -8,6 +8,14 @@
         <a href="{{route('create_tag')}}" style="float: right;margin-bottom: 30px" type="submit"
            class="btn btn-primary">Add</a>
     </div>
+    <div class="fix"></div>
+    @if(count($errors)>0)
+        <ul class="errors">
+            @foreach($errors->all() as $error)
+                <li>* {{$error}}</li>
+            @endforeach
+        </ul>
+    @endif
     <div class="tag-info">
         <table class="table table-striped">
             <thead>
@@ -29,7 +37,7 @@
                         </button>
                         <div class="modal fade" role="dialog" id="edit{{$tag->id}}">
                             <div class="modal-dialog">
-                                <div class="modal-content" style="height: 205px;top: 150px">
+                                <div class="modal-content" style="top: 150px">
                                     <div class="modal-header">
                                         <h5 style="font-weight: bold">Edit Tag: "
                                             <span style="font-style: italic">{{$tag->name}}</span>"
@@ -42,13 +50,13 @@
                                                 <input class="form-control" type="text" value="{{$tag->name}}" id="name"
                                                        name="name" placeholder="Enter name tag...">
                                             </div>
-                                            <div class="form-group" style="float: right">
+                                            <div class="form-group" id="action">
                                                 <input type="hidden" value="{{$tag->id}}" name="tag_id">
                                                 <input type="hidden" value="{{Session::token()}}" name="_token">
-                                                <button type="submit" class="btn btn-warning">Update</button>
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">
                                                     Close
                                                 </button>
+                                                <button type="submit" class="btn btn-warning">Update</button>
                                             </div>
                                         </div>
                                     </form>
@@ -88,4 +96,7 @@
             </tbody>
         </table>
     </div>
+    <script>
+        $('table').DataTable();
+    </script>
 @endsection

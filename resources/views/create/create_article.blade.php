@@ -15,20 +15,21 @@
         @if(count($errors)>0)
             <ul class="errors">
                 @foreach($errors->all() as $error)
-                    <li>{{$error == 'The category id must be a number.'?'The category is required .':$error}}</li>
+                    <li>* {{$error == 'The category id must be a number.'?'The category is required .':$error}}</li>
                 @endforeach
             </ul>
         @endif
         <form action="{{route('post_article_1')}}" method="post" role="form">
             <div class="form-group">
                 <label for="title">Title</label>
-                <input type="text" class="form-control" id="title" name="title" placeholder="Enter title..."
+                <input type="text" class="form-control"
+                       id="title" name="title" value="{!! old('title') !!}" placeholder="Enter title..."
                        style="width: 150%">
             </div>
             <div class="form-group">
                 <label for="data">Content</label>
-                <textarea name="data" id="data" cols="30" rows="20" class="form-control" placeholder="Enter content..."
-                          style="width: 200%"></textarea>
+                <textarea name="data" id="data" cols="30" rows="20" class="ckeditor form-control" placeholder="Enter content..."
+                          style="width: 200%">{!! old('data') !!}</textarea>
             </div>
             <div class="form-group">
                 <label for="tags">Choose tags</label>
@@ -67,4 +68,8 @@
             </div>
         </form>
     </div>
+    <script>
+        $('#title').focus();
+//        CKEDITOR.replace( 'data' );
+    </script>
 @endsection

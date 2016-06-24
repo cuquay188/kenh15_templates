@@ -53,6 +53,10 @@ class CategoryController extends Controller
 
     public function postUpdateCategory(Request $request)
     {
+        $this->validate($request, [
+            'category' => 'required|between:3,15'
+        ]);
+        
         $id = $request->category_id;
         $name = $request->name;
         Category::where('id', $id)->update([

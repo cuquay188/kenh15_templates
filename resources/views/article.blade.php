@@ -4,14 +4,17 @@
     <link rel="stylesheet" href="{{asset('/css/main.css')}}">
 @endsection
 @section("content")
-    <input id="search" type="text" class="form-control col col-sm-4" placeholder="Search..." style="width: 33.33%">
-    <label class="glyphicon glyphicon-search col col-sm-1"
-           style="font-size: 20px; margin-left: -40px; margin-top: 5px"></label>
-    <div class="col col-sm-5"></div>
-    <div class="article-add col col-sm-2">
+    <div class="article-add" style="float: right">
         <a href="{{route('create_article')}}" class="btn btn-primary">Add</a>
     </div>
     <div class="fix"></div>
+    @if(count($errors)>0)
+        <ul class="errors">
+            @foreach($errors->all() as $error)
+                <li>* {{$error == 'The category id must be a number.'?'The category is required .':$error}}</li>
+            @endforeach
+        </ul>
+    @endif
     <div class="article-list">
         <table class="table table-striped">
             <thead>
@@ -119,18 +122,18 @@
                                         <h5 style="font-weight: bold">Edit Article: "<span
                                                     style="font-style: italic">{{$article->title}}</span>"</h5>
                                     </div>
-                                    <form class="modal-body" style="margin-bottom:30px;"
+                                    <form class="modal-body"
                                           action="{{route('post_update_article')}}"
-                                          method="post">
-                                        <div class="form-group">
+                                          method="post" >
+                                        <div class="form-group"  style="width: 100%">
                                             <label for="title">Title</label>
                                             <input type="text" class="form-control" name="title" id="title"
                                                    value="{{$article->title}}" placeholder="Enter title...">
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group" style="width: 100%">
                                             <label for="content">Content</label>
                                                 <textarea name="data" id="content" cols="30" rows="10"
-                                                          class="form-control">{{$article->content}}</textarea>
+                                                          class="ckeditor form-control">{{$article->content}}</textarea>
                                         </div>
                                         <div class="form-group">
                                             <label for="tags">Tags</label>
@@ -166,7 +169,7 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group" >
                                             <label for="authors">Choose Author(s)</label>
                                             <div class="checkbox-style row" style="width: 100%">
                                                 <?php
@@ -190,10 +193,10 @@
                                                 @endforeach
                                             </div>
                                         </div>
-                                        <div class="form-group" style="float: right">
-                                            <button type="submit" class="btn btn-warning">Update</button>
+                                        <div class="form-group" id="action">
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close
                                             </button>
+                                            <button type="submit" class="btn btn-warning">Update</button>
                                             <input name="article_id" value="{{$article->id}}" type="hidden">
                                             <input type="hidden" value="{{Session::token()}}" name="_token">
                                         </div>
@@ -206,7 +209,7 @@
                         </button>
                         <div class="modal fade" id="delete{{$article->id}}" role="dialog">
                             <div class="modal-dialog">
-                                <div class="modal-content" style="height: 190px; top: 150px;">
+                                <div class="modal-content" style="top: 150px;">
                                     <div class="modal-header">
                                         <h5 style="font-weight: bold">Delete Article: "<span
                                                     style="font-style: italic">{{$article->title}}</span>"</h5>
@@ -235,12 +238,9 @@
                                         <h5 style="font-weight: bold">{{$article->title}}</h5>
                                     </div>
                                     <div class="modal-body">
-                                        <form role="form">
-                                            <div class="form-group">
-                                                <textarea name="detail" id="detail" cols="30" rows="10"
-                                                          class="form-control">{{$article->content}}</textarea>
-                                            </div>
-                                        </form>
+                                                <p name="detail" id="detail"
+                                                          >{{$article->content}}</p>
+
                                         <p>
                                             <span style="font-weight: bold">Category: </span>{{$article->category->name}}
                                         </p>
@@ -278,23 +278,6 @@
         </table>
     </div>
     <script>
-        $('#search').on('keyup', function () {
-            var value = $(this).val().toLowerCase();
-            console.log(value);
-            $('table tbody tr').each(function (index) {
-                if (index !== 0) {
-                    var text = $(this).children('#title').text()
-                            + $(this).children('#category').text()
-                            + $(this).children('#authors').text()
-                            + $(this).children('#tags').text();
-                    text = text.toLowerCase();
-                    if (text.indexOf(value) == -1) {
-                        $(this).fadeOut(100);
-                    } else {
-                        $(this).fadeIn(100);
-                    }
-                }
-            })
-        })
+        $('table').DataTable();
     </script>
 @endsection

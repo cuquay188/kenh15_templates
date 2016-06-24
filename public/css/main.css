@@ -57,7 +57,24 @@ td .btn.btn-xs {
     color: red;
     font-style: italic; }
 
+.form-danger {
+  border-color: #ff6666;
+  box-shadow: 0 0 3px 3px rgba(255, 0, 0, 0.13); }
+
 .fix {
   clear: both; }
+
+@media (min-width: 768px) {
+  .form-inline .form-control {
+    width: 100%; } }
+form {
+  margin-bottom: 0; }
+  form #action button {
+    float: right;
+    margin-left: 5px; }
+
+.form-group {
+  width: 100%;
+  margin: 15px 0; }
 
 /*# sourceMappingURL=main.css.map */

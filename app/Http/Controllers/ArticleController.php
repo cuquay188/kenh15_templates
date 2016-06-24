@@ -83,6 +83,12 @@ class ArticleController extends Controller
 
     public function postUpdateArticle(Request $request)
     {
+        $this->validate($request, [
+            'title' => 'required|between:5,80',
+            'data' => 'required|min:30',
+            'category_id' => 'numeric'
+        ]);
+
         $id = $request->article_id;
         $title = $request->title;
         $content = $request->data;

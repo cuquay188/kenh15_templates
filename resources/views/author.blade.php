@@ -8,6 +8,14 @@
         <a href="{{route('create_author')}}" style="float: right;margin-bottom: 30px" type="submit"
            class="btn btn-primary">Add</a>
     </div>
+    <div class="fix"></div>
+    @if(count($errors)>0)
+        <ul class="errors">
+            @foreach($errors->all() as $error)
+                <li>* {{$error}}</li>
+            @endforeach
+        </ul>
+    @endif
     <div class="authors-info">
         <table class="table table-striped">
             <thead>
@@ -33,7 +41,7 @@
                         </button>
                         <div class="modal fade" role="dialog" id="edit{{$author->id}}">
                             <div class="modal-dialog">
-                                <div class="modal-content" style="height: 345px; top: 90px">
+                                <div class="modal-content" style=" top: 90px">
                                     <div class="modal-header">
                                         <h5 style="font-weight: bold">Edit Author: "<span
                                                     style="font-style: italic">{{$author->name}}</span>"</h5>
@@ -55,14 +63,15 @@
                                                 <input type="text" class="form-control" name="address" id="address"
                                                        value="{{$author->address}}" placeholder="Enter address...">
                                             </div>
-                                            <div class="form-group" style="float: right">
-                                                <button type="submit" class="btn btn-warning">Update</button>
+                                            <div class="form-group" id="action">
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">
                                                     Close
                                                 </button>
+                                                <button type="submit" class="btn btn-warning">Update</button>
                                                 <input type="hidden" value="{{$author->id}}" name="author_id">
                                                 <input type="hidden" value="{{Session::token()}}" name="_token">
                                             </div>
+                                            <div class="fix"></div>
                                         </div>
                                     </form>
                                 </div>
@@ -101,4 +110,7 @@
             </tbody>
         </table>
     </div>
+    <script>
+        $('table').DataTable();
+    </script>
 @endsection

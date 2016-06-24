@@ -44,6 +44,10 @@ class TagController extends Controller
 
     public function postUpdateTag(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required|between:3,15'
+        ]);
+        
         $id = $request->tag_id;
         $name = $request->name;
         Tag::where('id', $id)->update([
