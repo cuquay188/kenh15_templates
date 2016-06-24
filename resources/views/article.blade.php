@@ -20,9 +20,9 @@
             <thead>
             <tr>
                 <th style="text-align: center">ID</th>
-                <th style="width: 15%">Title</th>
+                <th style="text-align: center; width: 10%">Title</th>
                 <th>Category</th>
-                <th style="text-align: center">Created</th>
+                <th style="text-align: center; width: 15%">Last Update</th>
                 <th>Author</th>
                 <th style="width: 20%">Tags</th>
                 <th>Function</th>
@@ -34,7 +34,7 @@
                     <td id="id" style="text-align: center">{{$article->id}}</td>
                     <td id="title">{{$article->title}}</td>
                     <td id="category">{{$article->category->name}}</td>
-                    <td style="text-align: center">{{$article->created_at}}</td>
+                    <td style="text-align: center">{{$article->updated_at->format('H:i:s d/m/Y')}}</td>
                     <td id="authors">
                         <?php
                         $authors = $article->authors;
