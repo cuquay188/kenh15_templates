@@ -32,7 +32,7 @@ class TagController extends Controller
     public function postCreateTag(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|between:3,15'
+            'name' => 'required|between:2,15'
         ]);
 
         $name = $request->name;
@@ -45,7 +45,7 @@ class TagController extends Controller
     public function postUpdateTag(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|between:3,15'
+            'name' => 'required|between:2,15'
         ]);
         
         $id = $request->tag_id;

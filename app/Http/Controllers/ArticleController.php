@@ -42,7 +42,7 @@ class ArticleController extends Controller
     public function postCreateArticle(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required|between:5,80',
+            'title' => 'required|between:5,150',
             'data' => 'required|min:30',
             'category_id' => 'numeric',
             'authors' => 'required'
@@ -84,7 +84,7 @@ class ArticleController extends Controller
     public function postUpdateArticle(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required|between:5,80',
+            'title' => 'required|between:5,150',
             'data' => 'required|min:30',
             'category_id' => 'numeric'
         ]);

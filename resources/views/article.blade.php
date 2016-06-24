@@ -124,8 +124,8 @@
                                     </div>
                                     <form class="modal-body"
                                           action="{{route('post_update_article')}}"
-                                          method="post" >
-                                        <div class="form-group"  style="width: 100%">
+                                          method="post">
+                                        <div class="form-group" style="width: 100%">
                                             <label for="title">Title</label>
                                             <input type="text" class="form-control" name="title" id="title"
                                                    value="{{$article->title}}" placeholder="Enter title...">
@@ -169,7 +169,7 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="form-group" >
+                                        <div class="form-group">
                                             <label for="authors">Choose Author(s)</label>
                                             <div class="checkbox-style row" style="width: 100%">
                                                 <?php
@@ -205,30 +205,6 @@
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary btn-xs" data-toggle="modal"
-                                data-target="#delete{{$article->id}}" style="text-align: center">Delete
-                        </button>
-                        <div class="modal fade" id="delete{{$article->id}}" role="dialog">
-                            <div class="modal-dialog">
-                                <div class="modal-content" style="top: 150px;">
-                                    <div class="modal-header">
-                                        <h5 style="font-weight: bold">Delete Article: "<span
-                                                    style="font-style: italic">{{$article->title}}</span>"</h5>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>Do you want to delete this article?</p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <form action="{{route('post_delete_article')}}" method="post">
-                                            <input name="article_id" value="{{$article->id}}" type="hidden">
-                                            <input type="hidden" value="{{Session::token()}}" name="_token">
-                                            <button class="btn btn-warning">Yes</button>
-                                            <button class="btn btn-default" data-dismiss="modal">No</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-xs" data-toggle="modal"
                                 data-target="#detail{{$article->id}}">Detail
                         </button>
                         <div class="modal fade" id="detail{{$article->id}}" role="dialog">
@@ -238,8 +214,12 @@
                                         <h5 style="font-weight: bold">{{$article->title}}</h5>
                                     </div>
                                     <div class="modal-body">
-                                                <p name="detail" id="detail"
-                                                          >{{$article->content}}</p>
+                                        <div name="detail" id="detail">
+                                            <?php
+                                            echo $article->content;
+                                            ?>
+                                        </div>
+
 
                                         <p>
                                             <span style="font-weight: bold">Category: </span>{{$article->category->name}}
@@ -267,6 +247,30 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-xs" data-toggle="modal"
+                                data-target="#delete{{$article->id}}" style="text-align: center">Delete
+                        </button>
+                        <div class="modal fade" id="delete{{$article->id}}" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content" style="top: 150px;">
+                                    <div class="modal-header">
+                                        <h5 style="font-weight: bold">Delete Article: "<span
+                                                    style="font-style: italic">{{$article->title}}</span>"</h5>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Do you want to delete this article?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <form action="{{route('post_delete_article')}}" method="post">
+                                            <input name="article_id" value="{{$article->id}}" type="hidden">
+                                            <input type="hidden" value="{{Session::token()}}" name="_token">
+                                            <button class="btn btn-warning">Yes</button>
+                                            <button class="btn btn-default" data-dismiss="modal">No</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

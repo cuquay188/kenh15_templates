@@ -28,7 +28,7 @@
             </div>
             <div class="form-group">
                 <label for="data">Content</label>
-                <textarea name="data" id="data" cols="30" rows="20" class="ckeditor form-control" placeholder="Enter content..."
+                <textarea name="data" id="data" class="ckeditor form-control" placeholder="Enter content..."
                           style="width: 200%">{!! old('data') !!}</textarea>
             </div>
             <div class="form-group">

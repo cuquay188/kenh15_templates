@@ -80,4 +80,9 @@ form {
   width: 100%;
   margin: 15px 0; }
 
+#detail {
+  height: 280px;
+  overflow: auto;
+  margin-bottom: 10px; }
+
 /*# sourceMappingURL=main.css.map */

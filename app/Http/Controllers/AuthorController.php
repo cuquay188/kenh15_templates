@@ -37,7 +37,7 @@ class AuthorController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|between:6,30',
-            'age' => 'required|digits_between:16,80',
+            'age' => 'required|numeric|min:16|max:80',
             'address' => 'required'
         ]);
 
@@ -66,7 +66,7 @@ class AuthorController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|between:6,30',
-            'age' => 'required|digits_between:16,80',
+            'age' => 'required|min:16|max:80',
             'address' => 'required'
         ]);
 

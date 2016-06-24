@@ -2,9 +2,11 @@
   width: 60%;
   margin: 50px auto;
 }
-.content.content-width{
+
+.content.content-width {
   width: 40%;
 }
+
 .article-add {
   margin-bottom: 30px;
 }
@@ -77,26 +79,37 @@ td .btn.btn-xs {
     font-style: italic;
   }
 }
-.form-danger{
-  border-color: lighten(red,20%);
-  box-shadow: 0 0 3px 3px rgba(255,0,0,.13);
+
+.form-danger {
+  border-color: lighten(red, 20%);
+  box-shadow: 0 0 3px 3px rgba(255, 0, 0, .13);
 }
+
 .fix {
   clear: both;
 }
+
 @media (min-width: 768px) {
   .form-inline .form-control {
     width: 100%;
   }
 }
-form{
+
+form {
   margin-bottom: 0;
-  #action button{
+  #action button {
     float: right;
-    margin-left:5px ;
+    margin-left: 5px;
   }
 }
-.form-group{
+
+.form-group {
   width: 100%;
   margin: 15px 0;
+}
+
+#detail {
+  height: 280px;
+  overflow: auto;
+  margin-bottom: 10px;
 }
