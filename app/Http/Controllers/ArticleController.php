@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Article;
 use App\Category;
@@ -15,11 +16,14 @@ class ArticleController extends Controller
 {
     public function getArticle()
     {
+        if (!Auth::check())
+            return redirect()->route('login')->with(['fail'=>'Required login.']);
+
         $articles = Article::all();
         $authors = Author::all();
         $categories = Category::all();
         $tags = Tag::all();
-        return view('article', [
+        return view('admin.info.article', [
             'articles' => $articles,
             'authors' => $authors,
             'categories' => $categories,
@@ -29,10 +33,12 @@ class ArticleController extends Controller
 
     public function getCreateArticle()
     {
+        if (!Auth::check())
+            return redirect()->route('login')->with(['fail'=>'Required login.']);
         $authors = Author::all();
         $categories = Category::all();
         $tags = Tag::all();
-        return view('create.create_article', [
+        return view('admin.create.create_article', [
             'authors' => $authors,
             'categories' => $categories,
             'tags' => $tags

@@ -25,9 +25,8 @@
     @yield("scripts")
 </head>
 <body>
-@include("layouts.header")
 <div class="container">
-        @yield("content")
+    @yield("content")
 </div>
 </body>
 </html>

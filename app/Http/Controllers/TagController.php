@@ -13,10 +13,12 @@ class TagController extends Controller
 {
     public function getTag()
     {
+        if (!Auth::check())
+            return redirect()->route('login')->with(['fail'=>'Required login.']);
         $tags = Tag::all();
         $categories = Category::all();
         $authors = Author::all();
-        return view('tag', [
+        return view('admin.info.tag', [
             'tags' => $tags,
             'categories' => $categories,
             'authors' => $authors
@@ -26,7 +28,9 @@ class TagController extends Controller
 
     public function getCreateTag()
     {
-        return view('create.create_tag');
+        if (!Auth::check())
+            return redirect()->route('login')->with(['fail'=>'Required login.']);
+        return view('admin.create.create_tag');
     }
 
     public function postCreateTag(Request $request)

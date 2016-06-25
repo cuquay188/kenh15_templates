@@ -11,26 +11,23 @@
 |
 */
 
-//Route::get('/create', function () {
-//    return view('create');
-//})->name("create");
-//Route::get('/index',function(){
-//    return view('index');
-//})->name("index");
-//Route::get('/about',function(){
-//    return view('about');
-//})->name('about');
-
-Route::get('/cards', function () {
-    return view('card');
-});
-Route::get('/demo', function () {
-    return view('demo');
-});
 
 //Article
 Route::get('/', [
-    'uses' => 'ArticleController@getArticle'
+    'uses' => 'UserController@getLogin',
+    'as' => 'login'
+]);
+Route::post('/login', [
+   'uses'=>'UserController@postLogin',
+    'as'=>'post_login'
+]);
+Route::get('/logout', [
+    'uses' => 'UserController@getLogout',
+    'as' => 'logout'
+]);
+Route::get('/signup', [
+    'uses' => 'UserController@getSignUp',
+    'as' => 'signup'
 ]);
 Route::get('/article', [
     'uses' => 'ArticleController@getArticle',
@@ -39,7 +36,7 @@ Route::get('/article', [
 Route::get('/create/article', [
     'uses' => 'ArticleController@getCreateArticle',
     'as' => 'create_article'
-]); 
+]);
 Route::post('/create/article1', [
     'uses' => 'ArticleController@postCreateArticle',
     'as' => 'post_article_1'

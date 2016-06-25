@@ -13,10 +13,12 @@ class AuthorController extends Controller
 {
     public function getAuthor()
     {
+        if (!Auth::check())
+            return redirect()->route('login')->with(['fail'=>'Required login.']);
         $tags = Tag::all();
         $categories = Category::all();
         $authors = Author::all();
-        return view('author', [
+        return view('admin.info.author', [
             'tags' => $tags,
             'categories' => $categories,
             'authors' => $authors
@@ -25,13 +27,10 @@ class AuthorController extends Controller
 
     public function getCreateAuthor()
     {
-        return view('create.create_author');
-    }
-
-    public function getCreateAuthors()
-    {
-        return view('create.create_authors');
-    }
+        if (!Auth::check())
+            return redirect()->route('login')->with(['fail'=>'Required login.']);
+        return view('admin.create.create_author');
+    } 
 
     public function postCreateAuthor(Request $request)
     {
@@ -66,7 +65,7 @@ class AuthorController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|between:6,30',
-            'age' => 'required|min:16|max:80',
+            'age' => 'required|numeric|min:16|max:80',
             'address' => 'required'
         ]);
 

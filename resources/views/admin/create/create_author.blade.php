@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('admin.layouts.master')
 @section('title', 'Create Author')
 @section('styles')
     <link rel="stylesheet" href="{{asset('/css/main.css')}}">

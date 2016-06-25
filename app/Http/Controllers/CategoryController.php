@@ -13,10 +13,12 @@ class CategoryController extends Controller
 {
     public function getCategory()
     {
+        if (!Auth::check())
+            return redirect()->route('login')->with(['fail'=>'Required login.']);
         $tags = Tag::all();
         $categories = Category::all();
         $authors = Author::all();
-        return view('category', [
+        return view('admin.info.category', [
             'tags' => $tags,
             'categories' => $categories,
             'authors' => $authors
@@ -25,7 +27,9 @@ class CategoryController extends Controller
 
     public function getCreateCategory()
     {
-        return view('create.create_category');
+        if (!Auth::check())
+            return redirect()->route('login')->with(['fail'=>'Required login.']);
+        return view('admin.create.create_category');
     }
 
     public function postCreateCategory(Request $request)
