@@ -55,7 +55,7 @@ class UserController extends Controller
         $new_password = $request->new_password;
 
 //        ----------- Change password -----------
-        $user = Auth::user();
+        $user = Auth::user(); 
         $current_password = $request->current_password;
 
         if (strlen($current_password) == 0) {

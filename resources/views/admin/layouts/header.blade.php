@@ -22,7 +22,7 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li><a href="{{route('user_management')}}">
-                    {{Auth::getUser()->fullname}}</a>
+                    {{Auth::getUser()->fullname}}</a> 
             </li>
             <li><a id="logout" title="Logout" href="{{route('logout')}}"><span class="glyphicon glyphicon-log-out"></span></a></li>
         </ul>

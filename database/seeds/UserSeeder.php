@@ -11,7 +11,7 @@ class UserSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
+    { 
         $user = new User();
         $user->fullname = 'Lê Thị Thùy Dung';
         $user->email = 'dungle1811@gmail.com';
