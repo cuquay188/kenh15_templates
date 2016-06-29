@@ -36,7 +36,7 @@ Route::get('/user', [
 Route::post('/edit/user', [
     'uses' => 'UserController@postEditUser',
     'as' => 'post_edit_user'
-]); 
+]);  
 
 //Article
 Route::get('/article', [
