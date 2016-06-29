@@ -55,15 +55,18 @@ class UserController extends Controller
         $new_password = $request->new_password;
 
 //        ----------- Change password -----------
-        $user = Auth::user();  
+        $user = Auth::user();
         $current_password = $request->current_password;
 
-        if (strlen($current_password) == 0) {
-            $this->validate($request, [
-                'current_password' => 'required',
-            ]);
-        }
+        User::where('id', $id)->update([
+            'fullname' => $fullname,
+            'email' => $email,
+            'tel' => $tel
+        ]);
 
+        $this->validate($request, [
+            'current_password' => 'required',
+        ]);
 //        If current_password don't match with password in database -> throw error
         if (strlen($current_password) > 0 && !Hash::check($current_password, $user->password))
             return redirect()->back()->with(['fail' => 'Your current password is incorrect.']);
@@ -73,12 +76,8 @@ class UserController extends Controller
         $user->save();
 
 //        ----------- End Change password -----------
+//
 
-        User::where('id', $id)->update([
-            'fullname' => $fullname,
-            'email' => $email,
-            'tel' => $tel,
-        ]);
         return redirect()->back();
     }
 }
