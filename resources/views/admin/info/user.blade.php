@@ -4,9 +4,15 @@
     <link rel="stylesheet" href="{{asset('/css/main.css')}}">
 @endsection
 @section('content')
-    <form action="{{route('post_edit_user')}}" method="post" class="form-horizontal user_mng" role="form">
+    <form action="{{route('post_update_user')}}" method="post" class="form-horizontal user_mng" role="form">
         <input type="hidden" value="{{Auth::getUser()->id}}" name="id">
         <input type="hidden" value="{{Session::token()}}" name="_token">
+        @if(count($errors)>0)
+            <ul class="errors user">
+                @foreach($errors->all() as $error)
+                    <li>* {{$error}}</li>
+                @endforeach           </ul>
+        @endif
         <div class="form-group">
             <label class="control-label col col-sm-4" for="fullname">Full Name: </label>
             <div class="col col-sm-5">
@@ -57,14 +63,11 @@
                 </button>
             </div>
         </div>
+    </form>
+    <form action="{{route('post_change_password_user')}}" method="post" class="form-horizontal user_mng" role="form">
+        <input type="hidden" value="{{Auth::getUser()->id}}" name="id">
+        <input type="hidden" value="{{Session::token()}}" name="_token">
         <div class="form-group">
-            @if(count($errors)>0)
-                <ul class="errors user">
-                    @foreach($errors->all() as $error)
-                        <li>* {{$error}}</li>
-                    @endforeach
-                </ul>
-            @endif
             @if(Session::has('fail'))
                 <div class="errors user">
                     * {{Session::get('fail')}}

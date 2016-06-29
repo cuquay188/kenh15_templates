@@ -46,19 +46,26 @@ class UserController extends Controller
         return view('admin.info.user');
     }
 
-    public function postEditUser(Request $request)
+    public function postUpdateUser(Request $request)
     {
         $id = $request->id;
         $fullname = $request->fullname;
         $email = $request->email;
-        $tel = $request->tel;
-        $new_password = $request->new_password;
+        $tel = $request->tel; 
 
         User::where('id', $id)->update([
             'fullname' => $fullname,
             'email' => $email,
             'tel' => $tel
         ]);
+
+        return redirect()->back();
+    }
+
+    public function postChangePasswordUser(Request $request)
+    {
+        $id = $request->id;
+        $new_password = $request->new_password;
 
 //        ----------- Change password -----------
         $user = Auth::user();

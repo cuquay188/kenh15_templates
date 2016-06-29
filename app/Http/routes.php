@@ -17,6 +17,10 @@ Route::get('/', [
     'uses' => 'UserController@getLogin',
     'as' => 'login'
 ]);
+Route::get('/login', [
+    'uses' => 'UserController@getLogin',
+    'as' => 'login'
+]);
 Route::post('/login', [
     'uses' => 'UserController@postLogin',
     'as' => 'post_login'
@@ -34,8 +38,12 @@ Route::get('/user', [
     'as' => 'user_management'
 ]);
 Route::post('/edit/user', [
-    'uses' => 'UserController@postEditUser',
-    'as' => 'post_edit_user'
+    'uses' => 'UserController@postUpdateUser',
+    'as' => 'post_update_user'
+]);  
+Route::post('/change/password/user', [
+    'uses' => 'UserController@postChangePasswordUser',
+    'as' => 'post_change_password_user'
 ]);  
 
 //Article
