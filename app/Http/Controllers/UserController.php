@@ -54,15 +54,15 @@ class UserController extends Controller
         $tel = $request->tel;
         $new_password = $request->new_password;
 
-//        ----------- Change password -----------
-        $user = Auth::user();
-        $current_password = $request->current_password;
-
         User::where('id', $id)->update([
             'fullname' => $fullname,
             'email' => $email,
             'tel' => $tel
         ]);
+
+//        ----------- Change password -----------
+        $user = Auth::user();
+        $current_password = $request->current_password;
 
         $this->validate($request, [
             'current_password' => 'required',
