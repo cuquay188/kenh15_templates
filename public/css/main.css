@@ -52,13 +52,18 @@ td .btn.btn-xs {
   padding: 10px;
   width: 100%;
   margin-left: 0; }
+  .checkbox-style label {
+    font-weight: normal; }
 
 .errors {
   list-style: none;
-  padding-left: 0; }
-  .errors li {
-    color: red;
-    font-style: italic; }
+  padding-left: 0;
+  color: red;
+  font-style: italic; }
+
+.user {
+  padding-top: 10px;
+  padding-left: 200px; }
 
 .form-danger {
   border-color: #ff6666;
@@ -84,5 +89,18 @@ form {
   height: 280px;
   overflow: auto;
   margin-bottom: 10px; }
+
+.user_mng {
+  width: 50%;
+  margin: auto; }
+  .user_mng .form-group {
+    margin: 15px 0; }
+    .user_mng .form-group img {
+      padding-top: 10px; }
+    .user_mng .form-group .col-sm-3 a {
+      margin-left: 10px; }
+
+.text {
+  padding-top: 7px; }
 
 /*# sourceMappingURL=main.css.map */

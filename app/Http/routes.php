@@ -12,14 +12,14 @@
 */
 
 
-//Article
+//User
 Route::get('/', [
     'uses' => 'UserController@getLogin',
     'as' => 'login'
 ]);
 Route::post('/login', [
-   'uses'=>'UserController@postLogin',
-    'as'=>'post_login'
+    'uses' => 'UserController@postLogin',
+    'as' => 'post_login'
 ]);
 Route::get('/logout', [
     'uses' => 'UserController@getLogout',
@@ -29,6 +29,16 @@ Route::get('/signup', [
     'uses' => 'UserController@getSignUp',
     'as' => 'signup'
 ]);
+Route::get('/user', [
+    'uses' => 'UserController@getUserManagement',
+    'as' => 'user_management'
+]);
+Route::post('/edit/user', [
+    'uses' => 'UserController@postEditUser',
+    'as' => 'post_edit_user'
+]);
+
+//Article
 Route::get('/article', [
     'uses' => 'ArticleController@getArticle',
     'as' => 'article'
@@ -119,3 +129,4 @@ Route::post('/edit/category', [
     'uses' => 'CategoryController@postUpdateCategory',
     'as' => 'post_update_category'
 ]);
+ 

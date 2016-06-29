@@ -69,15 +69,20 @@ td .btn.btn-xs {
   padding: 10px;
   width: 100%;
   margin-left: 0;
+  label {
+    font-weight: normal;
+  }
 }
 
 .errors {
   list-style: none;
   padding-left: 0;
-  li {
-    color: red;
-    font-style: italic;
-  }
+  color: red;
+  font-style: italic;
+}
+.user{
+  padding-top: 10px;
+  padding-left: 200px;
 }
 
 .form-danger {
@@ -112,4 +117,25 @@ form {
   height: 280px;
   overflow: auto;
   margin-bottom: 10px;
+}
+
+.user_mng {
+  width: 50%;
+  margin: auto;
+  .form-group {
+    margin: 15px 0;
+    img {
+      padding-top: 10px;
+    }
+    .col-sm-3 {
+      a {
+        margin-left: 10px;
+      }
+    }
+  }
+}
+
+.text {
+  padding-top: 7px;
+
 }

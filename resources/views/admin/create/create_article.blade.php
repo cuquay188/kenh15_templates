@@ -35,7 +35,7 @@
                 <label for="tags">Choose tags</label>
                 <div class="checkbox-style row">
                     @foreach($tags as $tag)
-                        <label style="font-weight: normal" for="tag{{$tag->id}}" class="col col-sm-2">
+                        <label for="tag{{$tag->id}}" class="col col-sm-3">
                             <input id="tag{{$tag->id}}" type="checkbox" name="tags[]" value="{{$tag->id}}">
                             {{$tag->name}}
                         </label>
