@@ -2,6 +2,13 @@
 @section('title','User Management')
 @section('styles')
     <link rel="stylesheet" href="{{asset('/css/main.css')}}">
+    <style>
+        .footer{
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
 @endsection
 @section('content')
     <form action="{{route('post_update_user')}}" method="post" class="form-horizontal user_mng" role="form">
@@ -11,7 +18,8 @@
             <ul class="errors user">
                 @foreach($errors->all() as $error)
                     <li>* {{$error}}</li>
-                @endforeach           </ul>
+                @endforeach           
+            </ul>
         @endif
         <div class="form-group">
             <label class="control-label col col-sm-4" for="fullname">Full Name: </label>

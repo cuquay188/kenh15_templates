@@ -130,4 +130,18 @@ form {
 .clear {
   clear: both; }
 
+.goto-top {
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
+  background-color: lightgrey;
+  border: hidden;
+  border-radius: 4px;
+  text-align: center;
+  width: 50px;
+  padding: 5px 10px;
+  cursor: pointer; }
+  .goto-top .glyphicon {
+    font-size: 150%; }
+
 /*# sourceMappingURL=main.css.map */

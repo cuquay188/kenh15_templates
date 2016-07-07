@@ -6,6 +6,10 @@
     <link rel="stylesheet" href="{{asset('/css/main.css')}}">
 @endsection
 @section('content')
+    <div class="goto-top">
+        <span class="glyphicon glyphicon-plane"></span><br>
+        <strong>TOP</strong>
+    </div>
     <div class="content">
         <div class="title">
             <p class="view_title">{{$article->title}}</p>
@@ -80,4 +84,9 @@
             </p>
         </div>
     </div>
+    <script>
+        $('.goto-top').click(function () {
+           $('body').scrollTop(0) ;
+        });
+    </script>
 @endsection
