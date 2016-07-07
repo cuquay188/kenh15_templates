@@ -33,6 +33,10 @@ Route::get('/signup', [
     'uses' => 'UserController@getSignUp',
     'as' => 'signup'
 ]);
+Route::post('/signup/user', [
+    'uses' => 'UserController@postSignUp',
+    'as' => 'post_sign_up'
+]);
 Route::get('/user', [
     'uses' => 'UserController@getUserManagement',
     'as' => 'user_management'
@@ -40,11 +44,11 @@ Route::get('/user', [
 Route::post('/edit/user', [
     'uses' => 'UserController@postUpdateUser',
     'as' => 'post_update_user'
-]);  
+]);
 Route::post('/change/password/user', [
     'uses' => 'UserController@postChangePasswordUser',
     'as' => 'post_change_password_user'
-]);  
+]);
 
 //Article
 Route::get('/article', [
@@ -70,6 +74,13 @@ Route::post('/edit/article', [
 Route::post('/articletag', [
     'uses' => 'ArticleController@postDeleteTagArticle',
     'as' => 'post_delete_tag_article'
+]);
+Route::post('/articleauthor', [
+    'uses' => 'ArticleController@postDeleteAuthorArticle',
+    'as' => 'post_delete_author_article'
+]);
+Route::get('/article/{id}', [
+    'uses' => 'ArticleController@getViewArticle'
 ]);
 
 //Tag

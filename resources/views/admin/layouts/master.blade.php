@@ -29,5 +29,6 @@
 <div class="container">
         @yield("content")
 </div>
+@include("admin.layouts.footer")
 </body>
 </html>

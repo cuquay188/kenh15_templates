@@ -11,19 +11,21 @@ use App\Article;
 use App\Category;
 use App\Author;
 use App\Tag;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Session;
 
 class ArticleController extends Controller
 {
     public function getArticle()
     {
         if (!Auth::check())
-            return redirect()->route('login')->with(['fail'=>'Required login.']);
+            return redirect()->route('login')->with(['fail' => 'Required login.']);
 
         $articles = Article::all();
         $authors = Author::all();
         $categories = Category::all();
         $tags = Tag::all();
-        return view('admin.info.article', [
+        return view('admin.info.articles', [
             'articles' => $articles,
             'authors' => $authors,
             'categories' => $categories,
@@ -34,7 +36,7 @@ class ArticleController extends Controller
     public function getCreateArticle()
     {
         if (!Auth::check())
-            return redirect()->route('login')->with(['fail'=>'Required login.']);
+            return redirect()->route('login')->with(['fail' => 'Required login.']);
         $authors = Author::all();
         $categories = Category::all();
         $tags = Tag::all();
@@ -128,5 +130,24 @@ class ArticleController extends Controller
         $article_id = $request->article_id;
         DB::table('tag_article')->where('article_id', $article_id)->where('tag_id', $tag_id)->delete();
         return redirect()->back();
+    }
+
+    public function postDeleteAuthorArticle(Request $request)
+    {
+        $author_id = $request->author_id;
+        $article_id = $request->article_id;
+        DB::table('author_article')->where('article_id', $article_id)->where('author_id', $author_id)->delete();
+        return redirect()->back();
+    }
+
+    public function getViewArticle($id)
+    {
+        if (!Auth::check())
+            return redirect()->back()->with(['fail' => 'Required login.']);
+        
+        $article = Article::find($id);
+        return view('admin.info.article', [
+            'article' => $article
+        ]);
     }
 }

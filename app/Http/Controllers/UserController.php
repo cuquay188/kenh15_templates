@@ -39,6 +39,34 @@ class UserController extends Controller
         return view('admin.auth.signup');
     }
 
+    public function postSignUp(Request $request)
+    {
+        $this->validate($request, [
+            'fullname' => 'required|max:50',
+            'email' => 'required|email|unique:users,email',
+            'username' => 'required|min:5|max:30|unique:users,username',
+            'password' => 'required|min:3|max:16',
+            'tel'=>'required|unique:users,tel'
+        ]);
+
+        $fullname = $request->fullname;
+        $email = $request->email;
+        $tel = $request->tel;
+        $username = $request->username;
+        $password = $request->password;
+
+        $user = new User();
+        $user->fullname = $fullname;
+        $user->email = $email;
+        $user->username = $username;
+        $user->password = bcrypt($password);
+        $user->tel = $tel;
+
+        $user->save();
+
+        return redirect()->back();
+    }
+
     public function getUserManagement()
     {
         if (!Auth::check())
@@ -51,7 +79,7 @@ class UserController extends Controller
         $id = $request->id;
         $fullname = $request->fullname;
         $email = $request->email;
-        $tel = $request->tel; 
+        $tel = $request->tel;
 
         User::where('id', $id)->update([
             'fullname' => $fullname,
@@ -64,7 +92,6 @@ class UserController extends Controller
 
     public function postChangePasswordUser(Request $request)
     {
-        $id = $request->id;
         $new_password = $request->new_password;
 
 //        ----------- Change password -----------
