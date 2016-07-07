@@ -18,7 +18,7 @@
             <ul class="errors user">
                 @foreach($errors->all() as $error)
                     <li>* {{$error}}</li>
-                @endforeach           
+                @endforeach
             </ul>
         @endif
         <div class="form-group">
