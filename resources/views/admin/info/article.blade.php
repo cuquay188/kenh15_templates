@@ -10,9 +10,12 @@
         <span class="glyphicon glyphicon-plane"></span><br>
         <strong>TOP</strong>
     </div>
+    <div class="goto-bottom">
+        <span class="glyphicon glyphicon-collapse-down"></span>
+    </div>
     <div class="content">
         <div class="title">
-            <p class="view_title">{{$article->title}}</p>
+            <p class="view-title">{{$article->title}}</p>
             <p>
                 <label>{{$article->updated_at->format('d/m/Y')}}</label>
                 Last updated at: {{$article->updated_at->format('H:i')}}
@@ -28,7 +31,7 @@
             echo $article->content;
             ?>
         </div>
-        <div class="authors">
+        <div class="authors border-tag">
             <?php
             $authors = $article->authors;
             $authors_filter = array();
@@ -48,17 +51,12 @@
             ?>
             <p>
                 <label>Author(s):</label>
-                <i>
-                    <?php
-                    $authors_str = '';
-                    foreach ($authors_filter as $author)
-                        $authors_str .= $author->name . ', ';
-                    echo substr($authors_str, 0, strlen($authors_str) - 2)
-                    ?>
-                </i>
+                @foreach($authors_filter as $author)
+                    <a href="{{route('author').'/'.$author->id}}">{{$author->name}}</a>
+                @endforeach
             </p>
         </div>
-        <div class="tags">
+        <div class="tags border-tag">
             <?php
             $tags = $article->tags;
             $tags_filter = array();
@@ -79,14 +77,17 @@
             <p>
                 <label>Tag(s):</label>
                 @foreach($tags_filter as $tag)
-                    <span>{{$tag->name}}</span>
+                    <a href="{{route('tag').'/'.$tag->id}}">{{$tag->name}}</a>
                 @endforeach
             </p>
         </div>
     </div>
     <script>
         $('.goto-top').click(function () {
-           $('body').scrollTop(0) ;
+            $('body').animate({scrollTop: 0});
+        });
+        $('.goto-bottom').click(function () {
+            $('body').animate({scrollTop: $(document).height() + $('body').height()});
         });
     </script>
 @endsection

@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Article;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
@@ -15,11 +17,11 @@ class TagController extends Controller
     public function getTag()
     {
         if (!Auth::check())
-            return redirect()->route('login')->with(['fail'=>'Required login.']);
+            return redirect()->route('login')->with(['fail' => 'Required login.']);
         $tags = Tag::all();
         $categories = Category::all();
         $authors = Author::all();
-        return view('admin.info.tag', [
+        return view('admin.info.tags', [
             'tags' => $tags,
             'categories' => $categories,
             'authors' => $authors
@@ -30,7 +32,7 @@ class TagController extends Controller
     public function getCreateTag()
     {
         if (!Auth::check())
-            return redirect()->route('login')->with(['fail'=>'Required login.']);
+            return redirect()->route('login')->with(['fail' => 'Required login.']);
         return view('admin.create.create_tag');
     }
 
@@ -52,7 +54,7 @@ class TagController extends Controller
         $this->validate($request, [
             'name' => 'required|between:2,15'
         ]);
-        
+
         $id = $request->tag_id;
         $name = $request->name;
         Tag::where('id', $id)->update([
@@ -66,5 +68,17 @@ class TagController extends Controller
         $id = $request->tag_id;
         Tag::where('id', $id)->delete();
         return redirect()->back();
+    }
+
+    public function getViewTag($id)
+    {
+        if (!Auth::check())
+            return redirect()->back()->with(['fail' => 'Required login.']);
+        $tag = Tag::find($id);
+        $articles = Article::all();
+        return view('admin.info.tag', [
+            'tag' => $tag,
+            'articles' => $articles
+        ]);
     }
 }

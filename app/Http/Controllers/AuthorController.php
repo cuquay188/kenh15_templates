@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,7 +16,7 @@ class AuthorController extends Controller
     public function getAuthor()
     {
         if (!Auth::check())
-            return redirect()->route('login')->with(['fail'=>'Required login.']);
+            return redirect()->route('login')->with(['fail' => 'Required login.']);
         $tags = Tag::all();
         $categories = Category::all();
         $authors = Author::all();
@@ -29,9 +30,9 @@ class AuthorController extends Controller
     public function getCreateAuthor()
     {
         if (!Auth::check())
-            return redirect()->route('login')->with(['fail'=>'Required login.']);
+            return redirect()->route('login')->with(['fail' => 'Required login.']);
         return view('admin.create.create_author');
-    } 
+    }
 
     public function postCreateAuthor(Request $request)
     {
@@ -80,5 +81,17 @@ class AuthorController extends Controller
             'address' => $address
         ]);
         return redirect()->back();
+    }
+
+    public function getViewAuthor($id)
+    {
+        if (!Auth::check())
+            return redirect()->back()->with(['fail' => 'Required login.']);
+        $author = Author::find($id);
+        $articles = Article::all();
+        return view('admin.info.author', [
+            'author' => $author,
+            'articles' => $articles
+        ]);
     }
 }

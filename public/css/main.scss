@@ -149,14 +149,14 @@ form {
 }
 
 .title {
-  .view_title {
+  .view-title {
     font-weight: bold;
     font-size: 23px;
   }
 }
 
-.tags {
-  span {
+.border-tag {
+  a {
     background-color: lightgrey;
     text-decoration: none;
     color: black;
@@ -166,7 +166,7 @@ form {
 }
 
 .footer {
-  background-color: #333;
+  background-color: black;
   padding: 10px 0;
   margin-top: 20px;
   span {
@@ -191,5 +191,24 @@ form {
   cursor: pointer;
   .glyphicon{
     font-size: 150%;
+  }
+}
+.goto-bottom{
+  position: fixed;
+  left: 150px;
+  top: 100px;
+  width: 50px;
+  cursor: pointer;
+  .glyphicon{
+    font-size: 150%;
+  }
+}
+.articles-list{
+  ul{
+    list-style-image: url("http://www.hangardoors.com/wp-content/themes/hangar-doors/images/tick.png");
+  }
+  a{
+    text-decoration: none;
+    color: black;
   }
 }

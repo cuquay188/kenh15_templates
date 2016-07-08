@@ -104,6 +104,9 @@ Route::post('/delete/tag', [
     'uses' => 'TagController@postDeleteTag',
     'as' => 'post_delete_tag'
 ]);
+Route::get('/tag/{id}', [
+    'uses' => 'TagController@getViewTag'
+]);
 
 //Author
 Route::get('/author', [
@@ -125,6 +128,9 @@ Route::post('/delete/author', [
 Route::post('/edit/author', [
     'uses' => 'AuthorController@postUpdateAuthor',
     'as' => 'post_update_author'
+]);
+Route::get('/author/{id}', [
+    'uses' => 'AuthorController@getViewAuthor'
 ]);
 
 //Category
