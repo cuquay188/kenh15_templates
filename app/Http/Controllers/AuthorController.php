@@ -20,7 +20,7 @@ class AuthorController extends Controller
         $tags = Tag::all();
         $categories = Category::all();
         $authors = Author::all();
-        return view('admin.info.author', [
+        return view('admin.info.authors', [
             'tags' => $tags,
             'categories' => $categories,
             'authors' => $authors

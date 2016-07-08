@@ -23,7 +23,8 @@
         </div>
         <div class="category">
             <p>
-                <label>Category:</label> {{$article->category->name}}
+                <label>Category:</label>
+                <a href="{{route('category').'/'.$article->category->id}}">{{$article->category->name}}</a>
             </p>
         </div>
         <div class="article_content">

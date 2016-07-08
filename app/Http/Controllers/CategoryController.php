@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Article;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
@@ -15,11 +17,11 @@ class CategoryController extends Controller
     public function getCategory()
     {
         if (!Auth::check())
-            return redirect()->route('login')->with(['fail'=>'Required login.']);
+            return redirect()->route('login')->with(['fail' => 'Required login.']);
         $tags = Tag::all();
         $categories = Category::all();
         $authors = Author::all();
-        return view('admin.info.category', [
+        return view('admin.info.categories', [
             'tags' => $tags,
             'categories' => $categories,
             'authors' => $authors
@@ -29,7 +31,7 @@ class CategoryController extends Controller
     public function getCreateCategory()
     {
         if (!Auth::check())
-            return redirect()->route('login')->with(['fail'=>'Required login.']);
+            return redirect()->route('login')->with(['fail' => 'Required login.']);
         return view('admin.create.create_category');
     }
 
@@ -61,7 +63,7 @@ class CategoryController extends Controller
         $this->validate($request, [
             'category' => 'required|between:3,15'
         ]);
-        
+
         $id = $request->category_id;
         $name = $request->name;
         Category::where('id', $id)->update([
@@ -70,4 +72,15 @@ class CategoryController extends Controller
         return redirect()->back();
     }
 
+    public function getViewCategory($id)
+    {
+        if (!Auth::check())
+            return redirect()->back()->with(['fail' => 'Required login.']);
+        $category = Category::find($id);
+        $articles = Article::all();
+        return view('admin.info.category', [
+            'category' => $category,
+            'articles' => $articles
+        ]);
+    }
 }

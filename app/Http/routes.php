@@ -154,4 +154,7 @@ Route::post('/edit/category', [
     'uses' => 'CategoryController@postUpdateCategory',
     'as' => 'post_update_category'
 ]);
+Route::get('/category/{id}', [
+    'uses' => 'CategoryController@getViewCategory'
+]);
  
