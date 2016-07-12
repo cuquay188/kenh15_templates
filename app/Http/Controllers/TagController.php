@@ -74,11 +74,9 @@ class TagController extends Controller
     {
         if (!Auth::check())
             return redirect()->back()->with(['fail' => 'Required login.']);
-        $tag = Tag::find($id);
-        $articles = Article::all();
+        $tag = Tag::find($id); 
         return view('admin.info.tag', [
-            'tag' => $tag,
-            'articles' => $articles
+            'tag' => $tag 
         ]);
     }
 }

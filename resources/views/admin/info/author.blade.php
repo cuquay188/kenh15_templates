@@ -19,25 +19,8 @@
         </div>
         <div class="articles-list">
             <label>The article(s) related to this author:</label>
-            <?php
-            $articles = $author->articles;
-            $articles_filter = array();
-            if (!function_exists('search_article')) {
-                function search_article($article_id, $articles)
-                {
-                    foreach ($articles as $article) {
-                        if ($article->id == $article_id) return true;
-                    }
-                    return false;
-                }
-            }
-            foreach ($articles as $article) {
-                if (!search_article($article->id, $articles_filter))
-                    array_push($articles_filter, $article);
-            }
-            ?>
             <ul>
-                @foreach($articles_filter as $article)
+                @foreach($author->articles as $article)
                     <li>
                         <a href="{{route('article').'/'.$article->id}}">{{$article->title}}</a>
                     </li>

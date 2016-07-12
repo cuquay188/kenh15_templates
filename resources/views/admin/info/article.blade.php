@@ -21,7 +21,7 @@
                 Last updated at: {{$article->updated_at->format('H:i')}}
             </p>
         </div>
-        <div class="category">
+        <div class="category border-tag">
             <p>
                 <label>Category:</label>
                 <a href="{{route('category').'/'.$article->category->id}}">{{$article->category->name}}</a>

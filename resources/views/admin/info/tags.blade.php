@@ -29,7 +29,7 @@
             @foreach($tags as $tag)
                 <tr style="font-size: 13px">
                     <td>{{$tag->id}}</td>
-                    <td>{{$tag->name}}</td>
+                    <td><a href="{{route('tag').'/'.$tag->id}}">{{$tag->name}}</a></td>
                     <td>
                         {{--Edit Function--}}
                         <button type="submit" class="btn btn-primary btn-xs" data-toggle="modal"

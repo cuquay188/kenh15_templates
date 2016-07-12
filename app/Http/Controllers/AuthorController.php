@@ -79,7 +79,7 @@ class AuthorController extends Controller
             'name' => $name,
             'age' => $age,
             'address' => $address
-        ]);
+        ]); 
         return redirect()->back();
     }
 
@@ -87,11 +87,9 @@ class AuthorController extends Controller
     {
         if (!Auth::check())
             return redirect()->back()->with(['fail' => 'Required login.']);
-        $author = Author::find($id);
-        $articles = Article::all();
+        $author = Author::find($id); 
         return view('admin.info.author', [
-            'author' => $author,
-            'articles' => $articles
+            'author' => $author 
         ]);
     }
 }

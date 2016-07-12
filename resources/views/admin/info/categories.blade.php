@@ -29,7 +29,7 @@
             @foreach($categories as $category)
                 <tr style="font-size: 13px">
                     <td>{{$category->id}}</td>
-                    <td>{{$category->name}}</td>
+                    <td><a href="{{route('category').'/'.$category->id}}">{{$category->name}}</a></td>
                     <td>
                         {{--Edit Function--}}
                         <button type="submit" class="btn btn-primary btn-xs" data-toggle="modal"

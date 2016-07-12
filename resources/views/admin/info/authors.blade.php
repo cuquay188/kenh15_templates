@@ -31,7 +31,7 @@
             @foreach($authors as $author)
                 <tr style="font-size: 13px">
                     <td style="text-align: center">{{$author->id}}</td>
-                    <td>{{$author->name}}</td>
+                    <td><a href="{{route('author').'/'.$author->id}}">{{$author->name}}</a></td>
                     <td style="text-align: center">{{$author->age}}</td>
                     <td>{{$author->address}}</td>
                     <td>

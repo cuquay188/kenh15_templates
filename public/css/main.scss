@@ -12,6 +12,7 @@
 }
 
 td .btn.btn-xs {
+  color: white;
   margin-right: 10px;
   padding: 3px 6px;
 }
@@ -141,13 +142,6 @@ form {
 
 }
 
-#title {
-  a {
-    text-decoration: none;
-    color: black;
-  }
-}
-
 .title {
   .view-title {
     font-weight: bold;
@@ -175,10 +169,12 @@ form {
     margin-right: 20px;
   }
 }
-.clear{
+
+.clear {
   clear: both;
 }
-.goto-top{
+
+.goto-top {
   position: fixed;
   right: 50px;
   bottom: 50px;
@@ -189,32 +185,39 @@ form {
   width: 50px;
   padding: 5px 10px;
   cursor: pointer;
-  .glyphicon{
+  .glyphicon {
     font-size: 150%;
   }
 }
-.goto-bottom{
+
+.goto-bottom {
   position: fixed;
-  left: 150px;
+  right: 50px;
   top: 100px;
   width: 50px;
   cursor: pointer;
-  .glyphicon{
-    font-size: 150%;
+  .glyphicon {
+    font-size: 200%;
   }
 }
-.articles-list{
-  ul{
+
+.articles-list {
+  ul {
     list-style-image: url("http://www.hangardoors.com/wp-content/themes/hangar-doors/images/tick.png");
   }
-  a{
+  a {
     text-decoration: none;
     color: black;
   }
 }
-.category{
+
+tr td{
   a{
     text-decoration: none;
     color: black;
   }
+  a:hover {
+    color: black;
+  }
 }
+

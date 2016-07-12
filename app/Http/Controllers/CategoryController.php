@@ -77,7 +77,7 @@ class CategoryController extends Controller
         if (!Auth::check())
             return redirect()->back()->with(['fail' => 'Required login.']);
         $category = Category::find($id);
-        $articles = Article::all();
+        $articles = Article::where('category_id',$id)->paginate(5);
         return view('admin.info.category', [
             'category' => $category,
             'articles' => $articles

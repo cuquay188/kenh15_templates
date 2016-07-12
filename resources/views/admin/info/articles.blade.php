@@ -33,7 +33,7 @@
                 <tr style="font-size: 13px">
                     <td id="id" style="text-align: center">{{$article->id}}</td>
                     <td id="title"><a href="{{route('article').'/'.$article->id}}">{{$article->title}}</a></td>
-                    <td id="category">{{$article->category->name}}</td>
+                    <td id="category"><a href="{{route('category').'/'.$article->category->id}}">{{$article->category->name}}</a></td>
                     <td style="text-align: center">{{$article->updated_at->format('H:i:s d/m/Y')}}</td>
                     <td id="authors">
                         <?php
@@ -55,7 +55,7 @@
                         ?>
                         @foreach($authors_filter as $author)
                             <div class="tag-border">
-                                <span>{{$author->name}}</span><br>
+                                <a href="{{route('author').'/'.$author->id}}">{{$author->name}}</a><br>
                                 <button type="submit" class="close" data-toggle="modal"
                                         data-target="#delete{{$author->id}}{{$article->id}}">x
                                 </button>
@@ -109,7 +109,7 @@
 
                         @foreach($result as $tag)
                             <div class="tag-border">
-                                <span>{{$tag->name}}</span>
+                                <a href="{{route('tag').'/'.$tag->id}}">{{$tag->name}}</a>
                                 <button type="submit" class="close" data-toggle="modal"
                                         data-target="#delete{{$tag->id}}{{$article->id}}">x
                                 </button>
