@@ -157,4 +157,9 @@ Route::post('/edit/category', [
 Route::get('/category/{id}', [
     'uses' => 'CategoryController@getViewCategory'
 ]);
- 
+
+// View
+Route::get('/homepage', [
+    'uses' => 'ViewController@getHomePage',
+    'as' => 'homepage'
+]); 
