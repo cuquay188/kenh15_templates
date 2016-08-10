@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="40a5491d-9842-4062-b7c1-61cb39f7ac3b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ArticleController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ArticleController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/create/create_article.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/create/create_article.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/info/articles.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/info/articles.blade.php" />
     </list>
     <ignored path="lara.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,46 +41,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HomePageController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomePageController.php">
+      <file leaf-file-name="ArticleController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ArticleController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="28" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="create_article.blade.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/admin/create/create_article.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="62" selection-start-line="5" selection-start-column="62" selection-end-line="5" selection-end-column="62" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="home_page.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/view/info/home_page.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="295">
-              <caret line="84" column="38" selection-start-line="84" selection-start-column="38" selection-end-line="84" selection-end-column="38" />
+            <state relative-caret-position="133">
+              <caret line="95" column="11" selection-start-line="95" selection-start-column="11" selection-end-line="95" selection-end-column="11" />
               <folding>
-                <element signature="e#272#942#0#HTML" expanded="false" />
-                <element signature="e#1024#2430#0#HTML" expanded="false" />
-                <element signature="e#3867#6259#0#HTML" expanded="false" />
+                <element signature="e#40#68#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.scss" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/css/view/main.scss">
+      <file leaf-file-name="articles.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/admin/info/articles.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="463">
-              <caret line="245" column="22" selection-start-line="245" selection-start-column="22" selection-end-line="245" selection-end-column="22" />
-              <folding />
+            <state relative-caret-position="431">
+              <caret line="219" column="117" selection-start-line="219" selection-start-column="117" selection-end-line="219" selection-end-column="117" />
+              <folding>
+                <element signature="e#1687#5071#0#HTML" expanded="false" />
+                <element signature="e#5092#8401#0#HTML" expanded="false" />
+                <element signature="e#8566#8772#0#HTML" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -163,8 +147,6 @@
         <option value="$PROJECT_DIR$/public/js/ng-ckeditor.min.js" />
         <option value="$PROJECT_DIR$/resources/views/admin/layouts/master.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/info/authors.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/info/articles.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/ArticleController.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/info/tags.blade.php" />
         <option value="$PROJECT_DIR$/public/css/main.scss" />
         <option value="$PROJECT_DIR$/public/css/footer.scss" />
@@ -180,6 +162,8 @@
         <option value="$PROJECT_DIR$/resources/views/view/info/home_page.blade.php" />
         <option value="$PROJECT_DIR$/public/css/view/main.scss" />
         <option value="$PROJECT_DIR$/resources/views/admin/create/create_article.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/info/articles.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/ArticleController.php" />
       </list>
     </option>
   </component>
@@ -434,7 +418,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="create" />
+              <option name="myItemId" value="info" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -762,7 +746,7 @@
       <workItem from="1470546699904" duration="784000" />
       <workItem from="1470749077093" duration="10882000" />
       <workItem from="1470796249984" duration="5081000" />
-      <workItem from="1470812800641" duration="8128000" />
+      <workItem from="1470812800641" duration="9158000" />
     </task>
     <task id="LOCAL-00001" summary="initiate project">
       <created>1465025157253</created>
@@ -1044,11 +1028,18 @@
       <option name="project" value="LOCAL" />
       <updated>1470820766676</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="- fix create article's footer.">
+      <created>1470820984866</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1470820984866</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="510364000" />
+    <option name="totallyTimeSpent" value="511394000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1090,7 +1081,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- edit ckeditor&#10;- validation&#10;- edit detail in view article" />
     <MESSAGE value="- edit cols width in view article&#10;- replace created column by updated column in view article" />
     <MESSAGE value="- create login view&#10;- create sign up view&#10;- create login, logout function&#10;" />
     <MESSAGE value="- create user management view with function:&#10;+ edit: fullname, email, tel, change password&#10;&#10;" />
@@ -1115,7 +1105,8 @@
     <MESSAGE value="- articles API don't return content within.&#10;- add new API get content of article  by id.&#10;- fix checkbox and radio in edit modal.&#10;- fix delete modal." />
     <MESSAGE value="- create home page view of ABC News website." />
     <MESSAGE value="- fix color." />
-    <option name="LAST_COMMIT_MESSAGE" value="- fix color." />
+    <MESSAGE value="- fix create article's footer." />
+    <option name="LAST_COMMIT_MESSAGE" value="- fix create article's footer." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1328,13 +1319,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ArticleController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="25" column="38" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AuthorController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="912">
@@ -1346,21 +1330,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
           <caret line="55" column="62" selection-start-line="55" selection-start-column="51" selection-end-line="55" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/info/articles.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-30">
-          <caret line="59" column="94" selection-start-line="59" selection-start-column="94" selection-end-line="59" selection-end-column="94" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="148" column="37" selection-start-line="148" selection-start-column="37" selection-end-line="148" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1404,22 +1373,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/view/info/home_page.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="84" column="38" selection-start-line="84" selection-start-column="38" selection-end-line="84" selection-end-column="38" />
-          <folding>
-            <element signature="e#272#942#0#HTML" expanded="false" />
-            <element signature="e#1024#2430#0#HTML" expanded="false" />
-            <element signature="e#3867#6259#0#HTML" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/css/view/main.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="463">
           <caret line="245" column="22" selection-start-line="245" selection-start-column="22" selection-end-line="245" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/create/create_article.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="22" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
           <folding />
         </state>
       </provider>
@@ -1432,11 +1397,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/create/create_article.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/view/info/home_page.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="62" selection-start-line="5" selection-start-column="62" selection-end-line="5" selection-end-column="62" />
+        <state relative-caret-position="295">
+          <caret line="84" column="38" selection-start-line="84" selection-start-column="38" selection-end-line="84" selection-end-column="38" />
+          <folding>
+            <element signature="e#272#942#0#HTML" expanded="false" />
+            <element signature="e#1024#2430#0#HTML" expanded="false" />
+            <element signature="e#3867#6259#0#HTML" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="148" column="37" selection-start-line="148" selection-start-column="37" selection-end-line="148" selection-end-column="37" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/info/articles.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="431">
+          <caret line="219" column="117" selection-start-line="219" selection-start-column="117" selection-end-line="219" selection-end-column="117" />
+          <folding>
+            <element signature="e#1687#5071#0#HTML" expanded="false" />
+            <element signature="e#5092#8401#0#HTML" expanded="false" />
+            <element signature="e#8566#8772#0#HTML" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ArticleController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="95" column="11" selection-start-line="95" selection-start-column="11" selection-end-line="95" selection-end-column="11" />
+          <folding>
+            <element signature="e#40#68#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

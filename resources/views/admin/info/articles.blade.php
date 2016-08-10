@@ -183,7 +183,7 @@
                                                     <label style="font-weight: normal" for="tag{{$tag->id}}"
                                                            class="col col-sm-2">
                                                         <input id="tag{{$tag->id}}"
-                                                               {{tag_exist($tag->id,$article->tags)?'checked disabled':''}} type="checkbox"
+                                                               {{tag_exist($tag->id,$article->tags)?'checked':''}} type="checkbox"
                                                                name="tags[]" value="{{$tag->id}}">
                                                         {{$tag->name}}
                                                     </label>
@@ -217,7 +217,7 @@
                                                     <label for="author{{$author->id}}" style="font-weight: normal"
                                                            class="col col-sm-4">
                                                         <input type="checkbox" id="author{{$author->id}}"
-                                                               {{author_exist($author->id,$article->authors)?'checked disabled':''}}
+                                                               {{author_exist($author->id,$article->authors)?'checked':''}}
                                                                name="authors[]" value="{{$author->id}}">
                                                         {{$author->name}}
                                                     </label>

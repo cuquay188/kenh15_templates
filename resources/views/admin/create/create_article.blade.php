@@ -3,7 +3,7 @@
     Kenh 15
 @endsection
 @section("styles")
-    <link rel="stylesheet" href="{{asset("/css/main.css")}}"> 
+    <link rel="stylesheet" href="{{asset("/css/main.css")}}">
 @endsection
 @section("content")
     <div class="back">
