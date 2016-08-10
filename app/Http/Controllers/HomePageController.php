@@ -16,7 +16,7 @@ class HomePageController extends Controller
         $article_first = Article::orderBy('id', 'desc')->first();
         $articles_latest = Article::orderBy('id', 'desc')->skip(1)->take(4)->get(); 
         $categories=Category::all();
-        return view('view.info.home_page', [
+        return view('homepage.index.index', [
             'articles_top' => $articles_top,
             'article_first' => $article_first,
             'articles_latest' => $articles_latest,
