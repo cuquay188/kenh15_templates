@@ -7,7 +7,9 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="{{asset('/bootstrap/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('/font-awesome/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/homepage/app.css')}}">
 
+    @yield('styles')
     <!-- jQuery library -->
     <script src="{{asset('/js/jquery-2.2.4.min.js')}}"></script>
 
@@ -22,7 +24,6 @@
 
     <script type="text/javascript" src="{{asset('/ckeditor/ckeditor.js')}}"></script>
 
-    @yield('styles')
     @yield('scripts')
 </head>
 <body>

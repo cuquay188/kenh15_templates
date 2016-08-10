@@ -163,4 +163,8 @@ Route::group(['prefix' => 'admin'], function () {
 Route::get('/', [
     'uses' => 'HomePageController@getHomePage',
     'as' => 'homepage'
-]); 
+]);
+Route::get('/article/{id}', [
+    'uses' => 'HomePageController@getArticle',
+    'as' => 'homepage.article'
+]);

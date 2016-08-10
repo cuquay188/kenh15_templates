@@ -1,7 +1,7 @@
 @extends('homepage.layouts.master')
 @section('title','ABC News')
 @section('styles')
-    <link rel="stylesheet" href="{{asset('/css/view/main.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/homepage/homepage.css')}}">
 @endsection
 @section('content')
     <div class="content-area container">
