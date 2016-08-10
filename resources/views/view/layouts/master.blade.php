@@ -6,6 +6,7 @@
     <!--    BOOTSTRAP CDN-->
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="{{asset('/bootstrap/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('/font-awesome/css/font-awesome.min.css')}}">
 
     <!-- jQuery library -->
     <script src="{{asset('/js/jquery-2.2.4.min.js')}}"></script>
@@ -26,9 +27,9 @@
 </head>
 <body>
 @include('view.layouts.header')
-<div class="container">
+<div class="body">
     @yield('content')
+    @include('view.layouts.footer')
 </div>
-@include('view.layouts.footer')
 </body>
 </html>
