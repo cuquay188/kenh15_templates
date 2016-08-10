@@ -6,8 +6,7 @@
 
     </div>
     <div class="title">
-        <a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sagittis arcu vel
-            ullamcorper maximus. Nulla facilisi.</a>
+        <a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a>
     </div>
 </div>
 <div class="video-area">
@@ -15,8 +14,7 @@
 
     </div>
     <div class="title">
-        <a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sagittis arcu vel
-            ullamcorper maximus. Nulla facilisi.</a>
+        <a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a>
     </div>
 </div>
 <div class="video-area">
@@ -24,7 +22,6 @@
 
     </div>
     <div class="title">
-        <a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sagittis arcu vel
-            ullamcorper maximus. Nulla facilisi.</a>
+        <a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a>
     </div>
 </div>

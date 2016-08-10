@@ -120,8 +120,6 @@ header {
   .newest-article .title {
     float: left;
     width: 220px;
-    height: 200px;
-    overflow: hidden;
     margin-left: 15px; }
     .newest-article .title a {
       color: #2c3e50;
@@ -149,9 +147,7 @@ header {
     margin-bottom: 10px;
     text-align: center; }
   .article .title {
-    width: 220px;
-    height: 100px;
-    overflow: hidden; }
+    width: 220px; }
     .article .title a {
       color: #2c3e50;
       font-weight: bold;
@@ -185,9 +181,7 @@ header {
     height: 120px;
     margin-bottom: 10px; }
   .video-area .title {
-    width: 220px;
-    height: 100px;
-    overflow: hidden; }
+    width: 220px; }
     .video-area .title a {
       color: #2c3e50;
       font-weight: bold; }

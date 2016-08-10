@@ -7,18 +7,11 @@
             <div class="menu-item">
                 <a href="#">Menu</a>
             </div>
-            <div class="menu-item">
-                <a href="#">Cat 1</a>
-            </div>
-            <div class="menu-item">
-                <a href="#">Cat 1</a>
-            </div>
-            <div class="menu-item">
-                <a href="#">Cat 1</a>
-            </div>
-            <div class="menu-item">
-                <a href="#">Cat 1</a>
-            </div>
+            @foreach(\App\Category::take(6)->get() as $category)
+                <div class="menu-item">
+                    <a href="#">{{$category->name}}</a>
+                </div>
+            @endforeach
         </div>
         <div class="search-area col-lg-3">
             <div class="search-form">

@@ -1,27 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="40a5491d-9842-4062-b7c1-61cb39f7ac3b" name="Default" comment="-">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/homepage/index/hot_categories.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/homepage/index/latest_articles.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/homepage/index/top_articles.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/homepage/index/top_videos.blade.php" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/views/kenh15/home_page.blade.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/views/layouts_kenh15/header_kenh15.blade.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/views/layouts_kenh15/master_kenh15.blade.php" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/views/view/info/home_page.blade.php" afterPath="$PROJECT_DIR$/resources/views/homepage/index/index.blade.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/views/view/layouts/footer.blade.php" afterPath="$PROJECT_DIR$/resources/views/homepage/layouts/footer.blade.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/views/view/layouts/header.blade.php" afterPath="$PROJECT_DIR$/resources/views/homepage/layouts/header.blade.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/views/view/layouts/master.blade.php" afterPath="$PROJECT_DIR$/resources/views/homepage/layouts/master.blade.php" />
+    <list default="true" id="40a5491d-9842-4062-b7c1-61cb39f7ac3b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/HomePageController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomePageController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/view.php" afterPath="$PROJECT_DIR$/config/view.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/ckeditor/plugins/image/dialogs/image.js" afterPath="$PROJECT_DIR$/public/ckeditor/plugins/image/dialogs/image.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/ckeditor/plugins/link/dialogs/link.js" afterPath="$PROJECT_DIR$/public/ckeditor/plugins/link/dialogs/link.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/ckeditor/samples/js/sample.js" afterPath="$PROJECT_DIR$/public/ckeditor/samples/js/sample.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/ckeditor/skins/bootstrapck/sample/js/jquery-1.11.0.min.js" afterPath="$PROJECT_DIR$/public/ckeditor/skins/bootstrapck/sample/js/jquery-1.11.0.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/datatables.min.js" afterPath="$PROJECT_DIR$/public/js/datatables.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/jquery-2.2.4.min.js" afterPath="$PROJECT_DIR$/public/js/jquery-2.2.4.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/view/main.css" afterPath="$PROJECT_DIR$/public/css/view/main.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/view/main.css.map" afterPath="$PROJECT_DIR$/public/css/view/main.css.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/view/main.scss" afterPath="$PROJECT_DIR$/public/css/view/main.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/homepage/index/hot_categories.blade.php" afterPath="$PROJECT_DIR$/resources/views/homepage/index/hot_categories.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/homepage/index/top_videos.blade.php" afterPath="$PROJECT_DIR$/resources/views/homepage/index/top_videos.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/homepage/layouts/header.blade.php" afterPath="$PROJECT_DIR$/resources/views/homepage/layouts/header.blade.php" />
     </list>
     <ignored path="lara.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -47,6 +34,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="main.scss" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/css/view/main.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="72">
+              <caret line="160" column="5" selection-start-line="160" selection-start-column="5" selection-end-line="160" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="HomePageController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomePageController.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -55,16 +52,6 @@
               <folding>
                 <element signature="e#40#56#0#PHP" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ArticleController.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ArticleController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1885">
-              <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -79,21 +66,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="latest_articles.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/homepage/index/latest_articles.blade.php">
+      <file leaf-file-name="hot_categories.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/homepage/index/hot_categories.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="28" column="6" selection-start-line="28" selection-start-column="6" selection-end-line="28" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="top_articles.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/homepage/index/top_articles.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="12" />
+            <state relative-caret-position="17">
+              <caret line="1" column="33" selection-start-line="1" selection-start-column="33" selection-end-line="1" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -102,18 +79,18 @@
       <file leaf-file-name="top_videos.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/homepage/index/top_videos.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="29" column="6" selection-start-line="29" selection-start-column="6" selection-end-line="29" selection-end-column="6" />
+            <state relative-caret-position="136">
+              <caret line="8" column="76" selection-start-line="8" selection-start-column="76" selection-end-line="8" selection-end-column="76" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="hot_categories.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/homepage/index/hot_categories.blade.php">
+      <file leaf-file-name="header.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/homepage/layouts/header.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="782">
-              <caret line="46" column="11" selection-start-line="46" selection-start-column="11" selection-end-line="46" selection-end-column="11" />
+            <state relative-caret-position="187">
+              <caret line="11" column="49" selection-start-line="11" selection-start-column="49" selection-end-line="11" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -165,8 +142,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/database/seeds/UserSeeder.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2016_06_25_102119_create_users_table.php" />
         <option value="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" />
         <option value="$PROJECT_DIR$/app/User.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/auth/signup.blade.php" />
@@ -206,16 +181,18 @@
         <option value="$PROJECT_DIR$/resources/views/view/info/home_page.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/create/create_article.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/info/articles.blade.php" />
-        <option value="$PROJECT_DIR$/public/css/view/main.scss" />
         <option value="$PROJECT_DIR$/resources/views/homepage/homepage/top_read.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/homepage/homepage/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/homepage/index/top_read.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/homepage/index/latest_articles.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/homepage/index/top_video.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/homepage/index/hot_categories.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/homepage/index/index.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/HomePageController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ArticleController.php" />
+        <option value="$PROJECT_DIR$/resources/views/homepage/index/hot_categories.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/homepage/layouts/header.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/homepage/index/top_videos.blade.php" />
+        <option value="$PROJECT_DIR$/public/css/view/main.scss" />
       </list>
     </option>
   </component>
@@ -760,7 +737,7 @@
       <workItem from="1470796249984" duration="5081000" />
       <workItem from="1470812800641" duration="9158000" />
       <workItem from="1470822069583" duration="1405000" />
-      <workItem from="1470829162573" duration="1436000" />
+      <workItem from="1470829162573" duration="3462000" />
     </task>
     <task id="LOCAL-00001" summary="initiate project">
       <created>1465025157253</created>
@@ -1056,11 +1033,18 @@
       <option name="project" value="LOCAL" />
       <updated>1470823952645</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="- refactor home page file.">
+      <created>1470830660116</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1470830660116</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="514235000" />
+    <option name="totallyTimeSpent" value="516261000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1102,7 +1086,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- create login view&#10;- create sign up view&#10;- create login, logout function&#10;" />
     <MESSAGE value="- create user management view with function:&#10;+ edit: fullname, email, tel, change password&#10;&#10;" />
     <MESSAGE value="- debug bug in user management" />
     <MESSAGE value="- debug bug in: user management" />
@@ -1127,7 +1110,8 @@
     <MESSAGE value="- fix color." />
     <MESSAGE value="- fix create article's footer." />
     <MESSAGE value="fix goto" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix goto" />
+    <MESSAGE value="- refactor home page file." />
+    <option name="LAST_COMMIT_MESSAGE" value="- refactor home page file." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1333,13 +1317,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/homepage/layouts/header.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="5" column="35" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/homepage/layouts/master.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -1367,6 +1344,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="431">
           <caret line="219" column="117" selection-start-line="219" selection-start-column="117" selection-end-line="219" selection-end-column="117" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1374,14 +1352,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/view/main.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="50" column="7" selection-start-line="50" selection-start-column="7" selection-end-line="50" selection-end-column="7" />
           <folding />
         </state>
       </provider>
@@ -1402,26 +1372,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/homepage/index/top_videos.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="29" column="6" selection-start-line="29" selection-start-column="6" selection-end-line="29" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/homepage/index/hot_categories.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="782">
-          <caret line="46" column="11" selection-start-line="46" selection-start-column="11" selection-end-line="46" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/homepage/index/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="578">
           <caret line="34" column="11" selection-start-line="34" selection-start-column="11" selection-end-line="34" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ArticleController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="427">
+          <caret line="150" column="11" selection-start-line="150" selection-start-column="11" selection-end-line="150" selection-end-column="11" />
           <folding />
         </state>
       </provider>
@@ -1436,10 +1398,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ArticleController.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/homepage/layouts/header.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1885">
-          <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
+        <state relative-caret-position="187">
+          <caret line="11" column="49" selection-start-line="11" selection-start-column="49" selection-end-line="11" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/homepage/index/hot_categories.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="33" selection-start-line="1" selection-start-column="33" selection-end-line="1" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/homepage/index/top_videos.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="76" selection-start-line="8" selection-start-column="76" selection-end-line="8" selection-end-column="76" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/view/main.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="160" column="5" selection-start-line="160" selection-start-column="5" selection-end-line="160" selection-end-column="5" />
           <folding />
         </state>
       </provider>
