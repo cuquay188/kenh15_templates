@@ -10,9 +10,6 @@
         <span class="glyphicon glyphicon-plane"></span><br>
         <strong>TOP</strong>
     </div>
-    <div class="goto-bottom">
-        <span class="glyphicon glyphicon-collapse-down"></span>
-    </div>
     <div class="content">
         <div class="title">
             <p class="view-title">{{$article->title}}</p>
@@ -86,9 +83,6 @@
     <script>
         $('.goto-top').click(function () {
             $('body').animate({scrollTop: 0});
-        });
-        $('.goto-bottom').click(function () {
-            $('body').animate({scrollTop: $(document).height() + $('body').height()});
         });
     </script>
 @endsection

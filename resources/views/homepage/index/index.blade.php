@@ -26,12 +26,4 @@
     <div class="articles-by-category container">
         @include('homepage.index.hot_categories')
     </div>
-    <div class="goto-top">
-        <span class="glyphicon glyphicon-chevron-up"></span>
-    </div>
-    <script>
-        $('.goto-top').click(function () {
-            $('.body').animate({scrollTop: 0});
-        });
-    </script>
 @endsection
