@@ -4,24 +4,26 @@
             <div class="head">
                 <a href="#">{{$category->name}}</a>
             </div>
-            @foreach(\App\Article::where('category_id',$category->id)->orderBy('id','desc')->take(3)->get() as $article)
-                <div class="article">
-                    <div class="picture">
-                        <a href="#"><img
-                                    src="http://cdn2-www.dogtime.com/assets/uploads/2015/09/malamute-alaska-state-dog.jpg"></a>
+            <div class="articles">
+                @foreach(\App\Article::where('category_id',$category->id)->orderBy('id','desc')->take(2)->get() as $article)
+                    <div class="article">
+                        <div class="picture">
+                            <a href="#"><img
+                                        src="http://cdn2-www.dogtime.com/assets/uploads/2015/09/malamute-alaska-state-dog.jpg"></a>
+                        </div>
+                        <div class="title">
+                            <a href="#">{{$article->title}}</a>
+                        </div>
                     </div>
-                    <div class="title">
-                        <a href="#">{{$article->title}}</a>
+                @endforeach
+                <div class="articles-list">
+                    <div class="list">
+                        <ul>
+                            @foreach(\App\Article::where('category_id',$category->id)->orderBy('id','desc')->take(4)->skip(2)->get() as $article)
+                                <li><a href="#">{{$article->title}}</a></li>
+                            @endforeach
+                        </ul>
                     </div>
-                </div>
-            @endforeach
-            <div class="articles-list">
-                <div class="list">
-                    <ul>
-                        @foreach(\App\Article::where('category_id',$category->id)->orderBy('id','desc')->take(8)->skip(3)->get() as $article)
-                            <li><a href="#">{{$article->title}}</a></li>
-                        @endforeach
-                    </ul>
                 </div>
             </div>
         </div>

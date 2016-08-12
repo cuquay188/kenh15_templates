@@ -24,7 +24,7 @@
   text-align: center;
   a {
     color: black;
-    font-size: 20px;
+    font-size: 23px;
   }
   a:hover {
     color: #1abc9c;
@@ -36,7 +36,7 @@
   text-align: right;
   a {
     color: black;
-    font-weight: normal;
+    font-weight: bold;
   }
 }
 
@@ -56,7 +56,7 @@
   }
   .title {
     float: left;
-    width: 220px;
+    width: 200px;
     margin-left: 15px;
     a {
       color: #2c3e50;
@@ -81,13 +81,15 @@
 
 .article {
   display: inline-block;
-  margin-left: 30px;
+  margin-left: 25px;
+  margin-bottom: 20px;
+  vertical-align: top;
   .picture {
     /*rgba(255,0,0,0.098)*/
     background-color: white;
     width: 220px;
     height: 140px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     text-align: center;
   }
   .title {
@@ -124,12 +126,10 @@
 
 .video-area {
   border-bottom-style: ridge;
-  padding-bottom: 10px;
+  padding: 10px;
   margin-top: 10px;
-  padding-left: 13px;
   .video {
     background-color: rgba(26, 188, 156,0.2);
-    width: 220px;
     height: 120px;
     margin-bottom: 10px;
   }
@@ -143,6 +143,9 @@
         text-decoration: none;
       }
     }
+  }
+  .video-area:first-child{
+    margin-top: 0;
   }
   &:last-child{
     border-bottom:none;
@@ -161,25 +164,33 @@
     padding-bottom: 5px;
     margin-bottom: 15px;
     a {
-      color: rgb(206, 49, 49);
+      color: black;
       font-weight: bold;
-      font-size: 20px;
+      font-size: 23px;
+      text-decoration: none;
     }
     a:hover {
-      text-decoration: none;
-      color: black;
+      color: #1abc9c;
     }
+  }
+  .articles{
+    margin: 5px;
   }
   .article {
     margin-left: 15px;
     display: inline-block;
+    vertical-align: top;
   }
   .articles-list {
-    float: right;
+    display: inline-block;
     width: 35%;
     margin-right: 15px;
+    margin-bottom: 10px;
+    margin-left: 15px;
     .list {
-      margin-left: 25px;
+      ul{
+        padding: 0;
+      }
     }
   }
 }
