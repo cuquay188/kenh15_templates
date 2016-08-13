@@ -7,7 +7,7 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="{{asset('/bootstrap/css/bootstrap.min.css')}}">
 
-    <link rel="stylesheet" type="text/css" href="{{asset('/css/datatables.min.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('/datatables/datatables.min.css')}}"/>
 
     <!-- jQuery library -->
     <script src="{{asset('/js/jquery-2.2.4.min.js')}}"></script>
@@ -16,7 +16,7 @@
     <script src="{{asset('/bootstrap/js/bootstrap.min.js')}}"></script>
 
 
-    <script type="text/javascript" src="{{asset('/js/datatables.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('/datatables/datatables.min.js')}}"></script>
 
     {{--<script src="//cdn.ckeditor.com/4.5.9/full/ckeditor.js"></script>--}}
 

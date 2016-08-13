@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{{asset('/css/auth.css')}}">
 @endsection
 @section('content')
-    <form action="{{route('post_sign_up')}}" method="post">
+    <form action="{{route('post_sign_up')}}" method="post" style="margin-top:10%;">
         @if(Session::has('fails'))
             <ul class="errors">
                 @foreach(Session::get('fails') as $fail)
