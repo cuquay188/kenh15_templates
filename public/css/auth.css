@@ -1,5 +1,7 @@
 body {
-  background-image: url("../img/login_background.jpg"); }
+  background-image: url("../img/login_background.jpg");
+  background-size: 120%;
+  background-repeat: no-repeat; }
 
 form {
   box-shadow: 0 0 15px 5px #7f8c8d;
@@ -10,6 +12,7 @@ form {
   border: none;
   border-radius: 5px; }
   form .btn {
+    margin-top: 10px;
     width: 49%; }
   form .errors {
     margin-top: 3px;

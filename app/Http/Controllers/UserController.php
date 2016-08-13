@@ -64,7 +64,11 @@ class UserController extends Controller
 
         $user->save();
 
-        return redirect()->back();
+        return redirect()->route('login')
+                         ->with([
+                            'new_username' => $username,
+                            'new_password' => $password
+                         ]);
     }
 
     public function getUserManagement()
