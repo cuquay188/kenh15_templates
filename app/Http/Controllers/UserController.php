@@ -71,7 +71,7 @@ class UserController extends Controller
     {
         if (!Auth::check())
             return redirect()->route('login')->with(['fail' => 'Required login.']);
-        return view('admin.info.user');
+        return view('admin.users.user');
     }
 
     public function postUpdateUser(Request $request)

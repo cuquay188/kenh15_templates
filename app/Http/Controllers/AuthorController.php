@@ -20,7 +20,7 @@ class AuthorController extends Controller
         $tags = Tag::all();
         $categories = Category::all();
         $authors = Author::all();
-        return view('admin.info.authors', [
+        return view('admin.authors.list.authors', [
             'tags' => $tags,
             'categories' => $categories,
             'authors' => $authors
@@ -88,7 +88,7 @@ class AuthorController extends Controller
         if (!Auth::check())
             return redirect()->back()->with(['fail' => 'Required login.']);
         $author = Author::find($id); 
-        return view('admin.info.author', [
+        return view('admin.authors.single.author', [
             'author' => $author 
         ]);
     }
