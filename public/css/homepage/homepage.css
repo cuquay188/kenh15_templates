@@ -1,35 +1,3 @@
-.sidebar-left {
-  background-color: #ecf0f1;
-  padding: 10px 20px;
-  margin-bottom: 20px; }
-  .sidebar-left a {
-    text-decoration: none;
-    font-weight: bold; }
-  .sidebar-left a:hover {
-    text-decoration: underline; }
-
-.head-top, .body-top {
-  border-bottom-style: ridge;
-  padding-bottom: 5px;
-  margin-bottom: 10px; }
-  .head-top ul li, .body-top ul li {
-    margin-bottom: 10px; }
-
-.head-top {
-  text-align: center; }
-  .head-top a {
-    color: black;
-    font-size: 23px; }
-  .head-top a:hover {
-    color: #1abc9c;
-    text-decoration: none; }
-
-.footer-top {
-  text-align: right; }
-  .footer-top a {
-    color: black;
-    font-weight: bold; }
-
 .new-articles {
   padding-top: 10px; }
 

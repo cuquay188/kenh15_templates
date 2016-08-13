@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{asset('/bootstrap/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('/font-awesome/css/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('/css/homepage/app.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/homepage/sidebar-left.css')}}">
 
 @yield('styles')
 <!-- jQuery library -->

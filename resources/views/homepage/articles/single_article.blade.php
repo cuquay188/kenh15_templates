@@ -2,14 +2,13 @@
 @section('title',$article->title)
 @section('styles')
     <link rel="stylesheet" href="{{asset('/css/homepage/article.css')}}">
-    <link rel="stylesheet" href="{{asset('css/homepage/homepage.css')}}">
 @endsection
 @section('content')
     <div class="container">
         <aside class="sidebar-left col-lg-3">
-            @include('homepage.articles.top_related')
+            @include('homepage.articles.related_articles')
         </aside>
-        <div class="col-lg-6">
+        <div class="main-content col-lg-6">
             <div class="category">
                 <a href="#">{{$article->category->name}}</a>
             </div>
