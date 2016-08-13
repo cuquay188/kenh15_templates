@@ -19,6 +19,7 @@
     @yield("scripts")
 </head>
 <body>
+<div class="backdrop"></div>
 <div class="container">
     @yield("content")
 </div>
