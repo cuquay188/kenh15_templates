@@ -4,13 +4,6 @@
 @endsection
 @section('styles')
     <link rel="stylesheet" href="{{asset('/css/main.css')}}">
-    <style>
-        .footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-    </style>
 @endsection
 @section('content')
     <div class="content">
