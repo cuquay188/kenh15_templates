@@ -26,8 +26,10 @@ class HomePageController extends Controller
 
     public function getArticle($id)
     {
+        $articles_top = Article::skip(0)->take(10)->get();
         $article = Article::find($id);
         return view('homepage.articles.single_article', [
+            'articles_top' => $articles_top,
             'article' => $article
         ]);
     }

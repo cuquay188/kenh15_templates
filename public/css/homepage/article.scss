@@ -1,0 +1,49 @@
+.category {
+  background: radial-gradient(circle, #1abc9c, #ecf0f1);
+  background: -webkit-radial-gradient(circle, #1abc9c, #ecf0f1);
+  background: -moz-radial-gradient(circle, #1abc9c, #ecf0f1);
+  background: -o-radial-gradient(circle, #1abc9c, #ecf0f1);
+  background: -ms-radial-gradient(circle, #1abc9c, #ecf0f1);
+  padding: 5px;
+  text-align: center;
+  a {
+    color: white;
+    font-size: 24px;
+    text-decoration: none;
+  }
+  &:hover {
+    background-image: radial-gradient(circle, whitesmoke, #1abc9c);
+    cursor: pointer;
+  }
+  &:hover a {
+    color: #16a085;
+  }
+}
+
+.authors, .tags {
+  a {
+    background-color: #d5ebe8;
+    padding: 5px;
+    margin-right: 5px;
+    text-decoration: none;
+    color: black;
+    font-weight: normal;
+    font-style: italic;
+    &:hover {
+      background-color: #16a085;
+      color: white;
+    }
+  }
+}
+
+.authors {
+  float: right;
+  margin-bottom: 20px;
+}
+
+.tags {
+  clear: both;
+  a {
+    font-style: normal;
+  }
+}

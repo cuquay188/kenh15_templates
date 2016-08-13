@@ -1,7 +1,7 @@
 <!-- bài đọc nhiều nhất -->
 <div class="top-view">
     <div class="head-top">
-        <a href="#">Top Articles</a>
+        <a href="#">Related Articles</a>
     </div>
     <div class="body-top">
         <ul>
