@@ -3,13 +3,17 @@
     <title>@yield("title")</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <!--    BOOTSTRAP CDN-->
-    <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="{{asset('/bootstrap/css/bootstrap.min.css')}}">
 
     <link rel="stylesheet" type="text/css" href="{{asset('/datatables/datatables.min.css')}}"/>
 
-    <!-- jQuery library -->
+    <link rel="stylesheet" href="{{asset('/css/admin/main.css')}}">
+
+@yield("styles")
+
+<!-- jQuery library -->
     <script src="{{asset('/js/jquery-2.2.4.min.js')}}"></script>
 
     <!-- Latest compiled JavaScript -->
@@ -22,19 +26,30 @@
 
     <script type="text/javascript" src="{{asset('/ckeditor/ckeditor.js')}}"></script>
 
-    @yield("styles")
     @yield("scripts")
 </head>
+<body>
+<div class="sidebar">
+
+    @include("admin.layouts.sidebar")
+
+</div>
 <div class="body">
+
     @include("admin.layouts.header")
+
     <div class="container">
         @yield("content")
     </div>
+
     @include("admin.layouts.footer")
+
+    @yield("body.scripts")
+
     <script>
         if ($(document).height() > $(".body").height())
             $('.footer').addClass('fix-footer');
     </script>
-    @yield("body.scripts")
 </div>
+</body>
 </html>

@@ -1,13 +1,6 @@
 @extends("admin.layouts.master")
-@section("title",'Articles')
-@section('styles')
-    <link rel="stylesheet" href="{{asset('/css/main.css')}}">
-@endsection
+@section("title",'Articles Management')
 @section("content")
-    <div class="article-add" style="float: right">
-        <a href="{{route('create_article')}}" class="btn btn-primary">Add</a>
-    </div>
-    <div class="fix"></div>
     @if(count($errors)>0)
         <ul class="errors">
             @foreach($errors->all() as $error)
@@ -20,12 +13,12 @@
             <thead>
             <tr>
                 <th style="text-align: center">ID</th>
-                <th style="text-align: center; width: 10%">Title</th>
+                <th style="text-align: center;">Title</th>
                 <th>Category</th>
-                <th style="text-align: center; width: 15%">Last Update</th>
-                <th style="width: 20%">Author</th>
-                <th style="width: 20%">Tags</th>
-                <th>Function</th>
+                <th style="text-align: center;">Last Update</th>
+                <th style="">Author</th>
+                <th style="">Tags</th>
+                <th style="width:175px;">Function</th>
             </tr>
             </thead>
             <tbody>

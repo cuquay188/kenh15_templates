@@ -7,6 +7,8 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="{{asset('/bootstrap/css/bootstrap.min.css')}}">
 
+    <link rel="stylesheet" href="{{asset('css/admin/auth.css')}}">
+
     <!-- jQuery library -->
     <script src="{{asset('/js/jquery-2.2.4.min.js')}}"></script>
 

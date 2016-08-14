@@ -1,14 +1,6 @@
 @extends('admin.layouts.master')
-@section('title','Tag')
-@section('styles')
-    <link rel="stylesheet" href="{{asset('/css/main.css')}}">
-@endsection
+@section('title','Tags Management')
 @section('content')
-    <div class="tag-add">
-        <a href="{{route('create_tag')}}" style="float: right;margin-bottom: 30px" type="submit"
-           class="btn btn-primary">Add</a>
-    </div>
-    <div class="fix"></div>
     @if(count($errors)>0)
         <ul class="errors">
             @foreach($errors->all() as $error)

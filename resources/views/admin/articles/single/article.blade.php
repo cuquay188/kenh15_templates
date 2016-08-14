@@ -2,9 +2,6 @@
 @section('title')
     {{$article->title}}
 @endsection
-@section('styles')
-    <link rel="stylesheet" href="{{asset('/css/main.css')}}">
-@endsection
 @section('content')
     <div class="goto-top">
         <span class="glyphicon glyphicon-plane"></span><br>

@@ -2,9 +2,6 @@
 @section('title')
     {{$tag->name}}
 @endsection
-@section('styles')
-    <link rel="stylesheet" href="{{asset('/css/main.css')}}">
-@endsection
 @section('content')
     <div class="content">
         <div class="title">

@@ -19,14 +19,14 @@
             </div>
         @endif
         <div class="form-group">
-            <label for="username">User</label>
+            <label for="username">User Name</label>
             <input type="text" value="{{Session::has('new_username') ? Session::get('new_username'):''}}"
-                   class="form-control" name="username" id="username" placeholder="User Name...">
+                   class="form-control" name="username" id="username" placeholder="">
         </div>
         <div class="form-group">
             <label for="password">Password</label>
             <input type="password" value="{{Session::has('new_password') ? Session::get('new_password'):''}}"
-                   class="form-control" name="password" id="password" placeholder="Password...">
+                   class="form-control" name="password" id="password" placeholder="">
         </div>
         <div class="form-group" style="display:none;">
             <input type="checkbox" name="remember" id="remember" disabled>

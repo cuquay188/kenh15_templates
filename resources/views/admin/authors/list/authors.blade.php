@@ -1,14 +1,6 @@
 @extends("admin.layouts.master")
-@section("title", "Author")
-@section('styles')
-    <link rel="stylesheet" href="{{asset('/css/main.css')}}">
-@endsection
+@section("title", "Author Management")
 @section("content")
-    <div class="author-add">
-        <a href="{{route('create_author')}}" style="float: right;margin-bottom: 30px" type="submit"
-           class="btn btn-primary">Add</a>
-    </div>
-    <div class="fix"></div>
     @if(count($errors)>0)
         <ul class="errors">
             @foreach($errors->all() as $error)

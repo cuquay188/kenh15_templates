@@ -1,8 +1,5 @@
 @extends('admin.layouts.master')
 @section('title','User Management')
-@section('styles')
-    <link rel="stylesheet" href="{{asset('/css/main.css')}}">
-@endsection
 @section('content')
     <form action="{{route('post_update_user')}}" method="post" class="form-horizontal user_mng" role="form">
         <input type="hidden" value="{{Auth::getUser()->id}}" name="id">
