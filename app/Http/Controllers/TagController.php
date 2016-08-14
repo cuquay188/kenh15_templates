@@ -21,7 +21,7 @@ class TagController extends Controller
         $tags = Tag::all();
         $categories = Category::all();
         $authors = Author::all();
-        return view('admin.info.tags', [
+        return view('admin.tags.list.tags', [
             'tags' => $tags,
             'categories' => $categories,
             'authors' => $authors
@@ -75,7 +75,7 @@ class TagController extends Controller
         if (!Auth::check())
             return redirect()->back()->with(['fail' => 'Required login.']);
         $tag = Tag::find($id); 
-        return view('admin.info.tag', [
+        return view('admin.tags.single.tag', [
             'tag' => $tag 
         ]);
     }

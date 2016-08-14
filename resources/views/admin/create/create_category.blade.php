@@ -2,7 +2,6 @@
 @section('title', 'Create Category')
 @section('styles')
     <link rel="stylesheet" href="{{asset('/css/main.css')}}">
-    <link rel="stylesheet" href="{{asset("/css/footer.css")}}">
 @endsection
 @section('content')
     <div class="back">

@@ -1,7 +1,5 @@
 @extends("admin.layouts.master")
-@section("title")
-    Kenh 15
-@endsection
+@section("title","Create Article")
 @section("styles")
     <link rel="stylesheet" href="{{asset("/css/main.css")}}">
 @endsection

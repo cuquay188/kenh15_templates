@@ -64,14 +64,18 @@ class UserController extends Controller
 
         $user->save();
 
-        return redirect()->back();
+        return redirect()->route('login')
+                         ->with([
+                            'new_username' => $username,
+                            'new_password' => $password
+                         ]);
     }
 
     public function getUserManagement()
     {
         if (!Auth::check())
             return redirect()->route('login')->with(['fail' => 'Required login.']);
-        return view('admin.info.user');
+        return view('admin.users.user');
     }
 
     public function postUpdateUser(Request $request)

@@ -20,13 +20,15 @@
         @endif
         <div class="form-group">
             <label for="username">User</label>
-            <input type="text" class="form-control" name="username" id="username" placeholder="User Name...">
+            <input type="text" value="{{Session::has('new_username') ? Session::get('new_username'):''}}"
+                   class="form-control" name="username" id="username" placeholder="User Name...">
         </div>
         <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" class="form-control" name="password" id="password" placeholder="Password...">
+            <input type="password" value="{{Session::has('new_password') ? Session::get('new_password'):''}}"
+                   class="form-control" name="password" id="password" placeholder="Password...">
         </div>
-        <div class="form-group">
+        <div class="form-group" style="display:none;">
             <input type="checkbox" name="remember" id="remember" disabled>
             <label for="remember" style="font-weight: normal">Remember</label>
         </div>

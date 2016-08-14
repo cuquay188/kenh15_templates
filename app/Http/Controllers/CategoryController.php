@@ -21,7 +21,7 @@ class CategoryController extends Controller
         $tags = Tag::all();
         $categories = Category::all();
         $authors = Author::all();
-        return view('admin.info.categories', [
+        return view('admin.categories.list.categories', [
             'tags' => $tags,
             'categories' => $categories,
             'authors' => $authors
@@ -78,7 +78,7 @@ class CategoryController extends Controller
             return redirect()->back()->with(['fail' => 'Required login.']);
         $category = Category::find($id);
         $articles = Article::where('category_id',$id)->paginate(5);
-        return view('admin.info.category', [
+        return view('admin.categories.single.category', [
             'category' => $category,
             'articles' => $articles
         ]);

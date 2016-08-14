@@ -2,13 +2,6 @@
 @section('title','User Management')
 @section('styles')
     <link rel="stylesheet" href="{{asset('/css/main.css')}}">
-    <style>
-        .footer{
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-    </style>
 @endsection
 @section('content')
     <form action="{{route('post_update_user')}}" method="post" class="form-horizontal user_mng" role="form">
