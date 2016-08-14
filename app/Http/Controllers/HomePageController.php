@@ -27,7 +27,9 @@ class HomePageController extends Controller
     public function getArticle($id)
     {
         $article = Article::find($id);
+        $related_articles = Article::where('category_id', $article->category->id)->orderBy('id', 'desc')->skip(0)->take(10)->get(); 
         return view('homepage.articles.single_article', [
+            'related_articles' => $related_articles,
             'article' => $article
         ]);
     }

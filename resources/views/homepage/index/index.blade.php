@@ -11,19 +11,22 @@
         </aside>
         <!-- end -->
 
-        <!-- các bài viết mới đăng -->
-        <div class="new-articles col-lg-6">
-            @include('homepage.index.latest_articles')
-        </div>
-        <!-- end -->
+        <div class="col-lg-9">
+            <!-- các bài viết mới đăng -->
+            <div class="new-articles col-sm-8">
+                @include('homepage.index.latest_articles')
+            </div>
+            <!-- end -->
 
-        <!-- video -->
-        <aside class="sidebar-right col-lg-3">
-            @include('homepage.index.top_videos')
-        </aside>
-        <!-- end -->
-    </div>
-    <div class="articles-by-category container">
-        @include('homepage.index.hot_categories')
+            <!-- video -->
+            <aside class="sidebar-right col-sm-4">
+                @include('homepage.index.top_videos')
+            </aside>
+            <!-- end -->
+
+            <div class="articles-by-category col-sm-12">
+                @include('homepage.index.hot_categories')
+            </div>
+        </div>
     </div>
 @endsection

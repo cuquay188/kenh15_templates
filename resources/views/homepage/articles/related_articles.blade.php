@@ -1,12 +1,14 @@
 <!-- bài đọc nhiều nhất -->
 <div class="top-view">
     <div class="head-top">
-        <a href="#">Top Articles</a>
+        <a href="#">Related Articles</a>
     </div>
     <div class="body-top">
         <ul>
-            @foreach($articles_top as $article)
-                <li><a href="#">{{$article->title}}</a></li>
+            @foreach($related_articles as $related_article)
+                @if($article->id != $related_article->id)
+                    <li><a href="#">{{$related_article->title}}</a></li>
+                @endif
             @endforeach
         </ul>
     </div>

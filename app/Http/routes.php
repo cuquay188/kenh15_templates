@@ -50,7 +50,7 @@ Route::group(['prefix' => 'admin'], function () {
         'as' => 'post_change_password_user'
     ]);
 
-//Article
+    //Article
     Route::get('/article', [
         'uses' => 'ArticleController@getArticle',
         'as' => 'article'
@@ -83,7 +83,7 @@ Route::group(['prefix' => 'admin'], function () {
         'uses' => 'ArticleController@getViewArticle'
     ]);
 
-//Tag
+    //Tag
     Route::get('/tag', [
         'uses' => 'TagController@getTag',
         'as' => 'tag'
@@ -108,7 +108,7 @@ Route::group(['prefix' => 'admin'], function () {
         'uses' => 'TagController@getViewTag'
     ]);
 
-//Author
+    //Author
     Route::get('/author', [
         'uses' => 'AuthorController@getAuthor',
         'as' => 'author'
@@ -133,7 +133,7 @@ Route::group(['prefix' => 'admin'], function () {
         'uses' => 'AuthorController@getViewAuthor'
     ]);
 
-//Category
+    //Category
     Route::get('/category', [
         'uses' => 'CategoryController@getCategory',
         'as' => 'category'
@@ -165,6 +165,5 @@ Route::get('/', [
     'as' => 'homepage'
 ]);
 Route::get('/article/{id}', [
-    'uses' => 'HomePageController@getArticle',
-    'as' => 'homepage.article'
+    'uses' => 'HomepageController@getArticle'
 ]);
