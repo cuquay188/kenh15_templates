@@ -1,8 +1,5 @@
 @extends("admin.layouts.master")
 @section("title","Create Article")
-@section("styles")
-    <link rel="stylesheet" href="{{asset("/css/main.css")}}">
-@endsection
 @section("content")
     <div class="back">
         <form action="{{route('article')}}" method="get">
