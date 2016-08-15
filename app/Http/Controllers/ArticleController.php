@@ -23,7 +23,7 @@ class ArticleController extends Controller
         $authors = Author::all();
         $categories = Category::all();
         $tags = Tag::all();
-        return view('admin.info.articles', [
+        return view('admin.articles.list.articles', [
             'articles' => $articles,
             'authors' => $authors,
             'categories' => $categories,
@@ -146,7 +146,7 @@ class ArticleController extends Controller
             return redirect()->back()->with(['fail' => 'Required login.']);
         
         $article = Article::find($id);
-        return view('admin.info.article', [
+        return view('admin.articles.single.article', [
             'article' => $article
         ]);
     }

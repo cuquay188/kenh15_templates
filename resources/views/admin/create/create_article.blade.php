@@ -1,10 +1,5 @@
 @extends("admin.layouts.master")
-@section("title")
-    Kenh 15
-@endsection
-@section("styles")
-    <link rel="stylesheet" href="{{asset("/css/main.css")}}">
-@endsection
+@section("title","Create Article")
 @section("content")
     <div class="back">
         <form action="{{route('article')}}" method="get">

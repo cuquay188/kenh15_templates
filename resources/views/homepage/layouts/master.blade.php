@@ -10,8 +10,9 @@
     <link rel="stylesheet" href="{{asset('/css/homepage/app.css')}}">
     <link rel="stylesheet" href="{{asset('/css/homepage/sidebar-left.css')}}">
 
-@yield('styles')
-<!-- jQuery library -->
+    @yield('styles')
+
+    <!-- jQuery library -->
     <script src="{{asset('/js/jquery-2.2.4.min.js')}}"></script>
 
     <!-- Latest compiled JavaScript -->
