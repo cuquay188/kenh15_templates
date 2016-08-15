@@ -65,7 +65,7 @@
                             }
                         }
                         ?>
-                        @foreach(App\Author::all() as $author)
+                        @foreach(App\User::all() as $author)
                             <label for="author{{$author->id}}" style="font-weight: normal"
                                    class="col col-sm-4">
                                 <input type="checkbox" id="author{{$author->id}}"

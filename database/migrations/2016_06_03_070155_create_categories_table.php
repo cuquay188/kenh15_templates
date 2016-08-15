@@ -16,6 +16,7 @@ class CreateCategoriesTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->char('name',20);
+            $table->boolean('is_hot')->default(false);
         });
     }
 
