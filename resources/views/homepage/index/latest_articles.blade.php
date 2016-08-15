@@ -1,10 +1,10 @@
 <div class="newest-article">
     <div class="picture">
-        <a href="#"><img
+        <a href="{{route('homepage').'/article/'.$article_first->id}}"><img
                     src="http://chopet.vn/wp-content/uploads/2015/10/become-a-certified-dog-trainer-in-alaska-2.jpg"></a>
     </div>
     <div class="title">
-        <a href="#">{{$article_first->title}}</a>
+        <a href="{{route('homepage').'/article/'.$article_first->id}}">{{$article_first->title}}</a>
     </div>
     <div class="content">
         <p>
@@ -18,11 +18,11 @@
     @foreach($articles_latest as $article)
         <div class="article">
             <div class="picture">
-                <a href="#"><img
+                <a href="{{route('homepage').'/article/'.$article->id}}"><img
                             src="http://adogbreeds.com/wp-content/uploads/2013/01/Alaskan-Malamute-Puppies.jpg"></a>
             </div>
             <div class="title">
-                <a href="#">{{$article->title}}</a>
+                <a href="{{route('homepage').'/article/'.$article->id}}">{{$article->title}}</a>
             </div>
         </div>
     @endforeach

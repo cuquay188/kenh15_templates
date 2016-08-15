@@ -12,7 +12,7 @@ class HomePageController extends Controller
 {
     public function getHomePage()
     {
-        $articles_top = Article::skip(0)->take(10)->get();
+        $articles_top = Article::skip(0)->take(5)->get();
         $article_first = Article::orderBy('id', 'desc')->first();
         $articles_latest = Article::orderBy('id', 'desc')->skip(1)->take(4)->get();
         $categories = Category::all();
@@ -27,7 +27,7 @@ class HomePageController extends Controller
     public function getArticle($id)
     {
         $article = Article::find($id);
-        $related_articles = Article::where('category_id', $article->category->id)->orderBy('id', 'desc')->skip(0)->take(10)->get(); 
+        $related_articles = Article::where('category_id', $article->category->id)->orderBy('id', 'desc')->take(5)->get();
         return view('homepage.articles.single_article', [
             'related_articles' => $related_articles,
             'article' => $article

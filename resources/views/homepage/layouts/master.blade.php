@@ -18,6 +18,7 @@
     <!-- Latest compiled JavaScript -->
     <script src="{{asset('/bootstrap/js/bootstrap.min.js')}}"></script>
 
+
     @yield('scripts')
 </head>
 <body>

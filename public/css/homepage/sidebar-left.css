@@ -8,6 +8,9 @@
   .sidebar-left a:hover {
     text-decoration: underline; }
 
+.affix {
+  top: 20px; }
+
 .head-top, .body-top {
   border-bottom-style: ridge;
   padding-bottom: 5px;
@@ -29,3 +32,5 @@
   .footer-top a {
     color: black;
     font-weight: bold; }
+
+/*# sourceMappingURL=sidebar-left.css.map */

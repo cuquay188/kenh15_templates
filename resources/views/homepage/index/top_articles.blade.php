@@ -4,9 +4,9 @@
         <a href="#">Top Articles</a>
     </div>
     <div class="body-top">
-        <ul>
+        <ul data-spy="affix" data-offset-top="200">
             @foreach($articles_top as $article)
-                <li><a href="#">{{$article->title}}</a></li>
+                <li><a href="{{route('homepage').'/article/'.$article->id}}">{{$article->title}}</a></li>
             @endforeach
         </ul>
     </div>
