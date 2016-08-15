@@ -6,10 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
-    public function author()
-    {
-        return $this->belongsTo('App\Author');
-    }
 
     public function authors()
     {
@@ -26,5 +22,9 @@ class Article extends Model
         return $this->belongsToMany('App\Tag', 'tag_article');
     }
 
+    public function articleView()
+    {
+        return $this->hasMany('App\ArticleView');
+    }
 
 }
