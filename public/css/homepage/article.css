@@ -1,0 +1,41 @@
+.category {
+  background: radial-gradient(circle, #1abc9c, #ecf0f1);
+  background: -webkit-radial-gradient(circle, #1abc9c, #ecf0f1);
+  background: -moz-radial-gradient(circle, #1abc9c, #ecf0f1);
+  background: -o-radial-gradient(circle, #1abc9c, #ecf0f1);
+  background: -ms-radial-gradient(circle, #1abc9c, #ecf0f1);
+  padding: 5px;
+  text-align: center; }
+  .category a {
+    color: white;
+    font-size: 24px;
+    text-decoration: none; }
+  .category:hover {
+    background-image: radial-gradient(circle, whitesmoke, #1abc9c);
+    cursor: pointer; }
+  .category:hover a {
+    color: #16a085; }
+
+.authors a, .tags a {
+  background-color: #d5ebe8;
+  padding: 5px;
+  margin-left: 5px;
+  text-decoration: none;
+  color: black;
+  font-weight: normal;
+  font-style: italic; }
+  .authors a:hover, .tags a:hover {
+    background-color: #16a085;
+    color: white; }
+
+.authors {
+  float: right;
+  margin-top: 20px;
+  margin-bottom: 20px; }
+
+.tags {
+  clear: both; }
+  .tags a {
+    font-style: normal; }
+
+/*# sourceMappingURL=article.css.map */
