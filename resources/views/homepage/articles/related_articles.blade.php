@@ -7,7 +7,7 @@
         <ul>
             @foreach($related_articles as $related_article)
                 @if($article->id != $related_article->id)
-                    <li><a href="#">{{$related_article->title}}</a></li>
+                    <li><a href="{{route('homepage').'/article/'.$related_article->id}}">{{$related_article->title}}</a></li>
                 @endif
             @endforeach
         </ul>
