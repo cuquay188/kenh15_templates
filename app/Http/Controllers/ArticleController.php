@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Article;
 use App\Category;
-use App\Author;
+use App\Author; 
 use App\Tag;
 
 class ArticleController extends Controller
