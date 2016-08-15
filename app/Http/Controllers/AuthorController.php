@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Http\Requests;
 use App\Category;
-use App\Author;
+use App\User as Author;
 use App\Tag;
 
 class AuthorController extends Controller

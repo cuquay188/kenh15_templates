@@ -42,21 +42,21 @@ class UserController extends Controller
     public function postSignUp(Request $request)
     {
         $this->validate($request, [
-            'fullname' => 'required|max:50',
+            'name' => 'required|max:50',
             'email' => 'required|email|unique:users,email',
             'username' => 'required|min:5|max:30|unique:users,username',
             'password' => 'required|min:3|max:16',
             'tel'=>'required|unique:users,tel'
         ]);
 
-        $fullname = $request->fullname;
+        $name = $request->name;
         $email = $request->email;
         $tel = $request->tel;
         $username = $request->username;
         $password = $request->password;
 
         $user = new User();
-        $user->fullname = $fullname;
+        $user->name = $name;
         $user->email = $email;
         $user->username = $username;
         $user->password = bcrypt($password);
@@ -81,12 +81,12 @@ class UserController extends Controller
     public function postUpdateUser(Request $request)
     {
         $id = $request->id;
-        $fullname = $request->fullname;
+        $name = $request->name;
         $email = $request->email;
         $tel = $request->tel;
 
         User::where('id', $id)->update([
-            'fullname' => $fullname,
+            'name' => $name,
             'email' => $email,
             'tel' => $tel
         ]);
