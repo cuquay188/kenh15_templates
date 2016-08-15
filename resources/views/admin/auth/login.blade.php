@@ -1,9 +1,5 @@
 @extends('admin.auth.master')
 @section('title','Login')
-@section('styles')
-    <link rel="stylesheet" href="{{asset('/css/main.css')}}">
-    <link rel="stylesheet" href="{{asset('/css/auth.css')}}">
-@endsection
 @section('content')
     <form action="{{route('post_login')}}" method="post">
         @if(count($errors)>0)
@@ -19,14 +15,15 @@
             </div>
         @endif
         <div class="form-group">
-            <label for="username">User Name</label>
-            <input type="text" value="{{Session::has('new_username') ? Session::get('new_username'):''}}"
-                   class="form-control" name="username" id="username" placeholder="">
+            <h3 style="text-align:center; margin:10px 0;">Login</h3>
         </div>
         <div class="form-group">
-            <label for="password">Password</label>
+            <input type="text" value="{{Session::has('new_username') ? Session::get('new_username'):''}}"
+                   class="form-control" name="username" id="username" placeholder="User Name">
+        </div>
+        <div class="form-group">
             <input type="password" value="{{Session::has('new_password') ? Session::get('new_password'):''}}"
-                   class="form-control" name="password" id="password" placeholder="">
+                   class="form-control" name="password" id="password" placeholder="Password">
         </div>
         <div class="form-group" style="display:none;">
             <input type="checkbox" name="remember" id="remember" disabled>

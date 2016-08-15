@@ -22,7 +22,7 @@
                 <a class="{{Route::getCurrentRoute()->getName()=='author'?'active':''}}"
                    href="{{route('author')}}">
                     Authors
-                    <span>({{count(App\Author::all())}})</span>
+                    <span>({{count(App\User::all())}})</span>
                 </a>
                 <a class="create {{Route::getCurrentRoute()->getName()=='create_author'?'active':''}}"
                    href="{{route('create_author')}}"><i class="glyphicon glyphicon-plus"></i></a>
@@ -52,7 +52,7 @@
             <div class="icon"></div>
             <div class="name">
                 <a href="{{route('user_management')}}">
-                    {{Auth::getUser()->fullname}}<br>
+                    {{Auth::getUser()->name}}<br>
                     <label>{{Auth::getUser()->email}}</label>
                 </a>
             </div>
