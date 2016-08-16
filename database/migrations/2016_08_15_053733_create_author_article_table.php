@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserArticleTable extends Migration
+class CreateAuthorArticleTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,9 +12,9 @@ class CreateUserArticleTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_article', function (Blueprint $table) {
-            $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+        Schema::create('author_article', function (Blueprint $table) {
+            $table->integer('author_id')->unsigned();
+            $table->foreign('author_id')->references('id')->on('authors')->onDelete('cascade');
 
             $table->integer('article_id')->unsigned();
             $table->foreign('article_id')->references('id')->on('articles')->onDelete('cascade');
@@ -28,6 +28,6 @@ class CreateUserArticleTable extends Migration
      */
     public function down()
     {
-        Schema::drop('user_article');
+        Schema::drop('author_article');
     }
 }

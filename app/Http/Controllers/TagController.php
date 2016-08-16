@@ -9,7 +9,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Category;
-use App\User as Author;
+use App\User;
+use App\Author;
 use App\Tag;
 
 class TagController extends Controller

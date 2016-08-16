@@ -12,7 +12,6 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>ID</th>
                 <th>Name</th>
                 <th>Function</th>
             </tr>
@@ -20,7 +19,6 @@
             <tbody>
             @foreach($tags as $tag)
                 <tr style="font-size: 13px">
-                    <td>{{$tag->id}}</td>
                     <td><a href="{{route('tag').'/'.$tag->id}}">{{$tag->name}}</a></td>
                     <td>
                         {{--Edit Function--}}

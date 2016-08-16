@@ -12,7 +12,6 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>ID</th>
                 <th>Category</th>
                 <th>Function</th>
             </tr>
@@ -20,7 +19,6 @@
             <tbody>
             @foreach($categories as $category)
                 <tr style="font-size: 13px">
-                    <td>{{$category->id}}</td>
                     <td><a href="{{route('category').'/'.$category->id}}">{{$category->name}}</a></td>
                     <td>
                         {{--Edit Function--}}

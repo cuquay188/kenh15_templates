@@ -16,16 +16,15 @@
         @endif
         <form action="{{route('post_author')}}" method="post" role="form">
             <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" class="form-control" placeholder="Enter author name ..." name="name" id="name" value="{!! old('name') !!}">
-            </div>
-            <div class="form-group">
-                <label for="age">Age</label>
-                <input type="number" class="form-control" placeholder="Enter age ..." name="age" id="age" value="{!! old('age') !!}">
-            </div>
-            <div class="form-group">
-                <label for="address">Address</label>
-                <input type="text" class="form-control" placeholder="Enter address ..." name="address" id="address" value="{!! old('address') !!}">
+                <label>Pick a user to promote</label>
+                <select name="user" id="user" class="form-control">
+                    <option value="" style="font-weight:bold;">--Select an user--</option>
+                    @foreach(App\User::all() as $user)
+                        @if($user->author==null)
+                        <option value="{{$user->id}}">{{$user->name}}</option>
+                        @endif
+                    @endforeach
+                </select>
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-success">Create</button>
@@ -35,5 +34,6 @@
     </div>
     <script>
         $('#name').focus();
+        console.log('{{Session::get('$request')}}')
     </script>
 @endsection

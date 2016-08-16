@@ -12,7 +12,6 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th style="text-align: center">ID</th>
                 <th style="text-align: center;">Title</th>
                 <th>Category</th>
                 <th style="text-align: center;">Last Update</th>
@@ -24,7 +23,6 @@
             <tbody>
             @foreach($articles as $article)
                 <tr style="font-size: 13px">
-                    <td id="id" style="text-align: center">{{$article->id}}</td>
                     <td id="title"><a href="{{route('article').'/'.$article->id}}">{{$article->title}}</a></td>
                     <td id="category"><a href="{{route('category').'/'.$article->category->id}}">{{$article->category->name}}</a></td>
                     <td style="text-align: center">{{$article->updated_at->format('H:i:s d/m/Y')}}</td>

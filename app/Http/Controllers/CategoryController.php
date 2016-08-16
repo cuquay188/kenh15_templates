@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Category;
-use App\User as Author;
+use App\Author;
 use App\Tag;
 
 class CategoryController extends Controller
