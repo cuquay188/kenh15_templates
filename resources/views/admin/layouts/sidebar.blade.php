@@ -53,7 +53,7 @@
             <div class="name">
                 <a href="{{route('user_management')}}">
                     {{Auth::getUser()->name}}<br>
-                    <label>{{Auth::getUser()->email}}</label>
+                    <label>{{Auth::getUser()->author?'Author':'Normal User'}}</label>
                 </a>
             </div>
         </div>

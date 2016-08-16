@@ -30,7 +30,7 @@
                     <td>{{$author->user->email}}</td>
                     <td>
                         {{--Edit Function--}}
-                        <button type="submit" class="btn btn-primary btn-xs" data-toggle="modal"
+                        <button type="submit" disabled class="btn btn-primary btn-xs" data-toggle="modal"
                                 data-target="#edit{{$author->id}}">Edit
                         </button>
                         <div class="modal fade" role="dialog" id="edit{{$author->id}}">

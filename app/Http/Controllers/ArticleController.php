@@ -35,6 +35,8 @@ class ArticleController extends Controller
     {
         if (!Auth::check())
             return redirect()->route('login')->with(['fail' => 'Required login.']);
+        if (!Auth::getUser()->author)
+            return redirect()->back()->with(['fail' => 'You dont have permission to submit an article']);
         $authors = Author::all();
         $categories = Category::all();
         $tags = Tag::all();
@@ -109,13 +111,13 @@ class ArticleController extends Controller
         $tags = $request->tags;
         $authors = $request->authors;
         if (!empty($tags)) {
-            DB::table('tag_article')->where('article_id',$id)->delete();
+            DB::table('tag_article')->where('article_id', $id)->delete();
             foreach ($tags as $tag) {
                 $article->tags()->attach($tag);
             }
         }
         if (!empty($authors)) {
-            DB::table('author_article')->where('article_id',$id)->delete();
+            DB::table('author_article')->where('article_id', $id)->delete();
             foreach ($authors as $author) {
                 $article->authors()->attach($author);
             }
@@ -144,7 +146,7 @@ class ArticleController extends Controller
     {
         if (!Auth::check())
             return redirect()->back()->with(['fail' => 'Required login.']);
-        
+
         $article = Article::find($id);
         return view('admin.articles.single.article', [
             'article' => $article

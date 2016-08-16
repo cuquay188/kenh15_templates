@@ -96,13 +96,16 @@ form {
   margin: auto; }
   .user_mng .form-group {
     margin: 15px 0; }
-    .user_mng .form-group img {
-      padding-top: 10px; }
+    .user_mng .form-group i {
+      padding-top: 5px;
+      cursor: pointer; }
+      .user_mng .form-group i:hover {
+        color: #3498db; }
     .user_mng .form-group .col-sm-3 a {
       margin-left: 10px; }
 
 .text {
-  padding-top: 7px; }
+  padding-top: 6px; }
 
 .title .view-title {
   font-weight: bold;
@@ -278,5 +281,3 @@ body {
   background-color: #d5d9da; }
 
 /*End scroll bar*/
-
-/*# sourceMappingURL=main.css.map */

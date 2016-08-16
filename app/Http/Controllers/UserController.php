@@ -84,11 +84,17 @@ class UserController extends Controller
         $name = $request->name;
         $email = $request->email;
         $tel = $request->tel;
+        $birth = $request->birth;
+        $address = $request->address;
+        $city = $request->city;
 
         User::where('id', $id)->update([
             'name' => $name,
             'email' => $email,
-            'tel' => $tel
+            'tel' => $tel,
+            'birth' => $birth,
+            'address' => $address,
+            'city' => $city
         ]);
 
         return redirect()->back();

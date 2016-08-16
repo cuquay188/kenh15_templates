@@ -19,11 +19,9 @@
                        value="{{Auth::getUser()->name}}">
             </div>
             <div class="col col-sm-3 ">
-                <img src="http://icons.veryicon.com/ico/System/Silk/pencil.ico"
-                     id="update_name">
-
+                <i class="glyphicon glyphicon-pencil" id="update_name"></i>
                 <button class="btn btn-success" type="submit" id="ok_name"
-                        style="display: none">OK
+                        style="display: none">Update
                 </button>
             </div>
         </div>
@@ -35,12 +33,23 @@
                        value="{{Auth::getUser()->email}}">
             </div>
             <div class="col col-sm-3">
-                <img
-                        src="http://icons.veryicon.com/ico/System/Silk/pencil.ico"
-                        alt=""
-                        id="update_email">
+                <i class="glyphicon glyphicon-pencil" id="update_email"></i>
                 <button class="btn btn-success" type="submit" id="ok_email"
-                        style="display: none">OK
+                        style="display: none">Update
+                </button>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col col-sm-4" for="birth">Birthday: </label>
+            <div class="col col-sm-5">
+                <div class="text" id="text_birth">{{date_format(date_create(Auth::getUser()->birth),"d/m/Y")}}</div>
+                <input style="display: none" type="date" class="form-control" name="birth" id="birth"
+                       value="{{date_format(date_create(Auth::getUser()->birth),"Y-m-d")}}">
+            </div>
+            <div class="col col-sm-3">
+                <i class="glyphicon glyphicon-pencil" id="update_birth"></i>
+                <button class="btn btn-success" type="submit" id="ok_birth"
+                        style="display: none">Update
                 </button>
             </div>
         </div>
@@ -48,16 +57,41 @@
             <label class="control-label col col-sm-4" for="tel">Tel: </label>
             <div class="col col-sm-5">
                 <div class="text" id="text_tel">{{Auth::getUser()->tel}}</div>
-                <input style="display: none" type="text" class="form-control" name="tel" id="tel"
+                <input style="display: none" type="tel" class="form-control" name="tel" id="tel"
                        value="{{Auth::getUser()->tel}}">
             </div>
             <div class="col col-sm-3">
-                <img
-                        src="http://icons.veryicon.com/ico/System/Silk/pencil.ico"
-                        alt=""
-                        id="update_tel">
+                <i class="glyphicon glyphicon-pencil" id="update_tel"></i>
                 <button class="btn btn-success" type="submit" id="ok_tel"
-                        style="display: none">OK
+                        style="display: none">Update
+                </button>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col col-sm-4" for="address">Address: </label>
+            <div class="col col-sm-5">
+                <div class="text" id="text_address">{{Auth::getUser()->address}}</div>
+                <input style="display: none" type="text" class="form-control" name="address" id="address"
+                       value="{{Auth::getUser()->address}}">
+            </div>
+            <div class="col col-sm-3">
+                <i class="glyphicon glyphicon-pencil" id="update_address"></i>
+                <button class="btn btn-success" type="submit" id="ok_address"
+                        style="display: none">Update
+                </button>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col col-sm-4" for="city">City: </label>
+            <div class="col col-sm-5">
+                <div class="text" id="text_city">{{Auth::getUser()->city}}</div>
+                <input style="display: none" type="text" class="form-control" name="city" id="city"
+                       value="{{Auth::getUser()->city}}">
+            </div>
+            <div class="col col-sm-3">
+                <i class="glyphicon glyphicon-pencil" id="update_city"></i>
+                <button class="btn btn-success" type="submit" id="ok_city"
+                        style="display: none">Update
                 </button>
             </div>
         </div>
@@ -79,10 +113,7 @@
                        placeholder="Current Password...">
             </div>
             <div class="col col-sm-3">
-                <img
-                        src="http://icons.veryicon.com/ico/System/Silk/pencil.ico"
-                        alt=""
-                        id="update_password">
+                <i class="glyphicon glyphicon-pencil" id="update_password"></i>
             </div>
         </div>
         <div class="form-group" style="display: none" id="new_password_form">
@@ -119,17 +150,29 @@
             $('#text_email').hide();
             $('#update_email').hide();
         });
-        $('#update_username').click(function () {
-            $('#username').show();
-            $('#ok_username').show();
-            $('#text_username').hide();
-            $('#update_username').hide();
+        $('#update_birth').click(function () {
+            $('#birth').show();
+            $('#ok_birth').show();
+            $('#text_birth').hide();
+            $('#update_birth').hide();
         });
         $('#update_tel').click(function () {
             $('#tel').show();
             $('#ok_tel').show();
             $('#text_tel').hide();
             $('#update_tel').hide();
+        });
+        $('#update_address').click(function () {
+            $('#address').show();
+            $('#ok_address').show();
+            $('#text_address').hide();
+            $('#update_address').hide();
+        });
+        $('#update_city').click(function () {
+            $('#city').show();
+            $('#ok_city').show();
+            $('#text_city').hide();
+            $('#update_city').hide();
         });
         $('#update_password').click(function () {
             $('#new_password_form').show();

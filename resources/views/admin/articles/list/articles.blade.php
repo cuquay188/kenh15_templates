@@ -36,12 +36,14 @@
                         {{--Preview--}}
                         <a href="{{route('article').'/'.$article->id}}" class="btn btn-primary btn-xs">Preview</a>
                         {{--Edit--}}
-                        <button type="submit" class="btn btn-primary btn-xs" data-toggle="modal"
+                        <button type="submit" {{Auth::getUser()->author ? '' : 'disabled'}}
+                                class="btn btn-primary btn-xs" data-toggle="modal"
                                 data-target="#edit{{$article->id}}" style="text-align: center">Edit
                         </button>
                         @include("admin.articles.list.components.edit")
                         {{--Delete--}}
-                        <button type="submit" class="btn btn-primary btn-xs" data-toggle="modal"
+                        <button type="submit" {{Auth::getUser()->author ? '' : 'disabled'}}
+                                class="btn btn-primary btn-xs" data-toggle="modal"
                                 data-target="#delete{{$article->id}}" style="text-align: center">Delete
                         </button>
                         @include("admin.articles.list.components.delete")
