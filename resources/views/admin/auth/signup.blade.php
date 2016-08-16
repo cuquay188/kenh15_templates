@@ -1,9 +1,5 @@
 @extends('admin.auth.master')
 @section('title','Sign Up')
-@section('styles')
-    <link rel="stylesheet" href="{{asset('/css/main.css')}}">
-    <link rel="stylesheet" href="{{asset('/css/auth.css')}}">
-@endsection
 @section('content')
     <form action="{{route('post_sign_up')}}" method="post" style="margin-top:10%;">
         @if(Session::has('fails'))
@@ -20,6 +16,9 @@
                 @endforeach
             </ul>
         @endif
+        <div class="form-group">
+            <h3 style="text-align:center; margin:10px 0;">Sign Up</h3>
+        </div>
         <div class="form-group">
             <label for="name">Full Name</label>
             <input type="text" class="form-control" name="name" id="name" placeholder="Nguyen Van A"
