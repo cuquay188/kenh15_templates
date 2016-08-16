@@ -12,17 +12,17 @@
             </ul>
         @endif
         <div class="form-group">
-            <label class="control-label col col-sm-4" for="fullname">Full Name: </label>
+            <label class="control-label col col-sm-4" for="name">Full Name: </label>
             <div class="col col-sm-5">
-                <div class="text" id="text_fullname">{{Auth::getUser()->fullname}}</div>
-                <input style="display: none" type="text" class="form-control" name="fullname" id="fullname"
-                       value="{{Auth::getUser()->fullname}}">
+                <div class="text" id="text_name">{{Auth::getUser()->name}}</div>
+                <input style="display: none" type="text" class="form-control" name="name" id="name"
+                       value="{{Auth::getUser()->name}}">
             </div>
             <div class="col col-sm-3 ">
                 <img src="http://icons.veryicon.com/ico/System/Silk/pencil.ico"
-                     id="update_fullname">
+                     id="update_name">
 
-                <button class="btn btn-success" type="submit" id="ok_fullname"
+                <button class="btn btn-success" type="submit" id="ok_name"
                         style="display: none">OK
                 </button>
             </div>
@@ -107,11 +107,11 @@
     </form>
     <script>
         $('#category').focus();
-        $('#update_fullname').click(function () {
-            $('#fullname').show();
-            $('#ok_fullname').show();
-            $('#text_fullname').hide();
-            $('#update_fullname').hide();
+        $('#update_name').click(function () {
+            $('#name').show();
+            $('#ok_name').show();
+            $('#text_name').hide();
+            $('#update_name').hide();
         });
         $('#update_email').click(function () {
             $('#email').show();

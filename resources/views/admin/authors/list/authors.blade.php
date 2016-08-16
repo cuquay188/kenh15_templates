@@ -1,5 +1,5 @@
 @extends("admin.layouts.master")
-@section("title", "Author Management")
+@section("title", "Authors Management")
 @section("content")
     @if(count($errors)>0)
         <ul class="errors">
@@ -12,20 +12,22 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th style="text-align: center">ID</th>
                 <th>Name</th>
-                <th style="text-align: center">Age</th>
                 <th>Address</th>
+                <th>Age</th>
+                <th>Phone</th>
+                <th>Email</th>
                 <th>Function</th>
             </tr>
             </thead>
             <tbody>
             @foreach($authors as $author)
                 <tr style="font-size: 13px">
-                    <td style="text-align: center">{{$author->id}}</td>
-                    <td><a href="{{route('author').'/'.$author->id}}">{{$author->name}}</a></td>
-                    <td style="text-align: center">{{$author->age}}</td>
-                    <td>{{$author->address}}</td>
+                    <td><a href="{{route('author').'/'.$author->id}}">{{$author->user->name}}</a></td>
+                    <td>{{$author->user->address}}</td>
+                    <td>{{$author->user->birth}}</td>
+                    <td>{{$author->user->tel}}</td>
+                    <td>{{$author->user->email}}</td>
                     <td>
                         {{--Edit Function--}}
                         <button type="submit" class="btn btn-primary btn-xs" data-toggle="modal"
@@ -36,24 +38,34 @@
                                 <div class="modal-content" style=" top: 90px">
                                     <div class="modal-header">
                                         <h5 style="font-weight: bold">Edit Author: "<span
-                                                    style="font-style: italic">{{$author->name}}</span>"</h5>
+                                                    style="font-style: italic">{{$author->user->name}}</span>"</h5>
                                     </div>
                                     <form action="{{route('post_update_author')}}" method="post" role="form">
                                         <div class="modal-body">
                                             <div class="form-group">
                                                 <label for="name">Name</label>
                                                 <input type="text" class="form-control" name="name" id="name"
-                                                       value="{{$author->name}}" placeholder="Enter name...">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="age">Age</label>
-                                                <input type="number" class="form-control" name="age" id="age"
-                                                       value="{{$author->age}}" placeholder="Enter age...">
+                                                       value="{{$author->user->name}}" placeholder="Enter name...">
                                             </div>
                                             <div class="form-group">
                                                 <label for="address">Address</label>
                                                 <input type="text" class="form-control" name="address" id="address"
-                                                       value="{{$author->address}}" placeholder="Enter address...">
+                                                       value="{{$author->user->address}}" placeholder="Enter address...">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="age">Age</label>
+                                                <input type="number" class="form-control" name="age" id="age"
+                                                       value="{{$author->user->age}}" placeholder="Enter age...">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="tel">Phone</label>
+                                                <input type="tel" class="form-control" name="tel" id="tel"
+                                                       value="{{$author->user->tel}}" placeholder="Enter phone...">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="email">email</label>
+                                                <input type="email" class="form-control" name="email" id="email"
+                                                       value="{{$author->user->email}}" placeholder="Enter email...">
                                             </div>
                                             <div class="form-group" id="action">
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">
@@ -79,7 +91,7 @@
                                 <div class="modal-content" style="height: 190px;top: 150px">
                                     <div class="modal-header">
                                         <h5 style="font-weight: bold">Delete Author:
-                                            <span style="font-style: italic;font-weight: bold">{{$author->name}}</span>
+                                            <span style="font-style: italic;font-weight: bold">{{$author->user->name}}</span>
                                         </h5>
                                     </div>
                                     <div class="modal-body">

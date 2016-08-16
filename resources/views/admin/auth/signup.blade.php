@@ -21,9 +21,9 @@
             </ul>
         @endif
         <div class="form-group">
-            <label for="fullname">Full Name</label>
-            <input type="text" class="form-control" name="fullname" id="fullname" placeholder="Nguyen Van A"
-                   value="{!! old('fullname') !!}">
+            <label for="name">Full Name</label>
+            <input type="text" class="form-control" name="name" id="name" placeholder="Nguyen Van A"
+                   value="{!! old('name') !!}">
         </div>
         <div class="form-group">
             <label for="email">Email</label>

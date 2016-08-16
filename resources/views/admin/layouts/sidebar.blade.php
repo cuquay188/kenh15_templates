@@ -52,7 +52,7 @@
             <div class="icon"></div>
             <div class="name">
                 <a href="{{route('user_management')}}">
-                    {{Auth::getUser()->fullname}}<br>
+                    {{Auth::getUser()->name}}<br>
                     <label>{{Auth::getUser()->email}}</label>
                 </a>
             </div>

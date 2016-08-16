@@ -17,7 +17,7 @@ foreach ($authors as $author) {
 ?>
 @foreach($authors_filter as $author)
     <div class="tag-border">
-        <a href="{{route('author').'/'.$author->id}}">{{$author->name}}</a><br>
+        <a href="{{route('author').'/'.$author->id}}">{{$author->user->name}}</a><br>
         <button type="submit" class="close" data-toggle="modal"
                 data-target="#delete{{$author->id}}{{$article->id}}">x
         </button>
@@ -27,7 +27,7 @@ foreach ($authors as $author) {
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 style="font-weight: bold">Delete Article's author: "<span
-                                    style="font-style: italic">{{$author->name}}</span>"</h5>
+                                    style="font-style: italic">{{$author->user->name}}</span>"</h5>
                     </div>
                     <div class="modal-body">
                         <p>Do you want to delete this author?</p>
