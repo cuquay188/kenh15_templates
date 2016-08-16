@@ -7,7 +7,10 @@
             <div class="menu-item">
                 <a href="#">Menu</a>
             </div>
-            @foreach(\App\Category::take(6)->get() as $category)
+            <div class="menu-item">
+                <a href="{{route('homepage')}}">Home</a>
+            </div>
+            @foreach(\App\Category::take(5)->get() as $category)
                 <div class="menu-item">
                     <a href="#">{{$category->name}}</a>
                 </div>

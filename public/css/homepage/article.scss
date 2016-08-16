@@ -1,22 +1,26 @@
+.body{
+  position: relative;
+}
+.main-content {
+}
+
 .category {
-  background: radial-gradient(circle, #1abc9c, #ecf0f1);
-  background: -webkit-radial-gradient(circle, #1abc9c, #ecf0f1);
-  background: -moz-radial-gradient(circle, #1abc9c, #ecf0f1);
-  background: -o-radial-gradient(circle, #1abc9c, #ecf0f1);
-  background: -ms-radial-gradient(circle, #1abc9c, #ecf0f1);
-  padding: 5px;
-  text-align: center;
-  a {
-    color: white;
-    font-size: 24px;
+  i {
+    margin: 0 5px;
+  }
+  a{
+    color: #1abc9c;
     text-decoration: none;
+    &:hover{
+      color: #16a085;
+    }
   }
-  &:hover {
-    background-image: radial-gradient(circle, whitesmoke, #1abc9c);
-    cursor: pointer;
-  }
-  &:hover a {
-    color: #16a085;
+}
+
+.title {
+  h1 {
+    font-weight: bold;
+    margin-top: 10px;
   }
 }
 

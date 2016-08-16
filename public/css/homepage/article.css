@@ -1,20 +1,17 @@
-.category {
-  background: radial-gradient(circle, #1abc9c, #ecf0f1);
-  background: -webkit-radial-gradient(circle, #1abc9c, #ecf0f1);
-  background: -moz-radial-gradient(circle, #1abc9c, #ecf0f1);
-  background: -o-radial-gradient(circle, #1abc9c, #ecf0f1);
-  background: -ms-radial-gradient(circle, #1abc9c, #ecf0f1);
-  padding: 5px;
-  text-align: center; }
-  .category a {
-    color: white;
-    font-size: 24px;
-    text-decoration: none; }
-  .category:hover {
-    background-image: radial-gradient(circle, whitesmoke, #1abc9c);
-    cursor: pointer; }
-  .category:hover a {
+.body {
+  position: relative; }
+
+.category i {
+  margin: 0 5px; }
+.category a {
+  color: #1abc9c;
+  text-decoration: none; }
+  .category a:hover {
     color: #16a085; }
+
+.title h1 {
+  font-weight: bold;
+  margin-top: 10px; }
 
 .authors a, .tags a {
   background-color: #d5ebe8;

@@ -10,6 +10,8 @@
         </aside>
         <div class="main-content col-lg-6">
             <div class="category">
+                <a href="{{route('homepage')}}">Homepage</a>
+                <i class="fa fa-caret-right" aria-hidden="true"></i>
                 <a href="#">{{$article->category->name}}</a>
             </div>
             <div class="title">

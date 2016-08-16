@@ -26,11 +26,13 @@ class HomePageController extends Controller
 
     public function getArticle($id)
     {
+        $categories = Category::all();
         $article = Article::find($id);
-        $related_articles = Article::where('category_id', $article->category->id)->orderBy('id', 'desc')->take(5)->get();
+        $related_articles = Article::where('category_id', $article->category->id)->orderBy('id', 'desc')->take(6)->get();
         return view('homepage.articles.single_article', [
             'related_articles' => $related_articles,
-            'article' => $article
+            'article' => $article,
+            'categories' => $categories
         ]);
     }
 }

@@ -1,14 +1,25 @@
-<!-- bài đọc nhiều nhất -->
 <div class="top-view">
     <div class="head-top">
         <a href="#">Related Articles</a>
     </div>
-    <div class="body-top">
+    <div class="body-top" data-spy="affix" data-offset-top="10" data-offset-bottom="200">
         <ul>
-            @foreach($related_articles as $related_article)
-                @if($article->id != $related_article->id)
-                    <li><a href="{{route('homepage').'/article/'.$related_article->id}}">{{$related_article->title}}</a></li>
-                @endif
+            <?php
+            $related_filter = array();
+            $count_article = 0;
+            for ($i = 0; $i < count($related_articles);) {
+                if ($article->id != $related_articles[$i]->id) {
+                    $count_article++;
+                    if ($count_article <= 5)
+                        array_push($related_filter, $related_articles[$i]);
+                    $i++;
+                } else $i++;
+            }
+            ?>
+            @foreach($related_filter as $related_article)
+                <li>
+                    <a href="{{route('homepage').'/article/'.$related_article->id}}">{{$related_article->title}}</a>
+                </li>
             @endforeach
         </ul>
     </div>
@@ -16,4 +27,3 @@
         <a href="#">View all</a>
     </div>
 </div>
-<!-- end -->
