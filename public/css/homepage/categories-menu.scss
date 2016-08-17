@@ -38,11 +38,21 @@
           }
         }
       }
-      .articles-list{
-        ul{
-          padding-left:0;
+      .articles-list {
+        ul {
+          padding-left: 0;
         }
       }
+    }
+  }
+}
+
+.advert {
+  .advert-banner {
+    margin-bottom:10px;
+    img{
+      width: 130px;
+      height:350px;
     }
   }
 }

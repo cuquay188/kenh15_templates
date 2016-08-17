@@ -71,6 +71,9 @@ header {
   &:hover {
     background-color: #16a085;
   }
+  &.active {
+    background-color: #16a085;
+  }
 }
 
 .search-area {

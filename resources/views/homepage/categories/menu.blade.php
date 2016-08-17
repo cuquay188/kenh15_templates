@@ -41,6 +41,39 @@
                 @endif
             @endforeach
         </div>
-        <div class="advert col-lg-3"></div>
+        <div class="advert col-lg-3">
+            <div class="advert-banner">
+                <a href="#">
+                    <img src="http://ad-design.966v.com/static_images/20160805/8059ea7db2ae92048edf766470030904549e47c72d4abb67131f6052.jpg"
+                         alt="">
+                </a>
+            </div>
+            <div class="advert-banner last">
+                <a href="#">
+                    <img src="http://lameesltd.com/wp-content/uploads/2015/10/1-2-vertical.jpg"
+                         alt="">
+                </a>
+            </div>
+        </div>
     </div>
+    <script>
+        $(function () {
+            var offsetPixels = 365;
+            $('.body').scroll(function () {
+                if ($('.body').scrollTop() > offsetPixels) {
+                    $('.last').css({
+                        'position': 'fixed',
+                        'top': '55px'
+                    })
+                } else {
+                    $('.last').css({
+                        'position': 'static'
+                    });
+                    $('.categories-menu').css({
+                        'position': 'static'
+                    })
+                }
+            })
+        })
+    </script>
 @endsection

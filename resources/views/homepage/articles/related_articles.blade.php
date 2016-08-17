@@ -29,7 +29,7 @@
 </div>
 <script>
     $(function () {
-        var offsetPixels = 55;
+        var offsetPixels = 0;
         $('.body').scroll(function () {
             if ($('.body').scrollTop() > offsetPixels) {
                 $('.sidebar-left').css({

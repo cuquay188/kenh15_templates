@@ -55,6 +55,8 @@ header {
   transition: background-color 0.3s; }
   .menu-item:hover {
     background-color: #16a085; }
+  .menu-item.active {
+    background-color: #16a085; }
 
 .search-area {
   padding-top: 7px; }

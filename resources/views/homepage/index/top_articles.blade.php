@@ -16,24 +16,24 @@
 </div>
 <script>
     $(function () {
-        var offsetPixels = 55;
+        var offsetPixels = 0;
         $('.body').scroll(function () {
             if ($('.body').scrollTop() > offsetPixels) {
                 $('.sidebar-left').css({
                     'position': 'fixed',
                     'top': '55px',
-                    'width':'285px'
+                    'width': '285px'
                 });
                 $('.main-content').css({
-                    'position':'relative',
-                    'left':'285px'
+                    'position': 'relative',
+                    'left': '285px'
                 })
-            }else{
+            } else {
                 $('.sidebar-left').css({
                     'position': 'static'
                 });
                 $('.main-content').css({
-                    'position':'static'
+                    'position': 'static'
                 })
             }
         })

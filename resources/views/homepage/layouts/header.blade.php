@@ -4,10 +4,10 @@
             <h2>ABC News</h2>
         </div>
         <div class="menu col-lg-7">
-            <div class="menu-item">
+            <div class="menu-item {{Route::getCurrentRoute()->getName()=='categories'?'active':''}}">
                 <a href="{{route('categories')}}">Menu</a>
             </div>
-            <div class="menu-item">
+            <div class="menu-item {{Route::getCurrentRoute()->getName()=='homepage'?'active':''}}">
                 <a href="{{route('homepage')}}">Home</a>
             </div>
             @foreach(\App\Category::take(5)->get() as $category)

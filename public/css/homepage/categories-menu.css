@@ -33,4 +33,10 @@
     .categories-menu .category .articles .articles-list ul {
       padding-left: 0; }
 
+.advert .advert-banner {
+  margin-bottom: 10px; }
+  .advert .advert-banner img {
+    width: 130px;
+    height: 350px; }
+
 /*# sourceMappingURL=categories-menu.css.map */
