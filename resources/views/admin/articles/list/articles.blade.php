@@ -23,7 +23,7 @@
             <tbody>
             @foreach($articles as $article)
                 <tr style="font-size: 13px">
-                    <td id="title"><a href="{{route('article').'/'.$article->id}}">{{$article->title}}</a></td>
+                    <td id="title"><a href="{{route('article').'/'.$article->url}}">{{$article->title}}</a></td>
                     <td id="category"><a href="{{route('category').'/'.$article->category->id}}">{{$article->category->name}}</a></td>
                     <td style="text-align: center">{{$article->updated_at->format('H:i:s d/m/Y')}}</td>
                     <td id="authors">

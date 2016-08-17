@@ -52,8 +52,11 @@ Route::group(['prefix' => 'admin'], function () {
 
     //Article
     Route::get('/article', [
-        'uses' => 'ArticleController@getArticle',
+        'uses' => 'ArticleController@getArticleList',
         'as' => 'article'
+    ]);
+    Route::get('/article/{url}', [
+        'uses' => 'ArticleController@getSingleArticle'
     ]);
     Route::get('/create/article', [
         'uses' => 'ArticleController@getCreateArticle',
@@ -78,9 +81,6 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('/articleauthor', [
         'uses' => 'ArticleController@postDeleteAuthorArticle',
         'as' => 'post_delete_author_article'
-    ]);
-    Route::get('/article/{id}', [
-        'uses' => 'ArticleController@getViewArticle'
     ]);
 
     //Tag
