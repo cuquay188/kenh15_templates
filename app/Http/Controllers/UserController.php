@@ -124,4 +124,12 @@ class UserController extends Controller
 
         return redirect()->back();
     }
+    public function getUsers(){
+        if (!Auth::user()->admin)
+            return redirect()->back();
+        $users = User::all();
+        return view('admin.users.users',[
+            'users' => $users
+        ]);
+    }
 }

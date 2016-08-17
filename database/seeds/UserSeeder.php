@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\User;
+use App\Admin;
 
 class UserSeeder extends Seeder
 {
@@ -13,19 +14,18 @@ class UserSeeder extends Seeder
     public function run()
     { 
         $user = new User();
-        $user->fullname = 'Lê Thị Thùy Dung';
-        $user->email = 'dungle1811@gmail.com';
+        $user->name = 'Phạm Văn Trí';
+        $user->email = 'pvtri96@gmail.com';
         $user->username = 'admin';
-        $user->password = bcrypt('123');
+        $user->password = bcrypt('admin');
         $user->tel = '01223200426';
+        $user->address = '24 Tăng Bạt Hổ, Đà Nẵng';
+        $user->city = 'Đà Nẵng';
+        $user->birth = date_create('1996/09/02');
         $user->save();
 
-        $user = new User();
-        $user->fullname = 'Nguyễn Nhật Nam';
-        $user->email = 'nhatnam@gmail.com';
-        $user->username = 'nhatnam';
-        $user->password = bcrypt('nhatnam');
-        $user->tel = '03455675757';
-        $user->save();
+        $admin= new Admin();
+        $admin->user_id = User::where('username','admin')->first()->id;
+        $admin->save();
     }
 }

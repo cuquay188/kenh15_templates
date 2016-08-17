@@ -21,7 +21,7 @@
                     <option value="" style="font-weight:bold;">--Select an user--</option>
                     @foreach(App\User::all() as $user)
                         @if($user->author==null)
-                        <option value="{{$user->id}}">{{$user->name}}</option>
+                        <option value="{{$user->id}}">{{$user->name}} - {{$user->username}}</option>
                         @endif
                     @endforeach
                 </select>

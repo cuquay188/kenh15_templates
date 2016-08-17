@@ -11,4 +11,7 @@ class User extends Model implements \Illuminate\Contracts\Auth\Authenticatable
     public function author(){
         return $this->hasOne('\App\Author');
     }
+    public function admin(){
+        return $this->hasOne('\App\Admin');
+    }
 }

@@ -49,6 +49,10 @@ Route::group(['prefix' => 'admin'], function () {
         'uses' => 'UserController@postChangePasswordUser',
         'as' => 'post_change_password_user'
     ]);
+    Route::get('/users', [
+        'uses' => 'UserController@getUsers',
+        'as' => 'users'
+    ]);
 
     //Article
     Route::get('/article', [
