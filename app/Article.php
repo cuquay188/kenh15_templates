@@ -9,7 +9,7 @@ class Article extends Model
 
     public function authors()
     {
-        return $this->belongsToMany('App\Author', 'user_article');
+        return $this->belongsToMany('App\Author', 'author_article');
     }
 
     public function category()
@@ -27,4 +27,8 @@ class Article extends Model
         return $this->hasMany('App\ArticleView');
     }
 
+    public function comments()
+    {
+        return $this->hasMany('App\ArticleComment');
+    }
 }

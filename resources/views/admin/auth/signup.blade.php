@@ -20,8 +20,8 @@
             <h3 style="text-align:center; margin:10px 0;">Sign Up</h3>
         </div>
         <div class="form-group">
-            <label for="fullname">Full Name</label>
-            <input type="text" class="form-control" name="name" id="name" placeholder=""
+            <label for="name">Full Name</label>
+            <input type="text" class="form-control" name="name" id="name" placeholder="Nguyen Van A"
                    value="{!! old('name') !!}">
         </div>
         <div class="form-group">

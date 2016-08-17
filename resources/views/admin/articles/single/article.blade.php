@@ -47,7 +47,7 @@
             <p>
                 <label>Author(s):</label>
                 @foreach($authors_filter as $author)
-                    <a href="{{route('author').'/'.$author->id}}">{{$author->name}}</a>
+                    <a href="{{route('author').'/'.$author->id}}">{{$author->user->name}}</a>
                 @endforeach
             </p>
         </div>

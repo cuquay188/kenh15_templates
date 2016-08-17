@@ -52,7 +52,7 @@
                     @foreach($authors as $author)
                         <label for="author{{$author->id}}" style="font-weight: normal" class="col col-sm-4">
                             <input type="checkbox" id="author{{$author->id}}" name="authors[]" value="{{$author->id}}">
-                            {{$author->name}}
+                            {{$author->user->name}}
                         </label>
                     @endforeach
                 </div>

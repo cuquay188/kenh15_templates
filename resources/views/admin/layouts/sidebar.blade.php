@@ -22,7 +22,7 @@
                 <a class="{{Route::getCurrentRoute()->getName()=='author'?'active':''}}"
                    href="{{route('author')}}">
                     Authors
-                    <span>({{count(App\User::all())}})</span>
+                    <span>({{count(App\Author::all())}})</span>
                 </a>
                 <a class="create {{Route::getCurrentRoute()->getName()=='create_author'?'active':''}}"
                    href="{{route('create_author')}}"><i class="glyphicon glyphicon-plus"></i></a>
@@ -47,13 +47,29 @@
             </li>
         </ul>
     </div>
+    @if(Auth::getUser()->admin)
+        <div class="item">
+            <div class="item-header">
+                Admin
+            </div>
+            <ul class="item-body">
+                <li>
+                    <a class="{{Route::getCurrentRoute()->getName()=='users'?'active':''}}"
+                       href="{{route('users')}}">
+                        Users
+                        <span>({{count(App\User::all())}})</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    @endif
     <div class="sidebar-footer">
         <div class="info">
             <div class="icon"></div>
             <div class="name">
                 <a href="{{route('user_management')}}">
                     {{Auth::getUser()->name}}<br>
-                    <label>{{Auth::getUser()->email}}</label>
+                    <label>{{Auth::getUser()->author ? 'Author': Auth::getUser()->admin ? 'Admin' : 'Normal User'}}</label>
                 </a>
             </div>
         </div>

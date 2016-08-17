@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Category;
-use App\User as Author;
+use App\Author;
 use App\Tag;
 
 class CategoryController extends Controller
@@ -82,5 +82,14 @@ class CategoryController extends Controller
             'category' => $category,
             'articles' => $articles
         ]);
+    }
+    public function postHot($request){
+        $this->validate($request,[
+            'id' => 'numeric'
+        ]);
+        $id = $request->category_id;
+        $category = Category::find($id);
+        Category::where('id',$id)->update('is_hot',!$category->is_hot);
+        return response()->json('message','Update Success');
     }
 }
