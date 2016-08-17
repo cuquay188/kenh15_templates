@@ -5,7 +5,7 @@
         </div>
         <div class="menu col-lg-7">
             <div class="menu-item">
-                <a href="#">Menu</a>
+                <a href="{{route('categories')}}">Menu</a>
             </div>
             <div class="menu-item">
                 <a href="{{route('homepage')}}">Home</a>

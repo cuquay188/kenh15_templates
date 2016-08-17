@@ -14,7 +14,7 @@
         </p>
     </div>
 </div>
-<div class="latest-artciles">
+<div class="latest-articles">
     @foreach($articles_latest as $article)
         <div class="article">
             <div class="picture">

@@ -35,4 +35,12 @@ class HomePageController extends Controller
             'categories' => $categories
         ]);
     }
+
+    public function getCategoriesMenu()
+    {
+        $categories = Category::all();
+        return view('homepage.categories.menu', [
+            'categories' => $categories
+        ]);
+    }
 }

@@ -11,7 +11,7 @@
         </aside>
         <!-- end -->
 
-        <div class="col-lg-9">
+        <div class="main-content col-lg-9">
             <!-- các bài viết mới đăng -->
             <div class="new-articles col-sm-8">
                 @include('homepage.index.latest_articles')

@@ -14,4 +14,29 @@
         <a href="#">View all</a>
     </div>
 </div>
+<script>
+    $(function () {
+        var offsetPixels = 55;
+        $('.body').scroll(function () {
+            if ($('.body').scrollTop() > offsetPixels) {
+                $('.sidebar-left').css({
+                    'position': 'fixed',
+                    'top': '55px',
+                    'width':'285px'
+                });
+                $('.main-content').css({
+                    'position':'relative',
+                    'left':'285px'
+                })
+            }else{
+                $('.sidebar-left').css({
+                    'position': 'static'
+                });
+                $('.main-content').css({
+                    'position':'static'
+                })
+            }
+        })
+    })
+</script>
 <!-- end -->
