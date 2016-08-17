@@ -13,13 +13,20 @@
             <thead>
             <tr>
                 <th>Category</th>
-                <th>Function</th>
+                <th>Hot Category</th>
+                <th>Action</th>
             </tr>
             </thead>
             <tbody>
             @foreach($categories as $category)
                 <tr style="font-size: 13px">
                     <td><a href="{{route('category').'/'.$category->id}}">{{$category->name}}</a></td>
+                    <td>
+                        <input type="checkbox" id="category{{$category->id}}" class="toggle-ios">
+                        <label class="btn btn-default btn-xs btn-toggle"
+                               onclick="updateHot('{{$category->id}}')"
+                               for="category{{$category->id}}"></label>
+                    </td>
                     <td>
                         {{--Edit Function--}}
                         <button type="submit" class="btn btn-primary btn-xs" data-toggle="modal"
@@ -87,5 +94,20 @@
     </div>
     <script>
         $('table').DataTable();
+        var updateHot = function ($category) {
+            console.log($category);
+            $.ajax({
+                type: 'POST',
+                url: '{{route('post_update_category_hot')}}',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    category_id: $category
+                },
+                success: function (response) {
+                    console.log(response);
+                }
+            })
+        };
+        updateHot('hehe');
     </script>
 @endsection

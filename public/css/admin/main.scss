@@ -11,12 +11,27 @@
   margin-bottom: 30px;
 }
 
-td .btn.btn-xs {
+.btn.btn-xs {
   color: white;
   margin-right: 10px;
   padding: 3px 6px;
 }
-
+.btn.btn-default{
+  color: #337ab7;
+}
+.toggle-ios {
+  display: none;
+  & ~ .btn-toggle:before{
+    content: 'Activate';
+  }
+  &:checked ~ .btn-toggle {
+    background-color: #337ab7;
+    color: #fff;
+    &:before{
+      content: 'Deactivate';
+    }
+  }
+}
 .navbar.navbar-inverse {
   border-radius: 0px;
   .nav.navbar-nav {
@@ -126,10 +141,10 @@ form {
   margin: auto;
   .form-group {
     margin: 15px 0;
-    i{
+    i {
       padding-top: 5px;
       cursor: pointer;
-      &:hover{
+      &:hover {
         color: #3498db;
       }
     }
@@ -252,9 +267,9 @@ body {
   font-size: 18px;
   .options {
     float: right;
-    margin-top:2px;
+    margin-top: 2px;
     cursor: pointer;
-    &:hover{
+    &:hover {
       color: #95a5a6;
     }
   }
@@ -277,7 +292,7 @@ body {
     span {
       font-weight: 400;
     }
-    a:hover{
+    a:hover {
       color: #95a5a6;
     }
     a.active {
@@ -285,7 +300,7 @@ body {
       font-weight: 700;
     }
     .create {
-      margin-top:2px;
+      margin-top: 2px;
       float: right;
     }
   }
@@ -326,7 +341,7 @@ body {
     float: right;
     padding: 6px 0;
     font-size: 24px;
-    a:hover{
+    a:hover {
       color: #95a5a6;
     }
   }
@@ -344,7 +359,7 @@ body {
   .body-header {
     padding: 20px 0;
     box-shadow: 5px 0 10px #7f8c8d;
-    margin-bottom:10px;
+    margin-bottom: 10px;
     h2 {
       margin: 0 10px;
       font-weight: 600;
@@ -358,7 +373,6 @@ body {
     width: 100%;
   }
 }
-
 
 /*Scroll bar*/
 ::-webkit-scrollbar-track {
@@ -375,4 +389,5 @@ body {
   border-radius: 7px;
   background-color: #d5d9da;
 }
+
 /*End scroll bar*/

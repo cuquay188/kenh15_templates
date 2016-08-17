@@ -157,6 +157,10 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/category/{id}', [
         'uses' => 'CategoryController@getViewCategory'
     ]);
+    Route::post('/update/category/hot', [
+        'uses' => 'CategoryController@postHot',
+        'as' => 'post_update_category_hot'
+    ]);
 });
 
 // Home page
