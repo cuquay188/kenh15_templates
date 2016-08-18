@@ -12,7 +12,7 @@
             <ul>
                 @foreach($articles as $article)
                     <li>
-                        <a href="{{route('article').'/'.$article->id}}">{{$article->title}}</a>
+                        <a href="{{route('article').'/'.$article->url}}">{{$article->title}}</a>
                     </li>
                 @endforeach
             </ul>

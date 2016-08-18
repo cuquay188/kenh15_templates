@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCategoriesTable extends Migration
+class CreateArticleCommentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,12 @@ class CreateCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('article_comments', function (Blueprint $table) {
             $table->increments('id');
+            $table->text('comment');
+            $table->char('guest',50);
+            $table->integer('article_id');
             $table->timestamps();
-            $table->char('name',20);
-            $table->boolean('is_hot')->default(false);
         });
     }
 
@@ -27,6 +28,6 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('categories');
+        Schema::drop('article_comments');
     }
 }

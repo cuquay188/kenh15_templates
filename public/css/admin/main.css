@@ -8,10 +8,23 @@
 .article-add {
   margin-bottom: 30px; }
 
-td .btn.btn-xs {
+.btn.btn-xs {
   color: white;
   margin-right: 10px;
   padding: 3px 6px; }
+
+.btn.btn-default {
+  color: #337ab7; }
+
+.toggle-ios {
+  display: none; }
+  .toggle-ios ~ .btn-toggle:before {
+    content: 'Activate'; }
+  .toggle-ios:checked ~ .btn-toggle {
+    background-color: #337ab7;
+    color: #fff; }
+    .toggle-ios:checked ~ .btn-toggle:before {
+      content: 'Deactivate'; }
 
 .navbar.navbar-inverse {
   border-radius: 0px; }
@@ -96,13 +109,16 @@ form {
   margin: auto; }
   .user_mng .form-group {
     margin: 15px 0; }
-    .user_mng .form-group img {
-      padding-top: 10px; }
+    .user_mng .form-group i {
+      padding-top: 5px;
+      cursor: pointer; }
+      .user_mng .form-group i:hover {
+        color: #3498db; }
     .user_mng .form-group .col-sm-3 a {
       margin-left: 10px; }
 
 .text {
-  padding-top: 7px; }
+  padding-top: 6px; }
 
 .title .view-title {
   font-weight: bold;
@@ -278,5 +294,3 @@ body {
   background-color: #d5d9da; }
 
 /*End scroll bar*/
-
-/*# sourceMappingURL=main.css.map */

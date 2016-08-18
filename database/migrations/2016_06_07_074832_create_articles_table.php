@@ -16,9 +16,9 @@ class CreateArticlesTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->char('title', 255);
+            $table->char('url',255);
+            $table->text('img_url');
             $table->text('content');
-//            $table->integer('author_id')->unsigned();
-//            $table->foreign('author_id')->references('id')->on('authors')->onDelete('cascade');
             $table->integer('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });

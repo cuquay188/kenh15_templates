@@ -18,8 +18,14 @@
             <div class="form-group">
                 <label for="title">Title</label>
                 <input type="text" class="form-control"
-                       id="title" name="title" value="{!! old('title') !!}" placeholder="Enter title..."
+                       id="title" name="title" value="{!! old('title') !!}" placeholder=""
                       >
+            </div>
+            <div class="form-group">
+                <label for="title">Image URL:</label>
+                <input type="text" class="form-control"
+                       id="img_url" name="img_url" value="{!! old('img_url') !!}" placeholder="e.g. http://.../hello.img"
+                >
             </div>
             <div class="form-group">
                 <label for="data">Content</label>
@@ -52,7 +58,7 @@
                     @foreach($authors as $author)
                         <label for="author{{$author->id}}" style="font-weight: normal" class="col col-sm-4">
                             <input type="checkbox" id="author{{$author->id}}" name="authors[]" value="{{$author->id}}">
-                            {{$author->name}}
+                            {{$author->user->name}}
                         </label>
                     @endforeach
                 </div>

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Category;
+use App\User;
 use App\Author;
 use App\Tag;
 

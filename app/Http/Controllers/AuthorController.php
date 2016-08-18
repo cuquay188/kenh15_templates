@@ -37,22 +37,12 @@ class AuthorController extends Controller
     public function postCreateAuthor(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|between:6,30',
-            'age' => 'required|numeric|min:16|max:80',
-            'address' => 'required'
+            'user' => 'required'
         ]);
-
-        $name = $request->name;
-        $age = $request->age;
-        $address = $request->address;
-
+        $user = $request->user;
         $author = new Author();
-        $author->name = $name;
-        $author->age = $age;
-        $author->address = $address;
-
+        $author->user_id = $user;
         $author->save();
-
         return redirect()->back();
     }
 
@@ -79,7 +69,7 @@ class AuthorController extends Controller
             'name' => $name,
             'age' => $age,
             'address' => $address
-        ]); 
+        ]);
         return redirect()->back();
     }
 
@@ -87,9 +77,9 @@ class AuthorController extends Controller
     {
         if (!Auth::check())
             return redirect()->back()->with(['fail' => 'Required login.']);
-        $author = Author::find($id); 
+        $author = Author::find($id);
         return view('admin.authors.single.author', [
-            'author' => $author 
+            'author' => $author
         ]);
     }
 }

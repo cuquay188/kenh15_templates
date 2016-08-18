@@ -83,4 +83,13 @@ class CategoryController extends Controller
             'articles' => $articles
         ]);
     }
+    public function postHot($request){
+        $this->validate($request,[
+            'id' => 'numeric'
+        ]);
+        $id = $request->category_id;
+        $category = Category::find($id);
+        Category::where('id',$id)->update('is_hot',!$category->is_hot);
+        return response()->json('message','Update Success');
+    }
 }

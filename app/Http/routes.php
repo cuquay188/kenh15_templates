@@ -49,11 +49,18 @@ Route::group(['prefix' => 'admin'], function () {
         'uses' => 'UserController@postChangePasswordUser',
         'as' => 'post_change_password_user'
     ]);
+    Route::get('/users', [
+        'uses' => 'UserController@getUsers',
+        'as' => 'users'
+    ]);
 
     //Article
     Route::get('/article', [
-        'uses' => 'ArticleController@getArticle',
+        'uses' => 'ArticleController@getArticleList',
         'as' => 'article'
+    ]);
+    Route::get('/article/{url}', [
+        'uses' => 'ArticleController@getSingleArticle'
     ]);
     Route::get('/create/article', [
         'uses' => 'ArticleController@getCreateArticle',
@@ -78,9 +85,6 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('/articleauthor', [
         'uses' => 'ArticleController@postDeleteAuthorArticle',
         'as' => 'post_delete_author_article'
-    ]);
-    Route::get('/article/{id}', [
-        'uses' => 'ArticleController@getViewArticle'
     ]);
 
     //Tag
@@ -156,6 +160,10 @@ Route::group(['prefix' => 'admin'], function () {
     ]);
     Route::get('/category/{id}', [
         'uses' => 'CategoryController@getViewCategory'
+    ]);
+    Route::post('/update/category/hot', [
+        'uses' => 'CategoryController@postHot',
+        'as' => 'post_update_category_hot'
     ]);
 });
 
