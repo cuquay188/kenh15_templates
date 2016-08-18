@@ -31,4 +31,12 @@ class Article extends Model
     {
         return $this->hasMany('App\ArticleComment');
     }
+
+    public function shorten_title($char)
+    {
+        $title = $this->title;
+        if (strlen($title) > $char)
+            return substr($title, 0, $char) . '...';
+        return $this->title;
+    }
 }

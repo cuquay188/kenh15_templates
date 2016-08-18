@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('title')
-    {{$article->title}}
+    {{$article->shorten_title(75)}}
 @endsection
 @section('content')
     <div class="goto-top">

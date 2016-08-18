@@ -23,7 +23,7 @@
             <tbody>
             @foreach($articles as $article)
                 <tr style="font-size: 13px">
-                    <td id="title"><a href="{{route('article').'/'.$article->url}}">{{$article->title}}</a></td>
+                    <td id="title"><a href="{{route('article').'/'.$article->url}}">{{$article->shorten_title(50)}}</a></td>
                     <td id="category"><a href="{{route('category').'/'.$article->category->id}}">{{$article->category->name}}</a></td>
                     <td style="text-align: center">{{$article->updated_at->format('H:i:s d/m/Y')}}</td>
                     <td id="authors">
@@ -36,13 +36,13 @@
                         {{--Preview--}}
                         <a href="{{route('article').'/'.$article->id}}" class="btn btn-primary btn-xs">Preview</a>
                         {{--Edit--}}
-                        <button type="submit" {{Auth::getUser()->author ? '' : 'disabled'}}
+                        <button type="submit" {{Auth::getUser()->author||Auth::getUser()->admin ? '' : 'disabled'}}
                                 class="btn btn-primary btn-xs" data-toggle="modal"
                                 data-target="#edit{{$article->id}}" style="text-align: center">Edit
                         </button>
                         @include("admin.articles.list.components.edit")
                         {{--Delete--}}
-                        <button type="submit" {{Auth::getUser()->author ? '' : 'disabled'}}
+                        <button type="submit" {{Auth::getUser()->author||Auth::getUser()->admin ? '' : 'disabled'}}
                                 class="btn btn-primary btn-xs" data-toggle="modal"
                                 data-target="#delete{{$article->id}}" style="text-align: center">Delete
                         </button>

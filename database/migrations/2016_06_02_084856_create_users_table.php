@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->text('username');
             $table->text('password');
             $table->text('tel');
+            $table->text('img_url');
             $table->text('address');
             $table->text('city');
             $table->timestamp('birth');

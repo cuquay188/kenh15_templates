@@ -46,7 +46,7 @@ class ArticleController extends Controller
     {
         if (!Auth::check())
             return redirect()->route('login')->with(['fail' => 'Required login.']);
-        if (!Auth::getUser()->author)
+        if (!Auth::getUser()->author&&!Auth::getUser()->admin)
             return redirect()->back()->with(['fail' => 'You dont have permission to submit an article']);
         $authors = Author::all();
         $categories = Category::all();
@@ -70,10 +70,12 @@ class ArticleController extends Controller
         $title = $request->title;
         $content = $request->data;
         $category_id = $request->category_id;
+        $img_url = $request->img_url;
 
         $article = new Article();
         $article->title = $title;
         $article->url = $this->convert_title_to_url($title);
+        $article->img_url = $img_url;
         $article->content = $content;
         $article->category_id = $category_id;
         $article->save();
