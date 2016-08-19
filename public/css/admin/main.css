@@ -294,3 +294,13 @@ body {
   background-color: #d5d9da; }
 
 /*End scroll bar*/
+.wide {
+  width: 100%;
+  margin: 0; }
+
+.flex {
+  display: flex; }
+
+.column {
+  flex: 1 0 50%;
+  padding: 20px; }
