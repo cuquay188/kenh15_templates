@@ -4,18 +4,22 @@
 @endsection
 @section('content')
     <div class="content">
-        <div class="title">
-            <p class="view-title">Category: {{$category->name}}</p>
-        </div>
         <div class="articles-list">
-            <label>The article(s) related to this category:</label>
-            <ul>
-                @foreach($articles as $article)
-                    <li>
-                        <a href="{{route('article').'/'.$article->url}}">{{$article->title}}</a>
-                    </li>
-                @endforeach
-            </ul>
+            @if(count($articles))
+                <label>The article(s) related to this category:</label>
+                <ul>
+                    @foreach($articles as $article)
+                        <li>
+                            <a href="{{route('article').'/'.$article->url}}">{{$article->title}}</a>
+                        </li>
+                    @endforeach
+                </ul>
+            @else
+                <div class="empty-message">
+                    No articles is available for this category.
+                    <a href="{{route('create_article')}}">Create a new one</a>.
+                </div>
+            @endif
         </div>
         <?php echo $articles->render(); ?>
     </div>

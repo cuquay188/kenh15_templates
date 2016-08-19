@@ -1,6 +1,6 @@
 .content {
-  width: 60%;
-  margin: 50px auto;
+  width: 650px;
+  margin: 20px auto;
 }
 
 .content.content-width {
@@ -395,7 +395,8 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 7px;
+  width: 10px;
+  height:10px;
   background-color: #F5F5F5;
 }
 
@@ -419,12 +420,22 @@ body {
   padding: 20px;
 }
 
-.empty-table {
+.empty-table,
+.empty-message {
   text-align: center;
   a {
     color: #3498db;
     &:hover {
       color: #3498db;
     }
+  }
+}
+.empty-message{
+  font-size:18px;
+}
+
+.modal-header {
+  h5 {
+    margin: 0;
   }
 }

@@ -5,14 +5,22 @@
 @section('content')
     <div class="content">
         <div class="articles-list">
-            <label>The article(s) related to this author:</label>
-            <ul>
-                @foreach($author->articles as $article)
-                    <li>
-                        <a href="{{route('article').'/'.$article->url}}">{{$article->title}}</a>
-                    </li>
-                @endforeach
-            </ul>
+            @if(count($author->articles))
+                <label>The article(s) related to this author:</label>
+                <ul>
+                    @foreach($author->articles as $article)
+                        <li>
+                            <a href="{{route('article').'/'.$article->url}}">{{$article->title}}</a>
+                        </li>
+                    @endforeach
+                </ul>
+            @else
+
+                <div class="empty-message">
+                    No articles is available for this category.
+                    <a href="{{route('create_article')}}">Create a new one</a>.
+                </div>
+            @endif
         </div>
     </div>
 @endsection
