@@ -17,7 +17,7 @@
                 <th>Age</th>
                 <th>Phone</th>
                 <th>Email</th>
-                <th>Function</th>
+                <th>Action</th>
             </tr>
             </thead>
             <tbody>

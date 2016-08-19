@@ -17,7 +17,7 @@
                 <th style="text-align: center;">Last Update</th>
                 <th style="">Author</th>
                 <th style="">Tags</th>
-                <th style="width:175px;">Function</th>
+                <th style="width:175px;">Action</th>
             </tr>
             </thead>
             <tbody>
