@@ -1,5 +1,8 @@
 @extends("admin.layouts.master")
 @section("title","Create Article")
+@section('scripts')
+    <script type="text/javascript" src="{{asset('/ckeditor/ckeditor.js')}}"></script>
+@endsection
 @section("content")
     <div class="content wide">
         <form class="" action="{{route('post_article_1')}}" method="post" role="form">
@@ -69,6 +72,6 @@
     </div>
     <script>
         $('#title').focus();
-        CKEDITOR.config.height = '60vh';
+        CKEDITOR.config.height = 'calc(100vh - 300px)';
     </script>
 @endsection

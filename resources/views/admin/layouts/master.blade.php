@@ -19,12 +19,7 @@
     <!-- Latest compiled JavaScript -->
     <script src="{{asset('/bootstrap/js/bootstrap.min.js')}}"></script>
 
-
     <script type="text/javascript" src="{{asset('/datatables/datatables.min.js')}}"></script>
-
-    {{--<script src="//cdn.ckeditor.com/4.5.9/full/ckeditor.js"></script>--}}
-
-    <script type="text/javascript" src="{{asset('/ckeditor/ckeditor.js')}}"></script>
 
     @yield("scripts")
 </head>

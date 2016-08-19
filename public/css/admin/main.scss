@@ -396,7 +396,7 @@ body {
 
 ::-webkit-scrollbar {
   width: 10px;
-  height:10px;
+  height: 10px;
   background-color: #F5F5F5;
 }
 
@@ -430,12 +430,49 @@ body {
     }
   }
 }
-.empty-message{
-  font-size:18px;
+
+.empty-message {
+  font-size: 18px;
 }
 
 .modal-header {
   h5 {
     margin: 0;
+  }
+}
+
+.modal-footer {
+  padding: 8px 12px;
+}
+
+.wide {
+  .modal-content {
+    border-radius: 0;
+    height: 100vh;
+    border: none;
+  }
+  .modal-header {
+    position: relative;
+    box-shadow: 0 0 5px #bdc3c7;
+    .close {
+      position: absolute;
+      right: 10px;
+      top: 15px;
+      font-size: 24px;
+    }
+    h5 {
+      font-size: 24px;
+      margin: 0 20px;
+    }
+  }
+  .modal-footer {
+    padding: 0 15px;
+    box-shadow: 0 0 5px #bdc3c7;
+    height: 60px;
+  }
+  .modal-body {
+    margin: 5px 0;
+    height: calc(100% - 130px);
+    overflow: auto;
   }
 }

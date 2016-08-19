@@ -6,7 +6,7 @@
     <div class="content">
         <div class="articles-list">
             <label>The article(s) related to this tag:</label>
-            @if(count($tags->articles))
+            @if(count($tag->articles))
                 <ul>
                     @foreach($tag->articles as $article)
                         <li>

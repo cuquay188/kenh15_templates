@@ -1,5 +1,8 @@
 @extends("admin.layouts.master")
 @section("title",'Articles Management')
+@section('scripts')
+    <script type="text/javascript" src="{{asset('/ckeditor/ckeditor.js')}}"></script>
+@endsection
 @section("content")
     @if(count($errors)>0)
         <ul class="errors">
