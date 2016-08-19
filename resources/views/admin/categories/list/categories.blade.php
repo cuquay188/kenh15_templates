@@ -18,99 +18,95 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($categories as $category)
-                <tr style="font-size: 13px">
-                    <td><a href="{{route('category').'/'.$category->id}}">{{$category->name}}</a></td>
-                    <td>
-                        <form action="{{route('post_update_category_hot')}}" method="POST">
-                            <input type="checkbox" id="category{{$category->id}}" class="toggle-ios">
-                            <button type="submit"
-                                    class="btn btn-xs btn-toggle {{$category->is_hot ? 'btn-primary' : 'btn-default'}}"></button>
-                            <input type="hidden" name="_token" value="{{ Session::token() }}">
-                            <input type="hidden" value="{{$category->id}}" name="id" id="id">
-                        </form>
-                    </td>
-                    <td>
-                        {{--Edit Function--}}
-                        <button type="submit" class="btn btn-primary btn-xs" data-toggle="modal"
-                                data-target="#edit{{$category->id}}">Edit
-                        </button>
-                        <div class="modal fade" role="dialog" id="edit{{$category->id}}">
-                            <div class="modal-dialog">
-                                <div class="modal-content" style="top: 150px">
-                                    <div class="modal-header">
-                                        <h5 style="font-weight: bold">Edit Category: "<span
-                                                    style="font-style: italic">{{$category->name}}</span>"</h5>
-                                    </div>
-                                    <form action="{{route('post_update_category')}}" method="post" role="form">
-                                        <div class="modal-body">
-                                            <div class="form-group">
-                                                <label for="name">Category</label>
-                                                <input type="text" value="{{$category->name}}" name="name" id="name"
-                                                       class="form-control" placeholder="Enter name...">
-                                            </div>
-                                            <div class="form-group" id="action">
-                                                <input type="hidden" value="{{$category->id}}" name="category_id">
-                                                <input type="hidden" value="{{Session::token()}}" name="_token">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">
-                                                    Close
-                                                </button>
-                                                <button type="submit" class="btn btn-warning">Update</button>
-                                            </div>
+            @if(count($categories))
+                @foreach($categories as $category)
+                    <tr style="font-size: 13px">
+                        <td><a href="{{route('category').'/'.$category->id}}">{{$category->name}}</a></td>
+                        <td>
+                            <form action="{{route('post_update_category_hot')}}" method="POST">
+                                <input type="checkbox" id="category{{$category->id}}" class="toggle-ios">
+                                <button type="submit"
+                                        class="btn btn-xs btn-toggle {{$category->is_hot ? 'btn-primary' : 'btn-default'}}"></button>
+                                <input type="hidden" name="_token" value="{{ Session::token() }}">
+                                <input type="hidden" value="{{$category->id}}" name="id" id="id">
+                            </form>
+                        </td>
+                        <td>
+                            {{--Edit Function--}}
+                            <button type="submit" class="btn btn-primary btn-xs" data-toggle="modal"
+                                    data-target="#edit{{$category->id}}">Edit
+                            </button>
+                            <div class="modal fade" role="dialog" id="edit{{$category->id}}">
+                                <div class="modal-dialog">
+                                    <div class="modal-content" style="top: 150px">
+                                        <div class="modal-header">
+                                            <h5 style="font-weight: bold">Edit Category: "<span
+                                                        style="font-style: italic">{{$category->name}}</span>"</h5>
                                         </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-
-                        {{--Delete Function--}}
-                        <button type="submit" class="btn btn-primary btn-xs" data-toggle="modal"
-                                data-target="#delete{{$category->id}}">Delete
-                        </button>
-                        <div class="modal fade" role="dialog" id="delete{{$category->id}}">
-                            <div class="modal-dialog">
-                                <div class="modal-content" style="height: 190px;top: 150px">
-                                    <div class="modal-header">
-                                        <h5 style="font-weight: bold">Delete Category: "<span
-                                                    style="font-style: italic">{{$category->name}}</span>"</h5>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>Do you want to delete this category?</p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <form action="{{route('post_delete_category')}}" method="post">
-                                            <input type="hidden" value="{{$category->id}}" name="category_id">
-                                            <input type="hidden" name="_token" value="{{ Session::token() }}">
-                                            <button type="submit" class="btn btn-warning">Yes</button>
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">No
-                                            </button>
+                                        <form action="{{route('post_update_category')}}" method="post" role="form">
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <label for="name">Category</label>
+                                                    <input type="text" value="{{$category->name}}" name="name" id="name"
+                                                           class="form-control" placeholder="Enter name...">
+                                                </div>
+                                                <div class="form-group" id="action">
+                                                    <input type="hidden" value="{{$category->id}}" name="category_id">
+                                                    <input type="hidden" value="{{Session::token()}}" name="_token">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                        Close
+                                                    </button>
+                                                    <button type="submit" class="btn btn-warning">Update</button>
+                                                </div>
+                                            </div>
                                         </form>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+
+                            {{--Delete Function--}}
+                            <button type="submit" class="btn btn-primary btn-xs" data-toggle="modal"
+                                    data-target="#delete{{$category->id}}">Delete
+                            </button>
+                            <div class="modal fade" role="dialog" id="delete{{$category->id}}">
+                                <div class="modal-dialog">
+                                    <div class="modal-content" style="height: 190px;top: 150px">
+                                        <div class="modal-header">
+                                            <h5 style="font-weight: bold">Delete Category: "<span
+                                                        style="font-style: italic">{{$category->name}}</span>"</h5>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Do you want to delete this category?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <form action="{{route('post_delete_category')}}" method="post">
+                                                <input type="hidden" value="{{$category->id}}" name="category_id">
+                                                <input type="hidden" name="_token" value="{{ Session::token() }}">
+                                                <button type="submit" class="btn btn-warning">Yes</button>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">No
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+                @section('body.scripts')
+                    <script>
+                        $('table').DataTable();
+                    </script>
+                @endsection
+            @else
+                <tr>
+                    <td colspan="6" class="empty-table">
+                        No categories is available.
+                        <a href="{{route('create_category')}}">Create a new one</a>.
                     </td>
                 </tr>
-            @endforeach
+            @endif
             </tbody>
         </table>
     </div>
-@endsection
-@section('body.scripts')
-    <script>
-        $('table').DataTable();
-        /*var updateHot = function (category) {
-         console.log(category);
-         $.post(
-         '',
-         {
-         category_id: category,
-         _token: $('input[name=_token]').val()
-         },
-         function (response) {
-         console.log(response);
-         }
-         )
-         };*/
-    </script>
 @endsection

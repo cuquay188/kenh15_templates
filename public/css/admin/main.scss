@@ -402,3 +402,12 @@ body {
   flex: 1 0 50%;
   padding:20px;
 }
+.empty-table{
+  text-align: center;
+  a{
+    color: #3498db;
+    &:hover{
+      color: #3498db;
+    }
+  }
+}

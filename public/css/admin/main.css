@@ -304,3 +304,10 @@ body {
 .column {
   flex: 1 0 50%;
   padding: 20px; }
+
+.empty-table {
+  text-align: center; }
+  .empty-table a {
+    color: #3498db; }
+    .empty-table a:hover {
+      color: #3498db; }

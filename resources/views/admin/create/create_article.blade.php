@@ -2,26 +2,16 @@
 @section("title","Create Article")
 @section("content")
     <div class="content wide">
-        @if(count($errors)>0)
-            <ul class="errors">
-                @foreach($errors->all() as $error)
-                    <li>* {{$error == 'The category id must be a number.'?'The category is required .':$error}}</li>
-                @endforeach
-            </ul>
-        @endif
         <form class="" action="{{route('post_article_1')}}" method="post" role="form">
             <div class="col col-sm-8">
                 <div class="form-group">
-                    <label for="data">Content</label>
-                    <textarea name="data" id="data" class="ckeditor form-control" placeholder="Enter content..."
-                              rows="60">{!! old('data') !!}</textarea>
+                    <textarea name="data" id="data" class="ckeditor form-control" placeholder="Enter content...">{!! old('data') !!}</textarea>
                 </div>
             </div>
             <div class="col col-sm-4">
                 <div class="form-group">
-                    <label for="title">Title</label>
                     <input type="text" class="form-control"
-                           id="title" name="title" value="{!! old('title') !!}" placeholder=""
+                           id="title" name="title" value="{!! old('title') !!}" placeholder="Title"
                     >
                 </div>
                 <div class="form-group">
@@ -63,7 +53,14 @@
                         @endforeach
                     </div>
                 </div>
-                <div>
+                @if(count($errors)>0)
+                    <ul class="errors">
+                        @foreach($errors->all() as $error)
+                            <li>* {{$error == 'The category id must be a number.'?'The category is required .':$error}}</li>
+                        @endforeach
+                    </ul>
+                @endif
+                <div class="form-group">
                     <button type="submit" class="btn btn-success btn-block">Create article</button>
                     <input type="hidden" value="{{Session::token()}}" name="_token">
                 </div>
