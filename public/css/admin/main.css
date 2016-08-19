@@ -16,16 +16,26 @@
 .btn.btn-default {
   color: #337ab7; }
 
-.toggle-ios {
-  display: none; }
-  .toggle-ios ~ .btn-toggle:before {
-    content: 'Activate'; }
-  .toggle-ios:checked ~ .btn-toggle {
-    background-color: #337ab7;
-    color: #fff; }
-    .toggle-ios:checked ~ .btn-toggle:before {
-      content: 'Deactivate'; }
+.btn-toggle {
+  font-family: 'Glyphicons Halflings'; }
+  .btn-toggle.btn-default:before {
+    content: "\e007"; }
+  .btn-toggle.btn-primary:before {
+    content: "\e006"; }
 
+/*.toggle-ios {
+  display: none;
+  & ~ .btn-toggle:before{
+    content: 'Activate';
+  }
+  &:checked ~ .btn-toggle {
+    background-color: #337ab7;
+    color: #fff;
+    &:before{
+      content: 'Deactivate';
+    }
+  }
+}*/
 .navbar.navbar-inverse {
   border-radius: 0px; }
   .navbar.navbar-inverse .nav.navbar-nav li a {

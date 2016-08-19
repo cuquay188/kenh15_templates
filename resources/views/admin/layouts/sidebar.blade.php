@@ -47,6 +47,22 @@
             </li>
         </ul>
     </div>
+    <div class="item">
+        <div class="item-header">
+            User
+        </div>
+        <ul class="item-body">
+            <li>
+                <a class="{{Route::getCurrentRoute()->getName()=='user_management'?'active':''}}"
+                   href="{{route('user_management')}}">
+                    Profile
+                </a>
+            </li>
+            <li>
+                <a href="#">Setting</a>
+            </li>
+        </ul>
+    </div>
     @if(Auth::getUser()->admin)
         <div class="item">
             <div class="item-header">

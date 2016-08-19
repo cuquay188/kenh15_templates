@@ -16,10 +16,22 @@
   margin-right: 10px;
   padding: 3px 6px;
 }
-.btn.btn-default{
+
+.btn.btn-default {
   color: #337ab7;
 }
-.toggle-ios {
+
+.btn-toggle {
+  font-family: 'Glyphicons Halflings';
+  &.btn-default:before {
+    content: "\e007";
+  }
+  &.btn-primary:before {
+    content: "\e006";
+  }
+}
+
+/*.toggle-ios {
   display: none;
   & ~ .btn-toggle:before{
     content: 'Activate';
@@ -31,7 +43,8 @@
       content: 'Deactivate';
     }
   }
-}
+}*/
+
 .navbar.navbar-inverse {
   border-radius: 0px;
   .nav.navbar-nav {
@@ -391,22 +404,25 @@ body {
 }
 
 /*End scroll bar*/
-.wide{
-  width:100%;
-  margin:0;
+.wide {
+  width: 100%;
+  margin: 0;
 }
-.flex{
+
+.flex {
   display: flex;
 }
-.column{
+
+.column {
   flex: 1 0 50%;
-  padding:20px;
+  padding: 20px;
 }
-.empty-table{
+
+.empty-table {
   text-align: center;
-  a{
+  a {
     color: #3498db;
-    &:hover{
+    &:hover {
       color: #3498db;
     }
   }

@@ -13,7 +13,7 @@
             <thead>
             <tr>
                 <th>Category</th>
-                <th>Hot Category</th>
+                <th>Hot</th>
                 <th>Action</th>
             </tr>
             </thead>
@@ -24,7 +24,6 @@
                         <td><a href="{{route('category').'/'.$category->id}}">{{$category->name}}</a></td>
                         <td>
                             <form action="{{route('post_update_category_hot')}}" method="POST">
-                                <input type="checkbox" id="category{{$category->id}}" class="toggle-ios">
                                 <button type="submit"
                                         class="btn btn-xs btn-toggle {{$category->is_hot ? 'btn-primary' : 'btn-default'}}"></button>
                                 <input type="hidden" name="_token" value="{{ Session::token() }}">
