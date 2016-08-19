@@ -22,10 +22,13 @@
                 <tr style="font-size: 13px">
                     <td><a href="{{route('category').'/'.$category->id}}">{{$category->name}}</a></td>
                     <td>
-                        <input type="checkbox" id="category{{$category->id}}" class="toggle-ios">
-                        <label class="btn btn-default btn-xs btn-toggle"
-                               onclick="updateHot('{{$category->id}}')"
-                               for="category{{$category->id}}"></label>
+                        <form action="{{route('post_update_category_hot')}}" method="POST">
+                            <input type="checkbox" id="category{{$category->id}}" class="toggle-ios">
+                            <button type="submit"
+                                    class="btn btn-xs btn-toggle {{$category->is_hot ? 'btn-primary' : 'btn-default'}}"></button>
+                            <input type="hidden" name="_token" value="{{ Session::token() }}">
+                            <input type="hidden" value="{{$category->id}}" name="id" id="id">
+                        </form>
                     </td>
                     <td>
                         {{--Edit Function--}}
@@ -77,7 +80,7 @@
                                     <div class="modal-footer">
                                         <form action="{{route('post_delete_category')}}" method="post">
                                             <input type="hidden" value="{{$category->id}}" name="category_id">
-                                            <input type="hidden" value="{{Session::token()}}" name="_token">
+                                            <input type="hidden" name="_token" value="{{ Session::token() }}">
                                             <button type="submit" class="btn btn-warning">Yes</button>
                                             <button type="button" class="btn btn-default" data-dismiss="modal">No
                                             </button>
@@ -92,22 +95,22 @@
             </tbody>
         </table>
     </div>
+@endsection
+@section('body.scripts')
     <script>
         $('table').DataTable();
-        var updateHot = function ($category) {
-            console.log($category);
-            $.ajax({
-                type: 'POST',
-                url: '{{route('post_update_category_hot')}}',
-                data: {
-                    _token: '{{ csrf_token() }}',
-                    category_id: $category
-                },
-                success: function (response) {
-                    console.log(response);
-                }
-            })
-        };
-        updateHot('hehe');
+        /*var updateHot = function (category) {
+         console.log(category);
+         $.post(
+         '',
+         {
+         category_id: category,
+         _token: $('input[name=_token]').val()
+         },
+         function (response) {
+         console.log(response);
+         }
+         )
+         };*/
     </script>
 @endsection

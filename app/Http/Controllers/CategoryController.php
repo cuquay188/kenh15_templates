@@ -77,19 +77,22 @@ class CategoryController extends Controller
         if (!Auth::check())
             return redirect()->back()->with(['fail' => 'Required login.']);
         $category = Category::find($id);
-        $articles = Article::where('category_id',$id)->paginate(5);
+        $articles = Article::where('category_id', $id)->paginate(5);
         return view('admin.categories.single.category', [
             'category' => $category,
             'articles' => $articles
         ]);
     }
-    public function postHot($request){
-        $this->validate($request,[
+
+    public function postHotCategory(Request $request)
+    {
+        $this->validate($request, [
             'id' => 'numeric'
         ]);
-        $id = $request->category_id;
+        $id = $request->id;
         $category = Category::find($id);
-        Category::where('id',$id)->update('is_hot',!$category->is_hot);
-        return response()->json('message','Update Success');
+        $hot = $category->is_hot ? '0' : '1';
+        Category::where('id', $id)->update(['is_hot' => $hot]);
+        return redirect()->back();
     }
 }

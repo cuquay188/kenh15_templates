@@ -161,12 +161,11 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/category/{id}', [
         'uses' => 'CategoryController@getViewCategory'
     ]);
-    Route::post('/update/category/hot', [
-        'uses' => 'CategoryController@postHot',
+    Route::post('/category/hot', [
+        'uses' => 'CategoryController@postHotCategory',
         'as' => 'post_update_category_hot'
     ]);
 });
-
 // Home page
 Route::get('/', [
     'uses' => 'HomePageController@getHomePage',
