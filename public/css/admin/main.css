@@ -21,6 +21,7 @@
   .btn-toggle.btn-default:before {
     content: "\e007"; }
   .btn-toggle.btn-primary:before {
+    color: #ffea00;
     content: "\e006"; }
 
 /*.toggle-ios {
