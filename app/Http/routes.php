@@ -62,13 +62,13 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/article/{url}', [
         'uses' => 'ArticleController@getSingleArticle'
     ]);
-    Route::get('/create/article', [
-        'uses' => 'ArticleController@getCreateArticle',
-        'as' => 'create_article'
-    ]);
-    Route::post('/create/article1', [
+    Route::post('/create/article', [
         'uses' => 'ArticleController@postCreateArticle',
         'as' => 'post_article_1'
+    ]);
+    Route::post('create/article/validate',[
+        'uses' => 'ArticleController@postValidateArticle',
+        'as' => 'admin.validate.article'
     ]);
     Route::post('/delete/article', [
         'uses' => 'ArticleController@postDeleteArticle',

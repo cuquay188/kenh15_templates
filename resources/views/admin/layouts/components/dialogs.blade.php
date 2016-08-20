@@ -1,0 +1,1 @@
+@include('admin.create.create_article')

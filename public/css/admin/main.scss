@@ -446,6 +446,7 @@ body {
 }
 
 .wide {
+  overflow: hidden;
   .modal-content {
     border-radius: 0;
     height: 100vh;

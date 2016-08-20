@@ -85,11 +85,6 @@
                         </td>
                     </tr>
                 @endforeach
-                @section('body.scripts')
-                    <script>
-                        $('table').DataTable();
-                    </script>
-                @endsection
             @else
                 <tr>
                     <td colspan="6" class="empty-table">
@@ -101,4 +96,9 @@
             </tbody>
         </table>
     </div>
+@endsection
+@section('body.scripts')
+    <script>
+        $('table').DataTable();
+    </script>
 @endsection

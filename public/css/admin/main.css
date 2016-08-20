@@ -336,26 +336,28 @@ body {
 .modal-footer {
   padding: 8px 12px; }
 
-.wide .modal-content {
-  border-radius: 0;
-  height: 100vh;
-  border: none; }
-.wide .modal-header {
-  position: relative;
-  box-shadow: 0 0 5px #bdc3c7; }
-  .wide .modal-header .close {
-    position: absolute;
-    right: 10px;
-    top: 15px;
-    font-size: 24px; }
-  .wide .modal-header h5 {
-    font-size: 24px;
-    margin: 0 20px; }
-.wide .modal-footer {
-  padding: 0 15px;
-  box-shadow: 0 0 5px #bdc3c7;
-  height: 60px; }
-.wide .modal-body {
-  margin: 5px 0;
-  height: calc(100% - 130px);
-  overflow: auto; }
+.wide {
+  overflow: hidden; }
+  .wide .modal-content {
+    border-radius: 0;
+    height: 100vh;
+    border: none; }
+  .wide .modal-header {
+    position: relative;
+    box-shadow: 0 0 5px #bdc3c7; }
+    .wide .modal-header .close {
+      position: absolute;
+      right: 10px;
+      top: 15px;
+      font-size: 24px; }
+    .wide .modal-header h5 {
+      font-size: 24px;
+      margin: 0 20px; }
+  .wide .modal-footer {
+    padding: 0 15px;
+    box-shadow: 0 0 5px #bdc3c7;
+    height: 60px; }
+  .wide .modal-body {
+    margin: 5px 0;
+    height: calc(100% - 130px);
+    overflow: auto; }

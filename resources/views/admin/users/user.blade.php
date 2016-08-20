@@ -44,7 +44,7 @@
             <div class="col col-sm-5">
                 <div class="text" id="text_birth">{{date_format(date_create(Auth::getUser()->birth),"d/m/Y")}}</div>
                 <input style="display: none" type="date" class="form-control" name="birth" id="birth"
-                       value="{{date_format(date_create(Auth::getUser()->birth),"Y-m-d")}}">
+                       value="{{Auth::getUser()->formatBirth('-')}}">
             </div>
             <div class="col col-sm-3">
                 <i class="glyphicon glyphicon-pencil" id="update_birth"></i>

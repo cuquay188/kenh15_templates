@@ -25,7 +25,7 @@
                 <tr style="font-size: 13px">
                     <td><a href="{{route('author').'/'.$user->id}}">{{$user->name}}</a></td>
                     <td>{{$user->address}}</td>
-                    <td>{{$user->birth}}</td>
+                    <td>{{$user->formatBirth()}}</td>
                     <td>{{$user->tel}}</td>
                     <td>{{$user->email}}</td>
                     <td>

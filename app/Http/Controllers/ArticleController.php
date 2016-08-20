@@ -36,7 +36,7 @@ class ArticleController extends Controller
         if (!Auth::check())
             return redirect()->back()->with(['fail' => 'Required login.']);
 
-        $article = Article::where('url',$url)->first();
+        $article = Article::where('url', $url)->first();
         return view('admin.articles.single.article', [
             'article' => $article
         ]);
@@ -46,7 +46,7 @@ class ArticleController extends Controller
     {
         if (!Auth::check())
             return redirect()->route('login')->with(['fail' => 'Required login.']);
-        if (!Auth::getUser()->author&&!Auth::getUser()->admin)
+        if (!Auth::getUser()->author && !Auth::getUser()->admin)
             return redirect()->back()->with(['fail' => 'You dont have permission to submit an article']);
         $authors = Author::all();
         $categories = Category::all();
@@ -58,7 +58,7 @@ class ArticleController extends Controller
         ]);
     }
 
-    public function postCreateArticle(Request $request)
+    public function postValidateArticle(Request $request)
     {
         $this->validate($request, [
             'title' => 'required|between:5,150',
@@ -66,10 +66,22 @@ class ArticleController extends Controller
             'category_id' => 'numeric',
             'authors' => 'required'
         ]);
+        return response()->json([
+            'message' => 'Validate success',
+        ]);
+    }
 
+    public function postCreateArticle(Request $request)
+    {
+        /*$this->validate($request, [
+            'title' => 'required|between:5,150',
+            'data' => 'required|min:30',
+            'category_id' => '',
+            'authors' => 'required'
+        ]);*/
         $title = $request->title;
         $content = $request->data;
-        $category_id = $request->category_id;
+        $category_id = $request->create_article_category_id;
         $img_url = $request->img_url;
 
         $article = new Article();

@@ -15,8 +15,9 @@
                     Articles
                     <span>({{count(App\Article::all())}})</span>
                 </a>
-                <a class="create {{Route::getCurrentRoute()->getName()=='create_article'?'active':''}}"
-                   href="{{route('create_article')}}"><i class="glyphicon glyphicon-plus"></i></a>
+                <a class="create" data-toggle="modal"
+                   data-target="#create-article"
+                   href="#"><i class="glyphicon glyphicon-plus"></i></a>
             </li>
             <li>
                 <a class="{{Route::getCurrentRoute()->getName()=='author'?'active':''}}"

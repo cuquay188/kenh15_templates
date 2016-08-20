@@ -11,10 +11,12 @@
 
     <link rel="stylesheet" href="{{asset('/css/admin/main.css')}}">
 
-@yield("styles")
+    @yield("styles")
 
-<!-- jQuery library -->
+    <!-- jQuery library -->
     <script src="{{asset('/js/jquery-2.2.4.min.js')}}"></script>
+
+    <script type="text/javascript" src="{{asset('/ckeditor/ckeditor.js')}}"></script>
 
     <!-- Latest compiled JavaScript -->
     <script src="{{asset('/bootstrap/js/bootstrap.min.js')}}"></script>
@@ -26,18 +28,20 @@
 <body>
 <div class="sidebar">
 
-    @include("admin.layouts.sidebar")
+    @include("admin.layouts.components.sidebar")
 
 </div>
 <div class="body">
 
-    @include("admin.layouts.header")
+    @include("admin.layouts.components.header")
 
     <div class="container">
         @yield("content")
     </div>
 
-    @include("admin.layouts.footer")
+    @include("admin.layouts.components.footer")
+
+    @include('admin.layouts.components.dialogs')
 
     @yield("body.scripts")
 

@@ -26,7 +26,7 @@
                     <tr style="font-size: 13px">
                         <td><a href="{{route('author').'/'.$author->id}}">{{$author->user->name}}</a></td>
                         <td>{{$author->user->address}}</td>
-                        <td>{{$author->user->birth}}</td>
+                        <td>{{$author->user->formatBirth()}}</td>
                         <td>{{$author->user->tel}}</td>
                         <td>{{$author->user->email}}</td>
                         <td>
@@ -114,12 +114,6 @@
                         </td>
                     </tr>
                 @endforeach
-                @section('body.scripts')
-
-                    <script>
-                        $('table').DataTable();
-                    </script>
-                @endsection
             @else
                 <tr>
                     <td colspan="6" class="empty-table">
@@ -131,4 +125,9 @@
             </tbody>
         </table>
     </div>
+@endsection
+@section('body.scripts')
+    <script>
+        $('table').DataTable();
+    </script>
 @endsection
