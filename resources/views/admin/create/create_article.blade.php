@@ -11,7 +11,7 @@
                 <div class="modal-body">
                     <div class="col col-sm-7">
                         <div class="form-group">
-                            <textarea name="data" id="data" class="ckeditor form-control"
+                            <textarea name="create_article_data" id="create_article_data" class="ckeditor form-control"
                                       placeholder="Enter content...">{!! old('data') !!}</textarea>
                             <p id="content-error" class="errors"></p>
                         </div>
@@ -19,14 +19,14 @@
                     <div class="col col-sm-5">
                         <div class="form-group">
                             <input type="text" class="form-control"
-                                   id="title" name="title" value="{!! old('title') !!}" placeholder="Title"
+                                   id="create_article_title" name="create_article_title" value="{!! old('title') !!}" placeholder="Title"
                             >
                             <p id="title-error" class="errors"></p>
                         </div>
                         <div class="form-group">
-                            <label for="title">Image URL:</label>
+                            <label for="create_article_img_url">Image URL:</label>
                             <input type="text" class="form-control"
-                                   id="img_url" name="img_url" value="{!! old('img_url') !!}"
+                                   id="create_article_img_url" name="create_article_img_url" value="{!! old('img_url') !!}"
                                    placeholder="e.g. http://.../hello.img"
                             >
                         </div>
@@ -34,8 +34,8 @@
                             <label for="tags">Choose tags</label>
                             <div class="checkbox-style row">
                                 @foreach(\App\Tag::all() as $tag)
-                                    <label for="tag{{$tag->id}}" class="col col-sm-4">
-                                        <input id="tag{{$tag->id}}" type="checkbox" name="tags[]" value="{{$tag->id}}">
+                                    <label for="create_article_tag{{$tag->id}}" class="col col-sm-4">
+                                        <input id="create_article_tag{{$tag->id}}" type="checkbox" name="create_article_tags[]" value="{{$tag->id}}">
                                         {{$tag->name}}
                                     </label>
                                 @endforeach
@@ -56,8 +56,8 @@
                             <div class="checkbox-style row">
                                 <?php $count = 1; ?>
                                 @foreach(\App\Author::all() as $author)
-                                    <label for="author{{$author->id}}" style="font-weight: normal" class="col col-sm-6">
-                                        <input type="checkbox" id="author_{{$count}}" name="authors[]"
+                                    <label for="create_article_author{{$count}}" style="font-weight: normal" class="col col-sm-6">
+                                        <input type="checkbox" id="create_article_author_{{$count}}" name="create_article_authors[]"
                                                value="{{$author->id}}">
                                         {{$author->user->name}}
                                     </label>
@@ -93,15 +93,15 @@
             authors.length = '{{count(\App\Author::all())}}';
             var count = 0;
             for (var i = 1; i <= authors.length; i++) {
-                if($('#author_' + i).is(':checked'))
-                    authors[count++] = ($('#author' + i).val())
+                if($('#create_article_author_' + i).is(':checked'))
+                    authors[count++] = ($('#create_article_author' + i).val())
             }
             $.ajax({
                 type: 'POST',
                 url: '{{route('admin.validate.article')}}',
                 data: {
-                    title: form.find('#title').val(),
-                    data: CKEDITOR.instances['data'].getData(),
+                    title: form.find('#create_article_title').val(),
+                    data: CKEDITOR.instances['create_article_data'].getData(),
                     category_id: $('#create_article_category_id').val(),
                     authors: authors,
                     _token: '{{Session::token()}}'

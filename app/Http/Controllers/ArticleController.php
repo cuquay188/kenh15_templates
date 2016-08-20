@@ -79,10 +79,10 @@ class ArticleController extends Controller
             'category_id' => '',
             'authors' => 'required'
         ]);*/
-        $title = $request->title;
-        $content = $request->data;
+        $title = $request->create_article_title;
+        $content = $request->create_article_data;
         $category_id = $request->create_article_category_id;
-        $img_url = $request->img_url;
+        $img_url = $request->create_article_img_url;
 
         $article = new Article();
         $article->title = $title;
