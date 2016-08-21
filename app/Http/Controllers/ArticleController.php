@@ -162,7 +162,16 @@ class ArticleController extends Controller
         return redirect()->back();
     }
 
-    function convert_title_to_url($str)
+    public function refreshDatabase()
+    {
+        foreach (Article::all() as $article) {
+            Article::where('id', $article->id)->update(['url' => $this->convert_title_to_url($article->title)]);
+            Article::where('id', $article->id)->update(['img_url' => $this->make_article_img_url($article->content)]);
+        }
+        return redirect()->route('article');
+    }
+
+    static function convert_title_to_url($str)
     {
         $str = preg_replace("/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/", 'a', $str);
         $str = preg_replace("/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/", 'e', $str);
@@ -179,6 +188,14 @@ class ArticleController extends Controller
         $str = preg_replace("/(Ỳ|Ý|Ỵ|Ỷ|Ỹ)/", 'Y', $str);
         $str = preg_replace("/(Đ)/", 'D', $str);
         $str = str_replace(" ", "-", str_replace("?", "", $str));
+        return $str;
+    }
+
+    static function make_article_img_url($str)
+    {
+        $pos = strpos($str, "src=");
+        $end = strpos($str, "\"", $pos + 5) - $pos - 5;
+        $str = substr($str, $pos + 5, $end);
         return $str;
     }
 }

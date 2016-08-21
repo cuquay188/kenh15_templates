@@ -23,6 +23,7 @@
                     <tr style="font-size: 13px">
                         <td><a href="{{route('category').'/'.$category->id}}">{{$category->name}}</a></td>
                         <td>
+                            <div id="category_is_hot_value_{{$category->id}}" style="display:none;">{{$category->is_hot}}</div>
                             <button onclick="changeHot('{{$category->id}}')" id="category_is_hot_{{$category->id}}"
                                     class="btn btn-xs btn-toggle {{$category->is_hot ? 'btn-primary' : 'btn-default'}}"></button>
                         </td>
@@ -104,7 +105,8 @@
     <script>
         $('table').DataTable({
             "pageLength": 8,
-            "bLengthChange": false
+            "bLengthChange": false,
+            "order": [[ 1, "desc" ]]
         });
 
         var changeHot = function (category_id) {
@@ -119,6 +121,7 @@
                     $('#category_is_hot_' + category_id)
                             .removeClass(is_hot==1 ? 'btn-default' : 'btn-primary')
                             .addClass(is_hot==1 ? 'btn-primary' : 'btn-default');
+                    $('#category_is_hot_value_'+category_id).text(is_hot);
                     console.log('Update Category '+category_id+' success.')
                 },
                 error: function () {

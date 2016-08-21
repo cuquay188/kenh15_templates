@@ -165,6 +165,11 @@ Route::group(['prefix' => 'admin'], function () {
         'uses' => 'CategoryController@postHotCategory',
         'as' => 'admin.update.category.hot'
     ]);
+    Route::get('/refresh-database',[
+        'uses' => 'ArticleController@refreshDatabase',
+        'as'   => 'admin.fix.database',
+    ]);
+
 });
 // Home page
 Route::get('/', [
