@@ -367,13 +367,13 @@ body {
   .container {
     width: 100%;
     padding: 20px 40px;
-    height: calc(100vh - 64px - 73px);
+    height: calc(100vh - 128px);
     overflow-y: auto;
   }
   .body-header {
     padding: 20px 0;
     box-shadow: 5px 0 10px #7f8c8d;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     h2 {
       margin: 0 10px;
       font-weight: 600;

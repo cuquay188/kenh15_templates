@@ -5,7 +5,10 @@
 @endsection
 @section('body.scripts')
     <script>
-        $('table').DataTable();
+        $('table').DataTable({
+            "order": [[ 2, "asc" ]],
+            "pageLength": 5
+        });
     </script>
 @endsection
 @section("content")
