@@ -56,7 +56,7 @@
                             <div class="checkbox-style row">
                                 <?php $count = 1; ?>
                                 @foreach(\App\Author::all() as $author)
-                                    <label for="create_article_author{{$count}}" style="font-weight: normal" class="col col-sm-6">
+                                    <label for="create_article_author_{{$count}}" style="font-weight: normal" class="col col-sm-6">
                                         <input type="checkbox" id="create_article_author_{{$count}}" name="create_article_authors[]"
                                                value="{{$author->id}}">
                                         {{$author->user->name}}
@@ -79,11 +79,6 @@
         </div>
     </div>
     <script>
-        $('#title').focus();
-
-        CKEDITOR.config.width = '700px';
-        CKEDITOR.config.height = 'calc(100vh - 300px)';
-
 
         $('#submit-create-article').click(function (e) {
             e.preventDefault();
@@ -94,8 +89,9 @@
             var count = 0;
             for (var i = 1; i <= authors.length; i++) {
                 if($('#create_article_author_' + i).is(':checked'))
-                    authors[count++] = ($('#create_article_author' + i).val())
+                    authors[count++] = ($('#create_article_author_' + i).val())
             }
+            console.log(authors);
             $.ajax({
                 type: 'POST',
                 url: '{{route('admin.validate.article')}}',

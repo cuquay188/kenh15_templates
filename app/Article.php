@@ -35,8 +35,12 @@ class Article extends Model
     public function shorten_title($char)
     {
         $title = $this->title;
-        if (strlen($title) > $char)
-            return substr($title, 0, $char) . '...';
+        if (strlen($title) > $char) {
+            for($i=$char-1;$i>=0;$i--)
+                if($title[$i]==' '){
+                    return substr($title, 0, $i) . '...';
+                }
+        }
         return $this->title;
     }
 }

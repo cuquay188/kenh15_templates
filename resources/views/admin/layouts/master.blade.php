@@ -55,6 +55,9 @@
     <script>
         if ($(document).height() > $(".body").height())
             $('.footer').addClass('fix-footer');
+
+        CKEDITOR.config.width = '55vw';
+        CKEDITOR.config.height = 'calc(100vh - 300px)';
     </script>
 </div>
 </body>

@@ -73,12 +73,6 @@ class ArticleController extends Controller
 
     public function postCreateArticle(Request $request)
     {
-        /*$this->validate($request, [
-            'title' => 'required|between:5,150',
-            'data' => 'required|min:30',
-            'category_id' => '',
-            'authors' => 'required'
-        ]);*/
         $title = $request->create_article_title;
         $content = $request->create_article_data;
         $category_id = $request->create_article_category_id;
@@ -93,8 +87,8 @@ class ArticleController extends Controller
         $article->save();
 
         $article = Article::orderBy('id', 'desc')->first();
-        $tags = $request->tags;
-        $authors = $request->authors;
+        $tags = $request->create_article_tags;
+        $authors = $request->create_article_authors;
         if (!empty($tags)) {
             foreach ($tags as $tag) {
                 $article->tags()->attach($tag);
@@ -184,7 +178,7 @@ class ArticleController extends Controller
         $str = preg_replace("/(Ù|Ú|Ụ|Ủ|Ũ|Ư|Ừ|Ứ|Ự|Ử|Ữ)/", 'U', $str);
         $str = preg_replace("/(Ỳ|Ý|Ỵ|Ỷ|Ỹ)/", 'Y', $str);
         $str = preg_replace("/(Đ)/", 'D', $str);
-        $str = str_replace(" ", "-", str_replace("&*#39;", "", $str));
+        $str = str_replace(" ", "-", str_replace("?", "", $str));
         return $str;
     }
 }

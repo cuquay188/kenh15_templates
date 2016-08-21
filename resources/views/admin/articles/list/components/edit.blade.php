@@ -93,9 +93,3 @@
         </form>
     </div>
 </div>
-@section('body.scripts')
-    <script>
-        CKEDITOR.config.width = '700px';
-        CKEDITOR.config.height = 'calc(100vh - 300px)';
-    </script>
-@endsection
