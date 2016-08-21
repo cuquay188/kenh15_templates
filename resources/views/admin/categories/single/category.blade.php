@@ -17,7 +17,8 @@
             @else
                 <div class="empty-message">
                     No articles is available for this category.
-                    <a href="{{route('create_article')}}">Create a new one</a>.
+                    <a href="#" data-toggle="modal"
+                       data-target="#create-article">Create a new one</a>.
                 </div>
             @endif
         </div>

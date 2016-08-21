@@ -163,7 +163,7 @@ Route::group(['prefix' => 'admin'], function () {
     ]);
     Route::post('/category/hot', [
         'uses' => 'CategoryController@postHotCategory',
-        'as' => 'post_update_category_hot'
+        'as' => 'admin.update.category.hot'
     ]);
 });
 // Home page

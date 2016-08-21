@@ -3,7 +3,7 @@
     <title>@yield("title")</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta name="_token" content="{{Session::token()}}">
     <!--    BOOTSTRAP CDN-->
     <link rel="stylesheet" href="{{asset('/bootstrap/css/bootstrap.min.css')}}">
 
@@ -43,6 +43,13 @@
 
     @include('admin.layouts.components.dialogs')
 
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            }
+        });
+    </script>
     @yield("body.scripts")
 
     <script>

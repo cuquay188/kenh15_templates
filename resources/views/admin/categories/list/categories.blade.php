@@ -23,12 +23,8 @@
                     <tr style="font-size: 13px">
                         <td><a href="{{route('category').'/'.$category->id}}">{{$category->name}}</a></td>
                         <td>
-                            <form action="{{route('post_update_category_hot')}}" method="POST">
-                                <button type="submit"
-                                        class="btn btn-xs btn-toggle {{$category->is_hot ? 'btn-primary' : 'btn-default'}}"></button>
-                                <input type="hidden" name="_token" value="{{ Session::token() }}">
-                                <input type="hidden" value="{{$category->id}}" name="id" id="id">
-                            </form>
+                            <button onclick="changeHot('{{$category->id}}')" id="category_is_hot_{{$category->id}}"
+                                    class="btn btn-xs btn-toggle {{$category->is_hot ? 'btn-primary' : 'btn-default'}}"></button>
                         </td>
                         <td>
                             {{--Edit Function--}}
@@ -107,5 +103,27 @@
 @section('body.scripts')
     <script>
         $('table').DataTable();
+
+        var changeHot = function (category_id) {
+            $.ajax({
+                type: 'POST',
+                url: '{{route('admin.update.category.hot')}}',
+                data: {
+                    category_id: category_id
+                },
+                success: function (response) {
+
+                    var is_hot = response.is_hot;
+                    console.log(is_hot==1 ? 'btn-default' : 'btn-primary');
+                    $('#category_is_hot_' + category_id)
+                            .removeClass(is_hot==1 ? 'btn-default' : 'btn-primary')
+                            .addClass(is_hot==1 ? 'btn-primary' : 'btn-default');
+                },
+                error: function (response) {
+                    console.log(response)
+                }
+            });
+        };
+
     </script>
 @endsection

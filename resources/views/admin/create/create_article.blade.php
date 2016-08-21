@@ -103,8 +103,7 @@
                     title: form.find('#create_article_title').val(),
                     data: CKEDITOR.instances['create_article_data'].getData(),
                     category_id: $('#create_article_category_id').val(),
-                    authors: authors,
-                    _token: '{{Session::token()}}'
+                    authors: authors
                 },
                 beforeSend: function () {
                     $('#content-error').text('');
