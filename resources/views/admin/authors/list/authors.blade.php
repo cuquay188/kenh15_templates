@@ -128,6 +128,9 @@
 @endsection
 @section('body.scripts')
     <script>
-        $('table').DataTable();
+        $('table').DataTable({
+            "pageLength": 8,
+            "bLengthChange": false
+        });
     </script>
 @endsection

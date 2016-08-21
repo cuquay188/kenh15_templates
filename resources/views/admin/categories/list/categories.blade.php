@@ -102,7 +102,10 @@
 @endsection
 @section('body.scripts')
     <script>
-        $('table').DataTable();
+        $('table').DataTable({
+            "pageLength": 8,
+            "bLengthChange": false
+        });
 
         var changeHot = function (category_id) {
             $.ajax({
@@ -112,15 +115,14 @@
                     category_id: category_id
                 },
                 success: function (response) {
-
                     var is_hot = response.is_hot;
-                    console.log(is_hot==1 ? 'btn-default' : 'btn-primary');
                     $('#category_is_hot_' + category_id)
                             .removeClass(is_hot==1 ? 'btn-default' : 'btn-primary')
                             .addClass(is_hot==1 ? 'btn-primary' : 'btn-default');
+                    console.log('Update Category '+category_id+' success.')
                 },
-                error: function (response) {
-                    console.log(response)
+                error: function () {
+                    console.error('Update Category '+category_id+' fail.')
                 }
             });
         };

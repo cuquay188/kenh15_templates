@@ -3,14 +3,6 @@
 @section('scripts')
     <script type="text/javascript" src="{{asset('/ckeditor/ckeditor.js')}}"></script>
 @endsection
-@section('body.scripts')
-    <script>
-        $('table').DataTable({
-            "order": [[ 2, "asc" ]],
-            "pageLength": 5
-        });
-    </script>
-@endsection
 @section("content")
     @if(count($errors)>0)
         <ul class="errors">
@@ -25,7 +17,7 @@
             <tr>
                 <th style="text-align: center;">Title</th>
                 <th>Category</th>
-                <th style="text-align: center;">Last Update</th>
+                <th style="width:100px;text-align: center;">Last Update</th>
                 <th style="">Author</th>
                 <th style="">Tags</th>
                 <th style="width:175px;">Action</th>
@@ -41,7 +33,11 @@
                         <td id="category"><a
                                     href="{{route('category').'/'.$article->category->id}}">{{$article->category->name}}</a>
                         </td>
-                        <td style="text-align: center">{{$article->updated_at->format('H:i:s d/m/Y')}}</td>
+                        <td style="text-align: center">
+                            {{$article->updated_at->format('H:i:s')}}
+                            <br>
+                            {{$article->updated_at->format('d/m/Y')}}
+                        </td>
                         <td id="authors">
                             @include("admin.articles.list.components.authors")
                         </td>
@@ -78,4 +74,13 @@
             </tbody>
         </table>
     </div>
+@endsection
+@section('body.scripts')
+    <script>
+        $('table').DataTable({
+            "order": [[ 2, "asc" ]],
+            "pageLength": 5,
+            "bLengthChange": false
+        });
+    </script>
 @endsection
