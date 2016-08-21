@@ -24,13 +24,6 @@
                             <p id="title-error" class="errors"></p>
                         </div>
                         <div class="form-group">
-                            <label for="create_article_img_url">Image URL:</label>
-                            <input type="text" class="form-control"
-                                   id="create_article_img_url" name="create_article_img_url" value="{!! old('img_url') !!}"
-                                   placeholder="e.g. http://.../hello.img"
-                            >
-                        </div>
-                        <div class="form-group">
                             <label for="tags">Choose tags</label>
                             <div class="checkbox-style row">
                                 @foreach(\App\Tag::all() as $tag)

@@ -29,7 +29,7 @@
                     <tr style="font-size: 13px">
                         <td id="title">
                             <a title="{{$article->title}}"
-                            href="{{route('article').'/'.$article->url}}"><?php echo $article->shorten_title(50) ?></a>
+                               href="{{route('article').'/'.$article->url}}"><?php echo $article->shorten_title(50) ?></a>
                         </td>
                         <td id="category"><a
                                     href="{{route('category').'/'.$article->category->id}}">{{$article->category->name}}</a>
@@ -50,14 +50,13 @@
                             <a href="{{route('article').'/'.$article->url}}" class="btn btn-primary btn-xs">Preview</a>
                             {{--Edit--}}
                             <button type="submit" {{Auth::getUser()->author||Auth::getUser()->admin ? '' : 'disabled'}}
-                            class="btn btn-primary btn-xs" data-toggle="modal"
-                                    data-target="#edit{{$article->id}}" style="text-align: center">Edit
+                                    class="btn btn-primary btn-xs" data-toggle="modal" id="#toggle_edit_article_{{$article->id}}"
+                                    data-target="#edit_article" onclick="editArticle('{{$article->id}}')">Edit
                             </button>
-                            @include("admin.articles.list.components.edit")
                             {{--Delete--}}
                             <button type="submit" {{Auth::getUser()->author||Auth::getUser()->admin ? '' : 'disabled'}}
-                            class="btn btn-primary btn-xs" data-toggle="modal"
-                                    data-target="#delete{{$article->id}}" style="text-align: center">Delete
+                                    class="btn btn-primary btn-xs" data-toggle="modal"
+                                    data-target="#delete{{$article->id}}">Delete
                             </button>
                             @include("admin.articles.list.components.delete")
                         </td>
@@ -75,12 +74,13 @@
             </tbody>
         </table>
     </div>
+    @include("admin.articles.list.components.edit")
 @endsection
 @section('body.scripts')
     <script>
         $('table').DataTable({
-            "order": [[ 2, "asc" ]],
-            "pageLength": 5,
+            "order": [[2, "desc"]],
+            "pageLength": $(document).height() < 800 ? 5 : 9,
             "bLengthChange": false
         });
     </script>

@@ -104,7 +104,7 @@
 @section('body.scripts')
     <script>
         $('table').DataTable({
-            "pageLength": 8,
+            "pageLength": $(document).height() < 800 ? 8 : 15,
             "bLengthChange": false,
             "order": [[ 1, "desc" ]]
         });
@@ -123,6 +123,9 @@
                             .addClass(is_hot==1 ? 'btn-primary' : 'btn-default');
                     $('#category_is_hot_value_'+category_id).text(is_hot);
                     console.log('Update Category '+category_id+' success.')
+                    $('table').DataTable({
+                        "order": [[ 1, "desc" ]]
+                    });
                 },
                 error: function () {
                     console.error('Update Category '+category_id+' fail.')

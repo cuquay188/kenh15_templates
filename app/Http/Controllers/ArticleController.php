@@ -81,7 +81,7 @@ class ArticleController extends Controller
         $article = new Article();
         $article->title = $title;
         $article->url = $this->convert_title_to_url($title);
-        $article->img_url = $img_url;
+        $article->img_url = $this->make_article_img_url($content);
         $article->content = $content;
         $article->category_id = $category_id;
         $article->save();
@@ -160,6 +160,23 @@ class ArticleController extends Controller
         $article_id = $request->article_id;
         DB::table('author_article')->where('article_id', $article_id)->where('author_id', $author_id)->delete();
         return redirect()->back();
+    }
+
+    public function getArticleJSON($id)
+    {
+        $article = Article::find($id);
+        $article->shorten_title = $article->shorten_title(100);
+
+        $tags = array();
+        foreach($article->tags as $tag)
+            array_push($tags,$tag->id);
+        $article->tags = $tags;
+
+        $authors = array();
+        foreach($article->authors as $author)
+            array_push($authors,$author->id);
+        $article->authors = $authors;
+        return $article;
     }
 
     public function refreshDatabase()

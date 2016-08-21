@@ -100,7 +100,7 @@
 @section('body.scripts')
     <script>
         $('table').DataTable({
-            "pageLength": 8,
+            "pageLength": $(document).height() < 800 ? 8 : 15,
             "bLengthChange": false
         });
     </script>
