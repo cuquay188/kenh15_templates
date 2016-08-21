@@ -27,8 +27,9 @@
             @if(count($articles))
                 @foreach($articles as $article)
                     <tr style="font-size: 13px">
-                        <td id="title"><a
-                                    href="{{route('article').'/'.$article->url}}"><?php echo $article->shorten_title(50) ?></a>
+                        <td id="title">
+                            <a title="{{$article->title}}"
+                            href="{{route('article').'/'.$article->url}}"><?php echo $article->shorten_title(50) ?></a>
                         </td>
                         <td id="category"><a
                                     href="{{route('category').'/'.$article->category->id}}">{{$article->category->name}}</a>

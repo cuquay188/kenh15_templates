@@ -16,12 +16,11 @@
     <!-- jQuery library -->
     <script src="{{asset('/js/jquery-2.2.4.min.js')}}"></script>
 
-    <script type="text/javascript" src="{{asset('/ckeditor/ckeditor.js')}}"></script>
-
-    <!-- Latest compiled JavaScript -->
     <script src="{{asset('/bootstrap/js/bootstrap.min.js')}}"></script>
 
-    <script type="text/javascript" src="{{asset('/datatables/datatables.min.js')}}"></script>
+    <script src="{{asset('/ckeditor/ckeditor.js')}}"></script>
+
+    <script src="{{asset('/datatables/datatables.min.js')}}"></script>
 
     @yield("scripts")
 </head>
