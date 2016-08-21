@@ -98,7 +98,7 @@ Route::group(['prefix' => 'admin'], function () {
     ]);
     Route::post('/edit/tag', [
         'uses' => 'TagController@postUpdateTag',
-        'as' => 'post_update_tag'
+        'as' => 'admin.update.tag.name'
     ]);
     Route::post('/delete/tag', [
         'uses' => 'TagController@postDeleteTag',
@@ -152,7 +152,7 @@ Route::group(['prefix' => 'admin'], function () {
     ]);
     Route::post('/edit/category', [
         'uses' => 'CategoryController@postUpdateCategory',
-        'as' => 'post_update_category'
+        'as' => 'admin.update.category.name'
     ]);
     Route::get('/category/{id}', [
         'uses' => 'CategoryController@getViewCategory'

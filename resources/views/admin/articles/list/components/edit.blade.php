@@ -7,7 +7,7 @@
                 <h5><strong>Edit article:</strong>
                     <span id="edit_shorten_title"></span>
                 </h5>
-                <div class="close" data-dismiss="modal">
+                <div class="close" data-dismiss="modal" onclick="dismissModal()">
                     <div class="glyphicon glyphicon-remove"></div>
                 </div>
             </div>
@@ -64,7 +64,7 @@
             <div class="modal-footer">
                 <div class="form-group" id="action">
                     <button type="submit" class="btn btn-warning ">Update</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close
+                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="dismissModal()">Close
                     </button>
                     <input name="article_id" value="{{$article->id}}" type="hidden">
                     <input type="hidden" value="{{Session::token()}}" name="_token">
@@ -78,10 +78,7 @@
         $.ajax({
             type: 'GET',
             url: '{{route('admin.api.article').'/'}}' + article_id,
-            success: function (response) {
-                var article = response;
-                console.log(article);
-                var $row = $('#toggle_edit_article_' + article_id);
+            success: function (article) {
                 var $modal = $('#edit_article');
                 $modal.find('#edit_shorten_title').text(article.shorten_title);
                 $modal.find('#edit_title').val(article.title);
@@ -93,5 +90,11 @@
                     $modal.find('#edit_authors').find('#edit_author_'+article.authors[j].id).prop("checked", true )
             }
         })
+    };
+    var dismissModal = function () {
+        for (var i=1;i<='{{count(\App\Tag::all())}}';i++)
+            $('#edit_tag_'+i).prop("checked", false )
+        for (var j=1;i<='{{count(\App\Author::all())}}';i++)
+            $('#edit_author_'+j).prop("checked", false )
     }
 </script>

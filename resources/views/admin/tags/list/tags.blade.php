@@ -28,31 +28,32 @@
                             </button>
                             <div class="modal fade" role="dialog" id="edit{{$tag->id}}">
                                 <div class="modal-dialog">
-                                    <div class="modal-content" style="top: 150px">
+                                    <form action="{{route('admin.update.tag.name')}}" method="post" role="form"
+                                          class="modal-content" style="top: 150px">
                                         <div class="modal-header">
                                             <h5 style="font-weight: bold">Edit Tag: "
                                                 <span style="font-style: italic">{{$tag->name}}</span>"
                                             </h5>
                                         </div>
-                                        <form action="{{route('post_update_tag')}}" method="post" role="form">
-                                            <div class="modal-body">
-                                                <div class="form-group">
-                                                    <label for="name">Tag</label>
-                                                    <input class="form-control" type="text" value="{{$tag->name}}"
-                                                           id="name"
-                                                           name="name" placeholder="Enter name tag...">
-                                                </div>
-                                                <div class="form-group" id="action">
-                                                    <input type="hidden" value="{{$tag->id}}" name="tag_id">
-                                                    <input type="hidden" value="{{Session::token()}}" name="_token">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">
-                                                        Close
-                                                    </button>
-                                                    <button type="submit" class="btn btn-warning">Update</button>
-                                                </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label for="name">Tag</label>
+                                                <input class="form-control" type="text" value="{{$tag->name}}"
+                                                       id="name"
+                                                       name="name" placeholder="Enter name tag...">
                                             </div>
-                                        </form>
-                                    </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <div class="form-group" id="action">
+                                                <input type="hidden" value="{{$tag->id}}" name="tag_id">
+                                                <input type="hidden" value="{{Session::token()}}" name="_token">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                    Cancel
+                                                </button>
+                                                <button type="submit" class="btn btn-warning">Update</button>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
 
@@ -62,7 +63,7 @@
                             </button>
                             <div class="modal fade" role="dialog" id="delete{{$tag->id}}">
                                 <div class="modal-dialog">
-                                    <div class="modal-content" style="height: 190px;top: 150px">
+                                    <div class="modal-content" style="top: 150px">
                                         <div class="modal-header">
                                             <h5 style="font-weight: bold">Delete Category: "<span
                                                         style="font-style: italic">{{$tag->name}}</span>"</h5>
@@ -74,8 +75,9 @@
                                             <form action="{{route('post_delete_tag')}}" method="post">
                                                 <input type="hidden" value="{{$tag->id}}" name="tag_id">
                                                 <input type="hidden" value="{{Session::token()}}" name="_token">
-                                                <button type="submit" class="btn btn-warning">Yes</button>
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">No
+                                                <button type="submit" class="btn btn-warning">Confirm</button>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                    Cancel
                                                 </button>
                                             </form>
                                         </div>

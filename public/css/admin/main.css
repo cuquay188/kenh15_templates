@@ -188,9 +188,9 @@ tr td a:hover {
 body {
   display: flex; }
   body .sidebar {
-    flex: 1 0 20%; }
+    flex: 1 0 250px; }
   body .body {
-    flex: 1 0 80%; }
+    flex: 1 0 calc(100% - 250px); }
 
 .sidebar {
   background-color: #383D4B;
@@ -335,6 +335,8 @@ body {
 
 .modal-footer {
   padding: 8px 12px; }
+  .modal-footer .form-group {
+    margin: 0; }
 
 .wide {
   overflow: hidden; }
@@ -357,6 +359,8 @@ body {
     padding: 0 15px;
     box-shadow: 0 0 5px #bdc3c7;
     height: 60px; }
+    .wide .modal-footer .form-group {
+      margin: 15px 0; }
   .wide .modal-body {
     margin: 5px 0;
     height: calc(100% - 130px);

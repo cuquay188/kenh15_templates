@@ -23,7 +23,8 @@
                     <tr style="font-size: 13px">
                         <td><a href="{{route('category').'/'.$category->id}}">{{$category->name}}</a></td>
                         <td>
-                            <div id="category_is_hot_value_{{$category->id}}" style="display:none;">{{$category->is_hot}}</div>
+                            <div id="category_is_hot_value_{{$category->id}}"
+                                 style="display:none;">{{$category->is_hot}}</div>
                             <button onclick="changeHot('{{$category->id}}')" id="category_is_hot_{{$category->id}}"
                                     class="btn btn-xs btn-toggle {{$category->is_hot ? 'btn-primary' : 'btn-default'}}"></button>
                         </td>
@@ -34,29 +35,30 @@
                             </button>
                             <div class="modal fade" role="dialog" id="edit{{$category->id}}">
                                 <div class="modal-dialog">
-                                    <div class="modal-content" style="top: 150px">
+                                    <form action="{{route('admin.update.category.name')}}" method="POST" role="form"
+                                          class="modal-content" style="top: 150px">
                                         <div class="modal-header">
                                             <h5 style="font-weight: bold">Edit Category: "<span
                                                         style="font-style: italic">{{$category->name}}</span>"</h5>
                                         </div>
-                                        <form action="{{route('post_update_category')}}" method="post" role="form">
-                                            <div class="modal-body">
-                                                <div class="form-group">
-                                                    <label for="name">Category</label>
-                                                    <input type="text" value="{{$category->name}}" name="name" id="name"
-                                                           class="form-control" placeholder="Enter name...">
-                                                </div>
-                                                <div class="form-group" id="action">
-                                                    <input type="hidden" value="{{$category->id}}" name="category_id">
-                                                    <input type="hidden" value="{{Session::token()}}" name="_token">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">
-                                                        Close
-                                                    </button>
-                                                    <button type="submit" class="btn btn-warning">Update</button>
-                                                </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label for="name">Category</label>
+                                                <input type="text" value="{{$category->name}}" name="name" id="name"
+                                                       class="form-control" placeholder="Enter name...">
                                             </div>
-                                        </form>
-                                    </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <div class="form-group" id="action">
+                                                <input type="hidden" value="{{$category->id}}" name="category_id">
+                                                <input type="hidden" value="{{Session::token()}}" name="_token">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                    Cancel
+                                                </button>
+                                                <button type="submit" class="btn btn-warning">Update</button>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
 
@@ -66,7 +68,7 @@
                             </button>
                             <div class="modal fade" role="dialog" id="delete{{$category->id}}">
                                 <div class="modal-dialog">
-                                    <div class="modal-content" style="height: 190px;top: 150px">
+                                    <div class="modal-content" style="top: 150px">
                                         <div class="modal-header">
                                             <h5 style="font-weight: bold">Delete Category: "<span
                                                         style="font-style: italic">{{$category->name}}</span>"</h5>
@@ -78,8 +80,9 @@
                                             <form action="{{route('post_delete_category')}}" method="post">
                                                 <input type="hidden" value="{{$category->id}}" name="category_id">
                                                 <input type="hidden" name="_token" value="{{ Session::token() }}">
-                                                <button type="submit" class="btn btn-warning">Yes</button>
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">No
+                                                <button type="submit" class="btn btn-warning">Confirm</button>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                    Cancel
                                                 </button>
                                             </form>
                                         </div>
@@ -106,7 +109,7 @@
         $('table').DataTable({
             "pageLength": $(document).height() < 800 ? 8 : 15,
             "bLengthChange": false,
-            "order": [[ 1, "desc" ]]
+            "order": [[1, "desc"]]
         });
 
         var changeHot = function (category_id) {
@@ -119,16 +122,13 @@
                 success: function (response) {
                     var is_hot = response.is_hot;
                     $('#category_is_hot_' + category_id)
-                            .removeClass(is_hot==1 ? 'btn-default' : 'btn-primary')
-                            .addClass(is_hot==1 ? 'btn-primary' : 'btn-default');
-                    $('#category_is_hot_value_'+category_id).text(is_hot);
-                    console.log('Update Category '+category_id+' success.')
-                    $('table').DataTable({
-                        "order": [[ 1, "desc" ]]
-                    });
+                            .removeClass(is_hot == 1 ? 'btn-default' : 'btn-primary')
+                            .addClass(is_hot == 1 ? 'btn-primary' : 'btn-default');
+                    $('#category_is_hot_value_' + category_id).text(is_hot);
+                    console.log('Update Category ' + category_id + ' success.')
                 },
                 error: function () {
-                    console.error('Update Category '+category_id+' fail.')
+                    console.error('Update Category ' + category_id + ' fail.')
                 }
             });
         };
