@@ -79,7 +79,7 @@
     </div>
     <script>
         $('.goto-top').click(function () {
-            $('body').animate({scrollTop: 0});
+            $('.container').animate({scrollTop: 0});
         });
     </script>
 @endsection

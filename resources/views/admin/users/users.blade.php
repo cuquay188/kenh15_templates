@@ -17,7 +17,7 @@
                 <th>Age</th>
                 <th>Phone</th>
                 <th>Email</th>
-                <th>Function</th>
+                <th>Action</th>
             </tr>
             </thead>
             <tbody>
@@ -25,7 +25,7 @@
                 <tr style="font-size: 13px">
                     <td><a href="{{route('author').'/'.$user->id}}">{{$user->name}}</a></td>
                     <td>{{$user->address}}</td>
-                    <td>{{$user->birth}}</td>
+                    <td>{{$user->formatBirth()}}</td>
                     <td>{{$user->tel}}</td>
                     <td>{{$user->email}}</td>
                     <td>
@@ -115,6 +115,9 @@
         </table>
     </div>
     <script>
-        $('table').DataTable();
+        $('table').DataTable({
+            "pageLength": $(document).height() < 800 ? 8 : 15,
+            "bLengthChange": false
+        });
     </script>
 @endsection

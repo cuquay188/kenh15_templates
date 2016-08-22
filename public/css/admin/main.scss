@@ -1,6 +1,6 @@
 .content {
-  width: 60%;
-  margin: 50px auto;
+  width: 650px;
+  margin: 20px auto;
 }
 
 .content.content-width {
@@ -27,6 +27,7 @@
     content: "\e007";
   }
   &.btn-primary:before {
+    color: #ffea00;
     content: "\e006";
   }
 }
@@ -150,7 +151,7 @@ form {
 }
 
 .user_mng {
-  width: 50%;
+  width: 700px;
   margin: auto;
   .form-group {
     margin: 15px 0;
@@ -209,7 +210,7 @@ form {
 .goto-top {
   position: fixed;
   right: 50px;
-  bottom: 50px;
+  bottom: 80px;
   background-color: lightgrey;
   border: hidden;
   border-radius: 4px;
@@ -251,10 +252,10 @@ tr td {
 body {
   display: flex;
   .sidebar {
-    flex: 1 0 20%;
+    flex: 1 0 250px;
   }
   .body {
-    flex: 1 0 80%;
+    flex: 1 0 calc(100% - 250px);
   }
 }
 
@@ -286,9 +287,6 @@ body {
       color: #95a5a6;
     }
   }
-}
-
-.sidebar-body {
 }
 
 .item {
@@ -366,13 +364,13 @@ body {
   .container {
     width: 100%;
     padding: 20px 40px;
-    height: calc(100vh - 64px - 73px);
+    height: calc(100vh - 128px);
     overflow-y: auto;
   }
   .body-header {
     padding: 20px 0;
     box-shadow: 5px 0 10px #7f8c8d;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     h2 {
       margin: 0 10px;
       font-weight: 600;
@@ -394,7 +392,8 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 7px;
+  width: 10px;
+  height: 10px;
   background-color: #F5F5F5;
 }
 
@@ -418,12 +417,66 @@ body {
   padding: 20px;
 }
 
-.empty-table {
+.empty-table,
+.empty-message {
   text-align: center;
   a {
     color: #3498db;
     &:hover {
       color: #3498db;
     }
+  }
+}
+
+.empty-message {
+  font-size: 18px;
+}
+
+.modal-header {
+  h5 {
+    margin: 0;
+  }
+}
+
+.modal-footer {
+  padding: 8px 12px;
+  .form-group{
+    margin:0;
+  }
+}
+
+.wide {
+  overflow: hidden;
+  .modal-content {
+    border-radius: 0;
+    height: 100vh;
+    border: none;
+  }
+  .modal-header {
+    position: relative;
+    box-shadow: 0 0 5px #bdc3c7;
+    .close {
+      position: absolute;
+      right: 10px;
+      top: 15px;
+      font-size: 24px;
+    }
+    h5 {
+      font-size: 24px;
+      margin: 0 20px;
+    }
+  }
+  .modal-footer {
+    padding: 0 15px;
+    box-shadow: 0 0 5px #bdc3c7;
+    height: 60px;
+    .form-group{
+      margin:15px 0;
+    }
+  }
+  .modal-body {
+    margin: 5px 0;
+    height: calc(100% - 130px);
+    overflow: auto;
   }
 }

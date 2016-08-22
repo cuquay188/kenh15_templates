@@ -61,7 +61,7 @@ class CategoryController extends Controller
     public function postUpdateCategory(Request $request)
     {
         $this->validate($request, [
-            'category' => 'required|between:3,15'
+            'name' => 'required|between:3,15'
         ]);
 
         $id = $request->category_id;
@@ -86,13 +86,10 @@ class CategoryController extends Controller
 
     public function postHotCategory(Request $request)
     {
-        $this->validate($request, [
-            'id' => 'numeric'
-        ]);
-        $id = $request->id;
+        $id = $request->category_id;
         $category = Category::find($id);
         $hot = $category->is_hot ? '0' : '1';
         Category::where('id', $id)->update(['is_hot' => $hot]);
-        return redirect()->back();
+        return response()->json(['is_hot' => $hot]);
     }
 }

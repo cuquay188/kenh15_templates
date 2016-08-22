@@ -17,7 +17,7 @@
                 <th>Age</th>
                 <th>Phone</th>
                 <th>Email</th>
-                <th>Function</th>
+                <th>Action</th>
             </tr>
             </thead>
             <tbody>
@@ -26,7 +26,7 @@
                     <tr style="font-size: 13px">
                         <td><a href="{{route('author').'/'.$author->id}}">{{$author->user->name}}</a></td>
                         <td>{{$author->user->address}}</td>
-                        <td>{{$author->user->birth}}</td>
+                        <td>{{$author->user->formatBirth()}}</td>
                         <td>{{$author->user->tel}}</td>
                         <td>{{$author->user->email}}</td>
                         <td>
@@ -72,7 +72,7 @@
                                                 </div>
                                                 <div class="form-group" id="action">
                                                     <button type="button" class="btn btn-default" data-dismiss="modal">
-                                                        Close
+                                                        Cancel
                                                     </button>
                                                     <button type="submit" class="btn btn-warning">Update</button>
                                                     <input type="hidden" value="{{$author->id}}" name="author_id">
@@ -91,7 +91,7 @@
                             </button>
                             <div class="modal fade" role="dialog" id="delete{{$author->id}}">
                                 <div class="modal-dialog">
-                                    <div class="modal-content" style="height: 190px;top: 150px">
+                                    <div class="modal-content" style="top: 150px">
                                         <div class="modal-header">
                                             <h5 style="font-weight: bold">Delete Author:
                                                 <span style="font-style: italic;font-weight: bold">{{$author->user->name}}</span>
@@ -104,8 +104,8 @@
                                             <form action="{{route('post_delete_author')}}" method="post">
                                                 <input type="hidden" value="{{$author->id}}" name="author_id">
                                                 <input type="hidden" value="{{Session::token()}}" name="_token">
-                                                <button class="btn btn-warning">Yes</button>
-                                                <button class="btn btn-default" data-dismiss="modal">No</button>
+                                                <button class="btn btn-warning">Confirm</button>
+                                                <button class="btn btn-default" data-dismiss="modal">Cancel</button>
                                             </form>
                                         </div>
                                     </div>
@@ -114,12 +114,6 @@
                         </td>
                     </tr>
                 @endforeach
-                @section('body.scripts')
-
-                    <script>
-                        $('table').DataTable();
-                    </script>
-                @endsection
             @else
                 <tr>
                     <td colspan="6" class="empty-table">
@@ -131,4 +125,12 @@
             </tbody>
         </table>
     </div>
+@endsection
+@section('body.scripts')
+    <script>
+        $('table').DataTable({
+            "pageLength": $(document).height() < 800 ? 8 : 15,
+            "bLengthChange": false
+        });
+    </script>
 @endsection

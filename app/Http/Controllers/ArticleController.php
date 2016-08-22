@@ -36,7 +36,7 @@ class ArticleController extends Controller
         if (!Auth::check())
             return redirect()->back()->with(['fail' => 'Required login.']);
 
-        $article = Article::where('url',$url)->first();
+        $article = Article::where('url', $url)->first();
         return view('admin.articles.single.article', [
             'article' => $article
         ]);
@@ -46,7 +46,7 @@ class ArticleController extends Controller
     {
         if (!Auth::check())
             return redirect()->route('login')->with(['fail' => 'Required login.']);
-        if (!Auth::getUser()->author&&!Auth::getUser()->admin)
+        if (!Auth::getUser()->author && !Auth::getUser()->admin)
             return redirect()->back()->with(['fail' => 'You dont have permission to submit an article']);
         $authors = Author::all();
         $categories = Category::all();
@@ -58,7 +58,7 @@ class ArticleController extends Controller
         ]);
     }
 
-    public function postCreateArticle(Request $request)
+    public function postValidateArticle(Request $request)
     {
         $this->validate($request, [
             'title' => 'required|between:5,150',
@@ -66,23 +66,29 @@ class ArticleController extends Controller
             'category_id' => 'numeric',
             'authors' => 'required'
         ]);
+        return response()->json([
+            'message' => 'Validate success',
+        ]);
+    }
 
-        $title = $request->title;
-        $content = $request->data;
-        $category_id = $request->category_id;
-        $img_url = $request->img_url;
+    public function postCreateArticle(Request $request)
+    {
+        $title = $request->create_article_title;
+        $content = $request->create_article_data;
+        $category_id = $request->create_article_category_id;
+        $img_url = $request->create_article_img_url;
 
         $article = new Article();
         $article->title = $title;
         $article->url = $this->convert_title_to_url($title);
-        $article->img_url = $img_url;
+        $article->img_url = $this->make_article_img_url($content);
         $article->content = $content;
         $article->category_id = $category_id;
         $article->save();
 
         $article = Article::orderBy('id', 'desc')->first();
-        $tags = $request->tags;
-        $authors = $request->authors;
+        $tags = $request->create_article_tags;
+        $authors = $request->create_article_authors;
         if (!empty($tags)) {
             foreach ($tags as $tag) {
                 $article->tags()->attach($tag);
@@ -156,7 +162,33 @@ class ArticleController extends Controller
         return redirect()->back();
     }
 
-    function convert_title_to_url($str)
+    public function getArticleJSON($id)
+    {
+        $article = Article::find($id);
+        $article->shorten_title = $article->shorten_title(100);
+
+        $tags = array();
+        foreach($article->tags as $tag)
+            array_push($tags,$tag->id);
+        $article->tags = $tags;
+
+        $authors = array();
+        foreach($article->authors as $author)
+            array_push($authors,$author->id);
+        $article->authors = $authors;
+        return $article;
+    }
+
+    public function refreshDatabase()
+    {
+        foreach (Article::all() as $article) {
+            Article::where('id', $article->id)->update(['url' => $this->convert_title_to_url($article->title)]);
+            Article::where('id', $article->id)->update(['img_url' => $this->make_article_img_url($article->content)]);
+        }
+        return redirect()->route('article');
+    }
+
+    static function convert_title_to_url($str)
     {
         $str = preg_replace("/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/", 'a', $str);
         $str = preg_replace("/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/", 'e', $str);
@@ -172,7 +204,15 @@ class ArticleController extends Controller
         $str = preg_replace("/(Ù|Ú|Ụ|Ủ|Ũ|Ư|Ừ|Ứ|Ự|Ử|Ữ)/", 'U', $str);
         $str = preg_replace("/(Ỳ|Ý|Ỵ|Ỷ|Ỹ)/", 'Y', $str);
         $str = preg_replace("/(Đ)/", 'D', $str);
-        $str = str_replace(" ", "-", str_replace("&*#39;", "", $str));
+        $str = str_replace(" ", "-", str_replace("?", "", $str));
+        return $str;
+    }
+
+    static function make_article_img_url($str)
+    {
+        $pos = strpos($str, "src=");
+        $end = strpos($str, "\"", $pos + 5) - $pos - 5;
+        $str = substr($str, $pos + 5, $end);
         return $str;
     }
 }

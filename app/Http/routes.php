@@ -62,11 +62,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/article/{url}', [
         'uses' => 'ArticleController@getSingleArticle'
     ]);
-    Route::get('/create/article', [
-        'uses' => 'ArticleController@getCreateArticle',
-        'as' => 'create_article'
-    ]);
-    Route::post('/create/article1', [
+    Route::post('/create/article', [
         'uses' => 'ArticleController@postCreateArticle',
         'as' => 'post_article_1'
     ]);
@@ -102,7 +98,7 @@ Route::group(['prefix' => 'admin'], function () {
     ]);
     Route::post('/edit/tag', [
         'uses' => 'TagController@postUpdateTag',
-        'as' => 'post_update_tag'
+        'as' => 'admin.update.tag.name'
     ]);
     Route::post('/delete/tag', [
         'uses' => 'TagController@postDeleteTag',
@@ -156,14 +152,31 @@ Route::group(['prefix' => 'admin'], function () {
     ]);
     Route::post('/edit/category', [
         'uses' => 'CategoryController@postUpdateCategory',
-        'as' => 'post_update_category'
+        'as' => 'admin.update.category.name'
     ]);
     Route::get('/category/{id}', [
         'uses' => 'CategoryController@getViewCategory'
     ]);
+    Route::get('/refresh-database', [
+        'uses' => 'ArticleController@refreshDatabase',
+        'as' => 'admin.fix.database',
+    ]);
+
+});
+Route::group(['prefix' => 'api'], function () {
+    Route::get('/article',[
+       'as' => 'admin.api.article'
+    ]);
+    Route::get('/article/{id}', [
+        'uses' => 'ArticleController@getArticleJSON'
+    ]);
+    Route::post('create/article/validate', [
+        'uses' => 'ArticleController@postValidateArticle',
+        'as' => 'admin.validate.article'
+    ]);
     Route::post('/category/hot', [
         'uses' => 'CategoryController@postHotCategory',
-        'as' => 'post_update_category_hot'
+        'as' => 'admin.update.category.hot'
     ]);
 });
 // Home page

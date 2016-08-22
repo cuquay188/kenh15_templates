@@ -12,8 +12,8 @@
                 <form action="{{route('post_delete_article')}}" method="post">
                     <input name="article_id" value="{{$article->id}}" type="hidden">
                     <input type="hidden" value="{{Session::token()}}" name="_token">
-                    <button class="btn btn-warning">Yes</button>
-                    <button class="btn btn-default" data-dismiss="modal">No</button>
+                    <button class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button class="btn btn-warning">Confirm</button>
                 </form>
             </div>
         </div>
