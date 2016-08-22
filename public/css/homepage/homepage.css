@@ -35,8 +35,7 @@
   margin-bottom: 20px;
   vertical-align: top; }
   .article .picture {
-    /*rgba(255,0,0,0.098)*/
-    background-color: white;
+    background-color: rgba(238, 253, 252, 0.88);
     width: 220px;
     margin-bottom: 5px;
     text-align: center; }

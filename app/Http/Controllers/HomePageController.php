@@ -15,12 +15,12 @@ class HomePageController extends Controller
         $articles_top = Article::skip(0)->take(5)->get();
         $article_first = Article::orderBy('id', 'desc')->first();
         $articles_latest = Article::orderBy('id', 'desc')->skip(1)->take(4)->get();
-        $categories = Category::all();
+        $hot_categories = Category::where('is_hot','1')->get();
         return view('homepage.index.index', [
             'articles_top' => $articles_top,
             'article_first' => $article_first,
             'articles_latest' => $articles_latest,
-            'categories' => $categories
+            'hot_categories' => $hot_categories
         ]);
     }
 
@@ -31,14 +31,6 @@ class HomePageController extends Controller
         return view('homepage.articles.single_article', [
             'related_articles' => $related_articles,
             'article' => $article
-        ]);
-    }
-
-    public function getCategoriesMenu()
-    {
-        $categories = Category::all();
-        return view('homepage.categories.menu', [
-            'categories' => $categories
         ]);
     }
 

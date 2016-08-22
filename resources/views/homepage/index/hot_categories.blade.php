@@ -1,4 +1,4 @@
-@foreach($categories as $category)
+@foreach($hot_categories as $category)
     @if(count($category->articles))
         <div class="category">
             <div class="head">
@@ -9,7 +9,7 @@
                     <div class="article">
                         <div class="picture">
                             <a href="{{route('homepage').'/article/'.$article->id}}"><img
-                                        src="http://cdn2-www.dogtime.com/assets/uploads/2015/09/malamute-alaska-state-dog.jpg"></a>
+                                        src="{{$article->img_url}}"></a>
                         </div>
                         <div class="title">
                             <a href="{{route('homepage').'/article/'.$article->id}}">{{$article->title}}</a>
