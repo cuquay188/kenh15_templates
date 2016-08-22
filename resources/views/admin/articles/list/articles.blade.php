@@ -62,6 +62,7 @@
                         </td>
                     </tr>
                 @endforeach
+                @include("admin.articles.list.components.edit")
             @else
                 <tr>
                     <td colspan="6" class="empty-table">
@@ -74,7 +75,6 @@
             </tbody>
         </table>
     </div>
-    @include("admin.articles.list.components.edit")
 @endsection
 @section('body.scripts')
     <script>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\CategoryAdvance;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
@@ -48,6 +49,12 @@ class CategoryController extends Controller
 
         $category->save();
 
+        $category = Category::where('name',$name)->first();
+        $advance = new CategoryAdvance();
+        $advance->category_id = $category->id;
+        $advance->save();
+
+
         return redirect()->back();
     }
 
@@ -88,8 +95,8 @@ class CategoryController extends Controller
     {
         $id = $request->category_id;
         $category = Category::find($id);
-        $hot = $category->is_hot ? '0' : '1';
-        Category::where('id', $id)->update(['is_hot' => $hot]);
+        $hot = $category->advance->is_hot ? '0' : '1';
+        CategoryAdvance::where('category_id', $id)->update(['is_hot' => $hot]);
         return response()->json(['is_hot' => $hot]);
     }
 }
