@@ -10,7 +10,7 @@
                 @if(count($category->articles))
                     <div class="category">
                         <div class="head">
-                            <a href="#">{{$category->name}}</a>
+                            <a href="{{route('homepage').'/category/'.$category->id}}">{{$category->name}}</a>
                         </div>
                         <div class="articles">
                             <div class="article">

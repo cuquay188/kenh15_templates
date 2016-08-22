@@ -31,13 +31,11 @@ header {
   width: 100%;
   margin-bottom: 5px;
   box-shadow: 0 0 10px #95a5a6; }
-  header .title {
-    padding-left: 0; }
-    header .title h2 {
-      margin-top: 0;
-      margin-bottom: 0;
-      padding: 8px 12px;
-      font-weight: bold; }
+  header .title a {
+    color: white;
+    text-decoration: none;
+    font-size: 29px;
+    font-weight: bold; }
 
 .body {
   overflow-y: auto;
@@ -53,17 +51,68 @@ header {
   display: inline-block;
   padding: 14px 16px;
   transition: background-color 0.3s; }
-  .menu-item:hover {
+  .menu-item i {
+    font-size: 20px; }
+  .menu-item:hover, .menu-item.active {
     background-color: #16a085; }
-  .menu-item.active {
-    background-color: #16a085; }
+
+.menu-item .icon {
+  display: inline-block;
+  cursor: pointer; }
+
+.menu-dropdown:hover .dropdown-content {
+  display: block;
+  z-index: 3; }
+
+.icon {
+  position: relative;
+  display: inline-block; }
+  .icon .dropdown-content {
+    display: none;
+    position: absolute;
+    top: 35px;
+    right: -100px;
+    min-width: 500px;
+    background-color: #f5fefd;
+    cursor: default; }
+    .icon .dropdown-content ul {
+      padding: 0; }
+      .icon .dropdown-content ul li {
+        display: inline-block;
+        vertical-align: top;
+        width: 100px;
+        margin: 10px 10px 5px 10px;
+        cursor: pointer; }
+        .icon .dropdown-content ul li a {
+          color: black;
+          font-weight: normal; }
+        .icon .dropdown-content ul li:hover {
+          background-color: #1abc9c; }
+          .icon .dropdown-content ul li:hover a {
+            color: white; }
+        .icon .dropdown-content ul li:before {
+          content: ""; }
 
 .search-area {
   padding-top: 7px; }
 
 .search-form .form-group {
   margin: 0;
-  position: relative; }
+  position: relative;
+  width: 85%; }
+  .search-form .form-group .form-control {
+    background-color: inherit;
+    border: 2px solid white;
+    border-radius: 3px;
+    color: white; }
+    .search-form .form-group .form-control::-webkit-input-placeholder {
+      color: white; }
+    .search-form .form-group .form-control:-moz-placeholder {
+      color: white; }
+    .search-form .form-group .form-control::-moz-placeholder {
+      color: white; }
+    .search-form .form-group .form-control:-ms-input-placeholder {
+      color: white; }
   .search-form .form-group a {
     display: inline;
     position: absolute;
@@ -71,9 +120,9 @@ header {
     top: 8px; }
     .search-form .form-group a .glyphicon {
       font-size: 120%;
-      color: #1abc9c; }
+      color: white; }
       .search-form .form-group a .glyphicon:hover {
-        color: #16a085; }
+        color: #ecf0f1; }
 
 .goto-top {
   position: fixed;

@@ -40,11 +40,10 @@ header {
   margin-bottom: 5px;
   box-shadow: 0 0 10px #95a5a6;
   .title {
-    padding-left: 0;
-    h2 {
-      margin-top: 0;
-      margin-bottom: 0;
-      padding: 8px 12px;
+    a {
+      color: white;
+      text-decoration: none;
+      font-size: 29px;
       font-weight: bold;
     }
   }
@@ -68,11 +67,60 @@ header {
   display: inline-block;
   padding: 14px 16px;
   transition: background-color 0.3s;
-  &:hover {
+  i{
+    font-size:20px;
+  }
+  &:hover, &.active {
     background-color: #16a085;
   }
-  &.active {
-    background-color: #16a085;
+}
+
+.menu-item {
+  .icon {
+    display: inline-block;
+    cursor: pointer;
+  }
+}
+.menu-dropdown:hover{
+  .dropdown-content {
+    display: block;
+    z-index: 3;
+  }
+}
+.icon {
+  position: relative;
+  display: inline-block;
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    top: 35px;
+    right:-100px;
+    min-width: 500px;
+    background-color: #f5fefd;
+    cursor: default;
+    ul {
+      padding: 0;
+      li {
+        display: inline-block;
+        vertical-align: top;
+        width: 100px;
+        margin: 10px 10px 5px 10px;
+        cursor: pointer;
+        a {
+          color: black;
+          font-weight: normal;
+        }
+        &:hover {
+          background-color: #1abc9c;
+          a {
+            color: white;
+          }
+        }
+        &:before {
+          content: "";
+        }
+      }
+    }
   }
 }
 
@@ -83,6 +131,25 @@ header {
 .search-form .form-group {
   margin: 0;
   position: relative;
+  width:85%;
+  .form-control{
+    background-color: inherit;
+    border:2px solid white;
+    border-radius: 3px;
+    color: white;
+    &::-webkit-input-placeholder {
+      color: white;
+    }
+    &:-moz-placeholder {
+      color: white;
+    }
+    &::-moz-placeholder {
+      color: white;
+    }
+    &:-ms-input-placeholder {
+      color: white;
+    }
+  }
   a {
     display: inline;
     position: absolute;
@@ -90,9 +157,9 @@ header {
     top: 8px;
     .glyphicon {
       font-size: 120%;
-      color: #1abc9c;
+      color: white;
       &:hover {
-        color: #16a085;
+        color: #ecf0f1;
       }
     }
   }

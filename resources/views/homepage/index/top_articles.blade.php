@@ -17,6 +17,8 @@
 <script>
     $(function () {
         var offsetPixels = 0;
+        var offsetStopPixels = $('.body').height() - $('footer').height() - 150;
+        var bodySidebarHeight = $('.body-top').height();
         $('.body').scroll(function () {
             if ($('.body').scrollTop() > offsetPixels) {
                 $('.sidebar-left').css({
@@ -27,7 +29,21 @@
                 $('.main-content').css({
                     'position': 'relative',
                     'left': '285px'
-                })
+                });
+                if ($('.body').scrollTop() > offsetStopPixels) {
+                    $('.body-top').css({
+                        'height': 290,
+                        'overflow-y': 'auto'
+                    });
+                    $('.main-content').css({
+                        'position': 'relative',
+                        'left': '285px'
+                    });
+                }else {
+                    $('.body-top').css({
+                        'height': bodySidebarHeight + 33
+                    });
+                }
             } else {
                 $('.sidebar-left').css({
                     'position': 'static'

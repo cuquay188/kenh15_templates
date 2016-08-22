@@ -26,13 +26,11 @@ class HomePageController extends Controller
 
     public function getArticle($id)
     {
-        $categories = Category::all();
         $article = Article::find($id);
         $related_articles = Article::where('category_id', $article->category->id)->orderBy('id', 'desc')->take(6)->get();
         return view('homepage.articles.single_article', [
             'related_articles' => $related_articles,
-            'article' => $article,
-            'categories' => $categories
+            'article' => $article
         ]);
     }
 
@@ -41,6 +39,16 @@ class HomePageController extends Controller
         $categories = Category::all();
         return view('homepage.categories.menu', [
             'categories' => $categories
+        ]);
+    }
+
+    public function getSingleCategory($id)
+    {
+        $category = Category::find($id);
+        $articles = Article::where('category_id', $id)->get();
+        return view('homepage.categories.single_category', [
+            'articles' => $articles,
+            'category' => $category
         ]);
     }
 }

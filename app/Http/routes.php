@@ -178,3 +178,6 @@ Route::get('/categories', [
     'uses' => 'HomepageController@getCategoriesMenu',
     'as' => 'categories'
 ]);
+Route::get('/category/{id}', [
+    'uses' => 'HomepageController@getSingleCategory'
+]);

@@ -2,7 +2,7 @@
     <div class="container">
         <div class="categories">
             <ul>
-                @foreach($categories as $category)
+                @foreach(\App\Category::all() as $category)
                     <li class="col-xs-2"><a href="#">{{$category->name}}</a></li>
                 @endforeach
             </ul>
