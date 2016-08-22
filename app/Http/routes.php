@@ -178,6 +178,10 @@ Route::group(['prefix' => 'api'], function () {
         'uses' => 'CategoryController@postHotCategory',
         'as' => 'admin.update.category.hot'
     ]);
+    Route::post('/category/header', [
+        'uses' => 'CategoryController@postHeaderCategory',
+        'as' => 'admin.update.category.header'
+    ]);
 });
 // Home page
 Route::get('/', [

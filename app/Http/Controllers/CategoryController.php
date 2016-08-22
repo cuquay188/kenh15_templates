@@ -49,7 +49,7 @@ class CategoryController extends Controller
 
         $category->save();
 
-        $category = Category::where('name',$name)->first();
+        $category = Category::where('name', $name)->first();
         $advance = new CategoryAdvance();
         $advance->category_id = $category->id;
         $advance->save();
@@ -97,6 +97,21 @@ class CategoryController extends Controller
         $category = Category::find($id);
         $hot = $category->advance->is_hot ? '0' : '1';
         CategoryAdvance::where('category_id', $id)->update(['is_hot' => $hot]);
-        return response()->json(['is_hot' => $hot]);
+        return response()->json([
+            'message' => 'success',
+            'is_hot' => $hot
+        ]);
+    }
+
+    public function postHeaderCategory(Request $request)
+    {
+        $id = $request->category_id;
+        $category = Category::find($id);
+        $is_header = $category->advance->is_header ? '0' : '1';
+        CategoryAdvance::where('category_id', $id)->update(['is_header' => $is_header]);
+        return response()->json([
+            'message' => 'success',
+            'is_header' => $is_header
+        ]);
     }
 }
