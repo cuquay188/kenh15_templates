@@ -1,7 +1,8 @@
 <div class="newest-article">
     <div class="picture">
-        <a href="{{route('homepage').'/article/'.$article_first->id}}"><img
-                    src="http://chopet.vn/wp-content/uploads/2015/10/become-a-certified-dog-trainer-in-alaska-2.jpg"></a>
+        <a href="{{route('homepage').'/article/'.$article_first->id}}">
+            <img src="{{$article_first->img_url}}" style="width:100%;height: 100%">
+        </a>
     </div>
     <div class="title">
         <a href="{{route('homepage').'/article/'.$article_first->id}}">{{$article_first->title}}</a>
@@ -19,7 +20,7 @@
         <div class="article">
             <div class="picture">
                 <a href="{{route('homepage').'/article/'.$article->id}}"><img
-                            src="http://adogbreeds.com/wp-content/uploads/2013/01/Alaskan-Malamute-Puppies.jpg"></a>
+                            src="{{$article->img_url}}"></a>
             </div>
             <div class="title">
                 <a href="{{route('homepage').'/article/'.$article->id}}">{{$article->title}}</a>

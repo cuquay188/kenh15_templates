@@ -7,7 +7,7 @@
             <div class="menu-item {{Route::getCurrentRoute()->getName()=='homepage'?'active':''}}">
                 <a href="{{route('homepage')}}"><i class="fa fa-home" aria-hidden="true"></i></a>
             </div>
-            @foreach(\App\Category::take(5)->get() as $category)
+            @foreach(\App\Category::where('is_hot','1')->take(5)->get() as $category)
                 <div class="menu-item">
                     <a href="#">{{$category->name}}</a>
                 </div>
