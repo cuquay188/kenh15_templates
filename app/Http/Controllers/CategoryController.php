@@ -97,6 +97,8 @@ class CategoryController extends Controller
         $category = Category::find($id);
         $hot = $category->advance->is_hot ? '0' : '1';
         CategoryAdvance::where('category_id', $id)->update(['is_hot' => $hot]);
+        if(!$hot)
+            CategoryAdvance::where('category_id', $id)->update(['is_header' => $hot]);
         return response()->json([
             'message' => 'success',
             'is_hot' => $hot

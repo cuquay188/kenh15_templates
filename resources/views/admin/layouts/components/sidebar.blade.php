@@ -86,7 +86,7 @@
             <div class="name">
                 <a href="{{route('user_management')}}">
                     {{Auth::getUser()->name}}<br>
-                    <label>{{Auth::getUser()->author ? 'Author': Auth::getUser()->admin ? 'Admin' : 'Normal User'}}</label>
+                    <label>{{Auth::getUser()->admin ? 'Admin' : (Auth::getUser()->author ? 'Author': 'Normal User')}}</label>
                 </a>
             </div>
         </div>
