@@ -1,23 +1,23 @@
 footer {
   margin-top: 20px;
   background-color: rgba(0, 0, 0, 0.7);
-  color: white;
   width: 100%;
   padding: 10px; }
 
-.categories ul {
-  padding: 0; }
-  .categories ul li {
-    display: inline-block;
-    list-style: none;
+.categories {
+  margin-bottom: 20px; }
+  .categories ul {
     padding: 0; }
-    .categories ul li:before {
-      content: ''; }
-    .categories ul li a {
-      color: white;
-      font-size: 17px; }
-
-.info {
-  border-bottom: 1px solid white; }
+    .categories ul li {
+      display: inline-block;
+      width: 120px;
+      list-style: none;
+      margin-right: 10px;
+      padding: 0; }
+      .categories ul li:before {
+        content: ''; }
+      .categories ul li a {
+        color: white;
+        font-size: 17px; }
 
 /*# sourceMappingURL=footer.css.map */
