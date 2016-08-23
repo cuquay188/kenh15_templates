@@ -50,19 +50,19 @@
                             <a href="{{route('article').'/'.$article->url}}" class="btn btn-primary btn-xs">Preview</a>
                             {{--Edit--}}
                             <button type="submit" {{Auth::getUser()->author||Auth::getUser()->admin ? '' : 'disabled'}}
-                                    class="btn btn-primary btn-xs" data-toggle="modal" id="#toggle_edit_article_{{$article->id}}"
+                            class="btn btn-primary btn-xs" data-toggle="modal"
+                                    id="#toggle_edit_article_{{$article->id}}"
                                     data-target="#edit_article" onclick="editArticle('{{$article->id}}')">Edit
                             </button>
                             {{--Delete--}}
                             <button type="submit" {{Auth::getUser()->author||Auth::getUser()->admin ? '' : 'disabled'}}
-                                    class="btn btn-primary btn-xs" data-toggle="modal"
+                            class="btn btn-primary btn-xs" data-toggle="modal"
                                     data-target="#delete{{$article->id}}">Delete
                             </button>
                             @include("admin.articles.list.components.delete")
                         </td>
                     </tr>
                 @endforeach
-                @include("admin.articles.list.components.edit")
             @else
                 <tr>
                     <td colspan="6" class="empty-table">
@@ -75,6 +75,9 @@
             </tbody>
         </table>
     </div>
+@endsection
+@section('dialogs')
+    @include("admin.articles.list.components.edit")
 @endsection
 @section('body.scripts')
     <script>

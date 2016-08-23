@@ -64,7 +64,7 @@ Route::group(['prefix' => 'admin'], function () {
     ]);
     Route::post('/create/article', [
         'uses' => 'ArticleController@postCreateArticle',
-        'as' => 'post_article_1'
+        'as' => 'post_create_article'
     ]);
     Route::post('/delete/article', [
         'uses' => 'ArticleController@postDeleteArticle',

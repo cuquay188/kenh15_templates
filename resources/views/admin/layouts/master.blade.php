@@ -40,6 +40,7 @@
 
     @include("admin.layouts.components.footer")
 
+    @yield('dialogs')
     @include('admin.layouts.components.dialogs')
 
     <script>
