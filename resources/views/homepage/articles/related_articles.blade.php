@@ -30,23 +30,39 @@
 <script>
     $(function () {
         var offsetPixels = 0;
+        var offsetStopPixels = $('.body').height() - $('footer').height() - 150;
+        var bodySidebarHeight = $('.body-top').height();
         $('.body').scroll(function () {
             if ($('.body').scrollTop() > offsetPixels) {
                 $('.sidebar-left').css({
                     'position': 'fixed',
                     'top': '55px',
-                    'width':'285px'
+                    'width': '285px'
                 });
                 $('.main-content').css({
-                    'position':'relative',
-                    'left':'285px'
-                })
-            }else{
+                    'position': 'relative',
+                    'left': '285px'
+                });
+                if ($('.body').scrollTop() > offsetStopPixels) {
+                    $('.body-top').css({
+                        'height': 290,
+                        'overflow-y': 'auto'
+                    });
+                    $('.main-content').css({
+                        'position': 'relative',
+                        'left': '285px'
+                    });
+                }else {
+                    $('.body-top').css({
+                        'height': bodySidebarHeight + 32.5
+                    });
+                }
+            } else {
                 $('.sidebar-left').css({
                     'position': 'static'
                 });
                 $('.main-content').css({
-                    'position':'static'
+                    'position': 'static'
                 })
             }
         })

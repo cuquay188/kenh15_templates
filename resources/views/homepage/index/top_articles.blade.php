@@ -4,7 +4,7 @@
         <a href="#">Top Articles</a>
     </div>
     <div class="body-top">
-        <ul data-spy="affix" data-offset-top="200">
+        <ul>
             @foreach($articles_top as $article)
                 <li><a href="{{route('homepage').'/article/'.$article->id}}">{{$article->title}}</a></li>
             @endforeach
@@ -41,7 +41,7 @@
                     });
                 }else {
                     $('.body-top').css({
-                        'height': bodySidebarHeight + 33
+                        'height': bodySidebarHeight + 32.5
                     });
                 }
             } else {

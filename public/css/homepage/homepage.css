@@ -5,7 +5,7 @@
   border-bottom-style: ridge; }
   .newest-article .picture {
     float: left;
-    background-color: white;
+    background-color: rgba(238, 253, 252, 0.88);
     width: 300px;
     height: 200px;
     margin-bottom: 10px;
@@ -37,6 +37,7 @@
   .article .picture {
     background-color: rgba(238, 253, 252, 0.88);
     width: 220px;
+    height: 140px;
     margin-bottom: 5px;
     text-align: center; }
   .article .title {

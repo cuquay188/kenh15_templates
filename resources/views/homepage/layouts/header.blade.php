@@ -9,7 +9,7 @@
             </div>
             @foreach(\App\Category::where('is_hot','1')->take(5)->get() as $category)
                 <div class="menu-item">
-                    <a href="#">{{$category->name}}</a>
+                    <a href="{{route('homepage').'/category/'.$category->id}}">{{$category->name}}</a>
                 </div>
             @endforeach
             <div class="menu-item menu-dropdown">
@@ -19,7 +19,7 @@
                         <ul>
                             @foreach(\App\Category::all() as $category)
                                 <li>
-                                    <a href="#">{{$category->name}}</a>
+                                    <a href="{{route('homepage').'/category/'.$category->id}}">{{$category->name}}</a>
                                 </li>
                             @endforeach
                         </ul>

@@ -15,7 +15,7 @@ class HomePageController extends Controller
         $articles_top = Article::skip(0)->take(5)->get();
         $article_first = Article::orderBy('id', 'desc')->first();
         $articles_latest = Article::orderBy('id', 'desc')->skip(1)->take(4)->get();
-        $hot_categories = Category::where('is_hot','1')->get();
+        $hot_categories = Category::where('is_hot', '1')->get();
         return view('homepage.index.index', [
             'articles_top' => $articles_top,
             'article_first' => $article_first,
@@ -37,9 +37,13 @@ class HomePageController extends Controller
     public function getSingleCategory($id)
     {
         $category = Category::find($id);
-        $articles = Article::where('category_id', $id)->get();
+        $article_first = Article::where('category_id', $id)->orderBy('id', 'desc')->first();
+        $hot_articles = Article::where('category_id', $id)->orderBy('id', 'desc')->take(6)->skip(1)->get();
+        $related_articles = Article::where('category_id', $id)->orderBy('id', 'desc')->take(10)->skip(7)->get();
         return view('homepage.categories.single_category', [
-            'articles' => $articles,
+            'related_articles' => $related_articles,
+            'hot_articles' => $hot_articles,
+            'article_first' => $article_first,
             'category' => $category
         ]);
     }
