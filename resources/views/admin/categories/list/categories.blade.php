@@ -13,7 +13,7 @@
             <thead>
             <tr>
                 <th>Category</th>
-                <th>Hot</th>
+                <th style="width:30%;">Hot</th>
                 <th>Action</th>
             </tr>
             </thead>
@@ -24,9 +24,17 @@
                         <td><a href="{{route('category').'/'.$category->id}}">{{$category->name}}</a></td>
                         <td>
                             <div id="category_is_hot_value_{{$category->id}}"
-                                 style="display:none;">{{$category->is_hot}}</div>
-                            <button onclick="changeHot('{{$category->id}}')" id="category_is_hot_{{$category->id}}"
-                                    class="btn btn-xs btn-toggle {{$category->is_hot ? 'btn-primary' : 'btn-default'}}"></button>
+                                 style="display:none;">{{$category->advance->is_hot}}</div>
+                            <div id="category_is_header_value_{{$category->id}}"
+                                 style="display:none;">{{$category->advance->is_header}}</div>
+                            <button onclick="changeIsHot('{{$category->id}}')" id="category_is_hot_{{$category->id}}"
+                                    class="btn btn-xs btn-toggle hot {{$category->advance->is_hot ? 'btn-primary' : 'btn-default'}}">
+
+                            </button>
+                            <button onclick="changeIsHeader('{{$category->id}}')" id="category_is_header_{{$category->id}}"
+                                    class="btn btn-xs btn-toggle header {{$category->advance->is_hot ? '' : 'hide'}} {{$category->advance->is_header ? 'btn-primary' : 'btn-default'}}">
+                                Show to header
+                            </button>
                         </td>
                         <td>
                             {{--Edit Function--}}
@@ -112,7 +120,7 @@
             "order": [[1, "desc"]]
         });
 
-        var changeHot = function (category_id) {
+        var changeIsHot = function (category_id) {
             $.ajax({
                 type: 'POST',
                 url: '{{route('admin.update.category.hot')}}',
@@ -125,7 +133,10 @@
                             .removeClass(is_hot == 1 ? 'btn-default' : 'btn-primary')
                             .addClass(is_hot == 1 ? 'btn-primary' : 'btn-default');
                     $('#category_is_hot_value_' + category_id).text(is_hot);
-                    console.log('Update Category ' + category_id + ' success.')
+                    console.log('Update Category ' + category_id + ' to ' + is_hot + ' success.');
+                    $('#category_is_header_' + category_id)
+                            .removeClass(is_hot == 1 ? 'hide' : '')
+                            .addClass(is_hot == 1 ? '' : 'hide')
                 },
                 error: function () {
                     console.error('Update Category ' + category_id + ' fail.')
@@ -133,5 +144,25 @@
             });
         };
 
+        var changeIsHeader = function (category_id) {
+            $.ajax({
+                type: 'POST',
+                url: '{{route('admin.update.category.header')}}',
+                data: {
+                    category_id: category_id
+                },
+                success: function (response) {
+                    var is_header = response.is_header;
+                    $('#category_is_header_' + category_id)
+                            .removeClass(is_header == 1 ? 'btn-default' : 'btn-primary')
+                            .addClass(is_header == 1 ? 'btn-primary' : 'btn-default');
+                    $('#category_is_header_value_' + category_id).text(is_header);
+                    console.log('Update Category ' + category_id + ' to ' + is_header + ' success.');
+                },
+                error: function () {
+                    console.error('Update Category ' + category_id + ' fail.')
+                }
+            });
+        }
     </script>
 @endsection

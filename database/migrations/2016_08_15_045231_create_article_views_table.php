@@ -13,7 +13,8 @@ class CreateArticleViewsTable extends Migration
     public function up()
     {
         Schema::create('article_views', function (Blueprint $table) {
-            $table->integer('article_id');
+            $table->integer('article_id')->unsigned();
+            $table->foreign('article_id')->references('id')->on('articles')->onDelete('cascade');
             $table->timestamp('date');
         });
     }

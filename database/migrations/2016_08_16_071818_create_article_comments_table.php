@@ -16,7 +16,8 @@ class CreateArticleCommentsTable extends Migration
             $table->increments('id');
             $table->text('comment');
             $table->char('guest',50);
-            $table->integer('article_id');
+            $table->integer('article_id')->unsigned();
+            $table->foreign('article_id')->references('id')->on('articles')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -1,7 +1,7 @@
 @if(Auth::getUser()->admin || Auth::getUser()->author)
     <div class="modal fade" id="create-article" role="dialog">
         <div class="modal-dialog wide">
-            <form class="modal-content" action="{{route('post_article_1')}}" method="POST">
+            <form class="modal-content" action="{{route('post_create_article')}}" method="POST">
                 <div class="modal-header">
                     <h5><strong>Create article</strong></h5>
                     <div class="close" data-dismiss="modal">

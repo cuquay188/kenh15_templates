@@ -64,7 +64,7 @@ Route::group(['prefix' => 'admin'], function () {
     ]);
     Route::post('/create/article', [
         'uses' => 'ArticleController@postCreateArticle',
-        'as' => 'post_article_1'
+        'as' => 'post_create_article'
     ]);
     Route::post('/delete/article', [
         'uses' => 'ArticleController@postDeleteArticle',
@@ -177,6 +177,10 @@ Route::group(['prefix' => 'api'], function () {
     Route::post('/category/hot', [
         'uses' => 'CategoryController@postHotCategory',
         'as' => 'admin.update.category.hot'
+    ]);
+    Route::post('/category/header', [
+        'uses' => 'CategoryController@postHeaderCategory',
+        'as' => 'admin.update.category.header'
     ]);
 });
 // Home page
