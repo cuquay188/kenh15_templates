@@ -66,7 +66,7 @@
                     <button type="submit" class="btn btn-warning ">Update</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal" onclick="dismissModal()">Close
                     </button>
-                    <input name="article_id" value="{{$article->id}}" type="hidden">
+                    <input name="article_id" id="edit_article_id" value="" type="hidden">
                     <input type="hidden" value="{{Session::token()}}" name="_token">
                 </div>
             </div>
@@ -84,6 +84,7 @@
                 $modal.find('#edit_title').val(article.title);
                 CKEDITOR.instances['edit_content'].setData(article.content);
                 $modal.find('#edit_category_id').val(article.category_id);
+                $modal.find('#edit_article_id').val(article.id);
                 for(var i in article.tags)
                     $modal.find('#edit_tags').find('#edit_tag_'+article.tags[i].id).prop("checked", true )
                 for(var j in article.authors)
