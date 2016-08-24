@@ -11,9 +11,9 @@
     <link rel="stylesheet" href="{{asset('/css/homepage/sidebar-left.css')}}">
     <link rel="stylesheet" href="{{asset('/css/homepage/footer.css')}}">
 
-    @yield('styles')
+@yield('styles')
 
-    <!-- jQuery library -->
+<!-- jQuery library -->
     <script src="{{asset('/js/jquery-2.2.4.min.js')}}"></script>
 
     <!-- Latest compiled JavaScript -->
@@ -29,12 +29,13 @@
     <div class="goto-top">
         <span class="glyphicon glyphicon-chevron-up"></span>
     </div>
+    @include('homepage.layouts.footer')
     <script>
         $('.goto-top').click(function () {
             $('.body').animate({scrollTop: 0});
         });
     </script>
-    @include('homepage.layouts.footer')
+    @yield('body.scripts')
 </div>
 </body>
 </html>

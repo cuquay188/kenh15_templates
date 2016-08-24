@@ -7,17 +7,18 @@ footer {
 .categories {
   margin-bottom: 20px; }
   .categories ul {
-    padding: 0; }
+    padding: 0;
+    margin: 0;
+    border-right: 1px solid white; }
     .categories ul li {
-      display: inline-block;
-      width: 120px;
       list-style: none;
-      margin-right: 10px;
       padding: 0; }
       .categories ul li:before {
         content: ''; }
       .categories ul li a {
-        color: white;
-        font-size: 17px; }
+        color: white; }
+
+.info {
+  color: white; }
 
 /*# sourceMappingURL=footer.css.map */
