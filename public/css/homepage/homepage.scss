@@ -20,7 +20,7 @@
       color: #2c3e50;
       font-weight: bold;
       font-size: 17px;
-      &:hover{
+      &:hover {
         color: #34495e;
       }
     }
@@ -30,6 +30,13 @@
     height: 60px;
     margin-bottom: 10px;
     overflow: hidden;
+    h2 {
+      strong{
+        font-weight: normal;
+      }
+      font-size: 17px;
+      margin-top: 10px;
+    }
   }
 }
 
@@ -43,9 +50,9 @@
   margin-bottom: 20px;
   vertical-align: top;
   .picture {
-    background-color: rgba(238,253,252,0.88);
+    background-color: rgba(238, 253, 252, 0.88);
     width: 220px;
-    height:140px;
+    height: 140px;
     margin-bottom: 5px;
     text-align: center;
   }
@@ -86,7 +93,7 @@
   padding: 10px;
   margin-top: 10px;
   .video {
-    background-color: rgba(26, 188, 156,0.2);
+    background-color: rgba(26, 188, 156, 0.2);
     height: 120px;
     margin-bottom: 10px;
   }
@@ -96,16 +103,16 @@
       color: #2c3e50;
       font-weight: bold;
       &:hover {
-        color:#34495e;
+        color: #34495e;
         text-decoration: none;
       }
     }
   }
-  .video-area:first-child{
+  .video-area:first-child {
     margin-top: 0;
   }
-  &:last-child{
-    border-bottom:none;
+  &:last-child {
+    border-bottom: none;
   }
 }
 
@@ -130,7 +137,7 @@
       color: #1abc9c;
     }
   }
-  .articles{
+  .articles {
     margin: 5px;
   }
   .article {
@@ -145,7 +152,7 @@
     margin-bottom: 10px;
     margin-left: 15px;
     .list {
-      ul{
+      ul {
         padding: 0;
       }
     }

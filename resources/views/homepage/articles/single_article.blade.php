@@ -21,7 +21,7 @@
                     Last updated at: {{$article->updated_at->format('H:i')}}
                 </p>
             </div>
-            <div class="article_content">
+            <div class="article-content">
                 <?php
                 echo $article->content;
                 ?>

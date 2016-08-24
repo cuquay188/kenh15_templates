@@ -1,6 +1,7 @@
-.body{
+.body {
   position: relative;
 }
+
 .main-content {
 }
 
@@ -8,10 +9,10 @@
   i {
     margin: 0 5px;
   }
-  a{
+  a {
     color: #1abc9c;
     text-decoration: none;
-    &:hover{
+    &:hover {
       color: #16a085;
     }
   }
@@ -20,6 +21,14 @@
 .title {
   h1 {
     font-weight: bold;
+    margin-top: 10px;
+  }
+}
+
+.article-content {
+  h2 {
+    font-weight: bold;
+    font-size: 17px;
     margin-top: 10px;
   }
 }
