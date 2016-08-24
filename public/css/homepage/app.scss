@@ -52,6 +52,7 @@ header {
 .body {
   overflow-y: auto;
   height: calc(100vh - 55px);
+  position: relative;
 }
 
 .menu {

@@ -28,43 +28,13 @@
             </div>
             <div class="authors">
                 <label>By </label>
-                <?php
-                $authors = $article->authors;
-                $authors_filter = array();
-                function search_author($author_id, $authors)
-                {
-                    foreach ($authors as $author) {
-                        if ($author_id == $author->id) return true;
-                    }
-                    return false;
-                }
-                foreach ($authors as $author) {
-                    if (!search_author($author->id, $authors_filter))
-                        array_push($authors_filter, $author);
-                }
-                ?>
-                @foreach($authors_filter as $author)
-                    <a href="#">{{$author->name}}</a>
+                @foreach($article->authors as $author)
+                    <span>{{$author->user->name}}</span>
                 @endforeach
             </div>
             <div class="tags">
                 <label>Tag(s)</label>
-                <?php
-                $tags = $article->tags;
-                $tags_filter = array();
-                function search_tag($tag_id, $tags)
-                {
-                    foreach ($tags as $tag) {
-                        if ($tag_id == $tag->id) return true;
-                    }
-                    return false;
-                }
-                foreach ($tags as $tag) {
-                    if (!search_tag($tag->id, $tags_filter))
-                        array_push($tags_filter, $tag);
-                }
-                ?>
-                @foreach($tags_filter as $tag)
+                @foreach($article->tags as $tag)
                     <a href="#">{{$tag->name}}</a>
                 @endforeach
             </div>

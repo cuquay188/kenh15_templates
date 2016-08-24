@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Category;
+use App\CategoryAdvance;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -15,7 +16,7 @@ class HomePageController extends Controller
         $articles_top = Article::skip(0)->take(5)->get();
         $article_first = Article::orderBy('id', 'desc')->first();
         $articles_latest = Article::orderBy('id', 'desc')->skip(1)->take(4)->get();
-        $hot_categories = Category::where('is_hot', '1')->get();
+        $hot_categories = CategoryAdvance::where('is_hot', '1')->get();
         return view('homepage.index.index', [
             'articles_top' => $articles_top,
             'article_first' => $article_first,

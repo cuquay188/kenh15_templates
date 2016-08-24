@@ -1,7 +1,8 @@
 .sidebar-left {
   background-color: #ecf0f1;
   padding: 10px 20px;
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  z-index: 99; }
   .sidebar-left a {
     text-decoration: none;
     font-weight: bold; }

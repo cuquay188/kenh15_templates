@@ -7,9 +7,9 @@
             <div class="menu-item {{Route::getCurrentRoute()->getName()=='homepage'?'active':''}}">
                 <a href="{{route('homepage')}}"><i class="fa fa-home" aria-hidden="true"></i></a>
             </div>
-            @foreach(\App\Category::where('is_hot','1')->take(5)->get() as $category)
+            @foreach(\App\CategoryAdvance::where('is_header','1')->take(5)->get() as $category)
                 <div class="menu-item">
-                    <a href="{{route('homepage').'/category/'.$category->id}}">{{$category->name}}</a>
+                    <a href="{{route('homepage').'/category/'.$category->category->id}}">{{$category->category->name}}</a>
                 </div>
             @endforeach
             <div class="menu-item menu-dropdown">
@@ -17,9 +17,9 @@
                     <i class="fa fa-bars" aria-hidden="true"></i>
                     <div class="dropdown-content">
                         <ul>
-                            @foreach(\App\Category::all() as $category)
+                            @foreach(\App\CategoryAdvance::all() as $category)
                                 <li>
-                                    <a href="{{route('homepage').'/category/'.$category->id}}">{{$category->name}}</a>
+                                    <a href="{{route('homepage').'/category/'.$category->category->id}}">{{$category->category->name}}</a>
                                 </li>
                             @endforeach
                         </ul>
