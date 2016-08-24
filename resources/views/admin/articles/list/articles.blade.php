@@ -35,9 +35,9 @@
                                     href="{{route('category').'/'.$article->category->id}}">{{$article->category->name}}</a>
                         </td>
                         <td style="text-align: center">
-                            {{$article->updated_at->format('H:i:s')}}
+                            {{$article->updated_at->format('Y/m/d')}}
                             <br>
-                            {{$article->updated_at->format('d/m/Y')}}
+                            {{$article->updated_at->format('H:i:s')}}
                         </td>
                         <td id="authors">
                             @include("admin.articles.list.components.authors")
