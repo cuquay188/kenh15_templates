@@ -18,7 +18,7 @@
             ?>
             @foreach($related_filter as $related_article)
                 <li>
-                    <a href="{{route('homepage').'/article/'.$related_article->id}}">{{$related_article->title}}</a>
+                    <a href="{{route('homepage').'/article/'.$related_article->id}}">{{$related_article->shorten_title(120)}}</a>
                 </li>
             @endforeach
         </ul>
