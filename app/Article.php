@@ -43,9 +43,17 @@ class Article extends Model
         }
         return $this->title;
     }
-    public function getContentHeader(){
+    public function shorten_content($char){
         $start = strpos($this->content,'<h2>');
         $end = strpos($this->content,'</h2>',$start+4)+5;
-        return substr($this->content,$start,$end);
+
+        $content =substr($this->content,$start,$end);
+        if (strlen($content) > $char) {
+            for($i=$char-1;$i>=0;$i--)
+                if($content[$i]==' '){
+                    return substr($content, 0, $i) . '...';
+                }
+        }
+        return $content;
     }
 }
