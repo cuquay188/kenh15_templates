@@ -43,4 +43,9 @@ class Article extends Model
         }
         return $this->title;
     }
+    public function getContentHeader(){
+        $start = strpos($this->content,'<h2>');
+        $end = strpos($this->content,'</h2>',$start+4)+5;
+        return substr($this->content,$start,$end);
+    }
 }

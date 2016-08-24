@@ -13,6 +13,7 @@
             <thead>
             <tr>
                 <th>Category</th>
+                <th>Article(s)</th>
                 <th style="width:30%;">Hot</th>
                 <th>Action</th>
             </tr>
@@ -22,6 +23,7 @@
                 @foreach($categories as $category)
                     <tr style="font-size: 13px">
                         <td><a href="{{route('category').'/'.$category->id}}">{{$category->name}}</a></td>
+                        <td>{{count($category->articles)}}</td>
                         <td>
                             <div id="category_is_hot_value_{{$category->id}}"
                                  style="display:none;">{{$category->advance->is_hot}}</div>
@@ -31,7 +33,8 @@
                                     class="btn btn-xs btn-toggle hot {{$category->advance->is_hot ? 'btn-primary' : 'btn-default'}}">
 
                             </button>
-                            <button onclick="changeIsHeader('{{$category->id}}')" id="category_is_header_{{$category->id}}"
+                            <button onclick="changeIsHeader('{{$category->id}}')"
+                                    id="category_is_header_{{$category->id}}"
                                     class="btn btn-xs btn-toggle header {{$category->advance->is_hot ? '' : 'hide'}} {{$category->advance->is_header ? 'btn-primary' : 'btn-default'}}">
                                 Show to header
                             </button>
@@ -129,6 +132,7 @@
                 },
                 success: function (response) {
                     var is_hot = response.is_hot;
+                    var is_header = response.is_header;
                     $('#category_is_hot_' + category_id)
                             .removeClass(is_hot == 1 ? 'btn-default' : 'btn-primary')
                             .addClass(is_hot == 1 ? 'btn-primary' : 'btn-default');
@@ -137,6 +141,8 @@
                     $('#category_is_header_' + category_id)
                             .removeClass(is_hot == 1 ? 'hide' : '')
                             .addClass(is_hot == 1 ? '' : 'hide')
+                            .removeClass(is_header == 1 ? 'btn-default' : 'btn-primary')
+                            .addClass(is_header == 1 ? 'btn-primary' : 'btn-default');
                 },
                 error: function () {
                     console.error('Update Category ' + category_id + ' fail.')
