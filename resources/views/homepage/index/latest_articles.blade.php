@@ -10,7 +10,7 @@
     <div class="content">
         <p>
             <?php
-            echo $article_first->content
+            echo $article_first->shorten_content(300)
             ?>
         </p>
     </div>
