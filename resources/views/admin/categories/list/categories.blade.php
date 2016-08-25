@@ -141,8 +141,8 @@
                     $('#category_is_header_' + category_id)
                             .removeClass(is_hot == 1 ? 'hide' : '')
                             .addClass(is_hot == 1 ? '' : 'hide')
-                            .removeClass(is_header == 1 ? 'btn-default' : 'btn-primary')
-                            .addClass(is_header == 1 ? 'btn-primary' : 'btn-default');
+                            .removeClass(is_header == 1 ? '' : 'btn-primary')
+                            .addClass(is_header == 1 ? '' : 'btn-default');
                 },
                 error: function () {
                     console.error('Update Category ' + category_id + ' fail.')

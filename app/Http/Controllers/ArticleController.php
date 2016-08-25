@@ -66,12 +66,7 @@ class ArticleController extends Controller
             'create_article_category_id' => 'numeric',
             'create_article_authors' => 'required'
         ]);
-        if($request->is_continue){
-            return $this->postCreateArticle($request);
-        }
-        return response()->json([
-            'message' => 'Validate successfully',
-        ]);
+        return $this->postCreateArticle($request);
     }
 
     public function postCreateArticle(Request $request)
@@ -173,13 +168,13 @@ class ArticleController extends Controller
         $article->shorten_title = $article->shorten_title(100);
 
         $tags = array();
-        foreach($article->tags as $tag)
-            array_push($tags,$tag->id);
+        foreach ($article->tags as $tag)
+            array_push($tags, $tag->id);
         $article->tags = $tags;
 
         $authors = array();
-        foreach($article->authors as $author)
-            array_push($authors,$author->id);
+        foreach ($article->authors as $author)
+            array_push($authors, $author->id);
         $article->authors = $authors;
         return $article;
     }

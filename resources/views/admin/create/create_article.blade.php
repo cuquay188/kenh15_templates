@@ -84,7 +84,6 @@
         </div>
     </div>
     <script>
-
         var createArticle = function (is_continue) {
             var $form = $('#create-article');
 
@@ -129,9 +128,12 @@
                             $('#create_article_author_' + i).prop('checked',false)
                         for (i = 1, count = 0; i <= tags.length; i++)
                             $('#create_article_tag_' + i).prop('checked',false)
+                        $("[data-dismiss='modal']").on('click',function () {
+                            $(location).attr('href', $(location).attr('href'))
+                        })
                     }
                     else {
-                        $form.find('form').submit();
+                        $(location).attr('href', $(location).attr('href'))
                     }
                 },
                 error: function (response) {
