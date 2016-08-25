@@ -19,24 +19,29 @@
                     <div class="col col-sm-5">
                         <div class="form-group">
                             <input type="text" class="form-control"
-                                   id="create_article_title" name="create_article_title" value="{!! old('title') !!}" placeholder="Title"
+                                   id="create_article_title" name="create_article_title" value="{!! old('title') !!}"
+                                   placeholder="Title"
                             >
                             <p id="title-error" class="errors"></p>
                         </div>
                         <div class="form-group">
                             <label for="tags">Choose tags</label>
                             <div class="checkbox-style row">
+                                <?php $count = 1; ?>
                                 @foreach(\App\Tag::all() as $tag)
-                                    <label for="create_article_tag{{$tag->id}}" class="col col-sm-4">
-                                        <input id="create_article_tag{{$tag->id}}" type="checkbox" name="create_article_tags[]" value="{{$tag->id}}">
+                                    <label for="create_article_tag_{{$count}}" class="col col-sm-4">
+                                        <input id="create_article_tag_{{$count}}" type="checkbox"
+                                               name="create_article_tags[]" value="{{$tag->id}}">
                                         {{$tag->name}}
                                     </label>
+                                    <?php $count++ ?>
                                 @endforeach
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="create_article_category_id">Category</label>
-                            <select name="create_article_category_id" id="create_article_category_id" class="form-control">
+                            <select name="create_article_category_id" id="create_article_category_id"
+                                    class="form-control">
                                 <option value="null" style="font-weight: bold">--Select a category--</option>
                                 @foreach(\App\Category::all() as $category)
                                     <option value="{{$category->id}}">{{$category->name}}</option>
@@ -49,8 +54,10 @@
                             <div class="checkbox-style row">
                                 <?php $count = 1; ?>
                                 @foreach(\App\Author::all() as $author)
-                                    <label for="create_article_author_{{$count}}" style="font-weight: normal" class="col col-sm-6">
-                                        <input type="checkbox" id="create_article_author_{{$count}}" name="create_article_authors[]"
+                                    <label for="create_article_author_{{$count}}" style="font-weight: normal"
+                                           class="col col-sm-6">
+                                        <input type="checkbox" id="create_article_author_{{$count}}"
+                                               name="create_article_authors[]"
                                                value="{{$author->id}}">
                                         {{$author->user->name}}
                                     </label>
@@ -63,8 +70,13 @@
                 </div>
                 <div class="modal-footer">
                     <div class="form-group">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-success" id="submit-create-article">Create article</button>
+                        <button class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-success"
+                                id="submit-create-article" onclick="createArticle()">Create article
+                        </button>
+                        <button type="button" class="btn btn-warning"
+                                id="submit-create-more" onclick="createArticle(1)">Create more
+                        </button>
                         <input type="hidden" value="{{Session::token()}}" name="_token">
                     </div>
                 </div>
@@ -73,26 +85,33 @@
     </div>
     <script>
 
-        $('#submit-create-article').click(function (e) {
-            e.preventDefault();
-            var form = $('#create-article');
+        var createArticle = function (is_continue) {
+            var $form = $('#create-article');
 
-            var authors = [];
+            var authors = [], tags = [];
             authors.length = '{{count(\App\Author::all())}}';
-            var count = 0;
-            for (var i = 1; i <= authors.length; i++) {
-                if($('#create_article_author_' + i).is(':checked'))
-                    authors[count++] = ($('#create_article_author_' + i).val())
-            }
+            tags.length = '{{count(\App\Tag::all())}}';
+            var count, i;
+            for (i = 1, count = 0; i <= authors.length; i++)
+                if ($('#create_article_author_' + i).is(':checked'))
+                    authors[count++] = ($('#create_article_author_' + i).val());
+
+            for (i = 1, count = 0; i <= tags.length; i++)
+                if ($('#create_article_tag_' + i).is(':checked'))
+                    tags[count++] = ($('#create_article_tag_' + i).val());
+
             console.log(authors);
+            console.log(tags);
             $.ajax({
                 type: 'POST',
                 url: '{{route('admin.validate.article')}}',
                 data: {
-                    title: form.find('#create_article_title').val(),
-                    data: CKEDITOR.instances['create_article_data'].getData(),
-                    category_id: $('#create_article_category_id').val(),
-                    authors: authors
+                    create_article_title: $form.find('#create_article_title').val(),
+                    create_article_data: CKEDITOR.instances['create_article_data'].getData(),
+                    create_article_category_id: $('#create_article_category_id').val(),
+                    create_article_authors: authors,
+                    create_article_tags: tags,
+                    is_continue: is_continue
                 },
                 beforeSend: function () {
                     $('#content-error').text('');
@@ -102,16 +121,27 @@
                 },
                 success: function (response) {
                     console.log(response);
-                    form.find('form').submit();
+                    if (is_continue == 1) {
+                        $form.find('#create_article_title').val('');
+                        CKEDITOR.instances['create_article_data'].setData();
+                        $('#create_article_category_id').val('null');
+                        for (i = 1, count = 0; i <= authors.length; i++)
+                            $('#create_article_author_' + i).prop('checked',false)
+                        for (i = 1, count = 0; i <= tags.length; i++)
+                            $('#create_article_tag_' + i).prop('checked',false)
+                    }
+                    else {
+                        $form.find('form').submit();
+                    }
                 },
                 error: function (response) {
                     response = JSON.parse(response.responseText);
-                    $('#content-error').text(response.data);
-                    $('#title-error').text(response.title);
-                    $('#category-error').text(response.category_id ? 'Category is required.' : '');
-                    $('#authors-error').text(response.authors)
+                    $('#content-error').text(response.create_article_data);
+                    $('#title-error').text(response.create_article_title);
+                    $('#category-error').text(response.create_article_category_id ? 'Category is required.' : '');
+                    $('#authors-error').text(response.create_article_authors ? 'Choose at least one author.' : '');
                 }
             })
-        })
+        };
     </script>
 @endif

@@ -83,7 +83,7 @@
     <script>
         $('table').DataTable({
             "order": [[2, "desc"]],
-            "pageLength": $(document).height() < 800 ? 4 : 8,
+            "pageLength": $(document).height() < 800 ? 4 : 9,
             "bLengthChange": false
         });
     </script>

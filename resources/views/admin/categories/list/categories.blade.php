@@ -120,7 +120,7 @@
         $('table').DataTable({
             "pageLength": $(document).height() < 800 ? 8 : 15,
             "bLengthChange": false,
-            "order": [[1, "desc"]]
+            "order": [[2, "desc"]]
         });
 
         var changeIsHot = function (category_id) {

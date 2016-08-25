@@ -61,13 +61,16 @@ class ArticleController extends Controller
     public function postValidateArticle(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required|between:5,150',
-            'data' => 'required|min:30',
-            'category_id' => 'numeric',
-            'authors' => 'required'
+            'create_article_title' => 'required|between:5,150',
+            'create_article_data' => 'required|min:30',
+            'create_article_category_id' => 'numeric',
+            'create_article_authors' => 'required'
         ]);
+        if($request->is_continue){
+            return $this->postCreateArticle($request);
+        }
         return response()->json([
-            'message' => 'Validate success',
+            'message' => 'Validate successfully',
         ]);
     }
 
@@ -81,7 +84,7 @@ class ArticleController extends Controller
         $article = new Article();
         $article->title = $title;
         $article->url = $this->convert_title_to_url($title);
-        $article->img_url = $this->make_article_img_url($content);
+        $article->img_url = $img_url ? $img_url : $this->make_article_img_url($content);
         $article->content = $content;
         $article->category_id = $category_id;
         $article->save();
@@ -99,7 +102,9 @@ class ArticleController extends Controller
                 $article->authors()->attach($author);
             }
         }
-        return redirect()->back();
+        return response()->json([
+            'message' => 'Create successfully',
+        ]);
     }
 
     public function postDeleteArticle(Request $request)
