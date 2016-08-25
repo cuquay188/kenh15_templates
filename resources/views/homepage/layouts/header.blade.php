@@ -8,9 +8,11 @@
                 <a href="{{route('homepage')}}"><i class="fa fa-home" aria-hidden="true"></i></a>
             </div>
             @foreach(\App\CategoryAdvance::where('is_header','1')->take(5)->get() as $category)
-                <div class="menu-item">
-                    <a href="{{route('homepage').'/category/'.$category->category->id}}">{{$category->category->name}}</a>
-                </div>
+                <a href="{{route('homepage').'/category/'.$category->category->id}}">
+                    <div class="menu-item">
+                        {{$category->category->name}}
+                    </div>
+                </a>
             @endforeach
             <div class="menu-item menu-dropdown">
                 <div class="icon">

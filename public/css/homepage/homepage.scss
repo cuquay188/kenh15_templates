@@ -135,6 +135,11 @@
       color: #1abc9c;
     }
   }
+/*<a href="{{route('homepage').'/category/'.$category->category->id}}">
+<div class="head">
+{{$category->category->name}}
+</div>
+</a>*/
   .articles {
     margin: 5px;
   }

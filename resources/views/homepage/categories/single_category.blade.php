@@ -53,7 +53,9 @@
                                     <a href="{{route('homepage').'/article/'.$article->id}}">{{$article->title}}</a>
                                 </div>
                                 <div class="content">
-                                    <p>{{$article->content}}</p>
+                                    <?php
+                                    echo $article->shorten_content(300)
+                                    ?>
                                 </div>
                             </div>
                         </div>

@@ -91,7 +91,12 @@
 .articles-by-category .category {
   border-top-style: ridge;
   padding: 0;
-  margin-bottom: 30px; }
+  margin-bottom: 30px;
+  /*<a href="{{route('homepage').'/category/'.$category->category->id}}">
+  <div class="head">
+  {{$category->category->name}}
+  </div>
+  </a>*/ }
   .articles-by-category .category .head {
     background-image: linear-gradient(to bottom, #c5c9c5, white);
     width: 20%;

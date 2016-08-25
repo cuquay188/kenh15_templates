@@ -40,10 +40,10 @@
     padding: 0;
     width: 379px;
     overflow-y: auto;
-    .title{
-      p{
+    .title {
+      p {
         text-transform: uppercase;
-        font-weight:bold;
+        font-weight: bold;
         font-size: 18px;
         text-shadow: 1px 1px 1px #16a085;
       }
@@ -72,6 +72,10 @@
     .title {
     }
     .content {
+      h2 {
+        font-size: 17px;
+        margin-top: 10px;
+      }
     }
   }
 }
