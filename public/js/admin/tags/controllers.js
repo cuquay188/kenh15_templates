@@ -1,0 +1,36 @@
+
+
+app.controller('tagsListController', function ($scope, $http, $log, $tags) {
+
+    $tags.load($http);
+
+    $scope.$watch(function () {
+        return $tags.get()
+    }, function (newVal) {
+        $scope.tags = newVal;
+    })
+});
+
+app.controller('tagController', function ($scope, $log, $tag) {
+    $scope.edit = function () {
+        $tag.set($scope.tag);
+        console.log($tag.get())
+    };
+});
+
+app.controller('editTagController', function ($scope, $http, $tag) {
+    $scope.$watch(function () {
+        return $tag.get()
+    }, function (newVal) {
+        $scope.tag = newVal;
+        if($scope.tag)
+            $scope.tag.newName = $scope.tag.name;
+    });
+    $scope.dismiss = function () {
+        $tag.set(null);
+        $scope.nameErrors = null;
+    };
+    $scope.submit = function () {
+        $tag.update($scope, $http, $scope.tag.newName)
+    }
+});

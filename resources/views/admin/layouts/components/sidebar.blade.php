@@ -39,7 +39,7 @@
             </li>
             <li>
                 <a class="{{Route::getCurrentRoute()->getName()=='tag'?'active':''}}"
-                   href="{{route('tag')}}">
+                   href="{{route('admin.tag')}}">
                     Tags
                     <span>({{count(App\Tag::all())}})</span>
                 </a>

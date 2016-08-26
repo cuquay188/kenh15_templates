@@ -14,17 +14,17 @@
     @yield("styles")
 
     <!-- jQuery library -->
-    <script src="{{asset('/js/jquery-2.2.4.min.js')}}"></script>
+    <script src="{{asset('/jquery/jquery-2.2.4.min.js')}}"></script>
+
+    <script src="{{asset('/angular/angular.min.js')}}"></script>
 
     <script src="{{asset('/bootstrap/js/bootstrap.min.js')}}"></script>
 
     <script src="{{asset('/ckeditor/ckeditor.js')}}"></script>
 
-    <script src="{{asset('/datatables/datatables.min.js')}}"></script>
-
     @yield("scripts")
 </head>
-<body>
+<body ng-app="mainApp">
 <div class="sidebar">
 
     @include("admin.layouts.components.sidebar")
@@ -49,13 +49,22 @@
                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
             }
         });
+        var url = {
+            tag : {
+                get : '{{route('admin.api.tag.get')}}',
+                update : '{{route('admin.api.tag.update')}}'
+            }
+
+        };
+
+        var app = angular.module("mainApp",[], function($interpolateProvider) {
+            $interpolateProvider.startSymbol('%%');
+            $interpolateProvider.endSymbol('%%');
+        });
     </script>
     @yield("body.scripts")
 
     <script>
-        if ($(document).height() > $(".body").height())
-            $('.footer').addClass('fix-footer');
-
         CKEDITOR.config.width = '55vw';
         CKEDITOR.config.height = 'calc(100vh - 300px)';
     </script>

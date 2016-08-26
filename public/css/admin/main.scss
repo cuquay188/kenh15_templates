@@ -32,20 +32,6 @@
   }
 }
 
-/*.toggle-ios {
-  display: none;
-  & ~ .btn-toggle:before{
-    content: 'Activate';
-  }
-  &:checked ~ .btn-toggle {
-    background-color: #337ab7;
-    color: #fff;
-    &:before{
-      content: 'Deactivate';
-    }
-  }
-}*/
-
 .navbar.navbar-inverse {
   border-radius: 0px;
   .nav.navbar-nav {
@@ -479,4 +465,8 @@ body {
     height: calc(100% - 130px);
     overflow: auto;
   }
+}
+
+.form-control.error{
+  border-color: #e74c3c;
 }

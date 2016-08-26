@@ -19,13 +19,13 @@ class TagController extends Controller
     {
         if (!Auth::check())
             return redirect()->route('login')->with(['fail' => 'Required login.']);
-        $tags = Tag::all();
+        /*$tags = Tag::all();
         $categories = Category::all();
-        $authors = Author::all();
+        $authors = Author::all();*/
         return view('admin.tags.list.tags', [
-            'tags' => $tags,
+            /*'tags' => $tags,
             'categories' => $categories,
-            'authors' => $authors
+            'authors' => $authors*/
         ]);
     }
 
@@ -56,12 +56,15 @@ class TagController extends Controller
             'name' => 'required|between:2,15'
         ]);
 
-        $id = $request->tag_id;
+        $id = $request->id;
         $name = $request->name;
         Tag::where('id', $id)->update([
             'name' => $name
         ]);
-        return redirect()->back();
+        return response()->json([
+            'message'=>'Update Successful.',
+            'tag' => Tag::find($id)
+        ]);
     }
 
     public function postDeleteTag(Request $request)
@@ -79,5 +82,11 @@ class TagController extends Controller
         return view('admin.tags.single.tag', [
             'tag' => $tag 
         ]);
+    }
+    public function getTagJSON($id = null){
+        if(!$id)
+            return Tag::all();
+        else
+            return Tag::find($id);
     }
 }
