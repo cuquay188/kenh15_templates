@@ -8,13 +8,8 @@ app.service('$tags', function () {
             $tags = $newTags;
             return $tags
         },
-        length: function () {
-            if($tag){
-
-            }
-            else {
-                return $tags.length;
-            }
+        size: function () {
+            return $tags.length;
         },
         load: function ($http) {
             $http.get(url.tag.get)

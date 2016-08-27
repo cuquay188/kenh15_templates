@@ -19,14 +19,7 @@ class TagController extends Controller
     {
         if (!Auth::check())
             return redirect()->route('login')->with(['fail' => 'Required login.']);
-        /*$tags = Tag::all();
-        $categories = Category::all();
-        $authors = Author::all();*/
-        return view('admin.tags.list.tags', [
-            /*'tags' => $tags,
-            'categories' => $categories,
-            'authors' => $authors*/
-        ]);
+        return view('admin.tags.list.tags');
     }
 
 
@@ -62,7 +55,7 @@ class TagController extends Controller
             'name' => $name
         ]);
         return response()->json([
-            'message'=>'Update Successful.',
+            'message' => 'Update Successful.',
             'tag' => Tag::find($id)
         ]);
     }
@@ -73,7 +66,7 @@ class TagController extends Controller
         $tag = Tag::find($id);
         Tag::where('id', $id)->delete();
         return response()->json([
-            'message'=>'Update Successful.',
+            'message' => 'Update Successful.',
             'tag' => $tag
         ]);
     }
@@ -82,15 +75,25 @@ class TagController extends Controller
     {
         if (!Auth::check())
             return redirect()->back()->with(['fail' => 'Required login.']);
-        $tag = Tag::find($id); 
+        $tag = Tag::find($id);
         return view('admin.tags.single.tag', [
-            'tag' => $tag 
+            'tag' => $tag
         ]);
     }
-    public function getTagJSON($id = null){
-        if(!$id)
+
+    public function getTagJSON($id = null)
+    {
+        if (!$id)
             return Tag::all();
         else
             return Tag::find($id);
+    }
+
+    public function getTagLength()
+    {
+        return response()->json([
+            'message'=>'Get successful.',
+            'length' => count(Tag::all())
+        ]);
     }
 }

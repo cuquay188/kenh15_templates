@@ -38,10 +38,10 @@
                    href="{{route('create_category')}}"><i class="glyphicon glyphicon-plus"></i></a>
             </li>
             <li>
-                <a class="{{Route::getCurrentRoute()->getName()=='tag'?'active':''}}"
+                <a class="{{Route::getCurrentRoute()->getName()=='admin.tag'?'active':''}}"
                    href="{{route('admin.tag')}}">
                     Tags
-                    <span>({{count(App\Tag::all())}})</span>
+                    <span>(%%tagLength%%)</span>
                 </a>
                 <a class="create {{Route::getCurrentRoute()->getName()=='create_tag'?'active':''}}"
                    href="{{route('create_tag')}}"><i class="glyphicon glyphicon-plus"></i></a>

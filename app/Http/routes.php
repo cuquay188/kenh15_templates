@@ -179,7 +179,11 @@ Route::group(['prefix' => 'api'], function () {
 
     Route::group(['prefix' => 'tag'], function () {
 
-        Route::get('/{id?}',[
+        Route::get('/length',[
+            'uses' => 'TagController@getTagLength',
+            'as' => 'admin.api.tag.get.length'
+        ]);
+        Route::get('/get/{id?}',[
             'uses' => 'TagController@getTagJSON',
             'as' => 'admin.api.tag.get'
         ]);

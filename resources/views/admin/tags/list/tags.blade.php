@@ -86,6 +86,5 @@
     </div>
 @endsection
 @section('body.scripts')
-    <script src="{{asset('js/admin/tags/services.js')}}"></script>
     <script src="{{asset('js/admin/tags/controllers.js')}}"></script>
 @endsection

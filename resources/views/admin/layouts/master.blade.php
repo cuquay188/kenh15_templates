@@ -25,7 +25,7 @@
     @yield("scripts")
 </head>
 <body ng-app="mainApp">
-<div class="sidebar">
+<div class="sidebar" ng-controller="sidebarController">
 
     @include("admin.layouts.components.sidebar")
 
@@ -42,52 +42,52 @@
 
     @yield('dialogs')
     @include('admin.layouts.components.dialogs')
-
-    <script>
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-            }
-        });
-        var url = {
-            article : {
-                get : '',
-                update : '',
-                remove: '',
-                create:''
-            },
-            category : {
-                get : '',
-                update : '',
-                remove: '',
-                create:''
-            },
-            author : {
-                get : '',
-                update : '',
-                remove: '',
-                create:''
-            },
-            tag : {
-                get : '{{route('admin.api.tag.get')}}',
-                update : '{{route('admin.api.tag.update')}}',
-                remove: '{{route('admin.api.tag.remove')}}',
-                create:''
-            }
-
-        };
-
-        var app = angular.module("mainApp",[], function($interpolateProvider) {
-            $interpolateProvider.startSymbol('%%');
-            $interpolateProvider.endSymbol('%%');
-        });
-    </script>
-    @yield("body.scripts")
-
-    <script>
-        CKEDITOR.config.width = '55vw';
-        CKEDITOR.config.height = 'calc(100vh - 300px)';
-    </script>
 </div>
+
+
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+        }
+    });
+    var url = {
+        article : {
+            get : '',
+            update : '',
+            remove: '',
+            create:''
+        },
+        category : {
+            get : '',
+            update : '',
+            remove: '',
+            create:''
+        },
+        author : {
+            get : '',
+            update : '',
+            remove: '',
+            create:''
+        },
+        tag : {
+            get : '{{route('admin.api.tag.get')}}',
+            length: '{{route('admin.api.tag.get.length')}}',
+            update : '{{route('admin.api.tag.update')}}',
+            remove: '{{route('admin.api.tag.remove')}}',
+            create:''
+        }
+
+    };
+</script>
+<script src="{{asset('/js/admin/app.js')}}"></script>
+<script src="{{asset('/js/admin/sidebar.js')}}"></script>
+<script src="{{asset('/js/admin/tags/services.js')}}"></script>
+@yield("body.scripts")
+
+<script>
+    CKEDITOR.config.width = '55vw';
+    CKEDITOR.config.height = 'calc(100vh - 300px)';
+</script>
 </body>
 </html>
