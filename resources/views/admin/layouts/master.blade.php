@@ -17,7 +17,7 @@
     <script src="{{asset('/jquery/jquery-2.2.4.min.js')}}"></script>
 
     <script src="{{asset('/angular/angular.min.js')}}"></script>
-    <script src="{{asset('/angular/dirPagination.js')}}"></script>
+    <script src="{{asset('/angular/angular-utils-pagination/dirPagination.js')}}"></script>
 
     <script src="{{asset('/bootstrap/js/bootstrap.min.js')}}"></script>
 
