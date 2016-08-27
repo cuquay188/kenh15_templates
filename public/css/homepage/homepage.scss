@@ -29,7 +29,7 @@
     clear: both;
     margin-bottom: 10px;
     h2 {
-      strong{
+      strong {
         font-weight: normal;
       }
       font-size: 17px;
@@ -69,7 +69,7 @@
 
 .sidebar-right {
   padding: 10px 20px;
-  .head {
+  .sidebar-header {
     background-color: #ecf0f1;
     padding-top: 5px;
     padding-bottom: 5px;
@@ -84,33 +84,34 @@
       text-decoration: none;
     }
   }
-}
-
-.video-area {
-  border-bottom-style: ridge;
-  padding: 10px;
-  margin-top: 10px;
-  .video {
-    background-color: rgba(26, 188, 156, 0.2);
-    height: 120px;
-    margin-bottom: 10px;
-  }
-  .title {
-    width: 220px;
-    a {
-      color: #2c3e50;
-      font-weight: bold;
-      &:hover {
-        color: #34495e;
-        text-decoration: none;
+  .sidebar-body {
+    .video-area {
+      border-bottom-style: ridge;
+      padding: 10px;
+      margin-top: 10px;
+      .video {
+        background-color: rgba(26, 188, 156, 0.2);
+        height: 120px;
+        margin-bottom: 10px;
+      }
+      .title {
+        width: 220px;
+        a {
+          color: #2c3e50;
+          font-weight: bold;
+          &:hover {
+            color: #34495e;
+            text-decoration: none;
+          }
+        }
+      }
+      &:first-child {
+        margin-top: 0;
+      }
+      &:last-child {
+        border-bottom: none;
       }
     }
-  }
-  .video-area:first-child {
-    margin-top: 0;
-  }
-  &:last-child {
-    border-bottom: none;
   }
 }
 
@@ -135,11 +136,11 @@
       color: #1abc9c;
     }
   }
-/*<a href="{{route('homepage').'/category/'.$category->category->id}}">
-<div class="head">
-{{$category->category->name}}
-</div>
-</a>*/
+  /*<a href="{{route('homepage').'/category/'.$category->category->id}}">
+  <div class="head">
+  {{$category->category->name}}
+  </div>
+  </a>*/
   .articles {
     margin: 5px;
   }
