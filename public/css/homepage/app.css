@@ -63,7 +63,7 @@ header {
 
 .menu-dropdown:hover .dropdown-content {
   display: block;
-  z-index: 3; }
+  z-index: 100; }
 
 .icon {
   position: relative;
@@ -76,23 +76,17 @@ header {
     min-width: 500px;
     background-color: #f5fefd;
     cursor: default; }
-    .icon .dropdown-content ul {
-      padding: 0; }
-      .icon .dropdown-content ul li {
-        display: inline-block;
-        vertical-align: top;
-        width: 100px;
-        margin: 10px 10px 5px 10px;
-        cursor: pointer; }
-        .icon .dropdown-content ul li a {
-          color: black;
-          font-weight: normal; }
-        .icon .dropdown-content ul li:hover {
-          background-color: #1abc9c; }
-          .icon .dropdown-content ul li:hover a {
-            color: white; }
-        .icon .dropdown-content ul li:before {
-          content: ""; }
+    .icon .dropdown-content a {
+      display: inline-block;
+      vertical-align: top;
+      width: 100px;
+      padding: 5px;
+      margin: 10px 10px 5px 10px;
+      color: black;
+      font-weight: normal; }
+      .icon .dropdown-content a:hover {
+        background-color: #1abc9c;
+        color: white; }
 
 .search-area {
   padding-top: 7px; }

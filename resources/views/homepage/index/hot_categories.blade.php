@@ -1,9 +1,12 @@
 @foreach($hot_categories as $category)
     @if(count($category->category->articles))
         <div class="category">
-            <div class="head">
-                <a href="#">{{$category->category->name}}</a>
-            </div>
+            <a href="{{route('homepage').'/category/'.$category->category->id}}"
+               class="head">
+                <div>
+                    {{$category->category->name}}
+                </div>
+            </a>
             <div class="articles">
                 @foreach(\App\Article::where('category_id',$category->category->id)->orderBy('id','desc')->take(2)->get() as $article)
                     <div class="article">
@@ -20,7 +23,8 @@
                     <div class="list">
                         <ul>
                             @foreach(\App\Article::where('category_id',$category->category->id)->orderBy('id','desc')->take(4)->skip(2)->get() as $article)
-                                <li><a href="{{route('homepage').'/article/'.$article->id}}">{{$article->title}}</a></li>
+                                <li><a href="{{route('homepage').'/article/'.$article->id}}">{{$article->title}}</a>
+                                </li>
                             @endforeach
                         </ul>
                     </div>

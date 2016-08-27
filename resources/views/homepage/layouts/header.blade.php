@@ -18,13 +18,9 @@
                 <div class="icon">
                     <i class="fa fa-bars" aria-hidden="true"></i>
                     <div class="dropdown-content">
-                        <ul>
-                            @foreach(\App\CategoryAdvance::all() as $category)
-                                <li>
-                                    <a href="{{route('homepage').'/category/'.$category->category->id}}">{{$category->category->name}}</a>
-                                </li>
-                            @endforeach
-                        </ul>
+                        @foreach(\App\CategoryAdvance::all() as $category)
+                            <a href="{{route('homepage').'/category/'.$category->category->id}}">{{$category->category->name}}</a>
+                        @endforeach
                     </div>
                 </div>
             </div>

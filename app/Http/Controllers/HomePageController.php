@@ -49,6 +49,16 @@ class HomePageController extends Controller
 
         $hot_categories = CategoryAdvance::where('is_hot', '1')->get();
 
+        for ($i = 0; $i < count($hot_categories) - 1; $i++) {
+            for ($j = $i + 1; $j < count($hot_categories); $j++) {
+                if (count($hot_categories[$j]->category->articles) >= count($hot_categories[$i]->category->articles)) {
+                    $temp = $hot_categories[$j];
+                    $hot_categories[$j] = $hot_categories[$i];
+                    $hot_categories[$i] = $temp;
+                }
+            }
+        }
+
         return view('homepage.index.index', [
             'articles_top' => $articles_top,
             'article_first' => $article_first,

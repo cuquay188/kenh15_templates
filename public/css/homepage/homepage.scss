@@ -3,7 +3,7 @@
 }
 
 .newest-article {
-  border-bottom-style: ridge;
+  border-top: 1px solid #1abc9c;
   .picture {
     float: left;
     background-color: rgba(238, 253, 252, 0.88);
@@ -70,7 +70,7 @@
 .sidebar-right {
   padding: 10px 20px;
   .sidebar-header {
-    background-color: #ecf0f1;
+    background-color: #f8fbfb;
     padding-top: 5px;
     padding-bottom: 5px;
     text-align: center;
@@ -86,7 +86,7 @@
   }
   .sidebar-body {
     .video-area {
-      border-bottom-style: ridge;
+      border-bottom: 1px solid #1abc9c;
       padding: 10px;
       margin-top: 10px;
       .video {
@@ -116,31 +116,26 @@
 }
 
 .articles-by-category .category {
-  border-top-style: ridge;
+  border-top: 1px solid #1abc9c;
   padding: 0;
   margin-bottom: 30px;
   .head {
-    background-image: linear-gradient(to bottom, #c5c9c5, white);
-    width: 20%;
-    text-align: center;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    margin-bottom: 15px;
-    a {
-      color: black;
+    div {
+      display: inline-block;
+      border-radius: 0 0 5px 0;
+      background-color: #1abc9c;
+      padding: 8px 20px;
+      margin-bottom: 15px;
+      color: white;
       font-weight: bold;
-      font-size: 23px;
+      font-size: 18px;
       text-decoration: none;
-    }
-    a:hover {
-      color: #1abc9c;
+      &:hover {
+        color: #ecf0f1;
+        background-color: #16a085;
+      }
     }
   }
-  /*<a href="{{route('homepage').'/category/'.$category->category->id}}">
-  <div class="head">
-  {{$category->category->name}}
-  </div>
-  </a>*/
   .articles {
     margin: 5px;
   }

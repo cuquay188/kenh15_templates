@@ -1,5 +1,5 @@
 .sidebar-left {
-  background-color: #ecf0f1;
+  background-color: #f8fbfb;
   padding: 10px 20px;
   margin-bottom: 20px;
   z-index: 99; }
@@ -13,13 +13,13 @@
   top: 20px; }
 
 .head-top, .body-top {
-  border-bottom-style: ridge;
   padding-bottom: 5px;
   margin-bottom: 10px; }
   .head-top ul li, .body-top ul li {
     margin-bottom: 10px; }
 
 .head-top {
+  border-bottom: 1px solid #16a085;
   text-align: center; }
   .head-top a {
     color: black;
@@ -29,7 +29,8 @@
     text-decoration: none; }
 
 .footer-top {
-  text-align: right; }
+  text-align: right;
+  border-top: 1px solid #16a085; }
   .footer-top a {
     color: black;
     font-weight: bold; }

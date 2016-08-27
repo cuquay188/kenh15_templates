@@ -68,8 +68,8 @@ header {
   display: inline-block;
   padding: 14px 16px;
   transition: background-color 0.3s;
-  i{
-    font-size:20px;
+  i {
+    font-size: 20px;
   }
   &:hover, &.active {
     background-color: #16a085;
@@ -82,12 +82,14 @@ header {
     cursor: pointer;
   }
 }
-.menu-dropdown:hover{
+
+.menu-dropdown:hover {
   .dropdown-content {
     display: block;
-    z-index: 3;
+    z-index: 100;
   }
 }
+
 .icon {
   position: relative;
   display: inline-block;
@@ -95,31 +97,21 @@ header {
     display: none;
     position: absolute;
     top: 34px;
-    right:-100px;
+    right: -100px;
     min-width: 500px;
     background-color: #f5fefd;
     cursor: default;
-    ul {
-      padding: 0;
-      li {
-        display: inline-block;
-        vertical-align: top;
-        width: 100px;
-        margin: 10px 10px 5px 10px;
-        cursor: pointer;
-        a {
-          color: black;
-          font-weight: normal;
-        }
-        &:hover {
-          background-color: #1abc9c;
-          a {
-            color: white;
-          }
-        }
-        &:before {
-          content: "";
-        }
+    a {
+      display: inline-block;
+      vertical-align: top;
+      width: 100px;
+      padding: 5px;
+      margin: 10px 10px 5px 10px;
+      color: black;
+      font-weight: normal;
+      &:hover {
+        background-color: #1abc9c;
+        color: white;
       }
     }
   }
@@ -132,10 +124,10 @@ header {
 .search-form .form-group {
   margin: 0;
   position: relative;
-  width:85%;
-  .form-control{
+  width: 85%;
+  .form-control {
     background-color: inherit;
-    border:2px solid white;
+    border: 2px solid white;
     border-radius: 3px;
     color: white;
     &::-webkit-input-placeholder {
