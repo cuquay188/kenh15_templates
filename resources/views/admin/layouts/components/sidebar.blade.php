@@ -41,7 +41,7 @@
                 <a class="{{Route::getCurrentRoute()->getName()=='admin.tag'?'active':''}}"
                    href="{{route('admin.tag')}}">
                     Tags
-                    <span>(%%tagLength%%)</span>
+                    <span ng-bind="'('+tagLength+')'"></span>
                 </a>
                 <a class="create {{Route::getCurrentRoute()->getName()=='create_tag'?'active':''}}"
                    href="{{route('create_tag')}}"><i class="glyphicon glyphicon-plus"></i></a>

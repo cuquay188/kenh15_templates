@@ -6,12 +6,14 @@
             <thead>
             <tr>
                 <th>Name</th>
+                <th>Article(s)</th>
                 <th>Action</th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="tag in tags" ng-controller="tagController">
                 <td><a href="{{route('admin.tag')}}/%%tag.id%%">%%tag.name%%</a></td>
+                <td>%%tag.articles%%</td>
                 <td>
                     <button class="btn btn-primary btn-xs"
                             data-toggle="modal" data-target="#edit_tag"

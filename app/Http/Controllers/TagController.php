@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Category;
 use App\User;
@@ -83,16 +83,19 @@ class TagController extends Controller
 
     public function getTagJSON($id = null)
     {
-        if (!$id)
-            return Tag::all();
-        else
+        if (!$id) {
+            $tags = Tag::all();
+            foreach ($tags as $tag)
+                $tag->articles = count(DB::table('tag_article')->where('tag_id', $tag->id)->get());
+            return $tags;
+        } else
             return Tag::find($id);
     }
 
     public function getTagLength()
     {
         return response()->json([
-            'message'=>'Get successful.',
+            'message' => 'Get successful.',
             'length' => count(Tag::all())
         ]);
     }
