@@ -3,10 +3,9 @@
 }
 
 .newest-article {
-  border-top: 1px solid #1abc9c;
+  border-bottom: 1px solid #1abc9c;
   .picture {
     float: left;
-    background-color: rgba(238, 253, 252, 0.88);
     width: 300px;
     height: 200px;
     margin-bottom: 10px;
@@ -48,8 +47,7 @@
   margin-bottom: 20px;
   vertical-align: top;
   .picture {
-    background-color: rgba(238, 253, 252, 0.88);
-    width: 220px;
+    width: 210px;
     height: 140px;
     margin-bottom: 5px;
     text-align: center;

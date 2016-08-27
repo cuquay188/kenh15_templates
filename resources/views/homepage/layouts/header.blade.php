@@ -1,12 +1,14 @@
 <header>
     <div class="container">
         <div class="title col-lg-2">
-            <a href="{{route('homepage')}}">ABC News</a>
+            <a href="{{route('homepage')}}">Kênh 15</a>
         </div>
         <div class="menu col-lg-7">
-            <div class="menu-item {{Route::getCurrentRoute()->getName()=='homepage'?'active':''}}">
-                <a href="{{route('homepage')}}"><i class="fa fa-home" aria-hidden="true"></i></a>
-            </div>
+            <a href="{{route('homepage')}}">
+                <div class="menu-item {{Route::getCurrentRoute()->getName()=='homepage'?'active':''}}">
+                    <i class="fa fa-home" aria-hidden="true"></i>
+                </div>
+            </a>
             @foreach(\App\CategoryAdvance::where('is_header','1')->take(5)->get() as $category)
                 <a href="{{route('homepage').'/category/'.$category->category->id}}">
                     <div class="menu-item">
@@ -28,7 +30,7 @@
         <div class="search-area col-lg-3">
             <div class="search-form">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search...">
+                    <input type="text" class="form-control" placeholder="Tìm kiếm...">
                     <a href="#">
                         <span class="glyphicon glyphicon-search"></span>
                     </a>

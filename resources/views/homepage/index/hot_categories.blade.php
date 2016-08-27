@@ -10,9 +10,11 @@
             <div class="articles">
                 @foreach(\App\Article::where('category_id',$category->category->id)->orderBy('id','desc')->take(2)->get() as $article)
                     <div class="article">
-                        <div class="picture">
-                            <a href="{{route('homepage').'/article/'.$article->id}}"><img
-                                        src="{{$article->img_url}}"></a>
+                        <div class="picture" style="background-image: url('{{$article->img_url}}')">
+                            <div class="backdrop">
+                                <a href="{{route('homepage').'/article/'.$article->id}}"><img
+                                            src="{{$article->img_url}}"></a>
+                            </div>
                         </div>
                         <div class="title">
                             <a href="{{route('homepage').'/article/'.$article->id}}">{{$article->title}}</a>
