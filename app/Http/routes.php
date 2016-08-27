@@ -148,8 +148,8 @@ Route::group(['prefix' => 'admin'], function () {
 
 });
 Route::group(['prefix' => 'api'], function () {
-    Route::get('/article',[
-       'as' => 'admin.api.article'
+    Route::get('/article', [
+        'as' => 'admin.api.article'
     ]);
     Route::get('/article/{id}', [
         'uses' => 'ArticleController@getArticleJSON'
@@ -169,23 +169,56 @@ Route::group(['prefix' => 'api'], function () {
         'as' => 'admin.update.category.header'
     ]);
 
+    Route::group(['prefix' => 'category'], function () {
+
+        Route::get('/get/{id?}', [
+            'uses' => 'CategoryController@getCategoryJSON',
+            'as' => 'admin.api.category.get'
+        ]);
+        Route::get('/length', [
+            'uses' => 'CategoryController@getCategoryLength',
+            'as' => 'admin.api.category.get.length'
+        ]);
+
+        Route::post('/update/name', [
+            'uses' => 'CategoryController@postUpdateCategory',
+            'as' => 'admin.api.category.update.name'
+        ]);
+        Route::post('/update/hot', [
+            'uses' => 'CategoryController@postHotCategory',
+            'as' => 'admin.api.category.update.hot'
+        ]);
+        Route::post('/update/header', [
+            'uses' => 'CategoryController@postHeaderCategory',
+            'as' => 'admin.api.category.update.header'
+        ]);
+        Route::post('/delete', [
+            'uses' => 'CategoryController@postRemoveCategory',
+            'as' => 'admin.api.category.remove'
+        ]);
+        Route::post('/create', [
+            'uses' => 'CategoryController@postCreateCategory',
+            'as' => 'admin.api.category.create'
+        ]);
+    });
+
     Route::group(['prefix' => 'tag'], function () {
 
-        Route::get('/length',[
-            'uses' => 'TagController@getTagLength',
-            'as' => 'admin.api.tag.get.length'
-        ]);
-        Route::get('/get/{id?}',[
+        Route::get('/get/{id?}', [
             'uses' => 'TagController@getTagJSON',
             'as' => 'admin.api.tag.get'
+        ]);
+        Route::get('/length', [
+            'uses' => 'TagController@getTagLength',
+            'as' => 'admin.api.tag.get.length'
         ]);
 
         Route::post('/update', [
             'uses' => 'TagController@postUpdateTag',
             'as' => 'admin.api.tag.update'
         ]);
-        Route::post('/delete',[
-            'uses'=>'TagController@postRemoveTag',
+        Route::post('/delete', [
+            'uses' => 'TagController@postRemoveTag',
             'as' => 'admin.api.tag.remove'
         ]);
         Route::post('/create', [

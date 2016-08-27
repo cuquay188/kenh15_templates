@@ -65,7 +65,7 @@
             <div class="modal-dialog">
                 <div class="modal-content" style="top: 150px" ng-controller="editTagController">
                     <div class="modal-header">
-                        <h5 style="font-weight: bold">Edit Tag: %%tag.name%%
+                        <h5>Edit Tag: %%tag.name%%
                         </h5>
                     </div>
                     <div class="modal-body">
@@ -78,7 +78,7 @@
                         <span class="errors">%%nameErrors%%</span>
                     </div>
                     <div class="modal-footer">
-                        <div class="form-group" id="action">
+                        <div class="form-group">
                             <button type="button" class="btn btn-default"
                                     data-dismiss="modal" ng-click="dismiss()">
                                 Cancel
@@ -102,14 +102,16 @@
                         <strong>Do you want to delete this tag?</strong>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-default"
-                                data-dismiss="modal" ng-click="dismiss()">
-                            Cancel
-                        </button>
-                        <button class="btn btn-primary"
-                                ng-click="submit()">
-                            Confirm
-                        </button>
+                        <div class="form-group">
+                            <button class="btn btn-default"
+                                    data-dismiss="modal" ng-click="dismiss()">
+                                Cancel
+                            </button>
+                            <button class="btn btn-primary"
+                                    ng-click="submit()">
+                                Confirm
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

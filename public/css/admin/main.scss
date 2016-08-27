@@ -421,6 +421,7 @@ body {
 .modal-header {
   h5 {
     margin: 0;
+    font-weight: bold;
   }
 }
 
@@ -493,10 +494,11 @@ body {
   float: right;
   margin: 5px 0;
 }
-.table{
-  .sortable{
+
+.table {
+  .sortable {
     cursor: pointer;
-    &.sort{
+    &.sort {
       color: #3498db;
     }
   }

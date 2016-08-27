@@ -29,56 +29,6 @@ class CategoryController extends Controller
         ]);
     }
 
-    public function getCreateCategory()
-    {
-        if (!Auth::check())
-            return redirect()->route('login')->with(['fail' => 'Required login.']);
-        return view('admin.create.create_category');
-    }
-
-    public function postCreateCategory(Request $request)
-    {
-        $this->validate($request, [
-            'category' => 'required|between:3,15'
-        ]);
-
-        $name = $request->category;
-
-        $category = new Category();
-        $category->name = $name;
-
-        $category->save();
-
-        $category = Category::where('name', $name)->first();
-        $advance = new CategoryAdvance();
-        $advance->category_id = $category->id;
-        $advance->save();
-
-
-        return redirect()->back();
-    }
-
-    public function postDeleteCategory(Request $request)
-    {
-        $id = $request->category_id;
-        Category::where('id', $id)->delete();
-        return redirect()->back();
-    }
-
-    public function postUpdateCategory(Request $request)
-    {
-        $this->validate($request, [
-            'name' => 'required|between:3,15'
-        ]);
-
-        $id = $request->category_id;
-        $name = $request->name;
-        Category::where('id', $id)->update([
-            'name' => $name
-        ]);
-        return redirect()->back();
-    }
-
     public function getViewCategory($id)
     {
         if (!Auth::check())
@@ -91,30 +41,125 @@ class CategoryController extends Controller
         ]);
     }
 
+
+    public function getCreateCategory()
+    {
+        if (!Auth::check())
+            return redirect()->route('login')->with(['fail' => 'Required login.']);
+        return view('admin.create.create_category');
+    }
+
+    public function getCategoryJSON($id = null)
+    {
+        if (!$id) {
+            $categories = Category::all();
+            foreach ($categories as $category) {
+                $category->articles = count(Article::where('category_id', $category->id)->get());
+                $category->advance;
+            }
+            return $categories;
+        } else {
+            $category = Category::find($id);
+            $category->advance;
+            return $category;
+        }
+    }
+
+    public function getCategoryLength()
+    {
+        return response()->json([
+            'message' => 'Get successful.',
+            'length' => count(Category::all())
+        ]);
+    }
+
+    public function postCreateCategory(Request $request)
+    {
+        $this->validate($request, [
+            'category' => 'required|between:3,15'
+        ]);
+
+        $name = $request->name;
+
+        $category = new Category();
+        $category->name = $name;
+        $category->save();
+
+        $category = Category::where('name', $name)->first();
+        $advance = new CategoryAdvance();
+        $advance->category_id = $category->id;
+        $advance->save();
+
+        $category->advance;
+
+        return response()->json([
+            'message' => 'Update Successful.',
+            'category' => $category
+        ]);
+    }
+
+    public function postUpdateCategory(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required|between:3,15'
+        ]);
+
+        $id = $request->id;
+        $name = $request->name;
+        Category::where('id', $id)->update([
+            'name' => $name
+        ]);
+        $category = Category::find($id);
+        $category->advance;
+        return response()->json([
+            'message' => 'Update Successful.',
+            'category' => $category
+        ]);
+    }
+
     public function postHotCategory(Request $request)
     {
-        $id = $request->category_id;
+        $id = $request->id;
         $category = Category::find($id);
         $hot = $category->advance->is_hot ? '0' : '1';
         CategoryAdvance::where('category_id', $id)->update(['is_hot' => $hot]);
-        if(!$hot)
+        if (!$hot)
             CategoryAdvance::where('category_id', $id)->update(['is_header' => $hot]);
+
+        $category = Category::find($id);
+        $category->advance;
+
         return response()->json([
-            'message' => 'success',
-            'is_hot' => $hot,
-            'is_header' => $hot
+            'message' => 'Update Successful.',
+            'category' => $category
         ]);
     }
 
     public function postHeaderCategory(Request $request)
     {
-        $id = $request->category_id;
+        $id = $request->id;
         $category = Category::find($id);
         $is_header = $category->advance->is_header ? '0' : '1';
         CategoryAdvance::where('category_id', $id)->update(['is_header' => $is_header]);
+
+        $category = Category::find($id);
+        $category->advance;
+
         return response()->json([
-            'message' => 'success',
-            'is_header' => $is_header
+            'message' => 'Update Successful.',
+            'category' => $category
+        ]);
+    }
+
+    public function postRemoveCategory(Request $request)
+    {
+        $id = $request->id;
+        $category = Category::find($id);
+        $category->advance;
+        Category::where('id', $id)->delete();
+        return response()->json([
+            'message' => 'Remove Successful.',
+            'category' => $category
         ]);
     }
 }

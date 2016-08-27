@@ -1,27 +1,30 @@
-@extends("admin.layouts.master")
-@section('title', 'Create Category')
-@section('content')
-    <div class="content content-width">
-        @if(count($errors)>0)
-            <ul class="errors">
-                @foreach($errors->all() as $error)
-                    <li>* {{$error}}</li>
-                @endforeach
-            </ul>
-        @endif
-        <form action="{{route('post_category')}}" method="post" role="form">
-            <div class="form-group">
-                <label for="category">Category</label>
-                <input type="text" id="category" name="category" class="form-control"
-                       placeholder="Enter category name..." value="{!! old('category') !!}">
+@if(Auth::getUser()->admin || Auth::getUser()->author)
+    <div class="modal fade" id="create-category" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content" style="top: 150px" >
+                <div class="modal-header">
+                    <h5>Create Tag</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input type="text" id="name"
+                               class="form-control" placeholder="Enter name tag...">
+                    </div>
+                    <span class="errors">* Not valid.</span>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default"
+                            data-dismiss="modal">
+                        Cancel
+                    </button>
+                    <button class="btn btn-primary">
+                        Create One
+                    </button>
+                    <button class="btn btn-primary">
+                        Create More...
+                    </button>
+                </div>
             </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-success">Create</button>
-                <input type="hidden" value="{{Session::token()}}" name="_token">
-            </div>
-        </form>
+        </div>
     </div>
-    <script>
-        $('#category').focus();
-    </script>
-@endsection
+@endif

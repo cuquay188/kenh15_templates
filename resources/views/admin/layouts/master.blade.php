@@ -11,9 +11,9 @@
 
     <link rel="stylesheet" href="{{asset('/css/admin/main.css')}}">
 
-@yield("styles")
+    @yield("styles")
 
-<!-- jQuery library -->
+    <!-- jQuery library -->
     <script src="{{asset('/jquery/jquery-2.2.4.min.js')}}"></script>
 
     <script src="{{asset('/angular/angular.min.js')}}"></script>
@@ -24,6 +24,45 @@
     <script src="{{asset('/ckeditor/ckeditor.js')}}"></script>
 
     @yield("scripts")
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            }
+        });
+        var url = {
+            article: {
+                get: '',
+                update: '',
+                remove: '',
+                create: ''
+            },
+            author: {
+                get: '',
+                update: '',
+                remove: '',
+                create: ''
+            },
+            category: {
+                get: '{{route('admin.api.category.get')}}',
+                length: '{{route('admin.api.category.get.length')}}',
+                update: {
+                    name: '{{route('admin.api.category.update.name')}}',
+                    hot: '{{route('admin.api.category.update.hot')}}',
+                    header: '{{route('admin.api.category.update.header')}}'
+                },
+                remove: '{{route('admin.api.tag.remove')}}',
+                create: '{{route('admin.api.tag.create')}}'
+            },
+            tag: {
+                get: '{{route('admin.api.tag.get')}}',
+                length: '{{route('admin.api.tag.get.length')}}',
+                update: '{{route('admin.api.tag.update')}}',
+                remove: '{{route('admin.api.tag.remove')}}',
+                create: '{{route('admin.api.tag.create')}}'
+            }
+        };
+    </script>
 </head>
 <body ng-app="mainApp">
 <div class="sidebar" ng-controller="sidebarController">
@@ -45,42 +84,6 @@
     @include('admin.layouts.components.dialogs')
 </div>
 
-
-<script>
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-        }
-    });
-    var url = {
-        article: {
-            get: '',
-            update: '',
-            remove: '',
-            create: ''
-        },
-        category: {
-            get: '',
-            update: '',
-            remove: '',
-            create: ''
-        },
-        author: {
-            get: '',
-            update: '',
-            remove: '',
-            create: ''
-        },
-        tag: {
-            get: '{{route('admin.api.tag.get')}}',
-            length: '{{route('admin.api.tag.get.length')}}',
-            update: '{{route('admin.api.tag.update')}}',
-            remove: '{{route('admin.api.tag.remove')}}',
-            create: '{{route('admin.api.tag.create')}}'
-        }
-
-    };
-</script>
 <script src="{{asset('/js/admin/app.js')}}"></script>
 <script src="{{asset('/js/admin/sidebar.js')}}"></script>
 
@@ -88,17 +91,19 @@
 <script src="{{asset('/js/admin/tags/services.js')}}"></script>
 <script src="{{asset('js/admin/tags/controllers.js')}}"></script>
 {{--End Tag--}}
-@yield("body.scripts")
-<script>
 
-    $('#create-tag, #edit-tag').on('shown.bs.modal', function () {
+{{--Category--}}
+
+{{--End Category--}}
+@yield("body.scripts")
+
+<script>
+    $('#create-tag, #edit-tag, #create-category, #edit-category').on('shown.bs.modal', function () {
         $(this).find('#name').focus();
     });
-</script>
-
-<script>
     CKEDITOR.config.width = '55vw';
     CKEDITOR.config.height = 'calc(100vh - 300px)';
 </script>
+
 </body>
 </html>

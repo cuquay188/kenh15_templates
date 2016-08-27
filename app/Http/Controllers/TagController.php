@@ -32,11 +32,23 @@ class TagController extends Controller
         ]);
     }
 
-    public function getCreateTag()
+    public function getTagJSON($id = null)
     {
-        if (!Auth::check())
-            return redirect()->route('login')->with(['fail' => 'Required login.']);
-        return view('admin.create.create_tag');
+        if (!$id) {
+            $tags = Tag::all();
+            foreach ($tags as $tag)
+                $tag->articles = count(DB::table('tag_article')->where('tag_id', $tag->id)->get());
+            return $tags;
+        } else
+            return Tag::find($id);
+    }
+
+    public function getTagLength()
+    {
+        return response()->json([
+            'message' => 'Get successful.',
+            'length' => count(Tag::all())
+        ]);
     }
 
     public function postCreateTag(Request $request)
@@ -81,25 +93,6 @@ class TagController extends Controller
         return response()->json([
             'message' => 'Remove Successful.',
             'tag' => $tag
-        ]);
-    }
-
-    public function getTagJSON($id = null)
-    {
-        if (!$id) {
-            $tags = Tag::all();
-            foreach ($tags as $tag)
-                $tag->articles = count(DB::table('tag_article')->where('tag_id', $tag->id)->get());
-            return $tags;
-        } else
-            return Tag::find($id);
-    }
-
-    public function getTagLength()
-    {
-        return response()->json([
-            'message' => 'Get successful.',
-            'length' => count(Tag::all())
         ]);
     }
 }
