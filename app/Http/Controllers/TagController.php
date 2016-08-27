@@ -67,7 +67,7 @@ class TagController extends Controller
         ]);
     }
 
-    public function postDeleteTag(Request $request)
+    public function postRemoveTag(Request $request)
     {
         $id = $request->id;
         $tag = Tag::find($id);

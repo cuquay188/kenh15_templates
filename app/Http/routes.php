@@ -189,8 +189,8 @@ Route::group(['prefix' => 'api'], function () {
             'as' => 'admin.api.tag.update'
         ]);
         Route::post('/delete',[
-            'uses'=>'TagController@postDeleteTag',
-            'as' => 'admin.api.tag.delete'
+            'uses'=>'TagController@postRemoveTag',
+            'as' => 'admin.api.tag.remove'
         ]);
 
     });

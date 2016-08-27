@@ -45,6 +45,6 @@ app.controller('deleteTagController', function ($scope, $http, $tags, $tag) {
         $tag.set(null);
     };
     $scope.submit = function () {
-        $tag.delete($scope, $http, $tags)
+        $tag.remove($scope, $http, $tags)
     }
 });

@@ -50,10 +50,29 @@
             }
         });
         var url = {
+            article : {
+                get : '',
+                update : '',
+                remove: '',
+                create:''
+            },
+            category : {
+                get : '',
+                update : '',
+                remove: '',
+                create:''
+            },
+            author : {
+                get : '',
+                update : '',
+                remove: '',
+                create:''
+            },
             tag : {
                 get : '{{route('admin.api.tag.get')}}',
                 update : '{{route('admin.api.tag.update')}}',
-                delete: '{{route('admin.api.tag.delete')}}'
+                remove: '{{route('admin.api.tag.remove')}}',
+                create:''
             }
 
         };

@@ -53,8 +53,8 @@ app.service('$tag', function () {
                 $scope.nameErrors = response.data.name + '';
             })
         },
-        delete: function ($scope, $http, $tags) {
-            $http.post(url.tag.delete, {
+        remove: function ($scope, $http, $tags) {
+            $http.post(url.tag.remove, {
                 id: $tag.id
             }).then(function (response) {
                 $tags.remove(response.data.tag.id);
