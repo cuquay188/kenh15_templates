@@ -96,10 +96,6 @@ Route::group(['prefix' => 'admin'], function () {
         'uses' => 'TagController@postCreateTag',
         'as' => 'post_tag'
     ]);
-    Route::post('/delete/tag', [
-        'uses' => 'TagController@postDeleteTag',
-        'as' => 'post_delete_tag'
-    ]);
     Route::get('/tag/{id}', [
         'uses' => 'TagController@getViewTag'
     ]);
@@ -181,16 +177,23 @@ Route::group(['prefix' => 'api'], function () {
         'as' => 'admin.update.category.header'
     ]);
 
-    Route::get('/tag/{id?}',[
-        'uses' => 'TagController@getTagJSON',
-        'as' => 'admin.api.tag.get'
-    ]);
+    Route::group(['prefix' => 'tag'], function () {
 
-    Route::post('/tag/update', [
-        'uses' => 'TagController@postUpdateTag',
-        'as' => 'admin.api.tag.update'
-    ]);
+        Route::get('/{id?}',[
+            'uses' => 'TagController@getTagJSON',
+            'as' => 'admin.api.tag.get'
+        ]);
 
+        Route::post('/update', [
+            'uses' => 'TagController@postUpdateTag',
+            'as' => 'admin.api.tag.update'
+        ]);
+        Route::post('/delete',[
+            'uses'=>'TagController@postDeleteTag',
+            'as' => 'admin.api.tag.delete'
+        ]);
+
+    });
 });
 // Home page
 Route::get('/', [

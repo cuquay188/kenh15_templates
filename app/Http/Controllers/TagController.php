@@ -69,9 +69,13 @@ class TagController extends Controller
 
     public function postDeleteTag(Request $request)
     {
-        $id = $request->tag_id;
+        $id = $request->id;
+        $tag = Tag::find($id);
         Tag::where('id', $id)->delete();
-        return redirect()->back();
+        return response()->json([
+            'message'=>'Update Successful.',
+            'tag' => $tag
+        ]);
     }
 
     public function getViewTag($id)

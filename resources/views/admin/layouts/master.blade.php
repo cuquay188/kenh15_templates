@@ -52,7 +52,8 @@
         var url = {
             tag : {
                 get : '{{route('admin.api.tag.get')}}',
-                update : '{{route('admin.api.tag.update')}}'
+                update : '{{route('admin.api.tag.update')}}',
+                delete: '{{route('admin.api.tag.delete')}}'
             }
 
         };

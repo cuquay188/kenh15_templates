@@ -1,4 +1,3 @@
-
 app.service('$tags', function () {
     var $tags = {};
     return {
@@ -10,7 +9,12 @@ app.service('$tags', function () {
             return $tags
         },
         length: function () {
-            return $tags.length;
+            if($tag){
+
+            }
+            else {
+                return $tags.length;
+            }
         },
         load: function ($http) {
             $http.get(url.tag.get)
@@ -18,6 +22,12 @@ app.service('$tags', function () {
                     $tags = response.data;
                     return $tags;
                 });
+        },
+        remove: function (id) {
+            $tags = $tags.filter(function (tag) {
+                return tag.id != id
+            });
+            return $tags;
         }
     };
 });
@@ -43,8 +53,15 @@ app.service('$tag', function () {
                 $scope.nameErrors = response.data.name + '';
             })
         },
-        remove: function () {
-            
+        delete: function ($scope, $http, $tags) {
+            $http.post(url.tag.delete, {
+                id: $tag.id
+            }).then(function (response) {
+                $tags.remove(response.data.tag.id);
+                $('.modal.in').modal('hide');
+            }, function (response) {
+                $scope.errors = response.data.message;
+            })
         }
     }
 });
