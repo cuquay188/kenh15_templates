@@ -19,6 +19,7 @@
         var offsetPixels = 0;
         var offsetStopPixels = $('.body .container').height() - $('footer').height() - 500;
         var bodySidebarHeight = $('.body-top').height();
+        console.log(bodySidebarHeight / 2);
         $('.body').scroll(function () {
             if ($('.body').scrollTop() > offsetPixels) {
                 $('.sidebar-left').css({
@@ -32,7 +33,7 @@
                 });
                 if ($('.body').scrollTop() > offsetStopPixels) {
                     $('.body-top').css({
-                        'height': 190,
+                        'height': bodySidebarHeight / 2,
                         'overflow-y': 'auto'
                     });
                     $('.main-content').css({

@@ -45,7 +45,7 @@
                 });
                 if ($('.body').scrollTop() > offsetStopPixels) {
                     $('.body-top').css({
-                        'height': 290,
+                        'height': bodySidebarHeight / 2,
                         'overflow-y': 'auto'
                     });
                     $('.main-content').css({
