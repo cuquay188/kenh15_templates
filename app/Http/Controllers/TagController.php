@@ -15,13 +15,22 @@ use App\Tag;
 
 class TagController extends Controller
 {
-    public function getTag()
+    public function getTagManagement()
     {
         if (!Auth::check())
             return redirect()->route('login')->with(['fail' => 'Required login.']);
         return view('admin.tags.list.tags');
     }
 
+    public function getViewTag($id)
+    {
+        if (!Auth::check())
+            return redirect()->back()->with(['fail' => 'Required login.']);
+        $tag = Tag::find($id);
+        return view('admin.tags.single.tag', [
+            'tag' => $tag
+        ]);
+    }
 
     public function getCreateTag()
     {
@@ -40,7 +49,11 @@ class TagController extends Controller
         $tag = new Tag();
         $tag->name = $name;
         $tag->save();
-        return redirect()->back();
+        $tag->articles = count(DB::table('tag_article')->where('tag_id', $tag->id)->get());
+        return response()->json([
+            'message' => 'Create Successful.',
+            'tag' => $tag
+        ]);
     }
 
     public function postUpdateTag(Request $request)
@@ -66,17 +79,7 @@ class TagController extends Controller
         $tag = Tag::find($id);
         Tag::where('id', $id)->delete();
         return response()->json([
-            'message' => 'Update Successful.',
-            'tag' => $tag
-        ]);
-    }
-
-    public function getViewTag($id)
-    {
-        if (!Auth::check())
-            return redirect()->back()->with(['fail' => 'Required login.']);
-        $tag = Tag::find($id);
-        return view('admin.tags.single.tag', [
+            'message' => 'Remove Successful.',
             'tag' => $tag
         ]);
     }

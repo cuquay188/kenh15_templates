@@ -43,8 +43,8 @@
                     Tags
                     <span ng-bind="'('+tagLength+')'"></span>
                 </a>
-                <a class="create {{Route::getCurrentRoute()->getName()=='create_tag'?'active':''}}"
-                   href="{{route('create_tag')}}"><i class="glyphicon glyphicon-plus"></i></a>
+                <a class="create" data-toggle="modal" data-target="#create-tag"
+                   href="#"><i class="glyphicon glyphicon-plus"></i></a>
             </li>
         </ul>
     </div>

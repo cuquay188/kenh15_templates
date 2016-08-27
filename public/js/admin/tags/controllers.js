@@ -1,7 +1,4 @@
 app.controller('tagsListController', function ($scope, $http, $log, $tags) {
-
-    $tags.load($http);
-
     $scope.$watch(function () {
         return $tags.get()
     }, function (newVal) {
@@ -28,7 +25,7 @@ app.controller('editTagController', function ($scope, $http, $tag) {
     });
     $scope.dismiss = function () {
         $tag.set(null);
-        $scope.nameErrors = null;
+        $scope.nameErrors = '';
     };
     $scope.submit = function () {
         $tag.update($scope, $http, $scope.tag.newName)
@@ -46,5 +43,11 @@ app.controller('deleteTagController', function ($scope, $http, $tags, $tag) {
     };
     $scope.submit = function () {
         $tag.remove($scope, $http, $tags)
+    }
+});
+
+app.controller('createTagController', function ($scope, $http, $tags, $tag) {
+    $scope.create = function (more) {
+        $tag.create($scope, $http, $tags, $scope.tagName, more);
     }
 });

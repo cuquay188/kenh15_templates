@@ -18,6 +18,9 @@ app.service('$tags', function () {
                     return $tags;
                 });
         },
+        add: function ($tag) {
+            $tags.push($tag);
+        },
         remove: function (id) {
             $tags = $tags.filter(function (tag) {
                 return tag.id != id
@@ -44,6 +47,23 @@ app.service('$tag', function () {
                 $tag = response.data.tag;
                 $scope.tag.name = $tag.name;
                 $('.modal.in').modal('hide');
+                $scope.tagName = '';
+                $scope.nameErrors = '';
+            }, function (response) {
+                $scope.nameErrors = response.data.name + '';
+            })
+        },
+        create: function ($scope, $http, $tags, name,more) {
+            $http.post(url.tag.create, {
+                name: name
+            }).then(function (response) {
+                $tag = response.data.tag;
+                $tags.add($tag);
+                if(!more)
+                    $('.modal.in').modal('hide');
+                $tag = null;
+                $scope.tagName = '';
+                $scope.nameErrors = '';
             }, function (response) {
                 $scope.nameErrors = response.data.name + '';
             })

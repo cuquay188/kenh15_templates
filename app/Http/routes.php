@@ -85,16 +85,8 @@ Route::group(['prefix' => 'admin'], function () {
 
     //Tag
     Route::get('/tag', [
-        'uses' => 'TagController@getTag',
+        'uses' => 'TagController@getTagManagement',
         'as' => 'admin.tag'
-    ]);
-    Route::get('/create/tag', [
-        'uses' => 'TagController@getCreateTag',
-        'as' => 'create_tag'
-    ]);
-    Route::post('/create/tag', [
-        'uses' => 'TagController@postCreateTag',
-        'as' => 'post_tag'
     ]);
     Route::get('/tag/{id}', [
         'uses' => 'TagController@getViewTag'
@@ -195,6 +187,10 @@ Route::group(['prefix' => 'api'], function () {
         Route::post('/delete',[
             'uses'=>'TagController@postRemoveTag',
             'as' => 'admin.api.tag.remove'
+        ]);
+        Route::post('/create', [
+            'uses' => 'TagController@postCreateTag',
+            'as' => 'admin.api.tag.create'
         ]);
 
     });

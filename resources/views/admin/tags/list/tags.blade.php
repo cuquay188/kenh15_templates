@@ -16,11 +16,11 @@
                 <td>%%tag.articles%%</td>
                 <td>
                     <button class="btn btn-primary btn-xs"
-                            data-toggle="modal" data-target="#edit_tag"
+                            data-toggle="modal" data-target="#edit-tag"
                             ng-click="edit()">Edit
                     </button>
                     <button class="btn btn-primary btn-xs"
-                            data-toggle="modal" data-target="#delete_tag"
+                            data-toggle="modal" data-target="#delete-tag"
                             ng-click="delete()">Delete
                     </button>
                 </td>
@@ -28,12 +28,12 @@
             <tr ng-if="tags==null">
                 <td colspan="6" class="empty-table">
                     No tags is available.
-                    <a href="{{route('create_tag')}}">Create a new one</a>.
+                    <a href="#" data-toggle="modal" data-target="#create-tag">Create a new one</a>.
                 </td>
             </tr>
             </tbody>
         </table>
-        <div class="modal fade" role="dialog" id="edit_tag">
+        <div class="modal fade" role="dialog" id="edit-tag">
             <div class="modal-dialog">
                 <div class="modal-content" style="top: 150px" ng-controller="editTagController">
                     <div class="modal-header">
@@ -42,7 +42,8 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <input class="form-control" type="text"
+                            <input class="form-control" type="text" id="name"
+                                   ng-keyup="$event.keyCode == 13 && submit()"
                                    ng-model="tag.newName" ng-class="{'error' : nameErrors}"
                                    placeholder="New tag name...">
                         </div>
@@ -63,7 +64,7 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" role="dialog" id="delete_tag">
+        <div class="modal fade" role="dialog" id="delete-tag">
             <div class="modal-dialog">
                 <div class="modal-content" style="top: 150px" ng-controller="deleteTagController">
                     <div class="modal-header">
@@ -86,7 +87,4 @@
             </div>
         </div>
     </div>
-@endsection
-@section('body.scripts')
-    <script src="{{asset('js/admin/tags/controllers.js')}}"></script>
 @endsection

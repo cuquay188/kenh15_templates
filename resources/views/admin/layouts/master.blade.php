@@ -11,9 +11,9 @@
 
     <link rel="stylesheet" href="{{asset('/css/admin/main.css')}}">
 
-    @yield("styles")
+@yield("styles")
 
-    <!-- jQuery library -->
+<!-- jQuery library -->
     <script src="{{asset('/jquery/jquery-2.2.4.min.js')}}"></script>
 
     <script src="{{asset('/angular/angular.min.js')}}"></script>
@@ -52,38 +52,48 @@
         }
     });
     var url = {
-        article : {
-            get : '',
-            update : '',
+        article: {
+            get: '',
+            update: '',
             remove: '',
-            create:''
+            create: ''
         },
-        category : {
-            get : '',
-            update : '',
+        category: {
+            get: '',
+            update: '',
             remove: '',
-            create:''
+            create: ''
         },
-        author : {
-            get : '',
-            update : '',
+        author: {
+            get: '',
+            update: '',
             remove: '',
-            create:''
+            create: ''
         },
-        tag : {
-            get : '{{route('admin.api.tag.get')}}',
+        tag: {
+            get: '{{route('admin.api.tag.get')}}',
             length: '{{route('admin.api.tag.get.length')}}',
-            update : '{{route('admin.api.tag.update')}}',
+            update: '{{route('admin.api.tag.update')}}',
             remove: '{{route('admin.api.tag.remove')}}',
-            create:''
+            create: '{{route('admin.api.tag.create')}}'
         }
 
     };
 </script>
 <script src="{{asset('/js/admin/app.js')}}"></script>
 <script src="{{asset('/js/admin/sidebar.js')}}"></script>
+
+{{--Tag--}}
 <script src="{{asset('/js/admin/tags/services.js')}}"></script>
+<script src="{{asset('js/admin/tags/controllers.js')}}"></script>
+{{--End Tag--}}
 @yield("body.scripts")
+<script>
+
+    $('#create-tag, #edit-tag').on('shown.bs.modal', function () {
+        $(this).find('#name').focus();
+    });
+</script>
 
 <script>
     CKEDITOR.config.width = '55vw';

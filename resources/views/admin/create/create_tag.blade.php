@@ -1,26 +1,31 @@
-@extends('admin.layouts.master')
-@section('title','Create Tag')
-@section('content')
-    <div class="content content-width">
-        @if(count($errors)>0)
-            <ul class="errors">
-                @foreach($errors->all() as $error)
-                    <li>* {{$error}}</li>
-                @endforeach
-            </ul>
-        @endif
-        <form action="{{route('post_tag')}}" method="post" role="form">
-            <div class="form-group">
-                <label for="name">Name Tag</label>
-                <input type="text" id="name" name="name" class="form-control" placeholder="Enter name tag..." value="{!! old('name') !!}">
+@if(Auth::getUser()->admin || Auth::getUser()->author)
+    <div class="modal fade" id="create-tag" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content" style="top: 150px" ng-controller="createTagController">
+                <div class="modal-header">
+                    <h5 style="font-weight: bold">Create Tag</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input type="text" id="name" ng-model="tagName" ng-class="{'error' : nameErrors}"
+                               ng-keyup="$event.keyCode == 13 && create(1)"
+                               class="form-control" placeholder="Enter name tag...">
+                    </div>
+                    <span class="errors">%%nameErrors%%</span>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default"
+                            data-dismiss="modal">
+                        Cancel
+                    </button>
+                    <button class="btn btn-primary" ng-click="create()">
+                        Create One
+                    </button>
+                    <button class="btn btn-primary" ng-click="create(1)">
+                        Create More...
+                    </button>
+                </div>
             </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-success">Create</button>
-                <input type="hidden" value="{{Session::token()}}" name="_token">
-            </div>
-        </form>
+        </div>
     </div>
-    <script>
-        $('#name').focus();
-    </script>
-@endsection
+@endif
