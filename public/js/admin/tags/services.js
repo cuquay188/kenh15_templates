@@ -1,5 +1,5 @@
 app.service('$tags', function () {
-    var $tags = {};
+    var $tags = [];
     return {
         get: function () {
             return $tags;

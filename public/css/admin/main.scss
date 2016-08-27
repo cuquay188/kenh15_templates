@@ -473,3 +473,31 @@ body {
     box-shadow: 0 0 5px rgba(231, 76, 60, 0.7);
   }
 }
+
+.form-group {
+  position: relative;
+  .form-control.search + span {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    font-size: 18px;
+    color: #337ab7;
+  }
+}
+
+.form-control {
+  padding: 6px 8px;
+}
+
+.pagination {
+  float: right;
+  margin: 5px 0;
+}
+.table{
+  .sortable{
+    cursor: pointer;
+    &.sort{
+      color: #3498db;
+    }
+  }
+}
