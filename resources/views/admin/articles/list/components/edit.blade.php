@@ -20,8 +20,8 @@
                     <div class="form-group" style="width: 100%">
                         <input type="text" class="form-control" id="title"
                                value="" placeholder="Enter title...">
+                        <span class="error"></span>
                     </div>
-
                     <div class="form-group">
                         <label>Tags</label>
                         <div id="edit_tags" class="checkbox-style row">
@@ -31,6 +31,7 @@
                                 1
                             </label>
                         </div>
+                        <span class="error"></span>
                     </div>
                     <div class="form-group">
                         <label for="edit-category-1">Category</label>
@@ -38,23 +39,25 @@
                             <option value="null" style="font-weight: bold">--Select a category--</option>
                             <option value="1">1</option>
                         </select>
+                        <span class="error"></span>
                     </div>
                     <div class="form-group">
                         <label>Choose Author(s)</label>
                         <div id="edit-authors" class="checkbox-style row">
-                                <label for="edit-author-1" class="col col-sm-6">
-                                    <input type="checkbox" id="edit-author-1" value="1">
-                                    1
-                                </label>
+                            <label for="edit-author-1" class="col col-sm-6">
+                                <input type="checkbox" id="edit-author-1" value="1">
+                                1
+                            </label>
                         </div>
+                        <span class="error"></span>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <div class="form-group" id="action">
-                    <button type="submit" class="btn btn-primary ">Update</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close
                     </button>
+                    <button type="submit" class="btn btn-primary ">Update</button>
                 </div>
             </div>
         </div>

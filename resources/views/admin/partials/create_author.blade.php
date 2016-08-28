@@ -1,17 +1,19 @@
 @if(Auth::getUser()->admin || Auth::getUser()->author)
-    <div class="modal fade" id="create-category" role="dialog">
+    <div class="modal fade" id="create-author" role="dialog">
         <div class="modal-dialog">
-            <div class="modal-content" style="top: 150px" ng-controller="createCategoryController">
+            <div class="modal-content" style="top: 150px" ng-controller="createTagController">
                 <div class="modal-header">
-                    <h5>Create new category</h5>
+                    <h5 style="font-weight: bold">Promote new author</h5>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <input type="text" id="name" ng-model="categoryName" ng-class="{'error' : nameErrors}"
-                               ng-keyup="$event.keyCode == 13 && create(1)"
-                               class="form-control" placeholder="Enter name tag...">
+                        <label for="user">Pick a user to promote</label>
+                        <select name="user" id="user" class="form-control">
+                            <option value="" style="font-weight:bold;">--Select an user--</option>
+                            <option value="1">admin - pvtri96@gmail.com</option>
+                        </select>
                     </div>
-                    <span class="errors">%%nameErrors%%</span>
+                    <span class="errors"></span>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-default"
@@ -19,10 +21,10 @@
                         Cancel
                     </button>
                     <button class="btn btn-primary" ng-click="create()">
-                        Create One
+                        Promote One
                     </button>
                     <button class="btn btn-primary" ng-click="create(1)">
-                        Create More...
+                        Promote More...
                     </button>
                 </div>
             </div>

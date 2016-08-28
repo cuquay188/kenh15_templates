@@ -78,6 +78,8 @@
 
     @include("admin.layouts.components.footer")
 
+</div>
+<div class="partials">
     @yield('dialogs')
     @include('admin.layouts.components.dialogs')
 </div>

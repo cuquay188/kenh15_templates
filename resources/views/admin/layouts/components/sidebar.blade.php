@@ -13,7 +13,7 @@
                 <a class="{{Route::getCurrentRoute()->getName()=='article'?'active':''}}"
                    href="{{route('article')}}">
                     Articles
-                    <span>({{count(App\Article::all())}})</span>
+                    <span ng-bind="'('+articleLength+')'"></span>
                 </a>
                 <a class="create" data-toggle="modal"
                    data-target="#create-article"
@@ -23,10 +23,11 @@
                 <a class="{{Route::getCurrentRoute()->getName()=='author'?'active':''}}"
                    href="{{route('author')}}">
                     Authors
-                    <span>({{count(App\Author::all())}})</span>
+                    <span ng-bind="'('+authorLength+')'"></span>
                 </a>
-                <a class="create {{Route::getCurrentRoute()->getName()=='create_author'?'active':''}}"
-                   href="{{route('create_author')}}"><i class="glyphicon glyphicon-plus"></i></a>
+                <a class="create" data-toggle="modal"
+                   data-target="#create-author"
+                   href="#"><i class="glyphicon glyphicon-plus"></i></a>
             </li>
             <li>
                 <a class="{{Route::getCurrentRoute()->getName()=='category'?'active':''}}"

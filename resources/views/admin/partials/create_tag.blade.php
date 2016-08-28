@@ -3,7 +3,7 @@
         <div class="modal-dialog">
             <div class="modal-content" style="top: 150px" ng-controller="createTagController">
                 <div class="modal-header">
-                    <h5 style="font-weight: bold">Create Tag</h5>
+                    <h5 style="font-weight: bold">Create new tag</h5>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">

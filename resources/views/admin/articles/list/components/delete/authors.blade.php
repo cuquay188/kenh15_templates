@@ -3,7 +3,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 style="font-weight: bold">Delete Article's author: "<span
+                <h5 style="font-weight: bold">Remove author: "<span
                             style="font-style: italic">Pham Van Tri</span>"</h5>
             </div>
             <div class="modal-body">
