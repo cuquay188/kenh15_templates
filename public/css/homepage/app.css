@@ -25,6 +25,26 @@ img {
   max-width: 100%;
   max-height: 100%; }
 
+.backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 1;
+  display: flex; }
+  .backdrop a {
+    margin: auto; }
+    .backdrop a img {
+      max-width: 210px;
+      max-height: 140px; }
+
+.picture {
+  position: relative;
+  background-size: auto 140px;
+  background-repeat: repeat-x; }
+
 header {
   background-color: #1abc9c;
   color: white;
@@ -35,13 +55,31 @@ header {
     color: white;
     text-decoration: none;
     font-size: 29px;
-    font-weight: bold; }
+    font-weight: bold;
+    line-height: 50px; }
 
 .body {
   overflow-y: auto;
   height: calc(100vh - 55px);
   position: relative; }
 
+/*Scroll bar*/
+::-webkit-scrollbar-track {
+  border-radius: 7px;
+  background-color: #F5F5F5; }
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  background-color: #F5F5F5; }
+
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: #1abc9c; }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #16a085; }
+
+/*End scroll bar*/
 .menu a {
   text-decoration: none;
   color: white; }
@@ -63,7 +101,7 @@ header {
 
 .menu-dropdown:hover .dropdown-content {
   display: block;
-  z-index: 3; }
+  z-index: 100; }
 
 .icon {
   position: relative;
@@ -76,23 +114,17 @@ header {
     min-width: 500px;
     background-color: #f5fefd;
     cursor: default; }
-    .icon .dropdown-content ul {
-      padding: 0; }
-      .icon .dropdown-content ul li {
-        display: inline-block;
-        vertical-align: top;
-        width: 100px;
-        margin: 10px 10px 5px 10px;
-        cursor: pointer; }
-        .icon .dropdown-content ul li a {
-          color: black;
-          font-weight: normal; }
-        .icon .dropdown-content ul li:hover {
-          background-color: #1abc9c; }
-          .icon .dropdown-content ul li:hover a {
-            color: white; }
-        .icon .dropdown-content ul li:before {
-          content: ""; }
+    .icon .dropdown-content a {
+      display: inline-block;
+      vertical-align: top;
+      width: 100px;
+      padding: 5px;
+      margin: 10px 10px 5px 10px;
+      color: black;
+      font-weight: normal; }
+      .icon .dropdown-content a:hover {
+        background-color: #1abc9c;
+        color: white; }
 
 .search-area {
   padding-top: 7px; }

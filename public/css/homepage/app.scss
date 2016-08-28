@@ -33,6 +33,30 @@ img {
   max-height: 100%;
 }
 
+.backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 1;
+  display: flex;
+  a {
+    margin: auto;
+    img {
+      max-width: 210px;
+      max-height: 140px;
+    }
+  }
+}
+
+.picture {
+  position: relative;
+  background-size: auto 140px;
+  background-repeat: repeat-x;
+}
+
 header {
   background-color: #1abc9c;
   color: white;
@@ -45,6 +69,7 @@ header {
       text-decoration: none;
       font-size: 29px;
       font-weight: bold;
+      line-height: 50px;
     }
   }
 }
@@ -54,6 +79,28 @@ header {
   height: calc(100vh - 55px);
   position: relative;
 }
+
+/*Scroll bar*/
+::-webkit-scrollbar-track {
+  border-radius: 7px;
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: #1abc9c;
+  &:hover {
+    background-color: #16a085;
+  }
+}
+
+/*End scroll bar*/
 
 .menu {
   a {
@@ -68,8 +115,8 @@ header {
   display: inline-block;
   padding: 14px 16px;
   transition: background-color 0.3s;
-  i{
-    font-size:20px;
+  i {
+    font-size: 20px;
   }
   &:hover, &.active {
     background-color: #16a085;
@@ -82,12 +129,14 @@ header {
     cursor: pointer;
   }
 }
-.menu-dropdown:hover{
+
+.menu-dropdown:hover {
   .dropdown-content {
     display: block;
-    z-index: 3;
+    z-index: 100;
   }
 }
+
 .icon {
   position: relative;
   display: inline-block;
@@ -95,31 +144,21 @@ header {
     display: none;
     position: absolute;
     top: 34px;
-    right:-100px;
+    right: -100px;
     min-width: 500px;
     background-color: #f5fefd;
     cursor: default;
-    ul {
-      padding: 0;
-      li {
-        display: inline-block;
-        vertical-align: top;
-        width: 100px;
-        margin: 10px 10px 5px 10px;
-        cursor: pointer;
-        a {
-          color: black;
-          font-weight: normal;
-        }
-        &:hover {
-          background-color: #1abc9c;
-          a {
-            color: white;
-          }
-        }
-        &:before {
-          content: "";
-        }
+    a {
+      display: inline-block;
+      vertical-align: top;
+      width: 100px;
+      padding: 5px;
+      margin: 10px 10px 5px 10px;
+      color: black;
+      font-weight: normal;
+      &:hover {
+        background-color: #1abc9c;
+        color: white;
       }
     }
   }
@@ -132,10 +171,10 @@ header {
 .search-form .form-group {
   margin: 0;
   position: relative;
-  width:85%;
-  .form-control{
+  width: 85%;
+  .form-control {
     background-color: inherit;
-    border:2px solid white;
+    border: 2px solid white;
     border-radius: 3px;
     color: white;
     &::-webkit-input-placeholder {
