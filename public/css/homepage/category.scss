@@ -1,5 +1,11 @@
 .title {
   font-size: 17px;
+  a {
+    color: #34495e;
+    &:hover {
+      color: #2c3e50;
+    }
+  }
 }
 
 .category {
@@ -76,6 +82,19 @@
         font-size: 17px;
         margin-top: 10px;
       }
+    }
+  }
+}
+
+.pagination {
+  margin: 30px 0 30px 35%;
+  a {
+    text-decoration: none;
+    color: black;
+    padding: 5px 8px;
+    &:hover {
+      background-color: #1abc9c;
+      color: white;
     }
   }
 }

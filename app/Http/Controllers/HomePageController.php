@@ -82,12 +82,36 @@ class HomePageController extends Controller
         $category = Category::find($id);
         $article_first = Article::where('category_id', $id)->orderBy('id', 'desc')->first();
         $hot_articles = Article::where('category_id', $id)->orderBy('id', 'desc')->take(6)->skip(1)->get();
-        $related_articles = Article::where('category_id', $id)->orderBy('id', 'desc')->take(10)->skip(7)->get();
+        $related_articles = Article::where('category_id', $id)->orderBy('id', 'desc')->get();
         return view('homepage.categories.single_category', [
             'related_articles' => $related_articles,
             'hot_articles' => $hot_articles,
             'article_first' => $article_first,
             'category' => $category
+        ]);
+    }
+
+    public function getArticlesPerPage($id, $number_page)
+    {
+        $category = Category::find($id);
+        $article_first = Article::where('category_id', $id)->orderBy('id', 'desc')->first();
+        $hot_articles = Article::where('category_id', $id)->orderBy('id', 'desc')->take(6)->skip(1)->get();
+
+        $number_articles = 5;
+        $limit_articles = 0;
+        $total_pages = count($category->articles) / $number_articles;
+        if ($number_page != null) {
+            $limit_articles = ($number_page - 1) * $number_articles;
+        }
+
+        $articles_per_page = Article::where('category_id', $id)->orderBy('id', 'desc')->take($number_articles)->skip($limit_articles)->get();
+
+        return view('homepage.categories.single_category', [
+            'articles_per_page' => $articles_per_page,
+            'hot_articles' => $hot_articles,
+            'article_first' => $article_first,
+            'category' => $category,
+            'total_pages' => $total_pages
         ]);
     }
 }

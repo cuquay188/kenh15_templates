@@ -164,8 +164,8 @@ Route::group(['prefix' => 'admin'], function () {
 
 });
 Route::group(['prefix' => 'api'], function () {
-    Route::get('/article',[
-       'as' => 'admin.api.article'
+    Route::get('/article', [
+        'as' => 'admin.api.article'
     ]);
     Route::get('/article/{id}', [
         'uses' => 'ArticleController@getArticleJSON'
@@ -193,4 +193,7 @@ Route::get('/article/{id}', [
 ]);
 Route::get('/category/{id}', [
     'uses' => 'HomepageController@getSingleCategory'
+]);
+Route::get('/category/{id}/page-{number_page}', [
+    'uses' => 'HomepageController@getArticlesPerPage'
 ]);

@@ -13,10 +13,12 @@
                 <div class="top-articles">
                     <div class="newest-article">
                         @if($article_first)
-                            <div class="picture" style="background-image: url('{{$article_first->img_url}}');background-size: auto 200px">
+                            <div class="picture"
+                                 style="background-image: url('{{$article_first->img_url}}');background-size: auto 200px">
                                 <div class="backdrop">
                                     <a href="{{route('homepage').'/article/'.$article_first->id}}">
-                                        <img src="{{$article_first->img_url}}" alt="" style="max-height: 200px;max-width: 300px">
+                                        <img src="{{$article_first->img_url}}" alt=""
+                                             style="max-height: 200px;max-width: 300px">
                                     </a>
                                 </div>
                             </div>
@@ -42,8 +44,8 @@
                         @endif
                     </div>
                 </div>
-                @if(count($related_articles))
-                    @foreach($related_articles as $article)
+                @if(count($articles_per_page))
+                    @foreach($articles_per_page as $article)
                         <div class="related-news">
                             <div class="picture" style="background-image: url('{{$article->img_url}}')">
                                 <div class="backdrop">
@@ -65,6 +67,13 @@
                         </div>
                     @endforeach
                 @endif
+            </div>
+            <div class="pagination">
+                @for($i=0;$i<$total_pages;$i++)
+                    <a href="{{route('homepage').'/category/'.$category->id.'/page-'.($i+1)}}" class="page">
+                            {{$i+1}}
+                    </a>
+                @endfor
             </div>
         </div>
         <div class="col-lg-4">
