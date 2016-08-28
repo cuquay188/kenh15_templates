@@ -122,25 +122,7 @@ Route::group(['prefix' => 'admin'], function () {
         'uses' => 'CategoryController@getCategory',
         'as' => 'category'
     ]);
-    Route::get('/create/category', [
-        'uses' => 'CategoryController@getCreateCategory',
-        'as' => 'create_category'
-    ]);
-    Route::post('/create/category', [
-        'uses' => 'CategoryController@postCreateCategory',
-        'as' => 'post_category'
-    ]);
-    Route::post('/delete/category', [
-        'uses' => 'CategoryController@postDeleteCategory',
-        'as' => 'post_delete_category'
-    ]);
-    Route::post('/edit/category', [
-        'uses' => 'CategoryController@postUpdateCategory',
-        'as' => 'admin.update.category.name'
-    ]);
-    Route::get('/category/{id}', [
-        'uses' => 'CategoryController@getViewCategory'
-    ]);
+
     Route::get('/refresh-database', [
         'uses' => 'ArticleController@refreshDatabase',
         'as' => 'admin.fix.database',
@@ -157,16 +139,6 @@ Route::group(['prefix' => 'api'], function () {
     Route::post('create/article/validate', [
         'uses' => 'ArticleController@postValidateArticle',
         'as' => 'admin.validate.article'
-    ]);
-
-
-    Route::post('/category/hot', [
-        'uses' => 'CategoryController@postHotCategory',
-        'as' => 'admin.update.category.hot'
-    ]);
-    Route::post('/category/header', [
-        'uses' => 'CategoryController@postHeaderCategory',
-        'as' => 'admin.update.category.header'
     ]);
 
     Route::group(['prefix' => 'category'], function () {

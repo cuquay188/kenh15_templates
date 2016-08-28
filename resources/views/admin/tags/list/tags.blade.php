@@ -61,60 +61,7 @@
             </tbody>
         </table>
         <dir-pagination-controls></dir-pagination-controls>
-        <div class="modal fade" role="dialog" id="edit-tag">
-            <div class="modal-dialog">
-                <div class="modal-content" style="top: 150px" ng-controller="editTagController">
-                    <div class="modal-header">
-                        <h5>Edit Tag: %%tag.name%%
-                        </h5>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <input class="form-control" type="text" id="name"
-                                   ng-keyup="$event.keyCode == 13 && submit()"
-                                   ng-model="tag.newName" ng-class="{'error' : nameErrors}"
-                                   placeholder="New tag name...">
-                        </div>
-                        <span class="errors">%%nameErrors%%</span>
-                    </div>
-                    <div class="modal-footer">
-                        <div class="form-group">
-                            <button type="button" class="btn btn-default"
-                                    data-dismiss="modal" ng-click="dismiss()">
-                                Cancel
-                            </button>
-                            <button class="btn btn-primary"
-                                    ng-click="submit()">
-                                Update
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade" role="dialog" id="delete-tag">
-            <div class="modal-dialog">
-                <div class="modal-content" style="top: 150px" ng-controller="deleteTagController">
-                    <div class="modal-header">
-                        <h5 style="font-weight: bold">Delete Tag: %%tag.name%%</h5>
-                    </div>
-                    <div class="modal-body">
-                        <strong>Do you want to delete this tag?</strong>
-                    </div>
-                    <div class="modal-footer">
-                        <div class="form-group">
-                            <button class="btn btn-default"
-                                    data-dismiss="modal" ng-click="dismiss()">
-                                Cancel
-                            </button>
-                            <button class="btn btn-primary"
-                                    ng-click="submit()">
-                                Confirm
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @include('admin.tags.list.components.edit')
+        @include('admin.tags.list.components.delete')
     </div>
 @endsection

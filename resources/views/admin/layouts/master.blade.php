@@ -51,8 +51,8 @@
                     hot: '{{route('admin.api.category.update.hot')}}',
                     header: '{{route('admin.api.category.update.header')}}'
                 },
-                remove: '{{route('admin.api.tag.remove')}}',
-                create: '{{route('admin.api.tag.create')}}'
+                remove: '{{route('admin.api.category.remove')}}',
+                create: '{{route('admin.api.category.create')}}'
             },
             tag: {
                 get: '{{route('admin.api.tag.get')}}',
@@ -89,11 +89,12 @@
 
 {{--Tag--}}
 <script src="{{asset('/js/admin/tags/services.js')}}"></script>
-<script src="{{asset('js/admin/tags/controllers.js')}}"></script>
+<script src="{{asset('/js/admin/tags/controllers.js')}}"></script>
 {{--End Tag--}}
 
 {{--Category--}}
-
+<script src="{{asset('/js/admin/categories/services.js')}}"></script>
+<script src="{{asset('/js/admin/categories/controllers.js')}}"></script>
 {{--End Category--}}
 @yield("body.scripts")
 

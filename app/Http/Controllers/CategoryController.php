@@ -60,6 +60,7 @@ class CategoryController extends Controller
             return $categories;
         } else {
             $category = Category::find($id);
+            $category->articles = count(Article::where('category_id', $category->id)->get());
             $category->advance;
             return $category;
         }
@@ -76,7 +77,7 @@ class CategoryController extends Controller
     public function postCreateCategory(Request $request)
     {
         $this->validate($request, [
-            'category' => 'required|between:3,15'
+            'name' => 'required|between:3,15'
         ]);
 
         $name = $request->name;
@@ -91,6 +92,7 @@ class CategoryController extends Controller
         $advance->save();
 
         $category->advance;
+        $category->articles = count(Article::where('category_id', $category->id)->get());
 
         return response()->json([
             'message' => 'Update Successful.',
@@ -111,6 +113,8 @@ class CategoryController extends Controller
         ]);
         $category = Category::find($id);
         $category->advance;
+        $category->articles = count(Article::where('category_id', $category->id)->get());
+
         return response()->json([
             'message' => 'Update Successful.',
             'category' => $category
@@ -128,6 +132,7 @@ class CategoryController extends Controller
 
         $category = Category::find($id);
         $category->advance;
+        $category->articles = count(Article::where('category_id', $category->id)->get());
 
         return response()->json([
             'message' => 'Update Successful.',
@@ -144,6 +149,7 @@ class CategoryController extends Controller
 
         $category = Category::find($id);
         $category->advance;
+        $category->articles = count(Article::where('category_id', $category->id)->get());
 
         return response()->json([
             'message' => 'Update Successful.',
@@ -154,8 +160,11 @@ class CategoryController extends Controller
     public function postRemoveCategory(Request $request)
     {
         $id = $request->id;
+
         $category = Category::find($id);
         $category->advance;
+        $category->articles = count(Article::where('category_id', $category->id)->get());
+
         Category::where('id', $id)->delete();
         return response()->json([
             'message' => 'Remove Successful.',

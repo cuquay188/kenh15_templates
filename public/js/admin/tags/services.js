@@ -74,8 +74,6 @@ app.service('$tag', function () {
             }).then(function (response) {
                 $tags.remove(response.data.tag.id);
                 $('.modal.in').modal('hide');
-            }, function (response) {
-                $scope.errors = response.data.message;
             })
         }
     }

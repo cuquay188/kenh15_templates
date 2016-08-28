@@ -1,38 +1,82 @@
 @extends('admin.layouts.master')
 @section('title','Categories Management')
 @section('content')
-    <div class="category-info">
+    <div class="category-info" ng-controller="categoriesListController">
+        <div class="row">
+            <div class="col col-lg-1 col-sm-2">
+                <div class="form-group">
+                    <select class="form-control"
+                            ng-options="x for x in itemsPerPage.items"
+                            ng-model="itemsPerPage.item">
+                    </select>
+                </div>
+            </div>
+            <div class="col col-lg-8 col-sm-5">
+            </div>
+            <div class="col col-lg-3 col-sm-5">
+                <div class="form-group">
+                    <input type="text" class="form-control search" ng-model="tagFilter" placeholder="Search...">
+                    <span><i class="glyphicon glyphicon-search"> </i></span>
+                </div>
+            </div>
+        </div>
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>Category</th>
-                <th>Article(s)</th>
-                <th style="width:30%;">Hot</th>
+                <th ng-click="sortType = 'name'; sortReverse=!sortReverse;" class="sortable"
+                    ng-class="{'sort': sortType=='name'}">
+                    Name
+                    <span ng-show="sortType == 'name' && !sortReverse"><i
+                                class="glyphicon glyphicon-sort-by-alphabet"></i></span>
+                    <span ng-show="sortType == 'name' && sortReverse"><i
+                                class="glyphicon glyphicon-sort-by-alphabet-alt"></i></span>
+                </th>
+                <th ng-click="sortType = 'articles'; sortReverse=!sortReverse" class="sortable"
+                    ng-class="{'sort': sortType=='articles'}">
+                    Article(s)
+                    <span ng-show="sortType == 'articles' && !sortReverse"><i
+                                class="glyphicon glyphicon-sort-by-alphabet"></i></span>
+                    <span ng-show="sortType == 'articles' && sortReverse"><i
+                                class="glyphicon glyphicon-sort-by-alphabet-alt"></i></span>
+                </th>
+                <th ng-click="sortType = 'advance.is_hot'; sortReverse=!sortReverse" class="sortable"
+                    ng-class="{'sort': sortType=='advance.is_hot+advance.is_header'}">
+                    Hot
+                    <span ng-show="sortType == 'advance.is_hot' && !sortReverse"><i
+                                class="glyphicon glyphicon-sort-by-alphabet"></i></span>
+                    <span ng-show="sortType == 'advance.is_hot' && sortReverse"><i
+                                class="glyphicon glyphicon-sort-by-alphabet-alt"></i></span>
+                </th>
                 <th>Action</th>
             </tr>
             </thead>
             <tbody>
-            <tr style="font-size: 13px">
-                <td><a href="#"></a></td>
-                <td></td>
+            <tr dir-paginate="category in categories | filter : tagFilter | orderBy:sortType:sortReverse | itemsPerPage: itemsPerPage.item"
+                ng-controller="categoryController">
+                <td><a href="#">%%category.name%%</a></td>
+                <td>%%category.articles%%</td>
                 <td>
-                    <button class="btn btn-xs btn-toggle hot btn-default"></button>
-                    <button class="btn btn-xs btn-toggle header btn-default">
+                    <button class="btn btn-xs btn-toggle hot" ng-click="setHot()"
+                            ng-class="{'btn-default':!category.advance.is_hot,'btn-primary':category.advance.is_hot}"></button>
+                    <button class="btn btn-xs btn-toggle header" ng-click="setHeader()" ng-show="category.advance.is_hot"
+                            ng-class="{'btn-default':!category.advance.is_header,'btn-primary':category.advance.is_header}">
                         Header
                     </button>
                 </td>
                 <td>
                     {{--Edit Function--}}
                     <button type="submit" class="btn btn-primary btn-xs" data-toggle="modal"
-                            data-target="#edit-category">Edit
+                            data-target="#edit-category"
+                            ng-click="edit()">Edit
                     </button>
                     {{--Delete Function--}}
                     <button type="submit" class="btn btn-primary btn-xs" data-toggle="modal"
-                            data-target="#delete-category">Delete
+                            data-target="#delete-category"
+                            ng-click="delete()">Delete
                     </button>
                 </td>
             </tr>
-            <tr>
+            <tr ng-if="categories==null">
                 <td colspan="6" class="empty-table">
                     No categories is available.
                     <a href="#" data-toggle="modal" data-target="#create-category">Create a new one</a>.
@@ -40,55 +84,8 @@
             </tr>
             </tbody>
         </table>
-        <div class="modal fade" role="dialog" id="edit-category">
-            <div class="modal-dialog">
-                <div class="modal-content" style="top: 150px">
-                    <div class="modal-header">
-                        <h5>Edit Category:</h5>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <input type="text" value="" id="name"
-                                   class="form-control" placeholder="Enter name...">
-                        </div>
-                        <span class="errors">* Not Valid</span>
-                    </div>
-                    <div class="modal-footer">
-                        <div class="form-group" id="action">
-                            <button type="button" class="btn btn-default"
-                                    data-dismiss="modal">
-                                Cancel
-                            </button>
-                            <button class="btn btn-primary">
-                                Update
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade" role="dialog" id="delete-category">
-            <div class="modal-dialog">
-                <div class="modal-content" style="top: 150px">
-                    <div class="modal-header">
-                        <h5>Delete Category: </h5>
-                    </div>
-                    <div class="modal-body">
-                        <strong>Do you want to delete this category?</strong>
-                    </div>
-                    <div class="modal-footer">
-                        <div class="form-group">
-                            <button class="btn btn-default"
-                                    data-dismiss="modal">
-                                Cancel
-                            </button>
-                            <button class="btn btn-primary">
-                                Confirm
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <dir-pagination-controls></dir-pagination-controls>
+        @include('admin.categories.list.components.edit')
+        @include('admin.categories.list.components.delete')
     </div>
 @endsection
