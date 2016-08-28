@@ -54,7 +54,7 @@ Route::group(['prefix' => 'admin'], function () {
         'as' => 'users'
     ]);
 
-    //Article
+    /*Article*/
     Route::get('/article', [
         'uses' => 'ArticleController@getArticleList',
         'as' => 'article'
@@ -62,8 +62,9 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/article/{url}', [
         'uses' => 'ArticleController@getSingleArticle'
     ]);
+    /*End Article*/
 
-    //Tag
+    /*Tag*/
     Route::get('/tag', [
         'uses' => 'TagController@getTagManagement',
         'as' => 'admin.tag'
@@ -71,42 +72,28 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/tag/{id}', [
         'uses' => 'TagController@getViewTag'
     ]);
+    /*End Tag*/
 
-    //Author
+    /*Author*/
     Route::get('/author', [
         'uses' => 'AuthorController@getAuthor',
         'as' => 'author'
     ]);
-    Route::get('/create/author', [
-        'uses' => 'AuthorController@getCreateAuthor',
-        'as' => 'create_author'
-    ]);
-    Route::post('/create/author', [
-        'uses' => 'AuthorController@postCreateAuthor',
-        'as' => 'post_author'
-    ]);
-    Route::post('/delete/author', [
-        'uses' => 'AuthorController@postDeleteAuthor',
-        'as' => 'post_delete_author'
-    ]);
-    Route::post('/edit/author', [
-        'uses' => 'AuthorController@postUpdateAuthor',
-        'as' => 'post_update_author'
-    ]);
     Route::get('/author/{id}', [
         'uses' => 'AuthorController@getViewAuthor'
     ]);
+    /*End Author*/
 
-    //Category
+    /*Category*/
     Route::get('/category', [
         'uses' => 'CategoryController@getCategory',
         'as' => 'category'
     ]);
-
     Route::get('/refresh-database', [
         'uses' => 'ArticleController@refreshDatabase',
         'as' => 'admin.fix.database',
     ]);
+    /*End Category*/
 
 });
 Route::group(['prefix' => 'api'], function () {
@@ -133,6 +120,27 @@ Route::group(['prefix' => 'api'], function () {
         Route::post('/create', [
             'uses' => 'ArticleController@postCreateArticle',
             'as' => 'admin.api.article.create'
+        ]);
+    });
+
+    Route::group(['prefix' => 'author'], function () {
+
+        Route::get('/select/{id?}', [
+            'uses' => 'AuthorController@getAuthorJSON',
+            'as' => 'admin.api.author.select'
+        ]);
+
+        Route::post('/update', [
+            'uses' => 'AuthorController@postUpdateAuthor',
+            'as' => 'admin.api.author.update'
+        ]);
+        Route::post('/delete', [
+            'uses' => 'AuthorController@postRemoveAuthor',
+            'as' => 'admin.api.author.remove'
+        ]);
+        Route::post('/create', [
+            'uses' => 'AuthorController@postCreateAuthor',
+            'as' => 'admin.api.author.create'
         ]);
     });
 
@@ -184,7 +192,6 @@ Route::group(['prefix' => 'api'], function () {
             'uses' => 'TagController@postCreateTag',
             'as' => 'admin.api.tag.create'
         ]);
-
     });
 });
 // Home page

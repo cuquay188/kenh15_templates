@@ -1,7 +1,7 @@
 @if(Auth::getUser()->admin || Auth::getUser()->author)
     <div class="modal fade" id="create-author" role="dialog">
         <div class="modal-dialog">
-            <div class="modal-content" style="top: 150px" ng-controller="createTagController">
+            <div class="modal-content" style="top: 150px">
                 <div class="modal-header">
                     <h5 style="font-weight: bold">Promote new author</h5>
                 </div>

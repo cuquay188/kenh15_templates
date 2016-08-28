@@ -32,7 +32,7 @@
                                 class="glyphicon glyphicon-sort-by-alphabet-alt"></i></span>
                 </th>
                 <th ng-click="sortType = 'articles'; sortReverse=!sortReverse" class="sortable"
-                    ng-class="{'sort': sortType=='articles'}">
+                    ng-class="{'sort': sortType=='articles'}" style="width:200px;">
                     Article(s)
                     <span ng-show="sortType == 'articles' && !sortReverse"><i
                                 class="glyphicon glyphicon-sort-by-alphabet"></i></span>
@@ -40,14 +40,14 @@
                                 class="glyphicon glyphicon-sort-by-alphabet-alt"></i></span>
                 </th>
                 <th ng-click="sortType = 'advance.is_hot'; sortReverse=!sortReverse" class="sortable"
-                    ng-class="{'sort': sortType=='advance.is_hot+advance.is_header'}">
+                    ng-class="{'sort': sortType=='advance.is_hot'}">
                     Hot
                     <span ng-show="sortType == 'advance.is_hot' && !sortReverse"><i
                                 class="glyphicon glyphicon-sort-by-alphabet"></i></span>
                     <span ng-show="sortType == 'advance.is_hot' && sortReverse"><i
                                 class="glyphicon glyphicon-sort-by-alphabet-alt"></i></span>
                 </th>
-                <th>Action</th>
+                <th style="width:200px;">Action</th>
             </tr>
             </thead>
             <tbody>
@@ -61,7 +61,7 @@
                     <button class="btn btn-xs btn-toggle header" ng-click="setHeader()"
                             ng-show="category.advance.is_hot"
                             ng-class="{'btn-default':!category.advance.is_header,'btn-primary':category.advance.is_header}">
-                        Header
+                        Show to header
                     </button>
                 </td>
                 <td>

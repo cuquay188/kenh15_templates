@@ -17,14 +17,7 @@ class AuthorController extends Controller
     {
         if (!Auth::check())
             return redirect()->route('login')->with(['fail' => 'Required login.']);
-        $tags = Tag::all();
-        $categories = Category::all();
-        $authors = Author::all();
-        return view('admin.authors.list.authors', [
-            'tags' => $tags,
-            'categories' => $categories,
-            'authors' => $authors
-        ]);
+        return view('admin.authors.list.authors');
     }
 
     public function getCreateAuthor()
@@ -43,14 +36,22 @@ class AuthorController extends Controller
         $author = new Author();
         $author->user_id = $user;
         $author->save();
-        return redirect()->back();
+
+        return response()->json([
+            'message' => 'Create Successful.',
+            'author' => $this->getAuthorJSON($author->id)
+        ]);
     }
 
     public function postDeleteAuthor(Request $request)
     {
         $id = $request->author_id;
+        $author = $this->getAuthorJSON($id);
         Author::where('id', $id)->delete();
-        return redirect()->back();
+        return response()->json([
+            'message' => 'Remove Successful.',
+            'author' => $author
+        ]);
     }
 
     public function postUpdateAuthor(Request $request)
@@ -61,7 +62,7 @@ class AuthorController extends Controller
             'address' => 'required'
         ]);
 
-        $id = $request->author_id;
+        $id = $request->id;
         $name = $request->name;
         $age = $request->age;
         $address = $request->address;
@@ -70,7 +71,27 @@ class AuthorController extends Controller
             'age' => $age,
             'address' => $address
         ]);
-        return redirect()->back();
+        return response()->json([
+            'message' => 'Update Successful.',
+            'author' => $this->getAuthorJSON($id)
+        ]);
+    }
+
+    public function getAuthorJSON($id = null)
+    {
+        if ($id) {
+            $author = Author::find($id);
+            $author->user->password = '';
+            $author->user->remember_token = '';
+            return $author;
+        } else {
+            $authors = Author::all();
+            foreach ($authors as $author) {
+                $author->user->password = '';
+                $author->user->remember_token = '';
+            }
+            return $authors;
+        }
     }
 
     public function getViewAuthor($id)

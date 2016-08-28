@@ -4,32 +4,30 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="_token" content="{{Session::token()}}">
-    <!--    BOOTSTRAP CDN-->
+
+    <!-- Style Sheet -->
+
     <link rel="stylesheet" href="{{asset('/bootstrap/css/bootstrap.min.css')}}">
-
     <link rel="stylesheet" type="text/css" href="{{asset('/datatables/datatables.min.css')}}"/>
-
     <link rel="stylesheet" href="{{asset('/css/admin/main.css')}}">
-
     @yield("styles")
 
+    <!-- End Style Sheet -->
+
+    <!-- Scripts -->
     <!-- jQuery library -->
     <script src="{{asset('/jquery/jquery-2.2.4.min.js')}}"></script>
 
+    <!-- Angular library -->
     <script src="{{asset('/angular/angular.min.js')}}"></script>
     <script src="{{asset('/angular/angular-utils-pagination/dirPagination.js')}}"></script>
+    <!-- End Angular library -->
 
     <script src="{{asset('/bootstrap/js/bootstrap.min.js')}}"></script>
-
     <script src="{{asset('/ckeditor/ckeditor.js')}}"></script>
 
     @yield("scripts")
     <script>
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-            }
-        });
         var url = {
             article: {
                 select: '{{route('admin.api.article.select')}}',
@@ -38,20 +36,20 @@
                 create: '{{route('admin.api.article.create')}}'
             },
             author: {
-                select: '',
-                update: '',
-                remove: '',
-                create: ''
+                select: '{{route('admin.api.author.select')}}',
+                update: '{{route('admin.api.author.update')}}',
+                remove: '{{route('admin.api.author.remove')}}',
+                create: '{{route('admin.api.author.create')}}'
             },
             category: {
                 select: '{{route('admin.api.category.select')}}',
+                remove: '{{route('admin.api.category.remove')}}',
+                create: '{{route('admin.api.category.create')}}',
                 update: {
                     name: '{{route('admin.api.category.update.name')}}',
                     hot: '{{route('admin.api.category.update.hot')}}',
                     header: '{{route('admin.api.category.update.header')}}'
-                },
-                remove: '{{route('admin.api.category.remove')}}',
-                create: '{{route('admin.api.category.create')}}'
+                }
             },
             tag: {
                 select: '{{route('admin.api.tag.select')}}',
@@ -61,6 +59,8 @@
             }
         };
     </script>
+
+    <!-- End scripts -->
 </head>
 <body ng-app="mainApp" ng-controller="mainController">
 <div class="sidebar" ng-controller="sidebarController">
@@ -84,6 +84,7 @@
     @include('admin.layouts.components.dialogs')
 </div>
 
+<!-- Body scripts -->
 <script src="{{asset('/js/admin/app.js')}}"></script>
 <script src="{{asset('/js/admin/sidebar.js')}}"></script>
 
@@ -98,6 +99,7 @@
 {{--End Category--}}
 @yield("body.scripts")
 
+<!-- End body scripts -->
 <script>
     $('#create-tag, #edit-tag, #create-category, #edit-category').on('shown.bs.modal', function () {
         $(this).find('#name').focus();

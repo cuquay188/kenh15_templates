@@ -32,14 +32,14 @@
                                 class="glyphicon glyphicon-sort-by-alphabet-alt"></i></span>
                 </th>
                 <th ng-click="sortType = 'articles'; sortReverse=!sortReverse" class="sortable"
-                    ng-class="{'sort': sortType=='articles'}">
+                    ng-class="{'sort': sortType=='articles'}" style="width:200px;">
                     Article(s)
                     <span ng-show="sortType == 'articles' && !sortReverse"><i
                                 class="glyphicon glyphicon-sort-by-alphabet"></i></span>
                     <span ng-show="sortType == 'articles' && sortReverse"><i
                                 class="glyphicon glyphicon-sort-by-alphabet-alt"></i></span>
                 </th>
-                <th>Action</th>
+                <th style="width:200px;">Action</th>
             </tr>
             </thead>
             <tbody>
