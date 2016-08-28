@@ -14,7 +14,7 @@
 @yield('styles')
 
 <!-- jQuery library -->
-    <script src="{{asset('/js/jquery-2.2.4.min.js')}}"></script>
+    <script src="{{asset('/jquery/jquery-2.2.4.min.js')}}"></script>
 
     <!-- Latest compiled JavaScript -->
     <script src="{{asset('/bootstrap/js/bootstrap.min.js')}}"></script>

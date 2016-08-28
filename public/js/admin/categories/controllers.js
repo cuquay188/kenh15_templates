@@ -4,10 +4,6 @@ app.controller('categoriesListController', function ($scope, $http, $log, $categ
     }, function (newVal) {
         $scope.categories = newVal;
     });
-    $scope.itemsPerPage = {
-        items: [7, 14, 21],
-        item: 7
-    };
     $scope.sortType = 'advance.is_hot';
     $scope.sortReverse = 1;
 });

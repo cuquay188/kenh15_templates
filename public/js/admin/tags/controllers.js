@@ -4,10 +4,6 @@ app.controller('tagsListController', function ($scope, $http, $log, $tags) {
     }, function (newVal) {
         $scope.tags = newVal;
     });
-    $scope.itemsPerPage = {
-        items: [7, 14, 21],
-        item: 7
-    };
     $scope.sortType = 'articles';
     $scope.sortReverse = 1;
 });

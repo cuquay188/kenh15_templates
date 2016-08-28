@@ -24,7 +24,15 @@ app.service('$categories', function () {
                 return 0;
             },
             is_hot: function () {
-
+                if ($categories.length) {
+                    var count = 0;
+                    $.each($categories, function (i, category) {
+                        if (category.advance.is_hot == 1)
+                            count++;
+                    });
+                    return count;
+                }
+                return 0;
             }
         },
         load: function ($http) {

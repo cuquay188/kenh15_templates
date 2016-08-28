@@ -1,7 +1,5 @@
-app.controller('sidebarController', function ($scope, $http, $tags, $categories) {
-    $tags.load($http);
-    $categories.load($http);
 
+app.controller('sidebarController', function ($scope, $http, $tags, $categories) {
     $scope.$watch(function () {
         return $tags.size()
     }, function (newVal) {

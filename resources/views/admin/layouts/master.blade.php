@@ -64,7 +64,7 @@
         };
     </script>
 </head>
-<body ng-app="mainApp">
+<body ng-app="mainApp" ng-controller="mainController">
 <div class="sidebar" ng-controller="sidebarController">
 
     @include("admin.layouts.components.sidebar")
