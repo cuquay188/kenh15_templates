@@ -23,15 +23,21 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th ng-click="sortType = 'name'; sortReverse=!sortReverse;" class="sortable" ng-class="{'sort': sortType=='name'}">
+                <th ng-click="sortType = 'name'; sortReverse=!sortReverse;" class="sortable"
+                    ng-class="{'sort': sortType=='name'}">
                     Name
-                    <span ng-show="sortType == 'name' && !sortReverse"><i class="glyphicon glyphicon-sort-by-alphabet"></i></span>
-                    <span ng-show="sortType == 'name' && sortReverse"><i class="glyphicon glyphicon-sort-by-alphabet-alt"></i></span>
+                    <span ng-show="sortType == 'name' && !sortReverse"><i
+                                class="glyphicon glyphicon-sort-by-alphabet"></i></span>
+                    <span ng-show="sortType == 'name' && sortReverse"><i
+                                class="glyphicon glyphicon-sort-by-alphabet-alt"></i></span>
                 </th>
-                <th ng-click="sortType = 'articles'; sortReverse=!sortReverse" class="sortable" ng-class="{'sort': sortType=='articles'}">
+                <th ng-click="sortType = 'articles'; sortReverse=!sortReverse" class="sortable"
+                    ng-class="{'sort': sortType=='articles'}">
                     Article(s)
-                    <span ng-show="sortType == 'articles' && !sortReverse"><i class="glyphicon glyphicon-sort-by-alphabet"></i></span>
-                    <span ng-show="sortType == 'articles' && sortReverse"><i class="glyphicon glyphicon-sort-by-alphabet-alt"></i></span>
+                    <span ng-show="sortType == 'articles' && !sortReverse"><i
+                                class="glyphicon glyphicon-sort-by-alphabet"></i></span>
+                    <span ng-show="sortType == 'articles' && sortReverse"><i
+                                class="glyphicon glyphicon-sort-by-alphabet-alt"></i></span>
                 </th>
                 <th>Action</th>
             </tr>
@@ -61,7 +67,9 @@
             </tbody>
         </table>
         <dir-pagination-controls></dir-pagination-controls>
-        @include('admin.tags.list.components.edit')
-        @include('admin.tags.list.components.delete')
     </div>
+@endsection
+@section('dialogs')
+    @include('admin.tags.list.components.edit')
+    @include('admin.tags.list.components.delete')
 @endsection

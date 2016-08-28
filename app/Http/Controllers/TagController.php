@@ -39,16 +39,11 @@ class TagController extends Controller
             foreach ($tags as $tag)
                 $tag->articles = count(DB::table('tag_article')->where('tag_id', $tag->id)->get());
             return $tags;
-        } else
-            return Tag::find($id);
-    }
-
-    public function getTagLength()
-    {
-        return response()->json([
-            'message' => 'Get successful.',
-            'length' => count(Tag::all())
-        ]);
+        } else {
+            $tag = Tag::find($id);
+            $tag->articles = count(DB::table('tag_article')->where('tag_id', $tag->id)->get());
+            return $tag;
+        }
     }
 
     public function postCreateTag(Request $request)
@@ -61,10 +56,9 @@ class TagController extends Controller
         $tag = new Tag();
         $tag->name = $name;
         $tag->save();
-        $tag->articles = count(DB::table('tag_article')->where('tag_id', $tag->id)->get());
         return response()->json([
             'message' => 'Create Successful.',
-            'tag' => $tag
+            'tag' => $this->getTagJSON($tag->id)
         ]);
     }
 
@@ -81,14 +75,14 @@ class TagController extends Controller
         ]);
         return response()->json([
             'message' => 'Update Successful.',
-            'tag' => Tag::find($id)
+            'tag' => $this->getTagJSON($id)
         ]);
     }
 
     public function postRemoveTag(Request $request)
     {
         $id = $request->id;
-        $tag = Tag::find($id);
+        $tag = $this->getTagJSON($id);
         Tag::where('id', $id)->delete();
         return response()->json([
             'message' => 'Remove Successful.',

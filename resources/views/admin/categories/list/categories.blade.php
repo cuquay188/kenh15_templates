@@ -58,7 +58,8 @@
                 <td>
                     <button class="btn btn-xs btn-toggle hot" ng-click="setHot()"
                             ng-class="{'btn-default':!category.advance.is_hot,'btn-primary':category.advance.is_hot}"></button>
-                    <button class="btn btn-xs btn-toggle header" ng-click="setHeader()" ng-show="category.advance.is_hot"
+                    <button class="btn btn-xs btn-toggle header" ng-click="setHeader()"
+                            ng-show="category.advance.is_hot"
                             ng-class="{'btn-default':!category.advance.is_header,'btn-primary':category.advance.is_header}">
                         Header
                     </button>
@@ -85,7 +86,9 @@
             </tbody>
         </table>
         <dir-pagination-controls></dir-pagination-controls>
-        @include('admin.categories.list.components.edit')
-        @include('admin.categories.list.components.delete')
     </div>
+@endsection
+@section('dialogs')
+    @include('admin.categories.list.components.edit')
+    @include('admin.categories.list.components.delete')
 @endsection

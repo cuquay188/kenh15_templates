@@ -36,7 +36,7 @@ app.service('$categories', function () {
             }
         },
         load: function ($http) {
-            $http.get(url.category.get)
+            $http.get(url.category.select)
                 .then(function (response) {
                     $categories = response.data;
                     return $categories;

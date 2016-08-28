@@ -1,20 +1,22 @@
-<div class="modal fade" id="delete{{$article->id}}" role="dialog">
+<div class="modal fade" role="dialog" id="delete-article">
     <div class="modal-dialog">
-        <div class="modal-content" style="top: 150px;">
+        <div class="modal-content" style="top: 150px">
             <div class="modal-header">
-                <h5 style="font-weight: bold">Delete Article: "<span
-                            style="font-style: italic">{{$article->title}}</span>"</h5>
+                <h5 style="font-weight: bold">Delete Article:</h5>
             </div>
             <div class="modal-body">
-                <p>Do you want to delete this article?</p>
+                <strong>Do you want to delete this article?</strong>
             </div>
             <div class="modal-footer">
-                <form action="{{route('post_delete_article')}}" method="post">
-                    <input name="article_id" value="{{$article->id}}" type="hidden">
-                    <input type="hidden" value="{{Session::token()}}" name="_token">
-                    <button class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button class="btn btn-warning">Confirm</button>
-                </form>
+                <div class="form-group">
+                    <button class="btn btn-default"
+                            data-dismiss="modal">
+                        Cancel
+                    </button>
+                    <button class="btn btn-primary">
+                        Confirm
+                    </button>
+                </div>
             </div>
         </div>
     </div>

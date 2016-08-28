@@ -32,20 +32,19 @@
         });
         var url = {
             article: {
-                get: '',
-                update: '',
-                remove: '',
-                create: ''
+                select: '{{route('admin.api.article.select')}}',
+                update: '{{route('admin.api.article.update')}}',
+                remove: '{{route('admin.api.article.remove')}}',
+                create: '{{route('admin.api.article.create')}}'
             },
             author: {
-                get: '',
+                select: '',
                 update: '',
                 remove: '',
                 create: ''
             },
             category: {
-                get: '{{route('admin.api.category.get')}}',
-                length: '{{route('admin.api.category.get.length')}}',
+                select: '{{route('admin.api.category.select')}}',
                 update: {
                     name: '{{route('admin.api.category.update.name')}}',
                     hot: '{{route('admin.api.category.update.hot')}}',
@@ -55,8 +54,7 @@
                 create: '{{route('admin.api.category.create')}}'
             },
             tag: {
-                get: '{{route('admin.api.tag.get')}}',
-                length: '{{route('admin.api.tag.get.length')}}',
+                select: '{{route('admin.api.tag.select')}}',
                 update: '{{route('admin.api.tag.update')}}',
                 remove: '{{route('admin.api.tag.remove')}}',
                 create: '{{route('admin.api.tag.create')}}'

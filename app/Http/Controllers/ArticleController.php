@@ -18,17 +18,7 @@ class ArticleController extends Controller
     {
         if (!Auth::check())
             return redirect()->route('login')->with(['fail' => 'Required login.']);
-
-        $articles = Article::all();
-        $authors = Author::all();
-        $categories = Category::all();
-        $tags = Tag::all();
-        return view('admin.articles.list.articles', [
-            'articles' => $articles,
-            'authors' => $authors,
-            'categories' => $categories,
-            'tags' => $tags
-        ]);
+        return view('admin.articles.list.articles');
     }
 
     public function getSingleArticle($url)
@@ -42,31 +32,17 @@ class ArticleController extends Controller
         ]);
     }
 
-    public function getCreateArticle()
-    {
-        if (!Auth::check())
-            return redirect()->route('login')->with(['fail' => 'Required login.']);
-        if (!Auth::getUser()->author && !Auth::getUser()->admin)
-            return redirect()->back()->with(['fail' => 'You dont have permission to submit an article']);
-        $authors = Author::all();
-        $categories = Category::all();
-        $tags = Tag::all();
-        return view('admin.create.create_article', [
-            'authors' => $authors,
-            'categories' => $categories,
-            'tags' => $tags
-        ]);
-    }
-
     public function postValidateArticle(Request $request)
     {
         $this->validate($request, [
-            'create_article_title' => 'required|between:5,150',
-            'create_article_data' => 'required|min:30',
-            'create_article_category_id' => 'numeric',
-            'create_article_authors' => 'required'
+            'title' => 'required|between:5,150',
+            'content' => 'required|min:30',
+            'category_id' => 'numeric',
+            'authors' => 'required'
         ]);
-        return $this->postCreateArticle($request);
+        return response()->json([
+            'message' => 'Validate successful.',
+        ]);
     }
 
     public function postCreateArticle(Request $request)
@@ -98,15 +74,20 @@ class ArticleController extends Controller
             }
         }
         return response()->json([
-            'message' => 'Create successfully',
+            'message' => 'Create successful.',
+            'article' => $this->getArticleJSON($article->id)
         ]);
     }
 
     public function postDeleteArticle(Request $request)
     {
         $id = $request->article_id;
+        $article = $this->getArticleJSON($id);
         Article::where('id', $id)->delete();
-        return redirect()->back();
+        return response()->json([
+            'message' => 'Remove successful.',
+            'article' => $article
+        ]);
     }
 
     public function postUpdateArticle(Request $request)
@@ -117,7 +98,7 @@ class ArticleController extends Controller
             'category_id' => 'numeric'
         ]);
 
-        $id = $request->article_id;
+        $id = $request->id;
         $title = $request->title;
         $content = $request->data;
         $category_id = $request->category_id;
@@ -143,40 +124,70 @@ class ArticleController extends Controller
             }
         }
 
-        return redirect()->back();
+        return response()->json([
+            'message' => 'Update successful.',
+            'article' => $this->getArticleJSON($id)
+        ]);
     }
 
     public function postDeleteTagArticle(Request $request)
     {
         $tag_id = $request->tag_id;
         $article_id = $request->article_id;
+        $tag = Tag::find($tag_id);
         DB::table('tag_article')->where('article_id', $article_id)->where('tag_id', $tag_id)->delete();
-        return redirect()->back();
+        return response()->json([
+            'message' => 'Delete ' . $tag->name . ' successful.'
+        ]);
     }
 
     public function postDeleteAuthorArticle(Request $request)
     {
         $author_id = $request->author_id;
         $article_id = $request->article_id;
+        $author = Author::find($author_id);
         DB::table('author_article')->where('article_id', $article_id)->where('author_id', $author_id)->delete();
-        return redirect()->back();
+        return response()->json([
+            'message' => 'Delete' . $author->user->name . ' successful.'
+        ]);
     }
 
-    public function getArticleJSON($id)
+    public function getArticleJSON($id = null)
     {
-        $article = Article::find($id);
-        $article->shorten_title = $article->shorten_title(100);
+        if($id){
+            $article = Article::find($id);
+            $article->shorten_title = $article->shorten_title(100);
 
-        $tags = array();
-        foreach ($article->tags as $tag)
-            array_push($tags, $tag->id);
-        $article->tags = $tags;
+            $tags = array();
+            foreach ($article->tags as $tag)
+                array_push($tags, $tag->id);
+            $article->tags = $tags;
 
-        $authors = array();
-        foreach ($article->authors as $author)
-            array_push($authors, $author->id);
-        $article->authors = $authors;
-        return $article;
+            $authors = array();
+            foreach ($article->authors as $author)
+                array_push($authors, $author->id);
+            $article->authors = $authors;
+            return $article;
+        }
+        else{
+            $articles = Article::all();
+            foreach ($articles as $article){
+                $article->img_url = '';
+                $article->content = '';
+
+                $tags = array();
+                foreach ($article->tags as $tag)
+                    array_push($tags, $tag->id);
+                $article->tags = $tags;
+
+                $authors = array();
+                foreach ($article->authors as $author)
+                    array_push($authors, $author->id);
+                $article->authors = $authors;
+            }
+
+            return $articles;
+        }
     }
 
     public function refreshDatabase()

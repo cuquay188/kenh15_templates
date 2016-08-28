@@ -66,14 +66,6 @@ class CategoryController extends Controller
         }
     }
 
-    public function getCategoryLength()
-    {
-        return response()->json([
-            'message' => 'Get successful.',
-            'length' => count(Category::all())
-        ]);
-    }
-
     public function postCreateCategory(Request $request)
     {
         $this->validate($request, [
@@ -91,12 +83,9 @@ class CategoryController extends Controller
         $advance->category_id = $category->id;
         $advance->save();
 
-        $category->advance;
-        $category->articles = count(Article::where('category_id', $category->id)->get());
-
         return response()->json([
             'message' => 'Update Successful.',
-            'category' => $category
+            'category' => $this->getCategoryJSON($category->id)
         ]);
     }
 
@@ -111,13 +100,10 @@ class CategoryController extends Controller
         Category::where('id', $id)->update([
             'name' => $name
         ]);
-        $category = Category::find($id);
-        $category->advance;
-        $category->articles = count(Article::where('category_id', $category->id)->get());
 
         return response()->json([
             'message' => 'Update Successful.',
-            'category' => $category
+            'category' => $this->getCategoryJSON($id)
         ]);
     }
 
@@ -130,13 +116,9 @@ class CategoryController extends Controller
         if (!$hot)
             CategoryAdvance::where('category_id', $id)->update(['is_header' => $hot]);
 
-        $category = Category::find($id);
-        $category->advance;
-        $category->articles = count(Article::where('category_id', $category->id)->get());
-
         return response()->json([
             'message' => 'Update Successful.',
-            'category' => $category
+            'category' => $this->getCategoryJSON($id)
         ]);
     }
 
@@ -147,13 +129,9 @@ class CategoryController extends Controller
         $is_header = $category->advance->is_header ? '0' : '1';
         CategoryAdvance::where('category_id', $id)->update(['is_header' => $is_header]);
 
-        $category = Category::find($id);
-        $category->advance;
-        $category->articles = count(Article::where('category_id', $category->id)->get());
-
         return response()->json([
             'message' => 'Update Successful.',
-            'category' => $category
+            'category' => $this->getCategoryJSON($id)
         ]);
     }
 
@@ -161,9 +139,7 @@ class CategoryController extends Controller
     {
         $id = $request->id;
 
-        $category = Category::find($id);
-        $category->advance;
-        $category->articles = count(Article::where('category_id', $category->id)->get());
+        $category = $this->getCategoryJSON($id);
 
         Category::where('id', $id)->delete();
         return response()->json([
