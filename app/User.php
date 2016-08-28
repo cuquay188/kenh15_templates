@@ -19,9 +19,19 @@ class User extends Model implements \Illuminate\Contracts\Auth\Authenticatable
         return $this->hasOne('\App\Admin');
     }
 
+    public function is_author()
+    {
+        return $this->author ? 1 : 0;
+    }
+
+    public function is_admin()
+    {
+        return $this->admin ? 1 : 0;
+    }
+
     public function formatBirth($separate = null)
     {
-        if(!$separate)
+        if (!$separate)
             $separate = '/';
         return date_format(date_create($this->birth), "Y" . $separate . "m" . $separate . "d");
     }

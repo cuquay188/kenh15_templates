@@ -45,7 +45,7 @@ class AuthorController extends Controller
 
     public function postDeleteAuthor(Request $request)
     {
-        $id = $request->author_id;
+        $id = $request->id;
         $author = $this->getAuthorJSON($id);
         Author::where('id', $id)->delete();
         return response()->json([

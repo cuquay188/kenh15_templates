@@ -32,7 +32,7 @@ class ArticleController extends Controller
         ]);
     }
 
-    public function postValidateArticle(Request $request)
+    public function validateArticle(Request $request)
     {
         $this->validate($request, [
             'title' => 'required|between:5,150',
@@ -40,17 +40,16 @@ class ArticleController extends Controller
             'category_id' => 'numeric',
             'authors' => 'required'
         ]);
-        return response()->json([
-            'message' => 'Validate successful.',
-        ]);
     }
 
     public function postCreateArticle(Request $request)
     {
-        $title = $request->create_article_title;
-        $content = $request->create_article_data;
-        $category_id = $request->create_article_category_id;
-        $img_url = $request->create_article_img_url;
+        $this->validateArticle($request);
+
+        $title = $request->title;
+        $content = $request->content;
+        $category_id = $request->category_id;
+        $img_url = $request->img_url;
 
         $article = new Article();
         $article->title = $title;
@@ -81,7 +80,7 @@ class ArticleController extends Controller
 
     public function postDeleteArticle(Request $request)
     {
-        $id = $request->article_id;
+        $id = $request->id;
         $article = $this->getArticleJSON($id);
         Article::where('id', $id)->delete();
         return response()->json([
@@ -92,11 +91,7 @@ class ArticleController extends Controller
 
     public function postUpdateArticle(Request $request)
     {
-        $this->validate($request, [
-            'title' => 'required|between:5,150',
-            'data' => 'required|min:30',
-            'category_id' => 'numeric'
-        ]);
+        $this->validateArticle($request);
 
         $id = $request->id;
         $title = $request->title;
@@ -215,7 +210,7 @@ class ArticleController extends Controller
         $str = preg_replace("/(Ù|Ú|Ụ|Ủ|Ũ|Ư|Ừ|Ứ|Ự|Ử|Ữ)/", 'U', $str);
         $str = preg_replace("/(Ỳ|Ý|Ỵ|Ỷ|Ỹ)/", 'Y', $str);
         $str = preg_replace("/(Đ)/", 'D', $str);
-        $str = str_replace(" ", "-", str_replace("?", "", $str));
+        $str = str_replace(" ", "-", str_replace("?", "", str_replace(",","",str_replace(".","",str_replace(":","",$str)))));
         return $str;
     }
 
