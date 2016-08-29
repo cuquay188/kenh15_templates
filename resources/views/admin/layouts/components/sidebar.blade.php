@@ -1,5 +1,5 @@
 <div class="sidebar-header">
-    <a class="brand" href="{{Route::getCurrentRoute()->getPath()==''?route('login'):route('article')}}">Kenh 15
+    <a class="brand" href="{{Route::getCurrentRoute()->getPath()==''?route('login'):route('admin.article')}}">Kenh 15
         Admin</a>
     <a class="options"><i class="glyphicon glyphicon-cog"></i></a>
 </div>
@@ -11,7 +11,7 @@
         <ul class="item-body">
             <li>
                 <a class="{{Route::getCurrentRoute()->getName()=='article'?'active':''}}"
-                   href="{{route('article')}}">
+                   href="{{route('admin.article')}}">
                     Articles
                     <span ng-bind="'('+articleLength+')'"></span>
                 </a>
@@ -21,7 +21,7 @@
             </li>
             <li>
                 <a class="{{Route::getCurrentRoute()->getName()=='author'?'active':''}}"
-                   href="{{route('author')}}">
+                   href="{{route('admin.author')}}">
                     Authors
                     <span ng-bind="'('+authorLength+')'"></span>
                 </a>

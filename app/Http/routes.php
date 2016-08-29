@@ -57,7 +57,7 @@ Route::group(['prefix' => 'admin'], function () {
     /*Article*/
     Route::get('/article', [
         'uses' => 'ArticleController@getArticleList',
-        'as' => 'article'
+        'as' => 'admin.article'
     ]);
     Route::get('/article/{url}', [
         'uses' => 'ArticleController@getSingleArticle'
@@ -77,7 +77,7 @@ Route::group(['prefix' => 'admin'], function () {
     /*Author*/
     Route::get('/author', [
         'uses' => 'AuthorController@getAuthor',
-        'as' => 'author'
+        'as' => 'admin.author'
     ]);
     Route::get('/author/{id}', [
         'uses' => 'AuthorController@getViewAuthor'

@@ -13,7 +13,9 @@ class UserController extends Controller
 {
     public function getLogin()
     {
-        return view('admin.auth.login');
+        if (!Auth::check())
+            return view('admin.auth.login');
+        return redirect()->route('admin.article');
     }
 
     public function postLogin(Request $request)
@@ -147,7 +149,7 @@ class UserController extends Controller
         $allUsers = User::all();
         $users = array();
         foreach ($allUsers as $user) {
-            array_push($users,[
+            array_push($users, [
                 'name' => $user->name,
                 'username' => $user->username
             ]);
