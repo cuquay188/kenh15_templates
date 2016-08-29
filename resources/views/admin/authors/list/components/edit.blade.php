@@ -1,6 +1,6 @@
 <div class="modal fade" role="dialog" id="edit-author">
     <div class="modal-dialog">
-        <div class="modal-content" style=" top: 90px" ng-controller="editAuthorController">
+        <div class="modal-content" style=" top: 50px" ng-controller="editAuthorController">
             <div class="modal-header">
                 <h5 style="font-weight: bold">Edit Author: "<span
                             style="font-style: italic">%%author.name%%</span>"</h5>
