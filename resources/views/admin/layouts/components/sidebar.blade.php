@@ -30,8 +30,8 @@
                    href="#"><i class="glyphicon glyphicon-plus"></i></a>
             </li>
             <li>
-                <a class="{{Route::getCurrentRoute()->getName()=='category'?'active':''}}"
-                   href="{{route('category')}}">
+                <a class="{{Route::getCurrentRoute()->getName()=='admin.category'?'active':''}}"
+                   href="{{route('admin.category')}}">
                     Categories
                     <span ng-bind="'('+categoryLength+')'"></span>
                 </a>

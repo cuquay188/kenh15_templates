@@ -24,37 +24,38 @@
             <thead>
             <tr>
                 <th ng-click="sortType = 'name'; sortReverse=!sortReverse;" class="sortable"
-                    ng-class="{'sort': sortType=='name'}">
+                    ng-class="{'sort': sortType=='name'}" style="width:200px;">
                     Name
                     <span ng-show="sortType == 'name' && !sortReverse"><i
                                 class="glyphicon glyphicon-sort-by-alphabet"></i></span>
                     <span ng-show="sortType == 'name' && sortReverse"><i
                                 class="glyphicon glyphicon-sort-by-alphabet-alt"></i></span>
                 </th>
-                <th ng-click="sortType = 'articles'; sortReverse=!sortReverse" class="sortable"
-                    ng-class="{'sort': sortType=='articles'}" style="width:200px;">
+                <th ng-click="sortType = 'articles'; sortReverse=!sortReverse" class="center sortable"
+                    ng-class="{'sort': sortType=='articles'}" style="width:125px;">
                     Article(s)
                     <span ng-show="sortType == 'articles' && !sortReverse"><i
                                 class="glyphicon glyphicon-sort-by-alphabet"></i></span>
                     <span ng-show="sortType == 'articles' && sortReverse"><i
                                 class="glyphicon glyphicon-sort-by-alphabet-alt"></i></span>
                 </th>
-                <th ng-click="sortType = 'advance.is_hot'; sortReverse=!sortReverse" class="sortable"
-                    ng-class="{'sort': sortType=='advance.is_hot'}">
+                <th ng-click="sortType = 'advance.is_hot && articles'; sortReverse=!sortReverse" class="sortable"
+                    ng-class="{'sort': sortType=='advance.is_hot && articles'}" style="width:200px;">
                     Hot
-                    <span ng-show="sortType == 'advance.is_hot' && !sortReverse"><i
+                    <span ng-show="sortType == 'advance.is_hot && articles' && !sortReverse"><i
                                 class="glyphicon glyphicon-sort-by-alphabet"></i></span>
-                    <span ng-show="sortType == 'advance.is_hot' && sortReverse"><i
+                    <span ng-show="sortType == 'advance.is_hot && articles' && sortReverse"><i
                                 class="glyphicon glyphicon-sort-by-alphabet-alt"></i></span>
                 </th>
                 <th style="width:200px;">Action</th>
+                <th>Note</th>
             </tr>
             </thead>
             <tbody>
             <tr dir-paginate="category in categories | filter : tagFilter | orderBy:sortType:sortReverse | itemsPerPage: itemsPerPage.item"
                 ng-controller="categoryController">
-                <td><a href="#">%%category.name%%</a></td>
-                <td>%%category.articles%%</td>
+                <td><a href="{{route('admin.category')}}/%%category.id%%">%%category.name%%</a></td>
+                <td class="center">%%category.articles%%</td>
                 <td>
                     <button class="btn btn-xs btn-toggle hot" ng-click="setHot()"
                             ng-class="{'btn-default':!category.advance.is_hot,'btn-primary':category.advance.is_hot}"></button>
@@ -76,6 +77,7 @@
                             ng-click="delete()">Delete
                     </button>
                 </td>
+                <td></td>
             </tr>
             <tr ng-if="categories==null">
                 <td colspan="6" class="empty-table">

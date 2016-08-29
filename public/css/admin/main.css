@@ -379,5 +379,7 @@ body {
   cursor: pointer; }
   .table .sortable.sort {
     color: #3498db; }
+.table th.center, .table td.center {
+  text-align: center; }
 
 /*# sourceMappingURL=main.css.map */

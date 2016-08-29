@@ -24,15 +24,15 @@
             <thead>
             <tr>
                 <th ng-click="sortType = 'name'; sortReverse=!sortReverse;" class="sortable"
-                    ng-class="{'sort': sortType=='name'}">
+                    ng-class="{'sort': sortType=='name'}" style="width:250px;">
                     Name
                     <span ng-show="sortType == 'name' && !sortReverse"><i
                                 class="glyphicon glyphicon-sort-by-alphabet"></i></span>
                     <span ng-show="sortType == 'name' && sortReverse"><i
                                 class="glyphicon glyphicon-sort-by-alphabet-alt"></i></span>
                 </th>
-                <th ng-click="sortType = 'articles'; sortReverse=!sortReverse" class="sortable"
-                    ng-class="{'sort': sortType=='articles'}" style="width:200px;">
+                <th ng-click="sortType = 'articles'; sortReverse=!sortReverse" class="center sortable"
+                    ng-class="{'sort': sortType=='articles'}" style="width:150px;">
                     Article(s)
                     <span ng-show="sortType == 'articles' && !sortReverse"><i
                                 class="glyphicon glyphicon-sort-by-alphabet"></i></span>
@@ -40,13 +40,14 @@
                                 class="glyphicon glyphicon-sort-by-alphabet-alt"></i></span>
                 </th>
                 <th style="width:200px;">Action</th>
+                <th>Note</th>
             </tr>
             </thead>
             <tbody>
             <tr dir-paginate="tag in tags | filter : tagFilter | itemsPerPage: itemsPerPage.item | orderBy:sortType:sortReverse "
                 ng-controller="tagController">
                 <td><a href="{{route('admin.tag')}}/%%tag.id%%">%%tag.name%%</a></td>
-                <td>%%tag.articles%%</td>
+                <td class="center">%%tag.articles%%</td>
                 <td>
                     <button class="btn btn-primary btn-xs"
                             data-toggle="modal" data-target="#edit-tag"
@@ -57,6 +58,7 @@
                             ng-click="delete()">Delete
                     </button>
                 </td>
+                <td></td>
             </tr>
             <tr ng-if="tags==null">
                 <td colspan="6" class="empty-table">

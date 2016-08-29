@@ -87,13 +87,17 @@ Route::group(['prefix' => 'admin'], function () {
     /*Category*/
     Route::get('/category', [
         'uses' => 'CategoryController@getCategory',
-        'as' => 'category'
+        'as' => 'admin.category'
     ]);
+    Route::get('/category/{id}', [
+        'uses' => 'CategoryController@getViewCategory'
+    ]);
+    /*End Category*/
+
     Route::get('/refresh-database', [
         'uses' => 'ArticleController@refreshDatabase',
         'as' => 'admin.fix.database',
     ]);
-    /*End Category*/
 
 });
 Route::group(['prefix' => 'api'], function () {

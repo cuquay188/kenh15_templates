@@ -4,7 +4,7 @@ app.controller('categoriesListController', function ($scope, $http, $log, $categ
     }, function (newVal) {
         $scope.categories = newVal;
     });
-    $scope.sortType = 'advance.is_hot';
+    $scope.sortType = 'advance.is_hot && articles';
     $scope.sortReverse = 1;
 });
 
