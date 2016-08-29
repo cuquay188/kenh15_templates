@@ -2,8 +2,9 @@
     <div class="modal-dialog">
         <div class="modal-content" style=" top: 50px" ng-controller="editAuthorController">
             <div class="modal-header">
-                <h5 style="font-weight: bold">Edit Author: "<span
-                            style="font-style: italic">%%author.name%%</span>"</h5>
+                <h5 style="font-weight: bold">
+                    Edit Author: %%author.name%%
+                </h5>
             </div>
             <div class="modal-body">
                 <div class="form-group">
@@ -32,8 +33,7 @@
                 </div>
                 <div class="form-group">
                     <label for="birth">Birth</label>
-                    <input type="date" class="form-control" id="birth"
-                           ng-model="author.newBirth"
+                    <input type="text" class="form-control" id="birth"
                            placeholder=""
                            ng-class="{'error' : birthErrors}">
                     <span class="errors">%%birthErrors%%</span>

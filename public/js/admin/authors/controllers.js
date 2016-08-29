@@ -22,16 +22,17 @@ app.controller('editAuthorController', function ($scope, $http, $author) {
         return $author.get()
     }, function (newVal) {
         $scope.author = newVal;
-        if ($scope.author && $scope.author)
+        if ($scope.author) {
             $scope.author = {
                 name: $scope.author.name,
                 newName: $scope.author.name,
                 newAddress: $scope.author.address,
                 newCity: $scope.author.city,
-                newBirth: new Date($scope.author.birth),
                 newTel: $scope.author.tel,
                 newEmail: $scope.author.email
-            }
+            };
+            $('#birth').datepicker("setDate", new Date(newVal.birth))
+        }
     });
     $scope.dismiss = function () {
         $author.set(null);
@@ -42,12 +43,12 @@ app.controller('editAuthorController', function ($scope, $http, $author) {
             newName: $scope.author.newName,
             newAddress: $scope.author.newAddress,
             newCity: $scope.author.newCity,
-            newBirth: $scope.author.newBirth,
+            newBirth: $('#birth').datepicker("getDate"),
             newTel: $scope.author.newTel,
             newEmail: $scope.author.newEmail
         })
     };
-    modalEvent($scope,'edit-author')
+    modalEvent($scope, 'edit-author')
 });
 
 app.controller('deleteAuthorController', function ($scope, $http, $authors, $author, $normalUsers) {
@@ -64,7 +65,7 @@ app.controller('deleteAuthorController', function ($scope, $http, $authors, $aut
         $author.remove($scope, $http, $authors, $normalUsers)
     };
 
-    modalEvent($scope,'delete-author')
+    modalEvent($scope, 'delete-author')
 
 });
 
@@ -85,5 +86,5 @@ app.controller('createAuthorController', function ($scope, $http, $authors, $aut
         $scope.userError = '';
     };
 
-    modalEvent($scope,'create-author', 1)
+    modalEvent($scope, 'create-author', 1)
 });
