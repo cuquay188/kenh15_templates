@@ -10,8 +10,8 @@ var numberOfItem = function () {
         bodyHeight = $body.height(),
         trHeight = $table.find('tbody').find('tr').height(),
         dirPaginateHeight = $body.find('.row').height() + 40;
-    items = (bodyHeight - dirPaginateHeight) / trHeight;
-    return parseInt(--items);
+    items = (bodyHeight - dirPaginateHeight) / trHeight -2;
+    return parseInt(items);
 };
 
 app.controller('mainController', function ($scope, $http, $authors, $tags, $categories) {
