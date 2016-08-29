@@ -108,6 +108,7 @@ app.service('$category', function () {
                     $('.modal.in').modal('hide');
                 $category = null;
                 $scope.nameErrors = '';
+                $scope.newName = '';
             }, function (response) {
                 $scope.nameErrors = response.data.name + '';
             })

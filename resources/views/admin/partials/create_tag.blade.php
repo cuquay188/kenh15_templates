@@ -10,7 +10,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <input type="text" id="name" ng-model="tagName" ng-class="{'error' : nameErrors}"
+                        <input type="text" id="name" ng-model="newName" ng-class="{'error' : nameErrors}"
                                ng-keyup="$event.keyCode == 13 && create(1)"
                                class="form-control" placeholder="Enter name tag...">
                         <span class="errors">%%nameErrors%%</span>

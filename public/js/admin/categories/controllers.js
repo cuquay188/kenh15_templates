@@ -4,6 +4,14 @@ app.controller('categoriesListController', function ($scope, $http, $log, $categ
     }, function (newVal) {
         $scope.categories = newVal;
     });
+
+    $scope.$watch(function () {
+        return $categories.sizeOf.is_header()
+    }, function (newVal, oldVal) {
+        if (newVal > oldVal && newVal > 5)
+            alert('You should not place more than 5 category to header.')
+    });
+
     $scope.sortType = 'advance.is_hot && articles';
     $scope.sortReverse = 1;
 });
@@ -60,7 +68,7 @@ app.controller('deleteCategoryController', function ($scope, $http, $categories,
 
 app.controller('createCategoryController', function ($scope, $http, $categories, $category) {
     $scope.submit = function (more) {
-        $category.create($scope, $http, $categories, $scope.categoryName, more);
+        $category.create($scope, $http, $categories, $scope.newName, more);
     };
     modalEvent($scope,'create-category',1)
 });

@@ -52,7 +52,7 @@ app.controller('deleteTagController', function ($scope, $http, $tags, $tag) {
 
 app.controller('createTagController', function ($scope, $http, $tags, $tag) {
     $scope.submit = function (more) {
-        $tag.create($scope, $http, $tags, $scope.tagName, more);
+        $tag.create($scope, $http, $tags, $scope.newName, more);
     };
     modalEvent($scope,'create-tag',1)
 });

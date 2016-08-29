@@ -115,7 +115,7 @@
 
 <!-- End body scripts -->
 <script>
-    $('#create-tag, #edit-tag, #create-category, #edit-category').on('show.bs.modal', function () {
+    $('#create-tag, #edit-tag, #create-category, #edit-category').on('shown.bs.modal', function () {
         $(this).find('#name').focus();
     });
     var modalEvent = function ($scope, modal, more) {

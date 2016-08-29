@@ -52,16 +52,17 @@ app.service('$tag', function () {
                 $scope.nameErrors = response.data.name + '';
             })
         },
-        create: function ($scope, $http, $tags, name,more) {
+        create: function ($scope, $http, $tags, name, more) {
             $http.post(url.tag.create, {
                 name: name
             }).then(function (response) {
                 $tag = response.data.tag;
                 $tags.add($tag);
-                if(!more)
+                if (!more)
                     $('.modal.in').modal('hide');
                 $tag = null;
                 $scope.nameErrors = '';
+                $scope.newName = '';
             }, function (response) {
                 $scope.nameErrors = response.data.name + '';
             })
