@@ -27,13 +27,13 @@ class UserController extends Controller
         if (!Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
             return redirect()->back()->with(['fail' => 'Your username or password is incorrect.']);
         }
-        return redirect()->route('article');
+        return redirect()->route('admin.article');
     }
 
     public function getLogout()
     {
         Auth::logout();
-        return redirect()->route('login');
+        return redirect()->route('admin.auth.login');
     }
 
     public function getSignUp()

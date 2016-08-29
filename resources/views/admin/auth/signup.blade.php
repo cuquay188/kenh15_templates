@@ -1,7 +1,7 @@
 @extends('admin.auth.master')
 @section('title','Sign Up')
 @section('content')
-    <form action="{{route('post_sign_up')}}" method="post" style="margin-top:5%;">
+    <form action="{{route('admin.auth.signup.post')}}" method="post" style="margin-top:5%;">
         @if(Session::has('fails'))
             <ul class="errors">
                 @foreach(Session::get('fails') as $fail)

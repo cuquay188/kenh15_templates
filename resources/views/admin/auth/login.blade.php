@@ -1,7 +1,7 @@
 @extends('admin.auth.master')
 @section('title','Login')
 @section('content')
-    <form action="{{route('post_login')}}" method="post">
+    <form action="{{route('admin.auth.login.post')}}" method="post">
         @if(count($errors)>0)
             <ul class="errors">
                 @foreach($errors->all() as $error)
@@ -32,7 +32,7 @@
         <div class="form-group">
             <input type="hidden" value="{{Session::token()}}" name="_token">
             <button class="btn btn-success" type="submit">Login</button>
-            <a class="btn btn-warning" href="{{route('signup')}}">Sign up</a>
+            <a class="btn btn-warning" href="{{route('admin.auth.signup')}}">Sign up</a>
         </div>
     </form>
 @endsection

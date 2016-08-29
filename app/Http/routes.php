@@ -12,47 +12,51 @@
 */
 
 Route::group(['prefix' => 'admin'], function () {
-    //User
     Route::get('/', [
         'uses' => 'UserController@getLogin',
         'as' => 'login'
     ]);
-    Route::get('/login', [
-        'uses' => 'UserController@getLogin',
-        'as' => 'login'
-    ]);
-    Route::post('/login', [
-        'uses' => 'UserController@postLogin',
-        'as' => 'post_login'
-    ]);
-    Route::get('/logout', [
-        'uses' => 'UserController@getLogout',
-        'as' => 'logout'
-    ]);
-    Route::get('/signup', [
-        'uses' => 'UserController@getSignUp',
-        'as' => 'signup'
-    ]);
-    Route::post('/signup/user', [
-        'uses' => 'UserController@postSignUp',
-        'as' => 'post_sign_up'
-    ]);
-    Route::get('/user', [
-        'uses' => 'UserController@getUserManagement',
-        'as' => 'user_management'
-    ]);
-    Route::post('/edit/user', [
-        'uses' => 'UserController@postUpdateUser',
-        'as' => 'post_update_user'
-    ]);
-    Route::post('/change/password/user', [
-        'uses' => 'UserController@postChangePasswordUser',
-        'as' => 'post_change_password_user'
-    ]);
-    Route::get('/users', [
-        'uses' => 'UserController@getUsers',
-        'as' => 'users'
-    ]);
+    //User
+    Route::group(['prefix' => 'auth'], function () {
+        Route::get('/login', [
+            'uses' => 'UserController@getLogin',
+            'as' => 'admin.auth.login'
+        ]);
+        Route::post('/login', [
+            'uses' => 'UserController@postLogin',
+            'as' => 'admin.auth.login.post'
+        ]);
+        Route::get('/logout', [
+            'uses' => 'UserController@getLogout',
+            'as' => 'admin.auth.logout'
+        ]);
+        Route::get('/signup', [
+            'uses' => 'UserController@getSignUp',
+            'as' => 'admin.auth.signup'
+        ]);
+        Route::post('/signup/user', [
+            'uses' => 'UserController@postSignUp',
+            'as' => 'admin.auth.signup.post'
+        ]);
+
+
+        Route::get('/user', [
+            'uses' => 'UserController@getUserManagement',
+            'as' => 'user_management'
+        ]);
+        Route::post('/edit/user', [
+            'uses' => 'UserController@postUpdateUser',
+            'as' => 'post_update_user'
+        ]);
+        Route::post('/change/password/user', [
+            'uses' => 'UserController@postChangePasswordUser',
+            'as' => 'post_change_password_user'
+        ]);
+        Route::get('/users', [
+            'uses' => 'UserController@getUsers',
+            'as' => 'users'
+        ]);
+    });
 
     /*Article*/
     Route::get('/article', [

@@ -96,7 +96,7 @@
                 </a>
             </div>
         </div>
-        <div class="logout"><a id="logout" title="Logout" href="{{route('logout')}}"><span
+        <div class="logout"><a id="logout" title="Logout" href="{{route('admin.auth.logout')}}"><span
                         class="glyphicon glyphicon-log-out"></span></a></div>
     </div>
 </div>
