@@ -92,7 +92,7 @@ class CategoryController extends Controller
     public function postUpdateCategory(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|between:3,15'
+            'name' => 'required|between:3,15|unique:categories,name'
         ]);
 
         $id = $request->id;

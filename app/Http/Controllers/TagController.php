@@ -65,7 +65,7 @@ class TagController extends Controller
     public function postUpdateTag(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|between:2,15'
+            'name' => 'required|between:2,15|unique:tags,name'
         ]);
 
         $id = $request->id;

@@ -137,7 +137,9 @@
     CKEDITOR.config.width = '55vw';
     CKEDITOR.config.height = 'calc(100vh - 300px)';
 
-    $('#create-category, #create-tag, #create-author').draggable().find('.modal-header').css('cursor','default');
+    $('#create-category, #create-tag, #create-author')
+            .find('.modal-content').draggable()
+            .find('.modal-header').css('cursor','pointer');
 </script>
 
 </body>
