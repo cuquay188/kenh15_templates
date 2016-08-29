@@ -1,4 +1,4 @@
-@if(Auth::getUser()->admin || Auth::getUser()->author)
+@if(Auth::getUser()->is_admin())
     <div class="modal fade" id="create-author" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content" style="top: 150px">

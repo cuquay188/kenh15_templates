@@ -15,7 +15,7 @@
             </div>
             <div class="col col-lg-3 col-sm-5">
                 <div class="form-group">
-                    <input type="text" class="form-control search" ng-model="tagFilter" placeholder="Search...">
+                    <input type="text" class="form-control search" ng-model="categoryFilter" placeholder="Search...">
                     <span><i class="glyphicon glyphicon-search"> </i></span>
                 </div>
             </div>
@@ -52,7 +52,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr dir-paginate="category in categories | filter : tagFilter | orderBy:sortType:sortReverse | itemsPerPage: itemsPerPage.item"
+            <tr dir-paginate="category in categories | filter : categoryFilter | orderBy:sortType:sortReverse | itemsPerPage: itemsPerPage.item"
                 ng-controller="categoryController">
                 <td><a href="{{route('admin.category')}}/%%category.id%%">%%category.name%%</a></td>
                 <td class="center">%%category.articles%%</td>

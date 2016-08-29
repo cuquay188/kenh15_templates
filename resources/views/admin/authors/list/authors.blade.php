@@ -1,38 +1,80 @@
 @extends("admin.layouts.master")
 @section("title", "Authors Management")
 @section("content")
-    <div class="authors-info">
+    <div class="authors-info" ng-controller="authorsListController">
+        <div class="row">
+            <div class="col col-lg-1 col-sm-2">
+                <div class="form-group">
+                    <select class="form-control"
+                            ng-options="x for x in itemsPerPage.items"
+                            ng-model="itemsPerPage.item">
+                    </select>
+                </div>
+            </div>
+            <div class="col col-lg-8 col-sm-5">
+            </div>
+            <div class="col col-lg-3 col-sm-5">
+                <div class="form-group">
+                    <input type="text" class="form-control search" ng-model="authorFilter" placeholder="Search...">
+                    <span><i class="glyphicon glyphicon-search"> </i></span>
+                </div>
+            </div>
+        </div>
         <table class="table table-striped">
             <thead>
             <tr>
-                <th style="width:150px;">Name</th>
+                <th ng-click="sortType = 'name'; sortReverse=!sortReverse;" class="sortable"
+                    ng-class="{'sort': sortType=='name'}" style="width:200px;">
+                    Name
+                    <span ng-show="sortType == 'name' && !sortReverse"><i
+                                class="glyphicon glyphicon-sort-by-alphabet"></i></span>
+                    <span ng-show="sortType == 'name' && sortReverse"><i
+                                class="glyphicon glyphicon-sort-by-alphabet-alt"></i></span>
+                </th>
                 <th>Address</th>
-                <th>Age</th>
+                <th ng-click="sortType = 'age'; sortReverse=!sortReverse;" class="sortable"
+                    ng-class="{'sort': sortType=='age'}" style="width:50px;">
+                    Age
+                    <span ng-show="sortType == 'age' && !sortReverse"><i
+                                class="glyphicon glyphicon-sort-by-alphabet"></i></span>
+                    <span ng-show="sortType == 'age' && sortReverse"><i
+                                class="glyphicon glyphicon-sort-by-alphabet-alt"></i></span>
+                </th>
                 <th>Phone</th>
-                <th>Email</th>
-                <th style="width:200px;">Action</th>
+                <th ng-click="sortType = 'email'; sortReverse=!sortReverse;" class="sortable"
+                    ng-class="{'sort': sortType=='email'}" style="width:150px;">
+                    Email
+                    <span ng-show="sortType == 'email' && !sortReverse"><i
+                                class="glyphicon glyphicon-sort-by-alphabet"></i></span>
+                    <span ng-show="sortType == 'email' && sortReverse"><i
+                                class="glyphicon glyphicon-sort-by-alphabet-alt"></i></span>
+                </th>
+                <th style="width:175px;">Action</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td><a href="#">Pham Van Tri</a></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+            <tr dir-paginate="author in authors | filter: authorFilter | itemsPerPage: itemsPerPage.item | orderBy:sortType:sortReverse"
+                ng-controller="authorController">
+                <td><a href="#">%%author.name%%</a></td>
+                <td>%%author.address + ( author.city ? (', ' + author.city) : '' )%%</td>
+                <td>%%author.age%%</td>
+                <td>%%author.tel%%</td>
+                <td><a href="#" ng-bind="author.email"></a></td>
                 <td>
                     {{--Edit Function--}}
                     <button type="submit" class="btn btn-primary btn-xs" data-toggle="modal"
-                            data-target="#edit-author">Update Info
+                            {{Auth::getUser()->is_admin() ? "" : "disabled"}}
+                            data-target="#edit-author" ng-click="edit()">Update Info
                     </button>
 
                     {{--Delete Function--}}
                     <button type="submit" class="btn btn-primary btn-xs" data-toggle="modal"
-                            data-target="#delete-author">Demote
+                            {{Auth::getUser()->is_admin() ? "" : "disabled"}}
+                            data-target="#delete-author" ng-click="delete()">Demote
                     </button>
                 </td>
             </tr>
-            <tr>
+            <tr ng-if="authors==null">
                 <td colspan="6" class="empty-table">
                     No authors is available. You need to
                     <a href="#" data-toggle="modal" data-target="#create-author">promote a user.</a>.

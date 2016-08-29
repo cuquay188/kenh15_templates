@@ -13,7 +13,7 @@
                             data-dismiss="modal" ng-click="dismiss()">
                         Cancel
                     </button>
-                    <button class="btn btn-primary"
+                    <button class="btn btn-danger"
                             ng-click="submit()">
                         Confirm
                     </button>

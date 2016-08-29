@@ -1,9 +1,8 @@
 <div class="modal fade" role="dialog" id="delete-author">
     <div class="modal-dialog">
-        <div class="modal-content" style="top: 150px">
+        <div class="modal-content" style="top: 150px" ng-controller="deleteAuthorController">
             <div class="modal-header">
-                <h5 style="font-weight: bold">Demote Author:
-                    <span style="font-style: italic;font-weight: bold">Pham Van Tri</span>
+                <h5 style="font-weight: bold">Demote %%author.name%%
                 </h5>
             </div>
             <div class="modal-body">
@@ -15,7 +14,7 @@
                             data-dismiss="modal" ng-click="dismiss()">
                         Cancel
                     </button>
-                    <button class="btn btn-primary"
+                    <button class="btn btn-danger"
                             ng-click="submit()">
                         Confirm
                     </button>

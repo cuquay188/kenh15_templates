@@ -88,15 +88,20 @@
 <script src="{{asset('/js/admin/app.js')}}"></script>
 <script src="{{asset('/js/admin/sidebar.js')}}"></script>
 
-{{--Tag--}}
-<script src="{{asset('/js/admin/tags/services.js')}}"></script>
-<script src="{{asset('/js/admin/tags/controllers.js')}}"></script>
-{{--End Tag--}}
+{{--Author--}}
+<script src="{{asset('/js/admin/authors/services.js')}}"></script>
+<script src="{{asset('/js/admin/authors/controllers.js')}}"></script>
+{{--End Author--}}
 
 {{--Category--}}
 <script src="{{asset('/js/admin/categories/services.js')}}"></script>
 <script src="{{asset('/js/admin/categories/controllers.js')}}"></script>
 {{--End Category--}}
+
+{{--Tag--}}
+<script src="{{asset('/js/admin/tags/services.js')}}"></script>
+<script src="{{asset('/js/admin/tags/controllers.js')}}"></script>
+{{--End Tag--}}
 @yield("body.scripts")
 
 <!-- End body scripts -->

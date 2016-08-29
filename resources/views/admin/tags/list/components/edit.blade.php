@@ -9,11 +9,11 @@
             <div class="modal-body">
                 <div class="form-group">
                     <input class="form-control" type="text" id="name"
-                           ng-keyup="$event.keyCode == 13 && submit()"
+                           ng-keyup="$event.keyCode == 13 && submit()" autocomplete="off"
                            ng-model="tag.newName" ng-class="{'error' : nameErrors}"
                            placeholder="New tag name...">
+                    <span class="errors">%%nameErrors%%</span>
                 </div>
-                <span class="errors">%%nameErrors%%</span>
             </div>
             <div class="modal-footer">
                 <div class="form-group">

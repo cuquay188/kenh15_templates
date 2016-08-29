@@ -1,5 +1,11 @@
 
-app.controller('sidebarController', function ($scope, $http, $tags, $categories) {
+app.controller('sidebarController', function ($scope, $http, $authors, $tags, $categories) {
+
+    $scope.$watch(function () {
+        return $authors.size()
+    }, function (newVal) {
+        $scope.authorLength = newVal
+    });
     $scope.$watch(function () {
         return $tags.size()
     }, function (newVal) {

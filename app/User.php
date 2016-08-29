@@ -35,4 +35,11 @@ class User extends Model implements \Illuminate\Contracts\Auth\Authenticatable
             $separate = '/';
         return date_format(date_create($this->birth), "Y" . $separate . "m" . $separate . "d");
     }
+
+    public function age()
+    {
+        $birth =  date('Y', strtotime($this->birth));
+        $now = date('Y');
+        return $now - $birth;
+    }
 }

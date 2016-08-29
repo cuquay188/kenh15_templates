@@ -73,7 +73,6 @@ app.service('$category', function () {
                     $category = response.data.category;
                     $scope.category.name = $category.name;
                     $('.modal.in').modal('hide');
-                    $scope.categoryName = '';
                     $scope.nameErrors = '';
                 }, function (response) {
                     $scope.nameErrors = response.data.name + '';
@@ -108,7 +107,6 @@ app.service('$category', function () {
                 if (!more)
                     $('.modal.in').modal('hide');
                 $category = null;
-                $scope.categoryName = '';
                 $scope.nameErrors = '';
             }, function (response) {
                 $scope.nameErrors = response.data.name + '';

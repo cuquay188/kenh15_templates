@@ -47,7 +47,6 @@ app.service('$tag', function () {
                 $tag = response.data.tag;
                 $scope.tag.name = $tag.name;
                 $('.modal.in').modal('hide');
-                $scope.tagName = '';
                 $scope.nameErrors = '';
             }, function (response) {
                 $scope.nameErrors = response.data.name + '';
@@ -62,7 +61,6 @@ app.service('$tag', function () {
                 if(!more)
                     $('.modal.in').modal('hide');
                 $tag = null;
-                $scope.tagName = '';
                 $scope.nameErrors = '';
             }, function (response) {
                 $scope.nameErrors = response.data.name + '';

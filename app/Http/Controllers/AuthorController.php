@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -43,7 +44,7 @@ class AuthorController extends Controller
         ]);
     }
 
-    public function postDeleteAuthor(Request $request)
+    public function postRemoveAuthor(Request $request)
     {
         $id = $request->id;
         $author = $this->getAuthorJSON($id);
@@ -58,18 +59,27 @@ class AuthorController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|between:6,30',
-            'age' => 'required|numeric|min:16|max:80',
-            'address' => 'required'
+            'address' => 'required',
+            'city' => 'required',
+            'birth' => 'date',
+            'tel' => 'required',
+            'email' => 'required|email'
         ]);
 
         $id = $request->id;
         $name = $request->name;
-        $age = $request->age;
         $address = $request->address;
-        Author::where('id', $id)->update([
+        $birth = $request->birth;
+        $tel = $request->tel;
+        $city = $request->city;
+
+        $author = Author::find($id);
+        User::where('id', $author->user_id)->update([
             'name' => $name,
-            'age' => $age,
-            'address' => $address
+            'address' => $address,
+            'birth' => $birth,
+            'tel' => $tel,
+            'city' => $city
         ]);
         return response()->json([
             'message' => 'Update Successful.',
@@ -81,14 +91,31 @@ class AuthorController extends Controller
     {
         if ($id) {
             $author = Author::find($id);
-            $author->user->password = '';
-            $author->user->remember_token = '';
+            $author = [
+                'id' => $author->id,
+                'name' =>  $author->user->name,
+                'age' => $author->user->age(),
+                'birth' => $author->user->birth,
+                'address' => $author->user->address,
+                'city' => $author->user->city,
+                'tel' => $author->user->tel,
+                'email' => $author->user->email
+            ];
             return $author;
         } else {
-            $authors = Author::all();
-            foreach ($authors as $author) {
-                $author->user->password = '';
-                $author->user->remember_token = '';
+            $allAuthors = Author::all();
+            $authors = array();
+            foreach ($allAuthors as $author) {
+                array_push($authors,[
+                    'id' => $author->id,
+                    'name' =>  $author->user->name,
+                    'age' => $author->user->age(),
+                    'birth' => $author->user->birth,
+                    'address' => $author->user->address,
+                    'city' => $author->user->city,
+                    'tel' => $author->user->tel,
+                    'email' => $author->user->email
+                ]);
             }
             return $authors;
         }

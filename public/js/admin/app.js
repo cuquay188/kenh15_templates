@@ -14,13 +14,14 @@ var numberOfItem = function () {
     return parseInt(--items);
 };
 
-app.controller('mainController', function ($scope, $http, $tags, $categories) {
+app.controller('mainController', function ($scope, $http, $authors, $tags, $categories) {
+    $authors.load($http);
     $tags.load($http);
     $categories.load($http);
 
     $scope.itemsPerPage = {
         items: [
-            numberOfItem()/2,
+            parseInt(numberOfItem()/2),
             numberOfItem(),
             numberOfItem()*2,
             numberOfItem()*4
