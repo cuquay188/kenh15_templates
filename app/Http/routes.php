@@ -133,6 +133,10 @@ Route::group(['prefix' => 'api'], function () {
             'uses' => 'AuthorController@getAuthorJSON',
             'as' => 'admin.api.author.select'
         ]);
+        Route::get('get/users', [
+            'uses' => 'AuthorController@getNormalUser',
+            'as' => 'admin.api.author.select.normal_user'
+        ]);
 
         Route::post('/update', [
             'uses' => 'AuthorController@postUpdateAuthor',
@@ -195,6 +199,27 @@ Route::group(['prefix' => 'api'], function () {
         Route::post('/create', [
             'uses' => 'TagController@postCreateTag',
             'as' => 'admin.api.tag.create'
+        ]);
+    });
+
+    Route::group(['prefix' => 'user'], function () {
+
+        Route::get('/select/{id?}', [
+            'uses' => 'UserController@getUserJSON',
+            'as' => 'admin.api.user.select'
+        ]);
+
+        Route::post('/update', [
+            'uses' => 'UserController@postUpdateAuthor',
+            'as' => 'admin.api.user.update'
+        ]);
+        Route::post('/delete', [
+            'uses' => 'UserController@postRemoveAuthor',
+            'as' => 'admin.api.user.remove'
+        ]);
+        Route::post('/create', [
+            'uses' => 'UserController@postCreateAuthor',
+            'as' => 'admin.api.user.create'
         ]);
     });
 });

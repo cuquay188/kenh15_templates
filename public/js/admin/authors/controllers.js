@@ -46,25 +46,44 @@ app.controller('editAuthorController', function ($scope, $http, $author) {
             newTel: $scope.author.newTel,
             newEmail: $scope.author.newEmail
         })
-    }
+    };
+    modalEvent($scope,'edit-author')
 });
 
-app.controller('deleteAuthorController', function ($scope, $http, $authors, $author) {
+app.controller('deleteAuthorController', function ($scope, $http, $authors, $author, $normalUsers) {
     $scope.$watch(function () {
         return $author.get()
     }, function (newVal) {
         $scope.author = newVal;
     });
+
     $scope.dismiss = function () {
         $author.set(null);
     };
     $scope.submit = function () {
-        $author.remove($scope, $http, $authors)
-    }
+        $author.remove($scope, $http, $authors, $normalUsers)
+    };
+
+    modalEvent($scope,'delete-author')
+
 });
 
-app.controller('createAuthorController', function ($scope, $http, $authors, $author) {
-    $scope.create = function (more) {
-        $author.create($scope, $http, $authors, $scope.authorName, more);
-    }
+app.controller('createAuthorController', function ($scope, $http, $authors, $author, $normalUsers) {
+    $scope.$watch(function () {
+        return $normalUsers.get()
+    }, function (newVal) {
+        $scope.users = newVal;
+        $scope.user = $normalUsers.get(0);
+    });
+
+    $normalUsers.load($http);
+
+    $scope.submit = function (more) {
+        $author.create($scope, $http, $authors, $normalUsers, $scope.user, more);
+    };
+    $scope.dismiss = function () {
+        $scope.userError = '';
+    };
+
+    modalEvent($scope,'create-author', 1)
 });

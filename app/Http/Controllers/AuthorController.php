@@ -31,9 +31,9 @@ class AuthorController extends Controller
     public function postCreateAuthor(Request $request)
     {
         $this->validate($request, [
-            'user' => 'required'
+            'id' => 'required'
         ]);
-        $user = $request->user;
+        $user = $request->id;
         $author = new Author();
         $author->user_id = $user;
         $author->save();
@@ -93,7 +93,7 @@ class AuthorController extends Controller
             $author = Author::find($id);
             $author = [
                 'id' => $author->id,
-                'name' =>  $author->user->name,
+                'name' => $author->user->name,
                 'age' => $author->user->age(),
                 'birth' => $author->user->birth,
                 'address' => $author->user->address,
@@ -106,9 +106,9 @@ class AuthorController extends Controller
             $allAuthors = Author::all();
             $authors = array();
             foreach ($allAuthors as $author) {
-                array_push($authors,[
+                array_push($authors, [
                     'id' => $author->id,
-                    'name' =>  $author->user->name,
+                    'name' => $author->user->name,
                     'age' => $author->user->age(),
                     'birth' => $author->user->birth,
                     'address' => $author->user->address,
@@ -119,6 +119,21 @@ class AuthorController extends Controller
             }
             return $authors;
         }
+    }
+
+    public function getNormalUser()
+    {
+        $allUsers = User::all();
+        $users = array();
+        foreach ($allUsers as $user) {
+            if (!$user->author)
+                array_push($users, [
+                    'id' => $user->id,
+                    'name' => $user->name,
+                    'username' => $user->username
+                ]);
+        }
+        return $users;
     }
 
     public function getViewAuthor($id)

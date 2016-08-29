@@ -12,7 +12,7 @@ app.service('$authors', function () {
             return $authors.length;
         },
         load: function ($http) {
-            $http.get(url.author.select)
+            $http.get(url.author.select.authors)
                 .then(function (response) {
                     $authors = response.data;
                     return $authors;
@@ -28,6 +28,35 @@ app.service('$authors', function () {
             return $authors;
         }
     };
+});
+app.service('$normalUsers', function () {
+    var $users = [{
+        label: '-- Select one --'
+    }];
+    return {
+        get: function (index) {
+            if (index != null) return $users[index];
+            return $users
+        },
+        set: function ($newUsers) {
+            $users = $newUsers
+        },
+        load: function ($http) {
+            $users.splice(1,$users.length-1);
+            $http.get(url.author.select.users)
+                .then(function (response) {
+                    $.each(response.data, function (i, user) {
+                        user.label = user.name + ' - ' + user.username;
+                        $users.push(user);
+                    })
+                });
+        },
+        remove: function (id) {
+            $users = $users.filter(function (user) {
+                return user.id != id
+            })
+        }
+    }
 });
 app.service('$author', function () {
     var $author = {};
@@ -72,29 +101,28 @@ app.service('$author', function () {
                 $scope.emailErrors = response.data.email ? (response.data.email + '') : '';
             })
         },
-        create: function ($scope, $http, $authors, name, more) {
+        create: function ($scope, $http, $authors, $normalUsers, user, more) {
             $http.post(url.author.create, {
-                name: name
+                id: user.id
             }).then(function (response) {
                 $author = response.data.author;
-                $author.add($author);
+                $authors.add($author);
                 if (!more)
                     $('.modal.in').modal('hide');
                 $author = null;
-                $scope.nameErrors = '';
-            }, function (response) {
-                $scope.nameErrors = response.data.name + '';
+                $normalUsers.remove(user.id);
+                $scope.userError = '';
+            }, function () {
+                $scope.userError = 'You need to select an user to promote.';
             })
         },
-        remove: function ($scope, $http, $authors) {
+        remove: function ($scope, $http, $authors, $normalUsers) {
             $http.post(url.author.remove, {
                 id: $author.id
             }).then(function (response) {
-                console.log(response);
                 $authors.remove(response.data.author.id);
+                $normalUsers.load($http);
                 $('.modal.in').modal('hide');
-            },function (response) {
-                console.log(response);
             })
         }
     }

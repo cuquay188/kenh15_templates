@@ -10,18 +10,18 @@
                         <input type="text" id="name" ng-model="categoryName" ng-class="{'error' : nameErrors}"
                                ng-keyup="$event.keyCode == 13 && create(1)"
                                class="form-control" placeholder="Enter name tag...">
+                        <span class="errors">%%nameErrors%%</span>
                     </div>
-                    <span class="errors">%%nameErrors%%</span>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-default"
                             data-dismiss="modal">
                         Cancel
                     </button>
-                    <button class="btn btn-primary" ng-click="create()">
+                    <button class="btn btn-primary" ng-click="submit()">
                         Create One
                     </button>
-                    <button class="btn btn-primary" ng-click="create(1)">
+                    <button class="btn btn-primary" ng-click="submit(1)">
                         Create More...
                     </button>
                 </div>

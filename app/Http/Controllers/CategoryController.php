@@ -69,7 +69,7 @@ class CategoryController extends Controller
     public function postCreateCategory(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|between:3,15'
+            'name' => 'required|between:3,15|unique:categories,name'
         ]);
 
         $name = $request->name;

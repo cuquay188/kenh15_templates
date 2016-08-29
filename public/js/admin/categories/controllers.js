@@ -39,7 +39,8 @@ app.controller('editCategoryController', function ($scope, $http, $category) {
     };
     $scope.submit = function () {
         $category.update.name($scope, $http, $scope.category.newName)
-    }
+    };
+    modalEvent($scope,'edit-category')
 });
 
 app.controller('deleteCategoryController', function ($scope, $http, $categories, $category) {
@@ -53,11 +54,13 @@ app.controller('deleteCategoryController', function ($scope, $http, $categories,
     };
     $scope.submit = function () {
         $category.remove($scope, $http, $categories)
-    }
+    };
+    modalEvent($scope,'delete-category')
 });
 
 app.controller('createCategoryController', function ($scope, $http, $categories, $category) {
-    $scope.create = function (more) {
+    $scope.submit = function (more) {
         $category.create($scope, $http, $categories, $scope.categoryName, more);
-    }
+    };
+    modalEvent($scope,'create-category',1)
 });

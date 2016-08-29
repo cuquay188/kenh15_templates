@@ -49,7 +49,7 @@ class TagController extends Controller
     public function postCreateTag(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|between:2,15'
+            'name' => 'required|between:2,15|unique:tags,name'
         ]);
 
         $name = $request->name;

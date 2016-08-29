@@ -46,7 +46,7 @@ class UserController extends Controller
             'email' => 'required|email|unique:users,email',
             'username' => 'required|min:5|max:30|unique:users,username',
             'password' => 'required|min:3|max:16',
-            'tel'=>'required|unique:users,tel'
+            'tel' => 'required|unique:users,tel'
         ]);
 
         $name = $request->name;
@@ -65,10 +65,10 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->route('login')
-                         ->with([
-                            'new_username' => $username,
-                            'new_password' => $password
-                         ]);
+            ->with([
+                'new_username' => $username,
+                'new_password' => $password
+            ]);
     }
 
     public function getUserManagement()
@@ -124,12 +124,34 @@ class UserController extends Controller
 
         return redirect()->back();
     }
-    public function getUsers(){
-        if (!Auth::user()->admin)
+
+    public function getUsers()
+    {
+        if (!Auth::user()->is_admin())
             return redirect()->back();
         $users = User::all();
-        return view('admin.users.users',[
+        return view('admin.users.users', [
             'users' => $users
         ]);
+    }
+
+    public function getUserJSON($id = null)
+    {
+        if ($id) {
+            $user = User::find($id);
+            return response()->json([
+                'name' => $user->name,
+                'username' => $user->username
+            ]);
+        }
+        $allUsers = User::all();
+        $users = array();
+        foreach ($allUsers as $user) {
+            array_push($users,[
+                'name' => $user->name,
+                'username' => $user->username
+            ]);
+        }
+        return $users;
     }
 }

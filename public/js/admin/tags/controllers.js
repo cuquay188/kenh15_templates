@@ -31,7 +31,8 @@ app.controller('editTagController', function ($scope, $http, $tag) {
     };
     $scope.submit = function () {
         $tag.update($scope, $http, $scope.tag.newName)
-    }
+    };
+    modalEvent($scope,'edit-tag')
 });
 
 app.controller('deleteTagController', function ($scope, $http, $tags, $tag) {
@@ -45,11 +46,13 @@ app.controller('deleteTagController', function ($scope, $http, $tags, $tag) {
     };
     $scope.submit = function () {
         $tag.remove($scope, $http, $tags)
-    }
+    };
+    modalEvent($scope,'delete-tag')
 });
 
 app.controller('createTagController', function ($scope, $http, $tags, $tag) {
-    $scope.create = function (more) {
+    $scope.submit = function (more) {
         $tag.create($scope, $http, $tags, $scope.tagName, more);
-    }
+    };
+    modalEvent($scope,'create-tag',1)
 });

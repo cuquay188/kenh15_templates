@@ -10,9 +10,9 @@
     <link rel="stylesheet" href="{{asset('/bootstrap/css/bootstrap.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('/datatables/datatables.min.css')}}"/>
     <link rel="stylesheet" href="{{asset('/css/admin/main.css')}}">
-    @yield("styles")
+@yield("styles")
 
-    <!-- End Style Sheet -->
+<!-- End Style Sheet -->
 
     <!-- Scripts -->
     <!-- jQuery library -->
@@ -36,7 +36,10 @@
                 create: '{{route('admin.api.article.create')}}'
             },
             author: {
-                select: '{{route('admin.api.author.select')}}',
+                select: {
+                    authors: '{{route('admin.api.author.select')}}',
+                    users: '{{route('admin.api.author.select.normal_user')}}'
+                },
                 update: '{{route('admin.api.author.update')}}',
                 remove: '{{route('admin.api.author.remove')}}',
                 create: '{{route('admin.api.author.create')}}'
@@ -109,6 +112,22 @@
     $('#create-tag, #edit-tag, #create-category, #edit-category').on('shown.bs.modal', function () {
         $(this).find('#name').focus();
     });
+    var modalEvent = function ($scope, modal, more) {
+        $('#' + modal).on("shown.bs.modal", function () {
+            $(document).on("keyup", function (e) {
+                if (e.keyCode == 13)
+                    $scope.submit(more);
+                if (e.keyCode == 27) {
+                    if($scope.dismiss)
+                        $scope.dismiss();
+                    $('#' + modal).modal('hide')
+                }
+            })
+        }).on("hidden.bs.modal", function () {
+            $(document).off("keyup");
+        });
+    };
+
     CKEDITOR.config.width = '55vw';
     CKEDITOR.config.height = 'calc(100vh - 300px)';
 </script>
