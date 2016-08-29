@@ -1,9 +1,12 @@
 @if(Auth::getUser()->is_admin())
     <div class="modal fade" id="create-author" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content" style="top: 150px" ng-controller="createAuthorController">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content" ng-controller="createAuthorController">
                 <div class="modal-header">
                     <h5 style="font-weight: bold">Promote new author</h5>
+                    <div class="close" data-dismiss="modal">
+                        <div class="glyphicon glyphicon-remove"></div>
+                    </div>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
@@ -23,10 +26,7 @@
                         Cancel
                     </button>
                     <button class="btn btn-primary" ng-click="submit()">
-                        Promote One
-                    </button>
-                    <button class="btn btn-primary" ng-click="submit(1)">
-                        Promote More...
+                        Promote
                     </button>
                 </div>
             </div>

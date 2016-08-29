@@ -15,8 +15,8 @@
                     Articles
                     <span ng-bind="'('+articleLength+')'"></span>
                 </a>
-                <a class="create" data-toggle="modal"
-                   data-target="#create-article"
+                <a class="create"
+                   data-toggle="modal" data-target="#create-article"
                    href="#"><i class="glyphicon glyphicon-plus"></i></a>
             </li>
             <li>
@@ -25,8 +25,9 @@
                     Authors
                     <span ng-bind="'('+authorLength+')'"></span>
                 </a>
-                <a class="create" data-toggle="modal"
-                   data-target="#create-author"
+                <a class="create"
+                   data-toggle="modal" data-target="#create-author"
+                   data-backdrop="false"
                    href="#"><i class="glyphicon glyphicon-plus"></i></a>
             </li>
             <li>
@@ -35,7 +36,9 @@
                     Categories
                     <span ng-bind="'('+categoryLength+')'"></span>
                 </a>
-                <a class="create" data-toggle="modal" data-target="#create-category"
+                <a class="create"
+                   data-toggle="modal" data-target="#create-category"
+                   data-backdrop="false"
                    href="#"><i class="glyphicon glyphicon-plus"></i></a>
             </li>
             <li>
@@ -44,7 +47,9 @@
                     Tags
                     <span ng-bind="'('+tagLength+')'"></span>
                 </a>
-                <a class="create" data-toggle="modal" data-target="#create-tag"
+                <a class="create"
+                   data-toggle="modal" data-target="#create-tag"
+                   data-backdrop="false"
                    href="#"><i class="glyphicon glyphicon-plus"></i></a>
             </li>
         </ul>

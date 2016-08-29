@@ -6,7 +6,7 @@
                 </h5>
             </div>
             <div class="modal-body">
-                <p>Do you want to demote this author?</p>
+                <strong>Do you want to demote this author?</strong>
             </div>
             <div class="modal-footer">
                 <div class="form-group">

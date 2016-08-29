@@ -17,6 +17,12 @@
     <!-- Scripts -->
     <!-- jQuery library -->
     <script src="{{asset('/jquery/jquery-2.2.4.min.js')}}"></script>
+    <!-- jQueryUI -->
+    <script src="{{asset('/jquery/jquery-ui/ui/minified/jquery.ui.core.min.js')}}"></script>
+    <script src="{{asset('/jquery/jquery-ui/ui/minified/jquery.ui.widget.min.js')}}"></script>
+    <script src="{{asset('/jquery/jquery-ui/ui/minified/jquery.ui.mouse.min.js')}}"></script>
+    <script src="{{asset('/jquery/jquery-ui/ui/minified/jquery.ui.draggable.min.js')}}"></script>
+    <!-- End jQuery library-->
 
     <!-- Angular library -->
     <script src="{{asset('/angular/angular.min.js')}}"></script>
@@ -130,6 +136,8 @@
 
     CKEDITOR.config.width = '55vw';
     CKEDITOR.config.height = 'calc(100vh - 300px)';
+
+    $('#create-category, #create-tag, #create-author').draggable().find('.modal-header').css('cursor','default');
 </script>
 
 </body>

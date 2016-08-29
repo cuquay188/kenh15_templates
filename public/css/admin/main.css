@@ -317,7 +317,15 @@ body {
 .empty-message {
   font-size: 18px; }
 
+.modal-sm {
+  margin: 0; }
+  .modal-sm .modal-content {
+    top: 75px;
+    left: 250px; }
+
 .modal-header h5 {
+  display: inline-block;
+  font-size: 18px;
   margin: 0;
   font-weight: bold; }
 
