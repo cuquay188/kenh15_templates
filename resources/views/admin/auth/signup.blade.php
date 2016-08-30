@@ -1,7 +1,7 @@
 @extends('admin.auth.master')
 @section('title','Sign Up')
 @section('content')
-    <form action="{{route('admin.auth.signup.post')}}" method="post" style="margin-top:5%;">
+    <form action="{{route('admin.auth.signup.post')}}" method="POST">
         @if(Session::has('fails'))
             <ul class="errors">
                 @foreach(Session::get('fails') as $fail)
@@ -17,22 +17,12 @@
             </ul>
         @endif
         <div class="form-group">
-            <h3 style="text-align:center; margin:10px 0;">Sign Up</h3>
-        </div>
-        <div class="form-group">
-            <label for="name">Full Name</label>
-            <input type="text" class="form-control" name="name" id="name" placeholder="Nguyen Van A"
-                   value="{!! old('name') !!}">
+            <h2>Sign Up</h2>
         </div>
         <div class="form-group">
             <label for="email">Email</label>
             <input type="email" class="form-control" name="email" id="email" placeholder="e.g. example@gmail.com"
                    value="{!! old('email') !!}">
-        </div>
-        <div class="form-group">
-            <label for="username">User Name</label>
-            <input type="text" class="form-control" name="username" id="username" placeholder=""
-                   value="{!! old('username') !!}">
         </div>
         <div class="form-group">
             <label for="password">Password</label>
@@ -45,14 +35,11 @@
             <div class="errors" style="display: none">* Your password is not matched</div>
         </div>
         <div class="form-group">
-            <label for="tel">Phone</label>
-            <input type="tel" class="form-control" name="tel" id="tel" placeholder="e.g. +84..."
-                   value="{!! old('tel') !!}">
-        </div>
-        <div class="form-group">
             <input type="hidden" value="{{Session::token()}}" name="_token">
-            <button class="btn btn-success" type="submit">Sign up</button>
-            <a class="btn btn-danger" href="{{route('login')}}">Back</a>
+            <button class="btn btn-primary btn-block" type="submit">Sign up</button>
+            <div class="sub">
+                <a href="{{route('login')}}">Already a membership.</a>
+            </div>
         </div>
     </form>
     <script>

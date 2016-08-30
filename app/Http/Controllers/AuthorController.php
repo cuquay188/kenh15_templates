@@ -63,7 +63,7 @@ class AuthorController extends Controller
             'city' => 'required|alpha_spaces',
             'birth' => 'date',
             'tel' => 'required|numeric',
-            'email' => 'required|email'
+            'email' => 'required|email|unique:users,email'
         ]);
 
         $id = $request->id;

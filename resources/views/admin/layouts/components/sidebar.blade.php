@@ -91,7 +91,7 @@
             <div class="icon"></div>
             <div class="name">
                 <a href="{{route('user_management')}}">
-                    {{Auth::getUser()->name}}<br>
+                    {{Auth::getUser()->name ? Auth::getUser()->name : Auth::getUser()->email}}<br>
                     <label>{{Auth::getUser()->admin ? 'Admin' : (Auth::getUser()->author ? 'Author': 'Normal User')}}</label>
                 </a>
             </div>

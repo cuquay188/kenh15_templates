@@ -58,8 +58,10 @@
                 <td class="center">%%category.articles%%</td>
                 <td>
                     <button class="btn btn-xs btn-toggle hot" ng-click="setHot()"
+                            {{Auth::getUser()->is_admin() || Auth::getUser()->is_author() ? "" : "disabled"}}
                             ng-class="{'btn-default':!category.advance.is_hot,'btn-primary':category.advance.is_hot}"></button>
                     <button class="btn btn-xs btn-toggle header" ng-click="setHeader()"
+                            {{Auth::getUser()->is_admin() || Auth::getUser()->is_author() ? "" : "disabled"}}
                             ng-show="category.advance.is_hot"
                             ng-class="{'btn-default':!category.advance.is_header,'btn-primary':category.advance.is_header}">
                         Show to header
@@ -69,11 +71,13 @@
                     {{--Edit Function--}}
                     <button type="submit" class="btn btn-primary btn-xs" data-toggle="modal"
                             data-target="#edit-category"
+                            {{Auth::getUser()->is_admin() || Auth::getUser()->is_author() ? "" : "disabled"}}
                             ng-click="edit()">Edit
                     </button>
                     {{--Delete Function--}}
                     <button type="submit" class="btn btn-primary btn-xs" data-toggle="modal"
                             data-target="#delete-category"
+                            {{Auth::getUser()->is_admin() || Auth::getUser()->is_author() ? "" : "disabled"}}
                             ng-click="delete()">Delete
                     </button>
                 </td>

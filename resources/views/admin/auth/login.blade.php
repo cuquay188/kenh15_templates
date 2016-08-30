@@ -1,7 +1,7 @@
 @extends('admin.auth.master')
 @section('title','Login')
 @section('content')
-    <form action="{{route('admin.auth.login.post')}}" method="post">
+    <form action="{{route('admin.auth.login.post')}}" method="POST">
         @if(count($errors)>0)
             <ul class="errors">
                 @foreach($errors->all() as $error)
@@ -14,9 +14,6 @@
                 * {{Session::get('fail')}}
             </div>
         @endif
-        <div class="form-group">
-            <h3 style="text-align:center; margin:10px 0;">Login</h3>
-        </div>
         <div class="form-group">
             <input type="text" value="{{Session::has('new_username') ? Session::get('new_username'):''}}"
                    class="form-control" name="username" id="username" placeholder="User Name">
@@ -31,8 +28,11 @@
         </div>
         <div class="form-group">
             <input type="hidden" value="{{Session::token()}}" name="_token">
-            <button class="btn btn-success" type="submit">Login</button>
-            <a class="btn btn-warning" href="{{route('admin.auth.signup')}}">Sign up</a>
+            <button class="btn btn-primary btn-block" type="submit">Login</button>
+            <div class="sub">
+                <a href="{{route('admin.auth.signup')}}">Register new membership.</a>
+                <a href="{{route('admin.auth.signup')}}">Forgot my password.</a>
+            </div>
         </div>
     </form>
 @endsection
