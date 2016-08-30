@@ -75,8 +75,7 @@ app.service('$author', function () {
                 address: author.newAddress,
                 city: author.newCity,
                 birth: author.newBirth,
-                tel: author.newTel,
-                email: author.newEmail
+                tel: author.newTel
             }).then(function (response) {
                 $author.name = response.data.author.name;
                 $author.address = response.data.author.address;
@@ -84,7 +83,6 @@ app.service('$author', function () {
                 $author.age = response.data.author.age;
                 $author.birth = response.data.author.birth;
                 $author.tel = response.data.author.tel;
-                $author.email = response.data.author.email;
                 $('.modal.in').modal('hide');
                 $scope.nameErrors =
                     $scope.addressErrors =
@@ -98,7 +96,6 @@ app.service('$author', function () {
                 $scope.cityErrors = response.data.city ? (response.data.city + '') : '';
                 $scope.birthErrors = response.data.birth ? (response.data.birth + '') : '';
                 $scope.telErrors = response.data.tel ? (response.data.tel + '') : '';
-                $scope.emailErrors = response.data.email ? (response.data.email + '') : '';
             })
         },
         create: function ($scope, $http, $authors, $normalUsers, user, more) {

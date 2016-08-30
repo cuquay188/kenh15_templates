@@ -28,8 +28,7 @@ app.controller('editAuthorController', function ($scope, $http, $author) {
                 newName: $scope.author.name,
                 newAddress: $scope.author.address,
                 newCity: $scope.author.city,
-                newTel: $scope.author.tel,
-                newEmail: $scope.author.email
+                newTel: $scope.author.tel
             };
             $('#birth').datepicker("setDate", new Date(newVal.birth))
         }
@@ -44,8 +43,7 @@ app.controller('editAuthorController', function ($scope, $http, $author) {
             newAddress: $scope.author.newAddress,
             newCity: $scope.author.newCity,
             newBirth: $('#birth').datepicker("getDate"),
-            newTel: $scope.author.newTel,
-            newEmail: $scope.author.newEmail
+            newTel: $scope.author.newTel
         })
     };
     modalEvent($scope, 'edit-author')

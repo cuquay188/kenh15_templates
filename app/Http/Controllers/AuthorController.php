@@ -62,8 +62,7 @@ class AuthorController extends Controller
             'address' => 'required|alpha_num_spaces',
             'city' => 'required|alpha_spaces',
             'birth' => 'date',
-            'tel' => 'required|numeric',
-            'email' => 'required|email|unique:users,email'
+            'tel' => 'required|numeric'
         ]);
 
         $id = $request->id;
@@ -72,7 +71,6 @@ class AuthorController extends Controller
         $birth = $request->birth;
         $tel = $request->tel;
         $city = $request->city;
-        $email = $request->email;
 
         $author = Author::find($id);
         User::where('id', $author->user_id)->update([
@@ -80,8 +78,7 @@ class AuthorController extends Controller
             'address' => $address,
             'birth' => $birth,
             'tel' => $tel,
-            'city' => $city,
-            'email' => $email
+            'city' => $city
         ]);
         return response()->json([
             'message' => 'Update Successful.',

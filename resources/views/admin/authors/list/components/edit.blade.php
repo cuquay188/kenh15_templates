@@ -46,14 +46,6 @@
                            ng-class="{'error' : telErrors}">
                     <span class="errors">%%telErrors%%</span>
                 </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="text" class="form-control" id="email"
-                           ng-model="author.newEmail"
-                           placeholder="example@example.com"
-                           ng-class="{'error' : emailErrors}">
-                    <span class="errors">%%emailErrors%%</span>
-                </div>
             </div>
             <div class="modal-footer">
                 <div class="form-group">
