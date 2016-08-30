@@ -58,11 +58,11 @@ class AuthorController extends Controller
     public function postUpdateAuthor(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|between:6,30',
-            'address' => 'required',
-            'city' => 'required',
+            'name' => 'required|alpha_spaces|between:6,30',
+            'address' => 'required|alpha_num_spaces',
+            'city' => 'required|alpha_spaces',
             'birth' => 'date',
-            'tel' => 'required',
+            'tel' => 'required|numeric',
             'email' => 'required|email'
         ]);
 
