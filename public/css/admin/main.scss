@@ -417,17 +417,19 @@ body {
 .empty-message {
   font-size: 18px;
 }
-.modal-sm{
-  margin:0;
-  .modal-content{
-    top:75px;
-    left:250px;
+
+.modal-sm {
+  margin: 0;
+  .modal-content {
+    top: 75px;
+    left: 250px;
   }
 }
+
 .modal-header {
   h5 {
     display: inline-block;
-    font-size:18px;
+    font-size: 18px;
     margin: 0;
     font-weight: bold;
   }
@@ -512,5 +514,44 @@ body {
   }
   th.center, td.center {
     text-align: center;
+  }
+}
+
+.tooltip-toggle {
+  position: relative;
+  span{
+    display: none;
+  }
+  &:hover {
+    span {
+      background: #2c3e50;
+      border-radius: 5px;
+      top: 26px;
+      color: #fff;
+      right: 0;
+      display: block;
+      padding: 5px 10px;
+      position: absolute;
+      z-index: 999;
+      font-size: 12px;
+      h6{
+        text-align: center;
+        font-weight:bold;
+      }
+      p{
+        text-align: justify;
+        margin:5px 0;
+      }
+    }
+    &:before {
+      border: solid;
+      border-color: #333 transparent;
+      border-width: 0 6px 6px 6px;
+      top: 20px;
+      content: "";
+      left: 25%;
+      position: absolute;
+      z-index: 999;
+    }
   }
 }

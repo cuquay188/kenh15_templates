@@ -37,7 +37,12 @@
     <script>
         var url = {
             article: {
-                select: '{{route('admin.api.article.select')}}',
+                select: {
+                    articles: '{{route('admin.api.article.select')}}',
+                    article: function (id) {
+                        return '{{route('admin.api.article.select')}}' + '/' + id;
+                    }
+                },
                 update: '{{route('admin.api.article.update')}}',
                 remove: '{{route('admin.api.article.remove')}}',
                 create: '{{route('admin.api.article.create')}}'
@@ -98,6 +103,11 @@
 <script src="{{asset('/js/admin/app.js')}}"></script>
 <script src="{{asset('/js/admin/sidebar.js')}}"></script>
 
+{{--Article--}}
+<script src="{{asset('/js/admin/articles/services.js')}}"></script>
+<script src="{{asset('/js/admin/articles/controllers.js')}}"></script>
+{{--End Article--}}
+
 {{--Author--}}
 <script src="{{asset('/js/admin/authors/services.js')}}"></script>
 <script src="{{asset('/js/admin/authors/controllers.js')}}"></script>
@@ -147,7 +157,7 @@
         dateFormat: "dd/mm/yy",
         minDate: new Date('1950'),
         maxDate: new Date('2020')
-    }).datepicker($.datepicker.regional[ "vi" ]);
+    }).datepicker($.datepicker.regional["vi"]);
 
 </script>
 

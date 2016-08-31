@@ -390,4 +390,35 @@ body {
 .table th.center, .table td.center {
   text-align: center; }
 
+.tooltip-toggle {
+  position: relative; }
+  .tooltip-toggle span {
+    display: none; }
+  .tooltip-toggle:hover span {
+    background: #2c3e50;
+    border-radius: 5px;
+    top: 26px;
+    color: #fff;
+    right: 0;
+    display: block;
+    padding: 5px 10px;
+    position: absolute;
+    z-index: 999;
+    font-size: 12px; }
+    .tooltip-toggle:hover span h6 {
+      text-align: center;
+      font-weight: bold; }
+    .tooltip-toggle:hover span p {
+      text-align: justify;
+      margin: 5px 0; }
+  .tooltip-toggle:hover:before {
+    border: solid;
+    border-color: #333 transparent;
+    border-width: 0 6px 6px 6px;
+    top: 20px;
+    content: "";
+    left: 25%;
+    position: absolute;
+    z-index: 999; }
+
 /*# sourceMappingURL=main.css.map */

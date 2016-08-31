@@ -149,36 +149,54 @@ class ArticleController extends Controller
 
     public function getArticleJSON($id = null)
     {
-        if($id){
+        if ($id) {
             $article = Article::find($id);
-            $article->shorten_title = $article->shorten_title(100);
 
             $tags = array();
-            foreach ($article->tags as $tag)
-                array_push($tags, $tag->id);
-            $article->tags = $tags;
-
             $authors = array();
-            foreach ($article->authors as $author)
-                array_push($authors, $author->id);
-            $article->authors = $authors;
-            return $article;
-        }
-        else{
-            $articles = Article::all();
-            foreach ($articles as $article){
-                $article->img_url = '';
-                $article->content = '';
+            foreach (DB::table('tag_article')->where('article_id', $article->id)->get() as $tag)
+                array_push($tags, $tag->tag_id);
+            foreach (DB::table('author_article')->where('article_id', $article->id)->get() as $author)
+                array_push($authors, $author->author_id);
 
+            return response()->json([
+                'id' => $article->id,
+                'updated_at' => [
+                    'date' => date_format($article->updated_at,'Y/m/d'),
+                    'time' => date_format($article->updated_at,'h:m:s')
+                ],
+                'url' => $article->url,
+                'title' => $article->title,
+                'shorten_title' => $article->shorten_title(35),
+                'category_id' => $article->category->id,
+                'tags' => $tags,
+                'authors' => $authors,
+                'content' => $article->content,
+            ]);
+        } else {
+            $articles = array();
+            foreach (Article::all() as $article) {
                 $tags = array();
-                foreach ($article->tags as $tag)
-                    array_push($tags, $tag->id);
-                $article->tags = $tags;
-
                 $authors = array();
-                foreach ($article->authors as $author)
-                    array_push($authors, $author->id);
-                $article->authors = $authors;
+                foreach (DB::table('tag_article')->where('article_id', $article->id)->get() as $tag)
+                    array_push($tags, $tag->tag_id);
+                foreach (DB::table('author_article')->where('article_id', $article->id)->get() as $author)
+                    array_push($authors, $author->author_id);
+
+                array_push($articles, [
+                    'id' => $article->id,
+                    'updated_at' => [
+                        'date' => date_format($article->updated_at,'Y/m/d'),
+                        'time' => date_format($article->updated_at,'h:m:s')
+                    ],
+                    'url' => $article->url,
+                    'title' => $article->title,
+                    'shorten_title' => $article->shorten_title(35),
+                    'category_id' => $article->category->id,
+                    'tags_id' => $tags,
+                    'authors_id' => $authors,
+                    'shorten_content' => $article->shorten_content()
+                ]);
             }
 
             return $articles;
@@ -210,7 +228,7 @@ class ArticleController extends Controller
         $str = preg_replace("/(Ù|Ú|Ụ|Ủ|Ũ|Ư|Ừ|Ứ|Ự|Ử|Ữ)/", 'U', $str);
         $str = preg_replace("/(Ỳ|Ý|Ỵ|Ỷ|Ỹ)/", 'Y', $str);
         $str = preg_replace("/(Đ)/", 'D', $str);
-        $str = str_replace(" ", "-", str_replace("?", "", str_replace(",","",str_replace(".","",str_replace(":","",$str)))));
+        $str = str_replace(" ", "-", str_replace("?", "", str_replace(",", "", str_replace(".", "", str_replace(":", "", $str)))));
         return $str;
     }
 
