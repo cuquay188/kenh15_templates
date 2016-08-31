@@ -194,6 +194,3 @@ Route::get('/article/{id}', [
 Route::get('/category/{id}', [
     'uses' => 'HomepageController@getSingleCategory'
 ]);
-Route::get('/category/{id}/page-{number_page}', [
-    'uses' => 'HomepageController@getArticlesPerPage'
-]);

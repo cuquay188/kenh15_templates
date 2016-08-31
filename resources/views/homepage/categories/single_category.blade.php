@@ -44,8 +44,8 @@
                         @endif
                     </div>
                 </div>
-                @if(count($articles_per_page))
-                    @foreach($articles_per_page as $article)
+                @if(count($related_articles))
+                    @foreach($related_articles as $article)
                         <div class="related-news">
                             <div class="picture" style="background-image: url('{{$article->img_url}}')">
                                 <div class="backdrop">
@@ -66,14 +66,8 @@
                             </div>
                         </div>
                     @endforeach
+                    <?php echo $related_articles->render(); ?>
                 @endif
-            </div>
-            <div class="pagination">
-                @for($i=0;$i<$total_pages;$i++)
-                    <a href="{{route('homepage').'/category/'.$category->id.'/page-'.($i+1)}}" class="page">
-                            {{$i+1}}
-                    </a>
-                @endfor
             </div>
         </div>
         <div class="col-lg-4">

@@ -67,12 +67,7 @@
 
 .pagination {
   margin: 30px 0 30px 35%; }
-  .pagination a {
-    text-decoration: none;
-    color: black;
-    padding: 5px 8px; }
-    .pagination a:hover {
-      background-color: #1abc9c;
-      color: white; }
+  .pagination li:before {
+    content: ''; }
 
 /*# sourceMappingURL=category.css.map */
