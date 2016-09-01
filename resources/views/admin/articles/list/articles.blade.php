@@ -51,7 +51,7 @@
             <tbody>
             <tr dir-paginate="article in articles| filter : articleFilter | itemsPerPage: itemsPerPage.item | orderBy:sortType:sortReverse "
                 ng-controller="articleController">
-                <td id="title">
+                <td>
                     <a href="{{route('admin.article')}}/%%article.url%%" class="tooltip-toggle">
                         <span>
                             <h6>%%article.title%%<br></h6>
@@ -60,23 +60,24 @@
                         %%article.shorten_title%%
                     </a>
                 </td>
-                <td id="category">
+                <td>
                     <a href="#">
                         %%article.category.name%%
                     </a>
                 </td>
                 <td style="text-align: center">
+                    <div style="display:none;">%%article.updated_at.timestamp%%</div>
                     %%article.updated_at.date%%<br>
                     %%article.updated_at.time%%
                 </td>
-                <td id="authors">
+                <td>
                     <div class="tag-border" ng-repeat="author in article.authors">
                         <a href="#">%%author.name%%</a><br>
                         <button class="close" data-toggle="modal" data-target="#delete-article-author">x
                         </button>
                     </div>
                 </td>
-                <td id="tags">
+                <td>
                     <div class="tag-border" ng-repeat="tag in article.tags">
                         <a href="#">%%tag.name%%</a>
                         <button class="close" data-toggle="modal" data-target="#delete-article-tag">x
@@ -92,7 +93,7 @@
                     </button>
                     {{--Delete--}}
                     <button class="btn btn-primary btn-xs" data-toggle="modal"
-                            data-target="#delete-article">Delete
+                            data-target="#delete-article" ng-click="delete()">Delete
                     </button>
                 </td>
             </tr>

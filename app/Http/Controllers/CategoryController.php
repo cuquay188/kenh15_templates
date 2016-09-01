@@ -69,7 +69,7 @@ class CategoryController extends Controller
     public function postCreateCategory(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|alpha_dash|between:3,15|unique:categories,name'
+            'name' => 'required|alpha_spaces|between:3,15|unique:categories,name'
         ]);
 
         $name = $request->name;

@@ -13,17 +13,25 @@ var numberOfItem = function () {
     items = (bodyHeight - dirPaginateHeight) / trHeight - 1;
     return parseInt(items);
 };
+var find = function (array, x) {
+    var index = -1;
+    $.each(array, function (i, val) {
+        if (val.id == x) {
+            index = i;
+            return false;
+        }
+    });
+    return index;
+};
 
 app.controller('mainController', function ($scope, $http, $articles, $authors, $tags, $categories) {
+
     $articles.load($http);
     $authors.load($http);
     $tags.load($http);
     $categories.load($http);
 
     $scope.$watchGroup([
-        function () {
-            return $articles.get();
-        },
         function () {
             return $authors.get();
         },

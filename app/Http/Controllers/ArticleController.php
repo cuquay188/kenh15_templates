@@ -78,7 +78,7 @@ class ArticleController extends Controller
         ]);
     }
 
-    public function postDeleteArticle(Request $request)
+    public function postRemoveArticle(Request $request)
     {
         $id = $request->id;
         $article = $this->getArticleJSON($id);
@@ -147,6 +147,15 @@ class ArticleController extends Controller
         ]);
     }
 
+    public function getArticleContentJSON($id)
+    {
+        $content = Article::find($id)->content;
+        return response()->json([
+            'message' => 'Get Content successful.',
+            'content' => $content
+        ]);
+    }
+
     public function getArticleJSON($id = null)
     {
         if ($id) {
@@ -159,20 +168,21 @@ class ArticleController extends Controller
             foreach (DB::table('author_article')->where('article_id', $article->id)->get() as $author)
                 array_push($authors, $author->author_id);
 
-            return response()->json([
+            $article = [
                 'id' => $article->id,
                 'updated_at' => [
-                    'date' => date_format($article->updated_at,'Y/m/d'),
-                    'time' => date_format($article->updated_at,'h:m:s')
+                    'date' => date_format($article->updated_at, 'Y/m/d'),
+                    'time' => date_format($article->updated_at, 'h:m:s')
                 ],
                 'url' => $article->url,
                 'title' => $article->title,
                 'shorten_title' => $article->shorten_title(35),
                 'category_id' => $article->category->id,
                 'tags' => $tags,
-                'authors' => $authors,
-                'content' => $article->content,
-            ]);
+                'authors' => $authors
+            ];
+
+            return $article;
         } else {
             $articles = array();
             foreach (Article::all() as $article) {
@@ -186,8 +196,9 @@ class ArticleController extends Controller
                 array_push($articles, [
                     'id' => $article->id,
                     'updated_at' => [
-                        'date' => date_format($article->updated_at,'Y/m/d'),
-                        'time' => date_format($article->updated_at,'h:m:s')
+                        'timestamp' => strtotime($article->updated_at),
+                        'date' => date_format($article->updated_at, 'Y/m/d'),
+                        'time' => date_format($article->updated_at, 'h:i:s')
                     ],
                     'url' => $article->url,
                     'title' => $article->title,

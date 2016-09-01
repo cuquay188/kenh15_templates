@@ -7,17 +7,11 @@ app.controller('articlesListController', function ($scope, $http, $log, $article
 
     $scope.sortType = 'last_updated';
     $scope.sortReverse = 1;
+    $scope.itemsPerPage = {
+        items: [5,10,20,50],
+        item: 5
+    };
 });
-var find = function (array, x) {
-    var index = -1;
-    $.each(array, function (i, val) {
-        if (val.id == x) {
-            index = i;
-            return false;
-        }
-    });
-    return index;
-};
 app.controller('articleController', function ($scope, $log, $article, $categories, $tags,$authors) {
 
     $scope.$watch(function () {
