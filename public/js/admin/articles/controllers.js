@@ -8,11 +8,11 @@ app.controller('articlesListController', function ($scope, $http, $log, $article
     $scope.sortType = 'last_updated';
     $scope.sortReverse = 1;
     $scope.itemsPerPage = {
-        items: [5,10,20,50],
+        items: [5, 10, 20, 50],
         item: 5
     };
 });
-app.controller('articleController', function ($scope, $log, $article, $categories, $tags,$authors) {
+app.controller('articleController', function ($scope, $log, $article, $categories, $tags, $authors) {
 
     $scope.$watch(function () {
         return $categories.get()
@@ -95,9 +95,51 @@ app.controller('deleteArticleController', function ($scope, $http, $articles, $a
     modalEvent($scope, 'delete-article')
 });
 
-app.controller('createArticleController', function ($scope, $http, $articles, $article) {
-    $scope.submit = function (more) {
-        $article.create($scope, $http, $articles, $scope.newName, more);
+app.controller('createArticleController', function ($scope, $http, $articles, $article, $tags, $authors, $categories) {
+
+    $scope.$watch(function () {
+        return $tags.get()
+    }, function (newVal) {
+        $scope.tags = newVal;
+    });
+    $scope.$watch(function () {
+        return $authors.get()
+    }, function (newVal) {
+        $scope.authors = newVal;
+    });
+    $scope.$watch(function () {
+        return $categories.get()
+    }, function (newVal) {
+        $scope.categories = newVal;
+        $scope.newCategory = 0;
+    });
+
+    $scope.errors = {
+        title: '',
+        content: '',
+        tags: '',
+        category: '',
+        author: ''
     };
-    modalEvent($scope, 'create-article', 1)
+
+    $scope.submit = function (more) {
+        var newTags = [],
+            newAuthors = [];
+        $.each($scope.tags, function (i, val) {
+            if (val.checked)
+                newTags.push(val.id);
+        });
+        $.each($scope.authors, function (i, val) {
+            if (val.checked)
+                newAuthors.push(val.id);
+        });
+        $scope.newArticle = {
+            category: $scope.category,
+            tags: newTags,
+            authors: newAuthors,
+            title: $scope.title,
+            content: CKEDITOR.instances.create_article.getData()
+        };
+        $article.create($scope, $http, $articles, $scope.newArticle, more);
+    };
 });

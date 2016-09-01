@@ -15,10 +15,14 @@ app.service('$articles', function () {
             $http.get(url.article.select.articles)
                 .then(function (response) {
                     $articles = response.data;
+                    $.each($articles,function (i,article) {
+                        article.updated_at = new Date(article.updated_at.date);
+                    });
                     return $articles;
                 });
         },
         add: function ($article) {
+            $article.updated_at = new Date($article.updated_at.date);
             $articles.push($article);
         },
         remove: function (id) {
@@ -52,19 +56,23 @@ app.service('$article', function () {
                 $scope.nameErrors = response.data.name + '';
             })
         },
-        create: function ($scope, $http, $articles, name, more) {
+        create: function ($scope, $http, $articles, article, more) {
             $http.post(url.article.create, {
-                name: name
+                title : article.title,
+                content : article.content,
+                category: article.category,
+                tags : article.tags,
+                authors: article.authors
             }).then(function (response) {
                 $article = response.data.article;
                 $articles.add($article);
                 if (!more)
                     $('.modal.in').modal('hide');
                 $article = null;
-                $scope.nameErrors = '';
-                $scope.newName = '';
+                $scope.errors = null;
             }, function (response) {
-                $scope.nameErrors = response.data.name + '';
+                console.log(response);
+                $scope.errors = response.data;
             })
         },
         remove: function ($scope, $http, $articles) {

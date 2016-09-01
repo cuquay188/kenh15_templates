@@ -37,7 +37,7 @@ class ArticleController extends Controller
         $this->validate($request, [
             'title' => 'required|between:5,150',
             'content' => 'required|min:30',
-            'category_id' => 'numeric',
+            'category' => 'required|numeric',
             'authors' => 'required'
         ]);
     }
@@ -48,7 +48,7 @@ class ArticleController extends Controller
 
         $title = $request->title;
         $content = $request->content;
-        $category_id = $request->category_id;
+        $category_id = $request->category;
         $img_url = $request->img_url;
 
         $article = new Article();
@@ -59,9 +59,8 @@ class ArticleController extends Controller
         $article->category_id = $category_id;
         $article->save();
 
-        $article = Article::orderBy('id', 'desc')->first();
-        $tags = $request->create_article_tags;
-        $authors = $request->create_article_authors;
+        $tags = $request->tags;
+        $authors = $request->authors;
         if (!empty($tags)) {
             foreach ($tags as $tag) {
                 $article->tags()->attach($tag);
@@ -170,10 +169,7 @@ class ArticleController extends Controller
 
             $article = [
                 'id' => $article->id,
-                'updated_at' => [
-                    'date' => date_format($article->updated_at, 'Y/m/d'),
-                    'time' => date_format($article->updated_at, 'h:m:s')
-                ],
+                'updated_at' => $article->updated_at,
                 'url' => $article->url,
                 'title' => $article->title,
                 'shorten_title' => $article->shorten_title(35),
@@ -195,11 +191,7 @@ class ArticleController extends Controller
 
                 array_push($articles, [
                     'id' => $article->id,
-                    'updated_at' => [
-                        'timestamp' => strtotime($article->updated_at),
-                        'date' => date_format($article->updated_at, 'Y/m/d'),
-                        'time' => date_format($article->updated_at, 'h:i:s')
-                    ],
+                    'updated_at' => $article->updated_at,
                     'url' => $article->url,
                     'title' => $article->title,
                     'shorten_title' => $article->shorten_title(35),

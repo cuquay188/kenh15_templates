@@ -49,7 +49,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr dir-paginate="article in articles| filter : articleFilter | itemsPerPage: itemsPerPage.item | orderBy:sortType:sortReverse "
+            <tr dir-paginate="article in articles| filter : articleFilter | orderBy:sortType:sortReverse | itemsPerPage: itemsPerPage.item  "
                 ng-controller="articleController">
                 <td>
                     <a href="{{route('admin.article')}}/%%article.url%%" class="tooltip-toggle">
@@ -66,9 +66,8 @@
                     </a>
                 </td>
                 <td style="text-align: center">
-                    <div style="display:none;">%%article.updated_at.timestamp%%</div>
-                    %%article.updated_at.date%%<br>
-                    %%article.updated_at.time%%
+                    %%article.updated_at | date%% <br>
+                    %%article.updated_at | time%%
                 </td>
                 <td>
                     <div class="tag-border" ng-repeat="author in article.authors">

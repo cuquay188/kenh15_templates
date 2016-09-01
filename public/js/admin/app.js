@@ -13,6 +13,7 @@ var numberOfItem = function () {
     items = (bodyHeight - dirPaginateHeight) / trHeight - 1;
     return parseInt(items);
 };
+
 var find = function (array, x) {
     var index = -1;
     $.each(array, function (i, val) {
@@ -23,6 +24,16 @@ var find = function (array, x) {
     });
     return index;
 };
+
+app.filter('date', function () {
+    return function (x) {
+        return x.getFullYear() + '/' + x.getMonth() + '/' + x.getDay();
+    }
+}).filter('time', function () {
+    return function (x) {
+        return x.getHours() + ':' + x.getMinutes() + ':' + x.getSeconds()
+    }
+});
 
 app.controller('mainController', function ($scope, $http, $articles, $authors, $tags, $categories) {
 
