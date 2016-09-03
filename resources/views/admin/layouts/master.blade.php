@@ -41,6 +41,9 @@
                     articles: '{{route('admin.api.article.select')}}',
                     article: function (id) {
                         return '{{route('admin.api.article.select')}}' + '/' + id;
+                    },
+                    content: function (id) {
+                        return '{{route('admin.api.article.select.content')}}' + '/' + id;
                     }
                 },
                 update: '{{route('admin.api.article.update')}}',

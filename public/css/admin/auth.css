@@ -28,14 +28,13 @@ form {
   padding: 0 18px;
   margin: auto;
   border: none;
-  border-radius: 5px; }
+  border-radius: 5px;
+  padding-top: 20px; }
   form .errors {
     margin-top: 3px;
     color: red;
     font-size: 90%;
     font-style: italic; }
-  form .form-group:first-child {
-    margin-top: 20px; }
 
 .form-group .btn, .form-group .form-control {
   font-size: 18px;

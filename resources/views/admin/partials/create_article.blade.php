@@ -19,8 +19,9 @@
                     </div>
                     <div class="col col-sm-5">
                         <div class="form-group" style="width: 100%">
-                            <input type="text" class="form-control" id="title"
-                                   ng-model="title" placeholder="Enter title...">
+                            <textarea class="form-control" id="title"
+                                      ng-model="title" placeholder="Article title...">
+                            </textarea>
                             <span class="errors">%%errors.title[0]%%</span>
                         </div>
                         <div class="form-group">

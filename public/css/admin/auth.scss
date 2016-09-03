@@ -32,14 +32,12 @@ form {
   margin: auto;
   border: none;
   border-radius: 5px;
+  padding-top:20px;
   .errors {
     margin-top: 3px;
     color: red;
     font-size: 90%;
     font-style: italic;
-  }
-  .form-group:first-child{
-    margin-top:20px;
   }
 }
 

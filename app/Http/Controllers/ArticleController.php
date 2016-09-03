@@ -94,13 +94,17 @@ class ArticleController extends Controller
 
         $id = $request->id;
         $title = $request->title;
-        $content = $request->data;
-        $category_id = $request->category_id;
+        $content = $request->content;
+        $category_id = $request->category;
+        $url = $this->convert_title_to_url($title);
+        $img_url = $request->img_url ? $request->img_url : $this->make_article_img_url($content);
 
         Article::where('id', $id)->update([
             'title' => $title,
             'content' => $content,
-            'category_id' => $category_id
+            'category_id' => $category_id,
+            'url' => $url,
+            'img_url' => $img_url
         ]);
         $article = Article::find($id);
         $tags = $request->tags;
@@ -174,8 +178,9 @@ class ArticleController extends Controller
                 'title' => $article->title,
                 'shorten_title' => $article->shorten_title(35),
                 'category_id' => $article->category->id,
-                'tags' => $tags,
-                'authors' => $authors
+                'tags_id' => $tags,
+                'authors_id' => $authors,
+                'shorten_content' => $article->shorten_content()
             ];
 
             return $article;
@@ -204,6 +209,16 @@ class ArticleController extends Controller
 
             return $articles;
         }
+    }
+    public function getContentJSON($id = null){
+        if($id)
+            return response()->json([
+                'message' => 'Get Content Successful.',
+                'content' => Article::find($id)->content
+            ]);
+        return response()->json([
+            'message' => 'Unknown error.'
+        ]);
     }
 
     public function refreshDatabase()

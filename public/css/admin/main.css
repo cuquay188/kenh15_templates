@@ -327,7 +327,10 @@ body {
   display: inline-block;
   font-size: 18px;
   margin: 0;
-  font-weight: bold; }
+  font-weight: bold;
+  overflow-x: hidden;
+  white-space: nowrap;
+  width: 95%; }
 
 .modal-footer {
   padding: 8px 12px; }
@@ -390,14 +393,16 @@ body {
 .table th.center, .table td.center {
   text-align: center; }
 
+td {
+  position: relative; }
+
 .tooltip-toggle {
   position: relative; }
-  .tooltip-toggle span {
+  .tooltip-toggle + span {
     display: none; }
-  .tooltip-toggle:hover span {
+  .tooltip-toggle:hover + span {
     background: #2c3e50;
     border-radius: 5px;
-    top: 26px;
     color: #fff;
     right: 0;
     display: block;
@@ -405,20 +410,19 @@ body {
     position: absolute;
     z-index: 999;
     font-size: 12px; }
-    .tooltip-toggle:hover span h6 {
-      text-align: center;
+    .tooltip-toggle:hover + span h6 {
       font-weight: bold; }
-    .tooltip-toggle:hover span p {
+    .tooltip-toggle:hover + span p {
       text-align: justify;
       margin: 5px 0; }
-  .tooltip-toggle:hover:before {
-    border: solid;
-    border-color: #333 transparent;
-    border-width: 0 6px 6px 6px;
-    top: 20px;
-    content: "";
-    left: 25%;
-    position: absolute;
-    z-index: 999; }
+    .tooltip-toggle:hover + span:before {
+      border: solid;
+      border-color: #333 transparent;
+      border-width: 0 6px 6px 6px;
+      content: "";
+      top: -5px;
+      left: 25%;
+      position: absolute;
+      z-index: 999; }
 
 /*# sourceMappingURL=main.css.map */

@@ -15,7 +15,7 @@ app.service('$articles', function () {
             $http.get(url.article.select.articles)
                 .then(function (response) {
                     $articles = response.data;
-                    $.each($articles,function (i,article) {
+                    $.each($articles, function (i, article) {
                         article.updated_at = new Date(article.updated_at.date);
                     });
                     return $articles;
@@ -36,32 +36,69 @@ app.service('$articles', function () {
 app.service('$article', function () {
     var $article = {};
     return {
-        get: function () {
-            return $article;
+        get: {
+            article: function () {
+                return $article;
+            },
+            content: function ($http) {
+                if ($article.content)
+                    CKEDITOR.instances.edit_article.setData($article.content);
+                else {
+                    $http.get(url.article.select.content($article.id))
+                        .then(function (response) {
+                            $article.content = response.data.content;
+                            CKEDITOR.instances.edit_article.setData($article.content);
+                        });
+                }
+                return $article.content
+            }
         },
         set: function ($newArticle) {
             $article = $newArticle;
             return $article
         },
-        update: function ($scope, $http, name) {
+        update: function ($scope, $http, article) {
             $http.post(url.article.update, {
                 id: $article.id,
-                name: name
+                title: article.title,
+                content: article.content,
+                category: article.category,
+                tags: article.tags,
+                authors: article.authors
             }).then(function (response) {
-                $article = response.data.article;
-                $scope.article.name = $article.name;
-                $('.modal.in').modal('hide');
-                $scope.nameErrors = '';
-            }, function (response) {
-                $scope.nameErrors = response.data.name + '';
-            })
+                    $article = response.data.article;
+
+                    $scope.article.title = $article.title;
+                    $scope.article.shorten_title = $article.shorten_title;
+                    $scope.article.updated_at = new Date($article.updated_at.date);
+                    $scope.article.url = $article.url;
+                    $scope.article.category_id = $article.category_id;
+                    $scope.article.tags_id = $article.tags_id;
+                    $scope.article.authors_id = $article.authors_id;
+
+                    $('.modal.in').modal('hide');
+                    $article = null;
+                    $scope.errors = null;
+                    $scope.title = '';
+                    CKEDITOR.instances.create_article.setData('');
+                    $.each($scope.tags, function (i, val) {
+                        val.checked = false;
+                    });
+                    $.each($scope.authors, function (i, val) {
+                        val.checked = false;
+                    });
+                    $scope.category = '?';
+                }, function (response) {
+                    $scope.errors = response.data;
+                }
+            )
         },
         create: function ($scope, $http, $articles, article, more) {
             $http.post(url.article.create, {
-                title : article.title,
-                content : article.content,
+                title: article.title,
+                content: article.content,
                 category: article.category,
-                tags : article.tags,
+                tags: article.tags,
                 authors: article.authors
             }).then(function (response) {
                 $article = response.data.article;
@@ -70,11 +107,21 @@ app.service('$article', function () {
                     $('.modal.in').modal('hide');
                 $article = null;
                 $scope.errors = null;
+                $scope.title = '';
+                CKEDITOR.instances.create_article.setData('');
+                $.each($scope.tags, function (i, val) {
+                    val.checked = false;
+                });
+                $.each($scope.authors, function (i, val) {
+                    val.checked = false;
+                });
+                $scope.category = '?';
             }, function (response) {
                 console.log(response);
                 $scope.errors = response.data;
             })
-        },
+        }
+        ,
         remove: function ($scope, $http, $articles) {
             $http.post(url.article.remove, {
                 id: $article.id
@@ -84,4 +131,5 @@ app.service('$article', function () {
             })
         }
     }
-});
+})
+;

@@ -112,6 +112,10 @@ Route::group(['prefix' => 'api'], function () {
             'uses' => 'ArticleController@getArticleJSON',
             'as' => 'admin.api.article.select'
         ]);
+        Route::get('selectContent/{id?}', [
+            'uses' => 'ArticleController@getContentJSON',
+            'as' => 'admin.api.article.select.content'
+        ]);
 
         Route::post('/validate', [
             'uses' => 'ArticleController@postValidateArticle',

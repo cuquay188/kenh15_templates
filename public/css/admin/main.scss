@@ -432,6 +432,9 @@ body {
     font-size: 18px;
     margin: 0;
     font-weight: bold;
+    overflow-x: hidden;
+    white-space: nowrap;
+    width: 95%;
   }
 }
 
@@ -516,17 +519,18 @@ body {
     text-align: center;
   }
 }
-
+td{
+  position: relative;
+}
 .tooltip-toggle {
   position: relative;
-  span{
+  & + span {
     display: none;
   }
   &:hover {
-    span {
+    & + span {
       background: #2c3e50;
       border-radius: 5px;
-      top: 26px;
       color: #fff;
       right: 0;
       display: block;
@@ -534,24 +538,23 @@ body {
       position: absolute;
       z-index: 999;
       font-size: 12px;
-      h6{
-        text-align: center;
-        font-weight:bold;
+      h6 {
+        font-weight: bold;
       }
-      p{
+      p {
         text-align: justify;
-        margin:5px 0;
+        margin: 5px 0;
       }
-    }
-    &:before {
-      border: solid;
-      border-color: #333 transparent;
-      border-width: 0 6px 6px 6px;
-      top: 20px;
-      content: "";
-      left: 25%;
-      position: absolute;
-      z-index: 999;
+      &:before {
+        border: solid;
+        border-color: #333 transparent;
+        border-width: 0 6px 6px 6px;
+        content: "";
+        top:-5px;
+        left: 25%;
+        position: absolute;
+        z-index: 999;
+      }
     }
   }
 }

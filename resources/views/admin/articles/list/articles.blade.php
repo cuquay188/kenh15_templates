@@ -53,15 +53,15 @@
                 ng-controller="articleController">
                 <td>
                     <a href="{{route('admin.article')}}/%%article.url%%" class="tooltip-toggle">
-                        <span>
+                        %%article.shorten_title%%
+                    </a>
+                    <span>
                             <h6>%%article.title%%<br></h6>
                             <p ng-bind="article.shorten_content"></p>
                         </span>
-                        %%article.shorten_title%%
-                    </a>
                 </td>
-                <td>
-                    <a href="#">
+                <td ng-controller="articleCategoryController">
+                    <a href="{{route('admin.category')}}/%%article.category.id%%">
                         %%article.category.name%%
                     </a>
                 </td>
@@ -69,15 +69,15 @@
                     %%article.updated_at | date%% <br>
                     %%article.updated_at | time%%
                 </td>
-                <td>
-                    <div class="tag-border" ng-repeat="author in article.authors">
+                <td ng-controller="articleAuthorController">
+                    <div class="tag-border" ng-repeat="author in authors">
                         <a href="#">%%author.name%%</a><br>
                         <button class="close" data-toggle="modal" data-target="#delete-article-author">x
                         </button>
                     </div>
                 </td>
-                <td>
-                    <div class="tag-border" ng-repeat="tag in article.tags">
+                <td ng-controller="articleTagController">
+                    <div class="tag-border" ng-repeat="tag in tags">
                         <a href="#">%%tag.name%%</a>
                         <button class="close" data-toggle="modal" data-target="#delete-article-tag">x
                         </button>
@@ -88,7 +88,7 @@
                     <a href="#" class="btn btn-primary btn-xs">Preview</a>
                     {{--Edit--}}
                     <button class="btn btn-primary btn-xs" data-toggle="modal"
-                            data-target="#edit-article">Edit
+                            data-target="#edit-article" ng-click="edit()">Edit
                     </button>
                     {{--Delete--}}
                     <button class="btn btn-primary btn-xs" data-toggle="modal"

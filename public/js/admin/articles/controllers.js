@@ -12,47 +12,7 @@ app.controller('articlesListController', function ($scope, $http, $log, $article
         item: 5
     };
 });
-app.controller('articleController', function ($scope, $log, $article, $categories, $tags, $authors) {
-
-    $scope.$watch(function () {
-        return $categories.get()
-    }, function (newVal) {
-        $scope.allCategories = newVal;
-        $.each($scope.allCategories, function (i, val) {
-            if ($scope.article && val && val.id == $scope.article.category_id) {
-                $scope.article.category = val;
-                return false;
-            }
-        });
-    });
-    $scope.$watch(function () {
-        return $tags.get()
-    }, function (newVal) {
-        if ($scope.article && newVal) {
-            var allTags = newVal;
-            $scope.article.tags = [];
-            $.each($scope.article.tags_id, function (i, val) {
-                var index = find(allTags, val);
-                if (index != -1) {
-                    $scope.article.tags.push(allTags[index]);
-                }
-            });
-        }
-    });
-    $scope.$watch(function () {
-        return $authors.get()
-    }, function (newVal) {
-        if ($scope.article && newVal) {
-            var allAuthors = newVal;
-            $scope.article.authors = [];
-            $.each($scope.article.authors_id, function (i, val) {
-                var index = find(allAuthors, val);
-                if (index != -1) {
-                    $scope.article.authors.push(allAuthors[index]);
-                }
-            });
-        }
-    });
+app.controller('articleController', function ($scope, $log, $article, $categories) {
 
     $scope.edit = function () {
         $article.set($scope.article);
@@ -61,28 +21,114 @@ app.controller('articleController', function ($scope, $log, $article, $categorie
         $article.set($scope.article);
     };
 });
+app.controller('articleCategoryController', function ($scope, $categories) {
+    $scope.$watchGroup(['article.category_id', function () {
+        return $categories.get()
+    }], function (newVal) {
+        $scope.allCategories = newVal[1];
+        $.each($scope.allCategories, function (i, val) {
+            if ($scope.article && val && val.id == $scope.article.category_id) {
+                $scope.article.category = val;
+                return false;
+            }
+        });
+    });
+})
+    .controller('articleTagController', function ($scope, $tags) {
 
-app.controller('editArticleController', function ($scope, $http, $article) {
-    $scope.$watch(function () {
-        return $article.get()
-    }, function (newVal) {
-        $scope.article = newVal;
-        if ($scope.article)
-            $scope.article.newName = $scope.article.name;
+        $scope.$watchGroup(['article.tags_id', function () {
+            return $tags.get();
+        }], function (newVal) {
+            var allTags = newVal[1];
+            $scope.tags = [];
+            $.each($scope.article.tags_id, function (i, val) {
+                var index = find(allTags, val);
+                if (index != -1)
+                    $scope.tags.push(allTags[index]);
+            });
+        });
+    })
+    .controller('articleAuthorController', function ($scope, $authors) {
+
+        $scope.$watchGroup(['article.authors_id', function () {
+            return $authors.get();
+        }], function (newVal) {
+            var allAuthors = newVal[1];
+            $scope.authors = [];
+            $.each($scope.article.authors_id, function (i, val) {
+                var index = find(allAuthors, val);
+                if (index != -1)
+                    $scope.authors.push(allAuthors[index]);
+            });
+        });
+    });
+
+app.controller('editArticleController', function ($scope, $http, $article, $tags, $authors, $categories) {
+
+    $scope.$watchGroup([
+        function () {
+            return $tags.get()
+        },
+        function () {
+            return $authors.get()
+        },
+        function () {
+            return $categories.get()
+        },
+        function () {
+            return $article.get.article();
+        }
+    ], function (newVal) {
+        $scope.tags = newVal[0];
+        $scope.authors = newVal[1];
+        $scope.categories = newVal[2];
+        $scope.article = newVal[3];
+        if (newVal[3]) {
+            if (newVal[3].id) {
+                $article.get.content($http);
+                $scope.category = $scope.article.category.id;
+                $scope.title = $scope.article.title;
+            }
+            $.each($scope.article.tags_id, function (i, val) {
+                var index = find($scope.tags, val);
+                if (index != -1)
+                    $scope.tags[index].checked = true;
+            });
+            $.each($scope.article.authors_id, function (i, val) {
+                var index = find($scope.authors, val);
+                if (index != -1)
+                    $scope.authors[index].checked = true;
+            });
+        }
     });
     $scope.dismiss = function () {
         $article.set(null);
-        $scope.nameErrors = '';
     };
     $scope.submit = function () {
-        $article.update($scope, $http, $scope.article.newName)
+        var newTags = [],
+            newAuthors = [];
+        $.each($scope.tags, function (i, val) {
+            if (val.checked)
+                newTags.push(val.id);
+        });
+        $.each($scope.authors, function (i, val) {
+            if (val.checked)
+                newAuthors.push(val.id);
+        });
+        $scope.newArticle = {
+            category: $scope.category,
+            tags: newTags,
+            authors: newAuthors,
+            title: $scope.title,
+            content: CKEDITOR.instances.edit_article.getData()
+        };
+        $article.update($scope, $http, $scope.newArticle)
     };
-    modalEvent($scope, 'edit-article')
 });
 
 app.controller('deleteArticleController', function ($scope, $http, $articles, $article) {
     $scope.$watch(function () {
-        return $article.get()
+        return $article.get.article()
     }, function (newVal) {
         $scope.article = newVal;
     });
@@ -111,16 +157,8 @@ app.controller('createArticleController', function ($scope, $http, $articles, $a
         return $categories.get()
     }, function (newVal) {
         $scope.categories = newVal;
-        $scope.newCategory = 0;
+        $scope.category = '?';
     });
-
-    $scope.errors = {
-        title: '',
-        content: '',
-        tags: '',
-        category: '',
-        author: ''
-    };
 
     $scope.submit = function (more) {
         var newTags = [],
