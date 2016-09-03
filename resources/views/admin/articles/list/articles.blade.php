@@ -43,22 +43,21 @@
                     <span ng-show="sortType == 'last_updated' && sortReverse"><i
                                 class="glyphicon glyphicon-sort-by-alphabet-alt"></i></span>
                 </th>
-                <th style="">Author</th>
-                <th style="">Tags</th>
+                <th>Author</th>
+                <th>Tags</th>
                 <th style="width:200px;">Action</th>
             </tr>
             </thead>
             <tbody>
-            <tr dir-paginate="article in articles| filter : articleFilter | orderBy:sortType:sortReverse | itemsPerPage: itemsPerPage.item  "
+            <tr dir-paginate="article in articles | filter : articleFilter | orderBy:sortType:!sortReverse | itemsPerPage: itemsPerPage.item "
                 ng-controller="articleController">
                 <td>
                     <a href="{{route('admin.article')}}/%%article.url%%" class="tooltip-toggle">
                         %%article.shorten_title%%
                     </a>
                     <span>
-                            <h6>%%article.title%%<br></h6>
-                            <p ng-bind="article.shorten_content"></p>
-                        </span>
+                        <h6>%%article.title%%<br></h6>
+                    </span>
                 </td>
                 <td ng-controller="articleCategoryController">
                     <a href="{{route('admin.category')}}/%%article.category.id%%">
@@ -66,6 +65,7 @@
                     </a>
                 </td>
                 <td style="text-align: center">
+                    {{--a %%article.updated_at.getTime()%%--}}
                     %%article.updated_at | date%% <br>
                     %%article.updated_at | time%%
                 </td>

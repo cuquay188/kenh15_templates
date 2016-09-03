@@ -12,7 +12,7 @@ app.controller('articlesListController', function ($scope, $http, $log, $article
         item: 5
     };
 });
-app.controller('articleController', function ($scope, $log, $article, $categories) {
+app.controller('articleController', function ($scope, $log, $article) {
 
     $scope.edit = function () {
         $article.set($scope.article);

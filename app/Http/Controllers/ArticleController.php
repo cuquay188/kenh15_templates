@@ -179,14 +179,13 @@ class ArticleController extends Controller
                 'shorten_title' => $article->shorten_title(35),
                 'category_id' => $article->category->id,
                 'tags_id' => $tags,
-                'authors_id' => $authors,
-                'shorten_content' => $article->shorten_content()
+                'authors_id' => $authors
             ];
 
             return $article;
         } else {
             $articles = array();
-            foreach (Article::all() as $article) {
+            foreach (Article::orderBy('updated_at','desc')->get() as $article) {
                 $tags = array();
                 $authors = array();
                 foreach (DB::table('tag_article')->where('article_id', $article->id)->get() as $tag)
@@ -202,8 +201,7 @@ class ArticleController extends Controller
                     'shorten_title' => $article->shorten_title(35),
                     'category_id' => $article->category->id,
                     'tags_id' => $tags,
-                    'authors_id' => $authors,
-                    'shorten_content' => $article->shorten_content()
+                    'authors_id' => $authors
                 ]);
             }
 
