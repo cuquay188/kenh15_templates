@@ -1,136 +1,90 @@
 @extends("admin.layouts.master")
 @section("title", "Authors Management")
 @section("content")
-    @if(count($errors)>0)
-        <ul class="errors">
-            @foreach($errors->all() as $error)
-                <li>* {{$error}}</li>
-            @endforeach
-        </ul>
-    @endif
-    <div class="authors-info">
+    <div class="authors-info" ng-controller="authorsListController">
+        <div class="row">
+            <div class="col col-lg-1 col-sm-2">
+                <div class="form-group">
+                    <select class="form-control"
+                            ng-options="x for x in itemsPerPage.items"
+                            ng-model="itemsPerPage.item">
+                    </select>
+                </div>
+            </div>
+            <div class="col col-lg-8 col-sm-5">
+            </div>
+            <div class="col col-lg-3 col-sm-5">
+                <div class="form-group">
+                    <input type="text" class="form-control search" ng-model="authorFilter" placeholder="Search...">
+                    <span><i class="glyphicon glyphicon-search"> </i></span>
+                </div>
+            </div>
+        </div>
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>Name</th>
+                <th ng-click="sortType = 'name'; sortReverse=!sortReverse;" class="sortable"
+                    ng-class="{'sort': sortType=='name'}" style="width:200px;">
+                    Name
+                    <span ng-show="sortType == 'name' && !sortReverse"><i
+                                class="glyphicon glyphicon-sort-by-alphabet"></i></span>
+                    <span ng-show="sortType == 'name' && sortReverse"><i
+                                class="glyphicon glyphicon-sort-by-alphabet-alt"></i></span>
+                </th>
                 <th>Address</th>
-                <th>Age</th>
+                <th ng-click="sortType = 'age'; sortReverse=!sortReverse;" class="sortable"
+                    ng-class="{'sort': sortType=='age'}" style="width:50px;">
+                    Age
+                    <span ng-show="sortType == 'age' && !sortReverse"><i
+                                class="glyphicon glyphicon-sort-by-alphabet"></i></span>
+                    <span ng-show="sortType == 'age' && sortReverse"><i
+                                class="glyphicon glyphicon-sort-by-alphabet-alt"></i></span>
+                </th>
                 <th>Phone</th>
-                <th>Email</th>
-                <th>Action</th>
+                <th ng-click="sortType = 'email'; sortReverse=!sortReverse;" class="sortable"
+                    ng-class="{'sort': sortType=='email'}" style="width:150px;">
+                    Email
+                    <span ng-show="sortType == 'email' && !sortReverse"><i
+                                class="glyphicon glyphicon-sort-by-alphabet"></i></span>
+                    <span ng-show="sortType == 'email' && sortReverse"><i
+                                class="glyphicon glyphicon-sort-by-alphabet-alt"></i></span>
+                </th>
+                <th style="width:175px;">Action</th>
             </tr>
             </thead>
             <tbody>
-            @if(count($authors))
-                @foreach($authors as $author)
-                    <tr style="font-size: 13px">
-                        <td><a href="{{route('author').'/'.$author->id}}">{{$author->user->name}}</a></td>
-                        <td>{{$author->user->address}}</td>
-                        <td>{{$author->user->formatBirth()}}</td>
-                        <td>{{$author->user->tel}}</td>
-                        <td>{{$author->user->email}}</td>
-                        <td>
-                            {{--Edit Function--}}
-                            <button type="submit" disabled class="btn btn-primary btn-xs" data-toggle="modal"
-                                    data-target="#edit{{$author->id}}">Edit
-                            </button>
-                            <div class="modal fade" role="dialog" id="edit{{$author->id}}">
-                                <div class="modal-dialog">
-                                    <div class="modal-content" style=" top: 90px">
-                                        <div class="modal-header">
-                                            <h5 style="font-weight: bold">Edit Author: "<span
-                                                        style="font-style: italic">{{$author->user->name}}</span>"</h5>
-                                        </div>
-                                        <form action="{{route('post_update_author')}}" method="post" role="form">
-                                            <div class="modal-body">
-                                                <div class="form-group">
-                                                    <label for="name">Name</label>
-                                                    <input type="text" class="form-control" name="name" id="name"
-                                                           value="{{$author->user->name}}" placeholder="Enter name...">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="address">Address</label>
-                                                    <input type="text" class="form-control" name="address" id="address"
-                                                           value="{{$author->user->address}}"
-                                                           placeholder="Enter address...">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="age">Age</label>
-                                                    <input type="number" class="form-control" name="age" id="age"
-                                                           value="{{$author->user->age}}" placeholder="Enter age...">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="tel">Phone</label>
-                                                    <input type="tel" class="form-control" name="tel" id="tel"
-                                                           value="{{$author->user->tel}}" placeholder="Enter phone...">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="email">email</label>
-                                                    <input type="email" class="form-control" name="email" id="email"
-                                                           value="{{$author->user->email}}"
-                                                           placeholder="Enter email...">
-                                                </div>
-                                                <div class="form-group" id="action">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">
-                                                        Cancel
-                                                    </button>
-                                                    <button type="submit" class="btn btn-warning">Update</button>
-                                                    <input type="hidden" value="{{$author->id}}" name="author_id">
-                                                    <input type="hidden" value="{{Session::token()}}" name="_token">
-                                                </div>
-                                                <div class="fix"></div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
+            <tr dir-paginate="author in authors | filter: authorFilter | itemsPerPage: itemsPerPage.item | orderBy:sortType:sortReverse"
+                ng-controller="authorController">
+                <td><a href="#">%%author.name%%</a></td>
+                <td>%%author.address + ( author.city ? (', ' + author.city) : '' )%%</td>
+                <td>%%author.age%%</td>
+                <td>%%author.tel%%</td>
+                <td><a href="#" ng-bind="author.email"></a></td>
+                <td>
+                    {{--Edit Function--}}
+                    <button type="submit" class="btn btn-primary btn-xs" data-toggle="modal"
+                            {{Auth::getUser()->is_admin() ? "" : "disabled"}}
+                            data-target="#edit-author" ng-click="edit()">Update Info
+                    </button>
 
-                            {{--Delete Function--}}
-                            <button type="submit" class="btn btn-primary btn-xs" data-toggle="modal"
-                                    data-target="#delete{{$author->id}}">Delete
-                            </button>
-                            <div class="modal fade" role="dialog" id="delete{{$author->id}}">
-                                <div class="modal-dialog">
-                                    <div class="modal-content" style="top: 150px">
-                                        <div class="modal-header">
-                                            <h5 style="font-weight: bold">Delete Author:
-                                                <span style="font-style: italic;font-weight: bold">{{$author->user->name}}</span>
-                                            </h5>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>Do you want to delete this author?</p>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <form action="{{route('post_delete_author')}}" method="post">
-                                                <input type="hidden" value="{{$author->id}}" name="author_id">
-                                                <input type="hidden" value="{{Session::token()}}" name="_token">
-                                                <button class="btn btn-warning">Confirm</button>
-                                                <button class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                @endforeach
-            @else
-                <tr>
-                    <td colspan="6" class="empty-table">
-                        No authors is available. You need to
-                        <a href="{{route('create_author')}}">promote a user.</a>.
-                    </td>
-                </tr>
-            @endif
+                    {{--Delete Function--}}
+                    <button type="submit" class="btn btn-primary btn-xs" data-toggle="modal"
+                            {{Auth::getUser()->is_admin() ? "" : "disabled"}}
+                            data-target="#delete-author" ng-click="delete()">Demote
+                    </button>
+                </td>
+            </tr>
+            <tr ng-if="authors==null">
+                <td colspan="6" class="empty-table">
+                    No authors is available. You need to
+                    <a href="#" data-toggle="modal" data-target="#create-author">promote a user.</a>.
+                </td>
+            </tr>
             </tbody>
         </table>
     </div>
 @endsection
-@section('body.scripts')
-    <script>
-        $('table').DataTable({
-            "pageLength": $(document).height() < 800 ? 8 : 15,
-            "bLengthChange": false
-        });
-    </script>
+@section('dialogs')
+    @include("admin.authors.list.components.edit")
+    @include("admin.authors.list.components.delete")
 @endsection

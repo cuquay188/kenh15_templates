@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,14 +18,7 @@ class AuthorController extends Controller
     {
         if (!Auth::check())
             return redirect()->route('login')->with(['fail' => 'Required login.']);
-        $tags = Tag::all();
-        $categories = Category::all();
-        $authors = Author::all();
-        return view('admin.authors.list.authors', [
-            'tags' => $tags,
-            'categories' => $categories,
-            'authors' => $authors
-        ]);
+        return view('admin.authors.list.authors');
     }
 
     public function getCreateAuthor()
@@ -37,40 +31,108 @@ class AuthorController extends Controller
     public function postCreateAuthor(Request $request)
     {
         $this->validate($request, [
-            'user' => 'required'
+            'id' => 'required'
         ]);
-        $user = $request->user;
+        $user = $request->id;
         $author = new Author();
         $author->user_id = $user;
         $author->save();
-        return redirect()->back();
+
+        return response()->json([
+            'message' => 'Create Successful.',
+            'author' => $this->getAuthorJSON($author->id)
+        ]);
     }
 
-    public function postDeleteAuthor(Request $request)
+    public function postRemoveAuthor(Request $request)
     {
-        $id = $request->author_id;
+        $id = $request->id;
+        $author = $this->getAuthorJSON($id);
         Author::where('id', $id)->delete();
-        return redirect()->back();
+        return response()->json([
+            'message' => 'Remove Successful.',
+            'author' => $author
+        ]);
     }
 
     public function postUpdateAuthor(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|between:6,30',
-            'age' => 'required|numeric|min:16|max:80',
-            'address' => 'required'
+            'name' => 'required|alpha_spaces|between:6,30',
+            'address' => 'required|alpha_num_spaces',
+            'city' => 'required|alpha_spaces',
+            'birth' => 'date',
+            'tel' => 'required|numeric'
         ]);
 
-        $id = $request->author_id;
+        $id = $request->id;
         $name = $request->name;
-        $age = $request->age;
         $address = $request->address;
-        Author::where('id', $id)->update([
+        $birth = $request->birth;
+        $tel = $request->tel;
+        $city = $request->city;
+
+        $author = Author::find($id);
+        User::where('id', $author->user_id)->update([
             'name' => $name,
-            'age' => $age,
-            'address' => $address
+            'address' => $address,
+            'birth' => $birth,
+            'tel' => $tel,
+            'city' => $city
         ]);
-        return redirect()->back();
+        return response()->json([
+            'message' => 'Update Successful.',
+            'author' => $this->getAuthorJSON($id)
+        ]);
+    }
+
+    public function getAuthorJSON($id = null)
+    {
+        if ($id) {
+            $author = Author::find($id);
+            $author = [
+                'id' => $author->id,
+                'name' => $author->user->name,
+                'age' => $author->user->age(),
+                'birth' => $author->user->birth,
+                'address' => $author->user->address,
+                'city' => $author->user->city,
+                'tel' => $author->user->tel,
+                'email' => $author->user->email
+            ];
+            return $author;
+        } else {
+            $allAuthors = Author::all();
+            $authors = array();
+            foreach ($allAuthors as $author) {
+                array_push($authors, [
+                    'id' => $author->id,
+                    'name' => $author->user->name,
+                    'age' => $author->user->age(),
+                    'birth' => $author->user->birth,
+                    'address' => $author->user->address,
+                    'city' => $author->user->city,
+                    'tel' => $author->user->tel,
+                    'email' => $author->user->email
+                ]);
+            }
+            return $authors;
+        }
+    }
+
+    public function getNormalUser()
+    {
+        $allUsers = User::all();
+        $users = array();
+        foreach ($allUsers as $user) {
+            if (!$user->author)
+                array_push($users, [
+                    'id' => $user->id,
+                    'name' => $user->name,
+                    'username' => $user->username
+                ]);
+        }
+        return $users;
     }
 
     public function getViewAuthor($id)

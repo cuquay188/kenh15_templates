@@ -40,10 +40,10 @@
     padding: 0;
     width: 379px;
     overflow-y: auto;
-    .title{
-      p{
+    .title {
+      p {
         text-transform: uppercase;
-        font-weight:bold;
+        font-weight: bold;
         font-size: 18px;
         text-shadow: 1px 1px 1px #16a085;
       }
@@ -56,7 +56,7 @@
 
 .related-news {
   margin-bottom: 20px;
-  border-top-style: ridge;
+  border-top: 1px solid #1abc9c;
   padding-top: 20px;
   .picture {
     display: inline-block;
@@ -72,6 +72,10 @@
     .title {
     }
     .content {
+      h2 {
+        font-size: 17px;
+        margin-top: 10px;
+      }
     }
   }
 }

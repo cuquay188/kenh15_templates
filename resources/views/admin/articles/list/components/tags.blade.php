@@ -19,7 +19,7 @@ for ($i = 0; $i < count($tags); $i++) {
 
 @foreach($result as $tag)
     <div class="tag-border">
-        <a href="{{route('tag').'/'.$tag->id}}">{{$tag->name}}</a>
+        <a href="{{route('admin.tag').'/'.$tag->id}}">{{$tag->name}}</a>
         <button type="submit" class="close" data-toggle="modal"
                 data-target="#delete{{$tag->id}}{{$article->id}}">x
         </button>

@@ -11,7 +11,9 @@ class Author extends Model
 //        return $this->hasMany('App\Article');
         return $this->belongsToMany('App\Article', 'author_article');
     }
-    public function user(){
+
+    public function user()
+    {
         return $this->belongsTo('\App\User');
     }
 }

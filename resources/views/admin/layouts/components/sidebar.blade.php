@@ -1,5 +1,5 @@
 <div class="sidebar-header">
-    <a class="brand" href="{{Route::getCurrentRoute()->getPath()==''?route('login'):route('article')}}">Kenh 15
+    <a class="brand" href="{{Route::getCurrentRoute()->getPath()==''?route('login'):route('admin.article')}}">Kenh 15
         Admin</a>
     <a class="options"><i class="glyphicon glyphicon-cog"></i></a>
 </div>
@@ -11,40 +11,46 @@
         <ul class="item-body">
             <li>
                 <a class="{{Route::getCurrentRoute()->getName()=='article'?'active':''}}"
-                   href="{{route('article')}}">
+                   href="{{route('admin.article')}}">
                     Articles
-                    <span>({{count(App\Article::all())}})</span>
+                    <span ng-bind="'('+articleLength+')'"></span>
                 </a>
-                <a class="create" data-toggle="modal"
-                   data-target="#create-article"
+                <a class="create"
+                   data-toggle="modal" data-target="#create-article"
                    href="#"><i class="glyphicon glyphicon-plus"></i></a>
             </li>
             <li>
                 <a class="{{Route::getCurrentRoute()->getName()=='author'?'active':''}}"
-                   href="{{route('author')}}">
+                   href="{{route('admin.author')}}">
                     Authors
-                    <span>({{count(App\Author::all())}})</span>
+                    <span ng-bind="'('+authorLength+')'"></span>
                 </a>
-                <a class="create {{Route::getCurrentRoute()->getName()=='create_author'?'active':''}}"
-                   href="{{route('create_author')}}"><i class="glyphicon glyphicon-plus"></i></a>
+                <a class="create"
+                   data-toggle="modal" data-target="#create-author"
+                   data-backdrop="false"
+                   href="#"><i class="glyphicon glyphicon-plus"></i></a>
             </li>
             <li>
-                <a class="{{Route::getCurrentRoute()->getName()=='category'?'active':''}}"
-                   href="{{route('category')}}">
+                <a class="{{Route::getCurrentRoute()->getName()=='admin.category'?'active':''}}"
+                   href="{{route('admin.category')}}">
                     Categories
-                    <span>({{count(App\Category::all())}})</span>
+                    <span ng-bind="'('+categoryLength+')'"></span>
                 </a>
-                <a class="create {{Route::getCurrentRoute()->getName()=='create_category'?'active':''}}"
-                   href="{{route('create_category')}}"><i class="glyphicon glyphicon-plus"></i></a>
+                <a class="create"
+                   data-toggle="modal" data-target="#create-category"
+                   data-backdrop="false"
+                   href="#"><i class="glyphicon glyphicon-plus"></i></a>
             </li>
             <li>
-                <a class="{{Route::getCurrentRoute()->getName()=='tag'?'active':''}}"
-                   href="{{route('tag')}}">
+                <a class="{{Route::getCurrentRoute()->getName()=='admin.tag'?'active':''}}"
+                   href="{{route('admin.tag')}}">
                     Tags
-                    <span>({{count(App\Tag::all())}})</span>
+                    <span ng-bind="'('+tagLength+')'"></span>
                 </a>
-                <a class="create {{Route::getCurrentRoute()->getName()=='create_tag'?'active':''}}"
-                   href="{{route('create_tag')}}"><i class="glyphicon glyphicon-plus"></i></a>
+                <a class="create"
+                   data-toggle="modal" data-target="#create-tag"
+                   data-backdrop="false"
+                   href="#"><i class="glyphicon glyphicon-plus"></i></a>
             </li>
         </ul>
     </div>
@@ -64,7 +70,7 @@
             </li>
         </ul>
     </div>
-    @if(Auth::getUser()->admin)
+    @if(Auth::getUser()->is_admin())
         <div class="item">
             <div class="item-header">
                 Admin
@@ -85,12 +91,12 @@
             <div class="icon"></div>
             <div class="name">
                 <a href="{{route('user_management')}}">
-                    {{Auth::getUser()->name}}<br>
-                    <label>{{Auth::getUser()->admin ? 'Admin' : (Auth::getUser()->author ? 'Author': 'Normal User')}}</label>
+                    {{Auth::getUser()->name ? Auth::getUser()->name : Auth::getUser()->email}}<br>
+                    <label>{{Auth::getUser()->is_admin() ? 'Admin' : (Auth::getUser()->author ? 'Author': 'Normal User')}}</label>
                 </a>
             </div>
         </div>
-        <div class="logout"><a id="logout" title="Logout" href="{{route('logout')}}"><span
+        <div class="logout"><a id="logout" title="Logout" href="{{route('admin.auth.logout')}}"><span
                         class="glyphicon glyphicon-log-out"></span></a></div>
     </div>
 </div>

@@ -13,7 +13,9 @@ class UserController extends Controller
 {
     public function getLogin()
     {
-        return view('admin.auth.login');
+        if (!Auth::check())
+            return view('admin.auth.login');
+        return redirect()->route('admin.article');
     }
 
     public function postLogin(Request $request)
@@ -25,13 +27,13 @@ class UserController extends Controller
         if (!Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
             return redirect()->back()->with(['fail' => 'Your username or password is incorrect.']);
         }
-        return redirect()->route('article');
+        return redirect()->route('admin.article');
     }
 
     public function getLogout()
     {
         Auth::logout();
-        return redirect()->route('login');
+        return redirect()->route('admin.auth.login');
     }
 
     public function getSignUp()
@@ -42,33 +44,25 @@ class UserController extends Controller
     public function postSignUp(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|max:50',
-            'email' => 'required|email|unique:users,email',
-            'username' => 'required|min:5|max:30|unique:users,username',
-            'password' => 'required|min:3|max:16',
-            'tel'=>'required|unique:users,tel'
+            'email'     => 'required|email|unique:users,email',
+            'password'  => 'required|min:3|max:24',
         ]);
 
-        $name = $request->name;
-        $email = $request->email;
-        $tel = $request->tel;
-        $username = $request->username;
+        $username = $email = $request->email;
         $password = $request->password;
 
         $user = new User();
-        $user->name = $name;
         $user->email = $email;
         $user->username = $username;
         $user->password = bcrypt($password);
-        $user->tel = $tel;
 
         $user->save();
 
         return redirect()->route('login')
-                         ->with([
-                            'new_username' => $username,
-                            'new_password' => $password
-                         ]);
+            ->with([
+                'new_username' => $username,
+                'new_password' => $password
+            ]);
     }
 
     public function getUserManagement()
@@ -124,12 +118,34 @@ class UserController extends Controller
 
         return redirect()->back();
     }
-    public function getUsers(){
-        if (!Auth::user()->admin)
+
+    public function getUsers()
+    {
+        if (!Auth::user()->is_admin())
             return redirect()->back();
         $users = User::all();
-        return view('admin.users.users',[
+        return view('admin.users.users', [
             'users' => $users
         ]);
+    }
+
+    public function getUserJSON($id = null)
+    {
+        if ($id) {
+            $user = User::find($id);
+            return response()->json([
+                'name' => $user->name,
+                'username' => $user->username
+            ]);
+        }
+        $allUsers = User::all();
+        $users = array();
+        foreach ($allUsers as $user) {
+            array_push($users, [
+                'name' => $user->name,
+                'username' => $user->username
+            ]);
+        }
+        return $users;
     }
 }

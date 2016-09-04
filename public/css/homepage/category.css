@@ -45,7 +45,7 @@
 
 .related-news {
   margin-bottom: 20px;
-  border-top-style: ridge;
+  border-top: 1px solid #1abc9c;
   padding-top: 20px; }
   .related-news .picture {
     display: inline-block;
@@ -57,5 +57,8 @@
   .related-news .text {
     display: inline-block;
     vertical-align: top; }
+    .related-news .text .content h2 {
+      font-size: 17px;
+      margin-top: 10px; }
 
 /*# sourceMappingURL=category.css.map */

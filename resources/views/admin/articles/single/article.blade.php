@@ -18,7 +18,7 @@
         <div class="category border-tag">
             <p>
                 <label>Category:</label>
-                <a href="{{route('category').'/'.$article->category->id}}">{{$article->category->name}}</a>
+                <a href="{{route('admin.category').'/'.$article->category->id}}">{{$article->category->name}}</a>
             </p>
         </div>
         <div class="article_content">
@@ -30,7 +30,7 @@
             <p>
                 <label>Author(s):</label>
                 @foreach($article->authors as $author)
-                    <a href="{{route('author').'/'.$author->id}}">{{$author->user->name}}</a>
+                    <a href="{{route('admin.author').'/'.$author->id}}">{{$author->user->name}}</a>
                 @endforeach
             </p>
         </div>
@@ -38,7 +38,7 @@
             <p>
                 <label>Tag(s):</label>
                 @foreach($article->tags as $tag)
-                    <a href="{{route('tag').'/'.$tag->id}}">{{$tag->name}}</a>
+                    <a href="{{route('admin.tag').'/'.$tag->id}}">{{$tag->name}}</a>
                 @endforeach
             </p>
         </div>

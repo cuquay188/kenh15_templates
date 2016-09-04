@@ -4,87 +4,118 @@
     <script type="text/javascript" src="{{asset('/ckeditor/ckeditor.js')}}"></script>
 @endsection
 @section("content")
-    @if(count($errors)>0)
-        <ul class="errors">
-            @foreach($errors->all() as $error)
-                <li>* {{$error == 'The category id must be a number.'?'The category is required .':$error}}</li>
-            @endforeach
-        </ul>
-    @endif
-    <div class="article-list">
+    <div class="article-list" ng-controller="articlesListController">
+        <div class="row">
+            <div class="col col-lg-1 col-sm-2">
+                <div class="form-group">
+                    <select class="form-control"
+                            ng-options="x for x in itemsPerPage.items"
+                            ng-model="itemsPerPage.item">
+                    </select>
+                </div>
+            </div>
+            <div class="col col-lg-8 col-sm-5">
+            </div>
+            <div class="col col-lg-3 col-sm-5">
+                <div class="form-group">
+                    <input type="text" class="form-control search" ng-model="articleFilter" placeholder="Search...">
+                    <span><i class="glyphicon glyphicon-search"> </i></span>
+                </div>
+            </div>
+        </div>
         <table class="table table-striped">
             <thead>
             <tr>
-                <th style="text-align: center;">Title</th>
-                <th>Category</th>
-                <th style="width:100px;text-align: center;">Last Update</th>
-                <th style="">Author</th>
-                <th style="">Tags</th>
-                <th style="width:175px;">Action</th>
+                <th ng-click="sortType = 'title'; sortReverse=!sortReverse;" class="sortable"
+                    ng-class="{'sort': sortType=='title'}" style="width:250px;">
+                    Title
+                    <span ng-show="sortType == 'title' && !sortReverse"><i
+                                class="glyphicon glyphicon-sort-by-alphabet"></i></span>
+                    <span ng-show="sortType == 'title' && sortReverse"><i
+                                class="glyphicon glyphicon-sort-by-alphabet-alt"></i></span>
+                </th>
+                <th style="width:100px;">Category</th>
+                <th ng-click="sortType = 'last_updated'; sortReverse=!sortReverse;" class="sortable"
+                    ng-class="{'sort': sortType=='last_updated'}" style="width:140px;">
+                    Last updated
+                    <span ng-show="sortType == 'last_updated' && !sortReverse"><i
+                                class="glyphicon glyphicon-sort-by-alphabet"></i></span>
+                    <span ng-show="sortType == 'last_updated' && sortReverse"><i
+                                class="glyphicon glyphicon-sort-by-alphabet-alt"></i></span>
+                </th>
+                <th>Author</th>
+                <th>Tags</th>
+                <th style="width:200px;">Action</th>
             </tr>
             </thead>
             <tbody>
-            @if(count($articles))
-                @foreach($articles as $article)
-                    <tr style="font-size: 13px">
-                        <td id="title">
-                            <a title="{{$article->title}}"
-                               href="{{route('article').'/'.$article->url}}"><?php echo $article->shorten_title(50) ?></a>
-                        </td>
-                        <td id="category"><a
-                                    href="{{route('category').'/'.$article->category->id}}">{{$article->category->name}}</a>
-                        </td>
-                        <td style="text-align: center">
-                            {{$article->updated_at->format('Y/m/d')}}
-                            <br>
-                            {{$article->updated_at->format('H:i:s')}}
-                        </td>
-                        <td id="authors">
-                            @include("admin.articles.list.components.authors")
-                        </td>
-                        <td id="tags">
-                            @include("admin.articles.list.components.tags")
-                        </td>
-                        <td>
-                            {{--Preview--}}
-                            <a href="{{route('article').'/'.$article->url}}" class="btn btn-primary btn-xs">Preview</a>
-                            {{--Edit--}}
-                            <button type="submit" {{Auth::getUser()->author||Auth::getUser()->admin ? '' : 'disabled'}}
-                            class="btn btn-primary btn-xs" data-toggle="modal"
-                                    id="#toggle_edit_article_{{$article->id}}"
-                                    data-target="#edit_article" onclick="editArticle('{{$article->id}}')">Edit
-                            </button>
-                            {{--Delete--}}
-                            <button type="submit" {{Auth::getUser()->author||Auth::getUser()->admin ? '' : 'disabled'}}
-                            class="btn btn-primary btn-xs" data-toggle="modal"
-                                    data-target="#delete{{$article->id}}">Delete
-                            </button>
-                            @include("admin.articles.list.components.delete")
-                        </td>
-                    </tr>
-                @endforeach
-            @else
-                <tr>
-                    <td colspan="6" class="empty-table">
-                        No articles is available.
-                        <a href="#" data-toggle="modal"
-                           data-target="#create-article">Create a new one</a>.
-                    </td>
-                </tr>
-            @endif
+            <tr dir-paginate="article in articles | filter : articleFilter | orderBy:sortType:!sortReverse | itemsPerPage: itemsPerPage.item "
+                ng-controller="articleController">
+                <td>
+                    <a data-toggle="modal" data-target="#preview-article"
+                       ng-click="edit()" class="tooltip-toggle">
+                        %%article.title | shorten:25%%
+                    </a>
+                    <span>
+                        <h6>%%article.title%%<br></h6>
+                    </span>
+                </td>
+                <td ng-controller="articleCategoryController">
+                    <a href="{{route('admin.category')}}/%%article.category.id%%">
+                        %%article.category.name%%
+                    </a>
+                </td>
+                <td style="text-align: center">
+                    {{--a %%article.updated_at.getTime()%%--}}
+                    %%article.updated_at | date%% <br>
+                    %%article.updated_at | time%%
+                </td>
+                <td ng-controller="articleAuthorController">
+                    <div class="tag-border" ng-repeat="author in authors">
+                        <a href="#">%%author.name%%</a><br>
+                        <button class="close" data-toggle="modal" data-target="#delete-article-author"
+                                ng-click="delete(author)">x
+                        </button>
+                    </div>
+                </td>
+                <td ng-controller="articleTagController">
+                    <div class="tag-border" ng-repeat="tag in tags">
+                        <a href="#">%%tag.name%%</a>
+                        <button class="close" data-toggle="modal" data-target="#delete-article-tag"
+                                ng-click="delete(tag)">x
+                        </button>
+                    </div>
+                </td>
+                <td>
+                    {{--Preview--}}
+                    <a href="#" class="btn btn-primary btn-xs" data-toggle="modal"
+                       data-target="#preview-article" ng-click="edit()">Preview</a>
+                    {{--Edit--}}
+                    <button class="btn btn-primary btn-xs" data-toggle="modal"
+                            data-target="#edit-article" ng-click="edit()">Edit
+                    </button>
+                    {{--Delete--}}
+                    <button class="btn btn-primary btn-xs" data-toggle="modal"
+                            data-target="#delete-article" ng-click="delete()">Delete
+                    </button>
+                </td>
+            </tr>
+            <tr ng-if="articles==null">
+                <td colspan="6" class="empty-table">
+                    No articles is available.
+                    <a href="#" data-toggle="modal"
+                       data-target="#create-article">Create a new one</a>.
+                </td>
+            </tr>
             </tbody>
         </table>
+        <dir-pagination-controls></dir-pagination-controls>
     </div>
 @endsection
 @section('dialogs')
+    @include("admin.articles.list.components.article")
     @include("admin.articles.list.components.edit")
-@endsection
-@section('body.scripts')
-    <script>
-        $('table').DataTable({
-            "order": [[2, "desc"]],
-            "pageLength": $(document).height() < 800 ? 4 : 9,
-            "bLengthChange": false
-        });
-    </script>
+    @include("admin.articles.list.components.delete.article")
+    @include("admin.articles.list.components.delete.author")
+    @include("admin.articles.list.components.delete.tag")
 @endsection

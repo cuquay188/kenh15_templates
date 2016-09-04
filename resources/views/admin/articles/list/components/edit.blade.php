@@ -1,101 +1,73 @@
-<div class="modal fade" id="edit_article" role="dialog">
+<div class="modal fade" id="edit-article" role="dialog">
     <div class="modal-dialog wide">
-        <form class="modal-content"
-              action="{{route('post_update_article')}}"
-              method="POST">
+        <div class="modal-content" ng-controller="editArticleController">
             <div class="modal-header">
-                <h5><strong>Edit article:</strong>
-                    <span id="edit_shorten_title"></span>
+                <h5>
+                    <strong>Edit article: %%article.title | shorten:70%%</strong>
                 </h5>
-                <div class="close" data-dismiss="modal" onclick="dismissModal()">
+                <div class="close" data-dismiss="modal" ng-click="dismiss()">
                     <div class="glyphicon glyphicon-remove"></div>
                 </div>
             </div>
             <div class="modal-body">
                 <div class="col col-sm-7">
                     <div class="form-group">
-                        <textarea name="data" id="edit_content" style="margin:auto;"
+                        <textarea name="edit_article"
                                   class="ckeditor form-control"></textarea>
+                        <span class="errors">%%errors.content[0]%%</span>
                     </div>
                 </div>
                 <div class="col col-sm-5">
                     <div class="form-group" style="width: 100%">
-                        <input type="text" class="form-control" name="title" id="edit_title"
-                               value="" placeholder="Enter title...">
+                        <textarea class="form-control" id="title"
+                                  ng-model="title" placeholder="Enter title..."
+                                  ng-class="{'error' : errors.title}">
+                        </textarea>
+                        <span class="errors">%%errors.title[0]%%</span>
                     </div>
-
                     <div class="form-group">
                         <label>Tags</label>
-                        <div id="edit_tags" class="checkbox-style row">
-                            @foreach(\App\Tag::orderBy('name','asc')->get() as $tag)
-                                <label style="font-weight: normal" for="edit_tag_{{$tag->id}}"
-                                       class="col col-sm-4">
-                                    <input id="edit_tag_{{$tag->id}}" type="checkbox"
-                                           name="tags[]" value="{{$tag->id}}">
-                                    {{$tag->name}}
-                                </label>
-                            @endforeach
+                        <div class="checkbox-style row"
+                             ng-class="{'error' : errors.tags}">
+                            <label for="edit-tag-%%tag.id%%"
+                                   class="col col-sm-4"
+                                   ng-repeat="(i,tag) in tags">
+                                <input id="edit-tag-%%tag.id%%" type="checkbox" ng-model="tags[i].checked">
+                                %%tag.name%%
+                            </label>
                         </div>
+                        <span class="errors">%%errors.tags[0]%%</span>
                     </div>
                     <div class="form-group">
-                        <label for="edit_category_id">Category</label>
-                        <select name="category_id" id="edit_category_id" class="form-control">
-                            <option value="null" style="font-weight: bold">--Select a category--</option>
-                            @foreach(\App\Category::orderBy('name','asc')->get() as $category)
-                                <option value="{{$category->id}}">{{$category->name}}</option>
-                            @endforeach
+                        <label for="edit-category">Category</label>
+                        <select id="edit-category" class="form-control"
+                                ng-options="category.id as category.name for category in categories"
+                                ng-model="category" ng-class="{'error' : errors.category}">
                         </select>
+                        <span class="errors">%%errors.category[0]%%</span>
                     </div>
                     <div class="form-group">
                         <label>Choose Author(s)</label>
-                        <div id="edit_authors" class="checkbox-style row">
-                            @foreach(\App\Author::all() as $author)
-                                <label for="edit_author_{{$author->id}}" style="font-weight: normal"
-                                       class="col col-sm-6">
-                                    <input type="checkbox" id="edit_author_{{$author->id}}"
-                                           name="authors[]" value="{{$author->id}}">
-                                    {{$author->user->name}}
-                                </label>
-                            @endforeach
+                        <div class="checkbox-style row"
+                             ng-class="{'error' : errors.authors}">
+                            <label for="edit-author-%%author.id%%"
+                                   class="col col-sm-6"
+                                   ng-repeat="(i,author) in authors">
+                                <input type="checkbox" id="edit-author-%%author.id%%" ng-model="authors[i].checked">
+                                %%author.name%%
+                            </label>
                         </div>
+                        <span class="errors">%%errors.authors[0]%%</span>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <div class="form-group" id="action">
-                    <button type="submit" class="btn btn-warning ">Update</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="dismissModal()">Close
+                <div class="form-group">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="dismiss()">Close
                     </button>
-                    <input name="article_id" id="edit_article_id" value="" type="hidden">
-                    <input type="hidden" value="{{Session::token()}}" name="_token">
+                    <button type="submit" class="btn btn-primary" ng-click="submit()">Update this article</button>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
 </div>
-<script>
-    var editArticle = function (article_id) {
-        $.ajax({
-            type: 'GET',
-            url: '{{route('admin.api.article').'/'}}' + article_id,
-            success: function (article) {
-                var $modal = $('#edit_article');
-                $modal.find('#edit_shorten_title').text(article.shorten_title);
-                $modal.find('#edit_title').val(article.title);
-                CKEDITOR.instances['edit_content'].setData(article.content);
-                $modal.find('#edit_category_id').val(article.category_id);
-                $modal.find('#edit_article_id').val(article.id);
-                for(var i in article.tags)
-                    $modal.find('#edit_tags').find('#edit_tag_'+article.tags[i].id).prop("checked", true )
-                for(var j in article.authors)
-                    $modal.find('#edit_authors').find('#edit_author_'+article.authors[j].id).prop("checked", true )
-            }
-        })
-    };
-    var dismissModal = function () {
-        for (var i=1;i<='{{count(\App\Tag::all())}}';i++)
-            $('#edit_tag_'+i).prop("checked", false )
-        for (var j=1;i<='{{count(\App\Author::all())}}';i++)
-            $('#edit_author_'+j).prop("checked", false )
-    }
-</script>

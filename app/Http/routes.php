@@ -12,151 +12,92 @@
 */
 
 Route::group(['prefix' => 'admin'], function () {
-    //User
     Route::get('/', [
         'uses' => 'UserController@getLogin',
         'as' => 'login'
     ]);
-    Route::get('/login', [
-        'uses' => 'UserController@getLogin',
-        'as' => 'login'
-    ]);
-    Route::post('/login', [
-        'uses' => 'UserController@postLogin',
-        'as' => 'post_login'
-    ]);
-    Route::get('/logout', [
-        'uses' => 'UserController@getLogout',
-        'as' => 'logout'
-    ]);
-    Route::get('/signup', [
-        'uses' => 'UserController@getSignUp',
-        'as' => 'signup'
-    ]);
-    Route::post('/signup/user', [
-        'uses' => 'UserController@postSignUp',
-        'as' => 'post_sign_up'
-    ]);
-    Route::get('/user', [
-        'uses' => 'UserController@getUserManagement',
-        'as' => 'user_management'
-    ]);
-    Route::post('/edit/user', [
-        'uses' => 'UserController@postUpdateUser',
-        'as' => 'post_update_user'
-    ]);
-    Route::post('/change/password/user', [
-        'uses' => 'UserController@postChangePasswordUser',
-        'as' => 'post_change_password_user'
-    ]);
-    Route::get('/users', [
-        'uses' => 'UserController@getUsers',
-        'as' => 'users'
-    ]);
+    //User
+    Route::group(['prefix' => 'auth'], function () {
+        Route::get('/login', [
+            'uses' => 'UserController@getLogin',
+            'as' => 'admin.auth.login'
+        ]);
+        Route::post('/login', [
+            'uses' => 'UserController@postLogin',
+            'as' => 'admin.auth.login.post'
+        ]);
+        Route::get('/logout', [
+            'uses' => 'UserController@getLogout',
+            'as' => 'admin.auth.logout'
+        ]);
+        Route::get('/signup', [
+            'uses' => 'UserController@getSignUp',
+            'as' => 'admin.auth.signup'
+        ]);
+        Route::post('/signup/user', [
+            'uses' => 'UserController@postSignUp',
+            'as' => 'admin.auth.signup.post'
+        ]);
 
-    //Article
+
+        Route::get('/user', [
+            'uses' => 'UserController@getUserManagement',
+            'as' => 'user_management'
+        ]);
+        Route::post('/edit/user', [
+            'uses' => 'UserController@postUpdateUser',
+            'as' => 'post_update_user'
+        ]);
+        Route::post('/change/password/user', [
+            'uses' => 'UserController@postChangePasswordUser',
+            'as' => 'post_change_password_user'
+        ]);
+        Route::get('/users', [
+            'uses' => 'UserController@getUsers',
+            'as' => 'users'
+        ]);
+    });
+
+    /*Article*/
     Route::get('/article', [
         'uses' => 'ArticleController@getArticleList',
-        'as' => 'article'
+        'as' => 'admin.article'
     ]);
     Route::get('/article/{url}', [
         'uses' => 'ArticleController@getSingleArticle'
     ]);
-    Route::post('/create/article', [
-        'uses' => 'ArticleController@postCreateArticle',
-        'as' => 'post_create_article'
-    ]);
-    Route::post('/delete/article', [
-        'uses' => 'ArticleController@postDeleteArticle',
-        'as' => 'post_delete_article'
-    ]);
-    Route::post('/edit/article', [
-        'uses' => 'ArticleController@postUpdateArticle',
-        'as' => 'post_update_article'
-    ]);
-    Route::post('/articletag', [
-        'uses' => 'ArticleController@postDeleteTagArticle',
-        'as' => 'post_delete_tag_article'
-    ]);
-    Route::post('/articleauthor', [
-        'uses' => 'ArticleController@postDeleteAuthorArticle',
-        'as' => 'post_delete_author_article'
-    ]);
+    /*End Article*/
 
-    //Tag
+    /*Tag*/
     Route::get('/tag', [
-        'uses' => 'TagController@getTag',
-        'as' => 'tag'
-    ]);
-    Route::get('/create/tag', [
-        'uses' => 'TagController@getCreateTag',
-        'as' => 'create_tag'
-    ]);
-    Route::post('/create/tag', [
-        'uses' => 'TagController@postCreateTag',
-        'as' => 'post_tag'
-    ]);
-    Route::post('/edit/tag', [
-        'uses' => 'TagController@postUpdateTag',
-        'as' => 'admin.update.tag.name'
-    ]);
-    Route::post('/delete/tag', [
-        'uses' => 'TagController@postDeleteTag',
-        'as' => 'post_delete_tag'
+        'uses' => 'TagController@getTagManagement',
+        'as' => 'admin.tag'
     ]);
     Route::get('/tag/{id}', [
         'uses' => 'TagController@getViewTag'
     ]);
+    /*End Tag*/
 
-    //Author
+    /*Author*/
     Route::get('/author', [
         'uses' => 'AuthorController@getAuthor',
-        'as' => 'author'
-    ]);
-    Route::get('/create/author', [
-        'uses' => 'AuthorController@getCreateAuthor',
-        'as' => 'create_author'
-    ]);
-    Route::post('/create/author', [
-        'uses' => 'AuthorController@postCreateAuthor',
-        'as' => 'post_author'
-    ]);
-    Route::post('/delete/author', [
-        'uses' => 'AuthorController@postDeleteAuthor',
-        'as' => 'post_delete_author'
-    ]);
-    Route::post('/edit/author', [
-        'uses' => 'AuthorController@postUpdateAuthor',
-        'as' => 'post_update_author'
+        'as' => 'admin.author'
     ]);
     Route::get('/author/{id}', [
         'uses' => 'AuthorController@getViewAuthor'
     ]);
+    /*End Author*/
 
-    //Category
+    /*Category*/
     Route::get('/category', [
         'uses' => 'CategoryController@getCategory',
-        'as' => 'category'
-    ]);
-    Route::get('/create/category', [
-        'uses' => 'CategoryController@getCreateCategory',
-        'as' => 'create_category'
-    ]);
-    Route::post('/create/category', [
-        'uses' => 'CategoryController@postCreateCategory',
-        'as' => 'post_category'
-    ]);
-    Route::post('/delete/category', [
-        'uses' => 'CategoryController@postDeleteCategory',
-        'as' => 'post_delete_category'
-    ]);
-    Route::post('/edit/category', [
-        'uses' => 'CategoryController@postUpdateCategory',
-        'as' => 'admin.update.category.name'
+        'as' => 'admin.category'
     ]);
     Route::get('/category/{id}', [
         'uses' => 'CategoryController@getViewCategory'
     ]);
+    /*End Category*/
+
     Route::get('/refresh-database', [
         'uses' => 'ArticleController@refreshDatabase',
         'as' => 'admin.fix.database',
@@ -164,24 +105,142 @@ Route::group(['prefix' => 'admin'], function () {
 
 });
 Route::group(['prefix' => 'api'], function () {
-    Route::get('/article',[
-       'as' => 'admin.api.article'
-    ]);
-    Route::get('/article/{id}', [
-        'uses' => 'ArticleController@getArticleJSON'
-    ]);
-    Route::post('create/article/validate', [
-        'uses' => 'ArticleController@postValidateArticle',
-        'as' => 'admin.validate.article'
-    ]);
-    Route::post('/category/hot', [
-        'uses' => 'CategoryController@postHotCategory',
-        'as' => 'admin.update.category.hot'
-    ]);
-    Route::post('/category/header', [
-        'uses' => 'CategoryController@postHeaderCategory',
-        'as' => 'admin.update.category.header'
-    ]);
+
+
+    Route::group(['prefix' => 'article'], function () {
+        Route::get('/select/{id?}', [
+            'uses' => 'ArticleController@getArticleJSON',
+            'as' => 'admin.api.article.select'
+        ]);
+        Route::get('selectContent/{id?}', [
+            'uses' => 'ArticleController@getContentJSON',
+            'as' => 'admin.api.article.select.content'
+        ]);
+
+        Route::post('/validate', [
+            'uses' => 'ArticleController@postValidateArticle',
+            'as' => 'admin.api.article.validate'
+        ]);
+        Route::post('/update', [
+            'uses' => 'ArticleController@postUpdateArticle',
+            'as' => 'admin.api.article.update'
+        ]);
+        Route::group(['prefix'=>'delete'],function (){
+
+            Route::post('/article', [
+                'uses' => 'ArticleController@postRemoveArticle',
+                'as' => 'admin.api.article.remove.article'
+            ]);
+            Route::post('/tag', [
+                'uses' => 'ArticleController@postRemoveTag',
+                'as' => 'admin.api.article.remove.tag'
+            ]);
+            Route::post('/author', [
+                'uses' => 'ArticleController@postRemoveAuthor',
+                'as' => 'admin.api.article.remove.author'
+            ]);
+        });
+        Route::post('/create', [
+            'uses' => 'ArticleController@postCreateArticle',
+            'as' => 'admin.api.article.create'
+        ]);
+    });
+
+    Route::group(['prefix' => 'author'], function () {
+
+        Route::get('/select/{id?}', [
+            'uses' => 'AuthorController@getAuthorJSON',
+            'as' => 'admin.api.author.select'
+        ]);
+        Route::get('get/users', [
+            'uses' => 'AuthorController@getNormalUser',
+            'as' => 'admin.api.author.select.normal_user'
+        ]);
+
+        Route::post('/update', [
+            'uses' => 'AuthorController@postUpdateAuthor',
+            'as' => 'admin.api.author.update'
+        ]);
+        Route::post('/delete', [
+            'uses' => 'AuthorController@postRemoveAuthor',
+            'as' => 'admin.api.author.remove'
+        ]);
+        Route::post('/create', [
+            'uses' => 'AuthorController@postCreateAuthor',
+            'as' => 'admin.api.author.create'
+        ]);
+    });
+
+    Route::group(['prefix' => 'category'], function () {
+
+        Route::get('/select/{id?}', [
+            'uses' => 'CategoryController@getCategoryJSON',
+            'as' => 'admin.api.category.select'
+        ]);
+
+        Route::post('/update/name', [
+            'uses' => 'CategoryController@postUpdateCategory',
+            'as' => 'admin.api.category.update.name'
+        ]);
+        Route::post('/update/hot', [
+            'uses' => 'CategoryController@postHotCategory',
+            'as' => 'admin.api.category.update.hot'
+        ]);
+        Route::post('/update/header', [
+            'uses' => 'CategoryController@postHeaderCategory',
+            'as' => 'admin.api.category.update.header'
+        ]);
+        Route::post('/delete', [
+            'uses' => 'CategoryController@postRemoveCategory',
+            'as' => 'admin.api.category.remove'
+        ]);
+        Route::post('/create', [
+            'uses' => 'CategoryController@postCreateCategory',
+            'as' => 'admin.api.category.create'
+        ]);
+    });
+
+    Route::group(['prefix' => 'tag'], function () {
+
+        Route::get('/select/{id?}', [
+            'uses' => 'TagController@getTagJSON',
+            'as' => 'admin.api.tag.select'
+        ]);
+
+        Route::post('/update', [
+            'uses' => 'TagController@postUpdateTag',
+            'as' => 'admin.api.tag.update'
+        ]);
+        Route::post('/delete', [
+            'uses' => 'TagController@postRemoveTag',
+            'as' => 'admin.api.tag.remove'
+        ]);
+        Route::post('/create', [
+            'uses' => 'TagController@postCreateTag',
+            'as' => 'admin.api.tag.create'
+        ]);
+    });
+
+    Route::group(['prefix' => 'user'], function () {
+
+        Route::get('/select/{id?}', [
+            'uses' => 'UserController@getUserJSON',
+            'as' => 'admin.api.user.select'
+        ]);
+
+        Route::post('/update', [
+            'uses' => 'UserController@postUpdateAuthor',
+            'as' => 'admin.api.user.update'
+        ]);
+        Route::post('/delete', [
+            'uses' => 'UserController@postRemoveAuthor',
+            'as' => 'admin.api.user.remove'
+        ]);
+        Route::post('/create', [
+            'uses' => 'UserController@postCreateAuthor',
+            'as' => 'admin.api.user.create'
+        ]);
+    });
 });
 // Home page
 Route::get('/', [
