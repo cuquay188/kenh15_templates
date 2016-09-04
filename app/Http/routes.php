@@ -40,23 +40,34 @@ Route::group(['prefix' => 'admin'], function () {
         ]);
 
 
-        Route::get('/user', [
-            'uses' => 'UserController@getUserManagement',
-            'as' => 'user_management'
+        Route::get('/profile', [
+            'uses' => 'UserController@getUserProfile',
+            'as' => 'admin.user.profile'
         ]);
         Route::post('/edit/user', [
             'uses' => 'UserController@postUpdateUser',
-            'as' => 'post_update_user'
+            'as' => 'admin.user.update.info'
         ]);
         Route::post('/change/password/user', [
             'uses' => 'UserController@postChangePasswordUser',
-            'as' => 'post_change_password_user'
+            'as' => 'admin.user.update.password'
         ]);
         Route::get('/users', [
             'uses' => 'UserController@getUsers',
             'as' => 'users'
         ]);
     });
+
+    Route::get('/index',[
+        'uses' => 'DashboardController@getIndex',
+        'as' => 'admin.index'
+    ]);
+    /*Dashboard*/
+    Route::get('/dashboard', [
+        'uses' => 'DashboardController@getDashboard',
+        'as' => 'admin.dashboard'
+    ]);
+    /*End Dashboard*/
 
     /*Article*/
     Route::get('/article', [
@@ -125,7 +136,7 @@ Route::group(['prefix' => 'api'], function () {
             'uses' => 'ArticleController@postUpdateArticle',
             'as' => 'admin.api.article.update'
         ]);
-        Route::group(['prefix'=>'delete'],function (){
+        Route::group(['prefix' => 'delete'], function () {
 
             Route::post('/article', [
                 'uses' => 'ArticleController@postRemoveArticle',

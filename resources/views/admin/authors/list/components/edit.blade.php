@@ -1,4 +1,4 @@
-<div class="modal fade" role="dialog" id="edit-author">
+<div class="modal fade" role="dialog" id="update-author">
     <div class="modal-dialog">
         <div class="modal-content" style=" top: 50px" ng-controller="editAuthorController">
             <div class="modal-header">

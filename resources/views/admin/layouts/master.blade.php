@@ -29,6 +29,7 @@
     <script src="{{asset('/angular/angular.min.js')}}"></script>
     <script src="{{asset('/angular/angular-sanitize.min.js')}}"></script>
     <script src="{{asset('/angular/angular-utils-pagination/dirPagination.js')}}"></script>
+    <script src="{{asset('/angular/angular-route.min.js')}}"></script>
     <!-- End Angular library -->
 
     <script src="{{asset('/bootstrap/js/bootstrap.min.js')}}"></script>
@@ -37,7 +38,11 @@
     @yield("scripts")
     <script>
         var url = {
+            dashboard: {
+                view: '{{route('admin.dashboard')}}'
+            },
             article: {
+                view: '{{route('admin.article')}}',
                 select: {
                     articles: '{{route('admin.api.article.select')}}',
                     article: function (id) {
@@ -56,6 +61,7 @@
                 create: '{{route('admin.api.article.create')}}'
             },
             author: {
+                view: '{{route('admin.author')}}',
                 select: {
                     authors: '{{route('admin.api.author.select')}}',
                     users: '{{route('admin.api.author.select.normal_user')}}'
@@ -65,6 +71,7 @@
                 create: '{{route('admin.api.author.create')}}'
             },
             category: {
+                view: '{{route('admin.category')}}',
                 select: '{{route('admin.api.category.select')}}',
                 remove: '{{route('admin.api.category.remove')}}',
                 create: '{{route('admin.api.category.create')}}',
@@ -75,10 +82,16 @@
                 }
             },
             tag: {
+                view: '{{route('admin.tag')}}',
                 select: '{{route('admin.api.tag.select')}}',
                 update: '{{route('admin.api.tag.update')}}',
                 remove: '{{route('admin.api.tag.remove')}}',
                 create: '{{route('admin.api.tag.create')}}'
+            },
+            user: {
+                profile: {
+                    view: '{{route('admin.user.profile')}}'
+                }
             }
         };
     </script>
@@ -93,11 +106,7 @@
 </div>
 <div class="body">
 
-    @include("admin.layouts.components.header")
-
-    <div class="container">
-        @yield("content")
-    </div>
+    @yield('content')
 
     @include("admin.layouts.components.footer")
 
@@ -109,6 +118,7 @@
 
 <!-- Body scripts -->
 <script src="{{asset('/js/admin/app.js')}}"></script>
+<script src="{{asset('/js/admin/routes.js')}}"></script>
 <script src="{{asset('/js/admin/sidebar.js')}}"></script>
 
 {{--Article--}}

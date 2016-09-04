@@ -1,5 +1,5 @@
 @if(Auth::getUser()->is_admin() || Auth::getUser()->is_author())
-    <div class="modal fade" role="dialog" id="edit-category">
+    <div class="modal fade" role="dialog" id="update-category">
         <div class="modal-dialog">
             <div class="modal-content" style="top: 150px" ng-controller="editCategoryController">
                 <div class="modal-header">

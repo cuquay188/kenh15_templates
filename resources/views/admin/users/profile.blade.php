@@ -1,7 +1,8 @@
-@extends('admin.layouts.master')
-@section('title','Edit your profile')
-@section('content')
-    <form action="{{route('post_update_user')}}" method="post" class="form-horizontal user_mng" role="form">
+<div class="body-header">
+    <h2>User Profile</h2>
+</div>
+<div class="container">
+    <form action="{{route('admin.user.update.info')}}" method="post" class="form-horizontal user_mng" role="form">
         <input type="hidden" value="{{Auth::getUser()->id}}" name="id">
         <input type="hidden" value="{{Session::token()}}" name="_token">
         @if(count($errors)>0)
@@ -102,7 +103,7 @@
             </div>
         </div>
     </form>
-    <form action="{{route('post_change_password_user')}}" method="post" class="form-horizontal user_mng" role="form">
+    <form action="{{route('admin.user.update.password')}}" method="post" class="form-horizontal user_mng" role="form">
         <input type="hidden" value="{{Auth::getUser()->id}}" name="id">
         <input type="hidden" value="{{Session::token()}}" name="_token">
         <div class="form-group">
@@ -145,20 +146,20 @@
     <script>
         $('#category').focus();
         var updateField = function (name) {
-            $('#update_'+name).click(function () {
-                $('#'+name).show();
-                $('#ok_'+name).show();
-                $('#cancel_'+name).show();
-                $('#text_'+name).hide();
-                $('#update_'+name).hide();
+            $('#update_' + name).click(function () {
+                $('#' + name).show();
+                $('#ok_' + name).show();
+                $('#cancel_' + name).show();
+                $('#text_' + name).hide();
+                $('#update_' + name).hide();
             });
-            $('#cancel_'+name).click(function (event) {
+            $('#cancel_' + name).click(function (event) {
                 event.preventDefault();
-                $('#'+name).hide();
-                $('#ok_'+name).hide();
-                $('#cancel_'+name).hide();
-                $('#text_'+name).show();
-                $('#update_'+name).show();
+                $('#' + name).hide();
+                $('#ok_' + name).hide();
+                $('#cancel_' + name).hide();
+                $('#text_' + name).show();
+                $('#update_' + name).show();
             })
         };
         updateField('name');
@@ -193,4 +194,4 @@
             $('#text_current_password').show();
         })
     </script>
-@endsection
+</div>

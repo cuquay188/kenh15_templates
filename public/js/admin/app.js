@@ -1,4 +1,4 @@
-var app = angular.module("mainApp", ['angularUtils.directives.dirPagination', 'ngSanitize'], function ($interpolateProvider) {
+var app = angular.module("mainApp", ['angularUtils.directives.dirPagination', 'ngSanitize','ngRoute'], function ($interpolateProvider) {
     $interpolateProvider.startSymbol('%%');
     $interpolateProvider.endSymbol('%%');
 });
@@ -11,28 +11,12 @@ app.controller('mainController', function ($scope, $http, $articles, $authors, $
     $tags.load($http);
     $categories.load($http);
 
-    $scope.$watchGroup([
-        function () {
-            return $authors.get();
-        },
-        function () {
-            return $tags.get();
-        },
-        function () {
-            return $categories.get();
-        }
-    ], function () {
-        $scope.itemsPerPage = {
-            items: [
-                parseInt(numberOfItem() / 2),
-                numberOfItem(),
-                numberOfItem() * 2,
-                numberOfItem() * 4
-            ],
-            item: numberOfItem()
-        };
-    })
-
+    $scope.itemsPerPage = {
+        items: [
+            5,10,20,40
+        ],
+        item: 5
+    };
 });
 
 var numberOfItem = function () {
@@ -56,7 +40,7 @@ var find = function (array, x) {
     });
     return index;
 };
-$('#create-tag, #edit-tag, #create-category, #edit-category').on('shown.bs.modal', function () {
+$('#create-tag, #update-tag, #create-category, #update-category').on('shown.bs.modal', function () {
     $(this).find('#name').focus();
 });
 

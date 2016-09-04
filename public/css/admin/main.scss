@@ -252,12 +252,14 @@ body {
   height: 100vh;
   a {
     color: #fff;
+    cursor: pointer;
+    &:focus, &:hover {
+      text-decoration: none;
+      color: #95a5a6;
+    }
   }
   li {
     list-style: none;
-  }
-  a:hover {
-    text-decoration: none;
   }
 }
 
@@ -454,11 +456,11 @@ body {
     border-radius: 0;
     height: 100vh;
     border: none;
-    .container{
-      width:700px;
-      h2{
-        font-size:20px;
-        font-weight:700;
+    .container {
+      width: 700px;
+      h2 {
+        font-size: 20px;
+        font-weight: 700;
       }
     }
   }
@@ -470,7 +472,7 @@ body {
       right: 10px;
       top: 15px;
       font-size: 24px;
-      margin-top:0;
+      margin-top: 0;
     }
     h5 {
       font-size: 24px;

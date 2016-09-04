@@ -15,7 +15,7 @@ class UserController extends Controller
     {
         if (!Auth::check())
             return view('admin.auth.login');
-        return redirect()->route('admin.article');
+        return redirect()->route('admin.index');
     }
 
     public function postLogin(Request $request)
@@ -27,7 +27,7 @@ class UserController extends Controller
         if (!Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
             return redirect()->back()->with(['fail' => 'Your username or password is incorrect.']);
         }
-        return redirect()->route('admin.article');
+        return redirect()->route('admin.index');
     }
 
     public function getLogout()
@@ -65,11 +65,11 @@ class UserController extends Controller
             ]);
     }
 
-    public function getUserManagement()
+    public function getUserProfile()
     {
         if (!Auth::check())
             return redirect()->route('login')->with(['fail' => 'Required login.']);
-        return view('admin.users.user');
+        return view('admin.users.profile');
     }
 
     public function postUpdateUser(Request $request)

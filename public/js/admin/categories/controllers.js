@@ -12,7 +12,7 @@ app.controller('categoriesListController', function ($scope, $http, $log, $categ
             alert('You should not place more than 5 category to header.')
     });
 
-    $scope.sortType = 'advance.is_hot && articles';
+    $scope.sortType = 'advance.is_hot';
     $scope.sortReverse = 1;
 });
 
