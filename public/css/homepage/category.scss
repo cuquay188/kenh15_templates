@@ -23,7 +23,9 @@
     text-align: center;
   }
 }
+.body-left{
 
+}
 .top-articles {
   margin-bottom: 20px;
   .newest-article {
@@ -88,7 +90,20 @@
 
 .pagination {
   margin: 30px 0 30px 35%;
-  li:before{
+  li:before {
     content: '';
+  }
+  li a {
+    color: #1abc9c;
+    &:hover {
+      color: #16a085;
+    }
+  }
+  .active {
+    span, span:hover {
+      color: white;
+      font-weight: bold;
+      background-color: #16a085;
+    }
   }
 }

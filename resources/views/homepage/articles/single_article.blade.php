@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="{{asset('/css/homepage/article.css')}}">
 @endsection
 @section('content')
-    <div class="container">
+    <div class="main-body container">
         <aside class="sidebar-left col-lg-3">
             @include('homepage.articles.related_articles')
         </aside>
@@ -39,6 +39,10 @@
                 @endforeach
             </div>
         </div>
-        <div class="col-lg-3"></div>
+        <div class="col-lg-3 advertisement">
+            <a href="#">
+                <img src="http://www.mixtgoods.com/images/logos/Static_160x578_MixtGoods_Ad.gif" alt="">
+            </a>
+        </div>
     </div>
 @endsection

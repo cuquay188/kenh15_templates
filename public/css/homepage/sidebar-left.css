@@ -1,13 +1,16 @@
 .sidebar-left {
   background-color: #f8fbfb;
+  border-radius: 0 10px 10px 0;
   padding: 10px 20px;
   margin-bottom: 20px;
-  z-index: 99; }
+  margin-top: 10px;
+  z-index: 99;
+  box-shadow: 6px 6px 20px -10px #666666; }
   .sidebar-left a {
     text-decoration: none;
     font-weight: bold; }
-  .sidebar-left a:hover {
-    text-decoration: underline; }
+    .sidebar-left a:hover {
+      text-decoration: underline; }
 
 .affix {
   top: 20px; }

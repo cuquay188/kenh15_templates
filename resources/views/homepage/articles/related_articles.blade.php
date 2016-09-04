@@ -36,21 +36,21 @@
             if ($('.body').scrollTop() > offsetPixels) {
                 $('.sidebar-left').css({
                     'position': 'fixed',
-                    'top': '55px',
-                    'width': '285px'
+                    'top': '60px',
+                    'width': '292.5px'
                 });
-                $('.main-content').css({
+                $('.main-content, .advertisement').css({
                     'position': 'relative',
-                    'left': '285px'
+                    'left': '292.5px'
                 });
                 if ($('.body').scrollTop() > offsetStopPixels) {
                     $('.body-top').css({
                         'height': bodySidebarHeight / 2,
                         'overflow-y': 'auto'
                     });
-                    $('.main-content').css({
+                    $('.main-content, .advertisement').css({
                         'position': 'relative',
-                        'left': '285px'
+                        'left': '292.5px'
                     });
                 } else {
                     $('.body-top').css({
@@ -61,9 +61,9 @@
                 $('.sidebar-left').css({
                     'position': 'static'
                 });
-                $('.main-content').css({
+                $('.main-content, .advertisement').css({
                     'position': 'static'
-                })
+                });
             }
         })
     })

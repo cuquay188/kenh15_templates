@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="{{asset('/css/homepage/homepage.css')}}">
 @endsection
 @section('content')
-    <div class="content-area container">
+    <div class="content-area main-body container">
         <!-- bài đọc nhiều nhất -->
         <aside class="sidebar-left col-lg-3">
             @include('homepage.index.top_articles')

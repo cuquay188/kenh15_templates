@@ -24,12 +24,12 @@
             if ($('.body').scrollTop() > offsetPixels) {
                 $('.sidebar-left').css({
                     'position': 'fixed',
-                    'top': '55px',
-                    'width': '285px'
+                    'top': '60px',
+                    'width': '292.5px'
                 });
                 $('.main-content').css({
                     'position': 'relative',
-                    'left': '285px'
+                    'left': '292.5px'
                 });
                 if ($('.body').scrollTop() > offsetStopPixels) {
                     $('.body-top').css({
@@ -38,7 +38,7 @@
                     });
                     $('.main-content').css({
                         'position': 'relative',
-                        'left': '285px'
+                        'left': '292.5px'
                     });
                 } else {
                     $('.body-top').css({

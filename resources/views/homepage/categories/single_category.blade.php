@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="{{asset('/css/homepage/category.css')}}">
 @endsection
 @section('content')
-    <div class="container">
+    <div class="main-body container">
         <div class="col-lg-8">
             <div class="category">
                 <p>{{$category->name}}</p>
@@ -70,8 +70,10 @@
                 @endif
             </div>
         </div>
-        <div class="col-lg-4">
-            <p>Advertisement</p>
+        <div class="col-lg-4 advertisement">
+            <a href="#">
+                <img src="http://www.mixtgoods.com/images/logos/Static_160x578_MixtGoods_Ad.gif" alt="">
+            </a>
         </div>
     </div>
     <script>
