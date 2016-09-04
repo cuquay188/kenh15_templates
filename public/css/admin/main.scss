@@ -523,6 +523,7 @@ td{
   position: relative;
 }
 .tooltip-toggle {
+  cursor: pointer;
   position: relative;
   & + span {
     display: none;

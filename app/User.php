@@ -26,7 +26,7 @@ class User extends Model implements \Illuminate\Contracts\Auth\Authenticatable
 
     public function is_admin()
     {
-        return $this->admin ? 1 : 0;
+        return $this->is_admin ? 1 : 0;
     }
 
     public function formatBirth($separate = null)

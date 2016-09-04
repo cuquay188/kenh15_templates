@@ -135,7 +135,14 @@ app.controller('editArticleController', function ($scope, $http, $article, $tags
         });
         $.each($scope.authors,function (i,val) {
             val.checked=false;
-        })
+        });
+        $scope.errors = {
+            content:'',
+            title:'',
+            tags:'',
+            category:'',
+            authors:''
+        }
     };
     $scope.submit = function () {
         var newTags = [],

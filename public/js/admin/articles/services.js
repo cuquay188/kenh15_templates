@@ -69,7 +69,6 @@ app.service('$article', function () {
                     $article = response.data.article;
 
                     $scope.article.title = $article.title;
-                    $scope.article.shorten_title = $article.shorten_title;
                     $scope.article.updated_at = new Date($article.updated_at.date);
                     $scope.article.url = $article.url;
                     $scope.article.category_id = $article.category_id;

@@ -397,6 +397,7 @@ td {
   position: relative; }
 
 .tooltip-toggle {
+  cursor: pointer;
   position: relative; }
   .tooltip-toggle + span {
     display: none; }

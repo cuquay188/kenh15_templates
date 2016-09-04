@@ -70,7 +70,7 @@
             </li>
         </ul>
     </div>
-    @if(Auth::getUser()->admin)
+    @if(Auth::getUser()->is_admin())
         <div class="item">
             <div class="item-header">
                 Admin
@@ -92,7 +92,7 @@
             <div class="name">
                 <a href="{{route('user_management')}}">
                     {{Auth::getUser()->name ? Auth::getUser()->name : Auth::getUser()->email}}<br>
-                    <label>{{Auth::getUser()->admin ? 'Admin' : (Auth::getUser()->author ? 'Author': 'Normal User')}}</label>
+                    <label>{{Auth::getUser()->is_admin() ? 'Admin' : (Auth::getUser()->author ? 'Author': 'Normal User')}}</label>
                 </a>
             </div>
         </div>

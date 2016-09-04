@@ -52,8 +52,9 @@
             <tr dir-paginate="article in articles | filter : articleFilter | orderBy:sortType:!sortReverse | itemsPerPage: itemsPerPage.item "
                 ng-controller="articleController">
                 <td>
-                    <a href="{{route('admin.article')}}/%%article.url%%" class="tooltip-toggle">
-                        %%article.shorten_title%%
+                    <a data-toggle="modal" data-target="#preview-article"
+                       ng-click="edit()" class="tooltip-toggle">
+                        %%article.title | shorten:25%%
                     </a>
                     <span>
                         <h6>%%article.title%%<br></h6>
@@ -72,20 +73,23 @@
                 <td ng-controller="articleAuthorController">
                     <div class="tag-border" ng-repeat="author in authors">
                         <a href="#">%%author.name%%</a><br>
-                        <button class="close" data-toggle="modal" data-target="#delete-article-author" ng-click="delete(author)">x
+                        <button class="close" data-toggle="modal" data-target="#delete-article-author"
+                                ng-click="delete(author)">x
                         </button>
                     </div>
                 </td>
                 <td ng-controller="articleTagController">
                     <div class="tag-border" ng-repeat="tag in tags">
                         <a href="#">%%tag.name%%</a>
-                        <button class="close" data-toggle="modal" data-target="#delete-article-tag" ng-click="delete(tag)">x
+                        <button class="close" data-toggle="modal" data-target="#delete-article-tag"
+                                ng-click="delete(tag)">x
                         </button>
                     </div>
                 </td>
                 <td>
                     {{--Preview--}}
-                    <a href="#" class="btn btn-primary btn-xs">Preview</a>
+                    <a href="#" class="btn btn-primary btn-xs" data-toggle="modal"
+                       data-target="#preview-article" ng-click="edit()">Preview</a>
                     {{--Edit--}}
                     <button class="btn btn-primary btn-xs" data-toggle="modal"
                             data-target="#edit-article" ng-click="edit()">Edit
@@ -109,6 +113,7 @@
     </div>
 @endsection
 @section('dialogs')
+    @include("admin.articles.list.components.article")
     @include("admin.articles.list.components.edit")
     @include("admin.articles.list.components.delete.article")
     @include("admin.articles.list.components.delete.author")

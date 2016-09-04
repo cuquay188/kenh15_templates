@@ -60,7 +60,7 @@
                             ng-click="delete()">Delete
                     </button>
                 </td>
-                <td></td>
+                <td>%%tag.note%%</td>
             </tr>
             <tr ng-if="tags==null">
                 <td colspan="6" class="empty-table">

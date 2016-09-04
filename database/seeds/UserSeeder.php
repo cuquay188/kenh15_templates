@@ -12,7 +12,7 @@ class UserSeeder extends Seeder
      * @return void
      */
     public function run()
-    { 
+    {
         $user = new User();
         $user->name = 'Phạm Văn Trí';
         $user->email = 'pvtri96@gmail.com';
@@ -22,10 +22,8 @@ class UserSeeder extends Seeder
         $user->address = '24 Tăng Bạt Hổ, Đà Nẵng';
         $user->city = 'Đà Nẵng';
         $user->birth = date_create('1996/09/02');
+        $user->is_admin = 1;
         $user->save();
 
-        $admin= new Admin();
-        $admin->user_id = User::where('username','admin')->first()->id;
-        $admin->save();
     }
 }

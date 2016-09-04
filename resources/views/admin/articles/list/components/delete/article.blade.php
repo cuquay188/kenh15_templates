@@ -3,7 +3,8 @@
         <div class="modal-content" style="top: 150px" ng-controller="deleteArticleController">
             <div class="modal-header">
                 <h5 style="font-weight: bold">
-                    Delete Article: %%article.shorten_title%%
+                    Delete Article:
+                    %%article.title | shorten:40%%
                 </h5>
             </div>
             <div class="modal-body">
@@ -15,7 +16,7 @@
                             data-dismiss="modal">
                         Cancel
                     </button>
-                    <button class="btn btn-primary" ng-click="submit()">
+                    <button class="btn btn-danger" ng-click="submit()">
                         Confirm
                     </button>
                 </div>

@@ -15,8 +15,8 @@ class CreateCategoryAdvancesTable extends Migration
         Schema::create('category_advances', function (Blueprint $table) {
             $table->integer('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
-            $table->boolean('is_hot')->default(false);
-            $table->boolean('is_header')->default(false);
+            $table->boolean('is_hot')->default('0');
+            $table->boolean('is_header')->default('0');
         });
     }
 

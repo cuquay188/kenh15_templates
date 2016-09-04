@@ -178,7 +178,6 @@ class ArticleController extends Controller
                 'updated_at' => $article->updated_at,
                 'url' => $article->url,
                 'title' => $article->title,
-                'shorten_title' => $article->shorten_title(35),
                 'category_id' => $article->category->id,
                 'tags_id' => $tags,
                 'authors_id' => $authors
@@ -200,7 +199,6 @@ class ArticleController extends Controller
                     'updated_at' => $article->updated_at,
                     'url' => $article->url,
                     'title' => $article->title,
-                    'shorten_title' => $article->shorten_title(35),
                     'category_id' => $article->category->id,
                     'tags_id' => $tags,
                     'authors_id' => $authors
