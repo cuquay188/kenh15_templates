@@ -15,7 +15,7 @@
                 <div class="form-group">
                     <button class="btn btn-default" data-dismiss="modal" ng-click="dismiss()">Close</button>
                     <button class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-target="#delete-article">Remove this article</button>
-                    <button class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#edit-article">Edit this article</button>
+                    <button class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#update-article">Edit this article</button>
                 </div>
             </div>
         </div>
