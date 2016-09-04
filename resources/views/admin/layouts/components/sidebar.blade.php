@@ -57,7 +57,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">Setting</a>
+                <a>Setting</a>
             </li>
         </ul>
     </div>
@@ -68,10 +68,8 @@
             </div>
             <ul class="item-body">
                 <li>
-                    <a class="{{Route::getCurrentRoute()->getName()=='users'?'active':''}}"
-                       href="#">
+                    <a>
                         Users
-                        <span>({{count(App\User::all())}})</span>
                     </a>
                 </li>
             </ul>
