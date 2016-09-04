@@ -47,7 +47,11 @@
                     }
                 },
                 update: '{{route('admin.api.article.update')}}',
-                remove: '{{route('admin.api.article.remove')}}',
+                remove: {
+                    article: '{{route('admin.api.article.remove.article')}}',
+                    tag: '{{route('admin.api.article.remove.tag')}}',
+                    author: '{{route('admin.api.article.remove.author')}}'
+                },
                 create: '{{route('admin.api.article.create')}}'
             },
             author: {
@@ -128,41 +132,5 @@
 @yield("body.scripts")
 
 <!-- End body scripts -->
-<script>
-    $('#create-tag, #edit-tag, #create-category, #edit-category').on('shown.bs.modal', function () {
-        $(this).find('#name').focus();
-    });
-    var modalEvent = function ($scope, modal, more) {
-        $('#' + modal).on("shown.bs.modal", function () {
-            $(document).on("keyup", function (e) {
-                if (e.keyCode == 13)
-                    $scope.submit(more);
-                if (e.keyCode == 27) {
-                    if ($scope.dismiss)
-                        $scope.dismiss();
-                    $('#' + modal).modal('hide')
-                }
-            })
-        }).on("hidden.bs.modal", function () {
-            $(document).off("keyup");
-        });
-    };
-
-    CKEDITOR.config.width = '55vw';
-    CKEDITOR.config.height = 'calc(100vh - 300px)';
-
-    $('#create-category, #create-tag, #create-author')
-            .find('.modal-content').draggable()
-            .find('.modal-header').css('cursor', 'pointer');
-
-
-    $('#birth').datepicker({
-        dateFormat: "dd/mm/yy",
-        minDate: new Date('1950'),
-        maxDate: new Date('2020')
-    }).datepicker($.datepicker.regional["vi"]);
-
-</script>
-
 </body>
 </html>

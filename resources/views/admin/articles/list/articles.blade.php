@@ -72,14 +72,14 @@
                 <td ng-controller="articleAuthorController">
                     <div class="tag-border" ng-repeat="author in authors">
                         <a href="#">%%author.name%%</a><br>
-                        <button class="close" data-toggle="modal" data-target="#delete-article-author">x
+                        <button class="close" data-toggle="modal" data-target="#delete-article-author" ng-click="delete(author)">x
                         </button>
                     </div>
                 </td>
                 <td ng-controller="articleTagController">
                     <div class="tag-border" ng-repeat="tag in tags">
                         <a href="#">%%tag.name%%</a>
-                        <button class="close" data-toggle="modal" data-target="#delete-article-tag">x
+                        <button class="close" data-toggle="modal" data-target="#delete-article-tag" ng-click="delete(tag)">x
                         </button>
                     </div>
                 </td>
@@ -111,6 +111,6 @@
 @section('dialogs')
     @include("admin.articles.list.components.edit")
     @include("admin.articles.list.components.delete.article")
-    @include("admin.articles.list.components.delete.authors")
-    @include("admin.articles.list.components.delete.tags")
+    @include("admin.articles.list.components.delete.author")
+    @include("admin.articles.list.components.delete.tag")
 @endsection

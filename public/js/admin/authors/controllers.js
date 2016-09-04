@@ -46,7 +46,6 @@ app.controller('editAuthorController', function ($scope, $http, $author) {
             newTel: $scope.author.newTel
         })
     };
-    modalEvent($scope, 'edit-author')
 });
 
 app.controller('deleteAuthorController', function ($scope, $http, $authors, $author, $normalUsers) {

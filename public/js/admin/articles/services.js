@@ -120,15 +120,40 @@ app.service('$article', function () {
                 console.log(response);
                 $scope.errors = response.data;
             })
-        }
-        ,
-        remove: function ($scope, $http, $articles) {
-            $http.post(url.article.remove, {
-                id: $article.id
-            }).then(function (response) {
-                $articles.remove(response.data.article.id);
-                $('.modal.in').modal('hide');
-            })
+        },
+        remove: {
+            article: function ($scope, $http, $articles) {
+                $http.post(url.article.remove.article, {
+                    id: $article.id
+                }).then(function (response) {
+                    $articles.remove(response.data.article.id);
+                    $('.modal.in').modal('hide');
+                })
+            },
+            tag: function ($scope, $http, $tag) {
+                $http.post(url.article.remove.tag, {
+                    article_id: $article.id,
+                    tag_id: $tag.get().id
+                }).then(function (response) {
+                    $article = response.data.article;
+                    $scope.article.tags_id = $article.tags_id;
+                    $('.modal.in').modal('hide');
+                    $article = null;
+                    $tag.set(null);
+                })
+            },
+            author: function ($scope, $http, $author) {
+                $http.post(url.article.remove.author, {
+                    article_id: $article.id,
+                    author_id: $author.get().id
+                }).then(function (response) {
+                    $article = response.data.article;
+                    $scope.article.authors_id = $article.authors_id;
+                    $('.modal.in').modal('hide');
+                    $article = null;
+                    $author.set(null);
+                })
+            }
         }
     }
 })

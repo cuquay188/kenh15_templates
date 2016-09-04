@@ -1,10 +1,9 @@
 <div class="modal fade" role="dialog" id="delete-article-tag"
      style="top: 150px">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content" ng-controller="deleteArticleTagController">
             <div class="modal-header">
-                <h5 style="font-weight: bold">Remove tag: "<span
-                            style="font-style: italic">Hot</span>"</h5>
+                <h5 style="font-weight: bold">Remove tag: %%tag.name%%</h5>
             </div>
             <div class="modal-body">
                 <p>Do you want to remove this tag?</p>
@@ -16,7 +15,8 @@
                                 data-dismiss="modal">
                             Cancel
                         </button>
-                        <button class="btn btn-primary">
+                        <button class="btn btn-primary"
+                                ng-click="submit()">
                             Confirm
                         </button>
                     </div>

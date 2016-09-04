@@ -128,25 +128,27 @@ class ArticleController extends Controller
         ]);
     }
 
-    public function postDeleteTagArticle(Request $request)
+    public function postRemoveTag(Request $request)
     {
         $tag_id = $request->tag_id;
         $article_id = $request->article_id;
         $tag = Tag::find($tag_id);
         DB::table('tag_article')->where('article_id', $article_id)->where('tag_id', $tag_id)->delete();
         return response()->json([
-            'message' => 'Delete ' . $tag->name . ' successful.'
+            'message' => 'Delete ' . $tag->name . ' successful.',
+            'article'=>$this->getArticleJSON($article_id)
         ]);
     }
 
-    public function postDeleteAuthorArticle(Request $request)
+    public function postRemoveAuthor(Request $request)
     {
         $author_id = $request->author_id;
         $article_id = $request->article_id;
         $author = Author::find($author_id);
         DB::table('author_article')->where('article_id', $article_id)->where('author_id', $author_id)->delete();
         return response()->json([
-            'message' => 'Delete' . $author->user->name . ' successful.'
+            'message' => 'Delete' . $author->user->name . ' successful.',
+            'article'=>$this->getArticleJSON($article_id)
         ]);
     }
 

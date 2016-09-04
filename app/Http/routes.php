@@ -125,10 +125,21 @@ Route::group(['prefix' => 'api'], function () {
             'uses' => 'ArticleController@postUpdateArticle',
             'as' => 'admin.api.article.update'
         ]);
-        Route::post('/delete', [
-            'uses' => 'ArticleController@postRemoveArticle',
-            'as' => 'admin.api.article.remove'
-        ]);
+        Route::group(['prefix'=>'delete'],function (){
+
+            Route::post('/article', [
+                'uses' => 'ArticleController@postRemoveArticle',
+                'as' => 'admin.api.article.remove.article'
+            ]);
+            Route::post('/tag', [
+                'uses' => 'ArticleController@postRemoveTag',
+                'as' => 'admin.api.article.remove.tag'
+            ]);
+            Route::post('/author', [
+                'uses' => 'ArticleController@postRemoveAuthor',
+                'as' => 'admin.api.article.remove.author'
+            ]);
+        });
         Route::post('/create', [
             'uses' => 'ArticleController@postCreateArticle',
             'as' => 'admin.api.article.create'
