@@ -331,6 +331,8 @@ body {
   overflow-x: hidden;
   white-space: nowrap;
   width: 95%; }
+.modal-header .close {
+  margin-top: -20px; }
 
 .modal-footer {
   padding: 8px 12px; }
@@ -343,6 +345,11 @@ body {
     border-radius: 0;
     height: 100vh;
     border: none; }
+    .wide .modal-content .container {
+      width: 700px; }
+      .wide .modal-content .container h2 {
+        font-size: 20px;
+        font-weight: 700; }
   .wide .modal-header {
     position: relative;
     box-shadow: 0 0 5px #bdc3c7; }
@@ -350,7 +357,8 @@ body {
       position: absolute;
       right: 10px;
       top: 15px;
-      font-size: 24px; }
+      font-size: 24px;
+      margin-top: 0; }
     .wide .modal-header h5 {
       font-size: 24px;
       margin: 0 20px; }

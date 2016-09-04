@@ -436,6 +436,9 @@ body {
     white-space: nowrap;
     width: 95%;
   }
+  .close {
+    margin-top: -20px;
+  }
 }
 
 .modal-footer {
@@ -451,6 +454,13 @@ body {
     border-radius: 0;
     height: 100vh;
     border: none;
+    .container{
+      width:700px;
+      h2{
+        font-size:20px;
+        font-weight:700;
+      }
+    }
   }
   .modal-header {
     position: relative;
@@ -460,6 +470,7 @@ body {
       right: 10px;
       top: 15px;
       font-size: 24px;
+      margin-top:0;
     }
     h5 {
       font-size: 24px;
@@ -519,9 +530,11 @@ body {
     text-align: center;
   }
 }
-td{
+
+td {
   position: relative;
 }
+
 .tooltip-toggle {
   cursor: pointer;
   position: relative;
@@ -551,7 +564,7 @@ td{
         border-color: #333 transparent;
         border-width: 0 6px 6px 6px;
         content: "";
-        top:-5px;
+        top: -5px;
         left: 25%;
         position: absolute;
         z-index: 999;

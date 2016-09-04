@@ -20,13 +20,15 @@
                     <div class="col col-sm-5">
                         <div class="form-group" style="width: 100%">
                             <textarea class="form-control" id="title"
-                                      ng-model="title" placeholder="Article title...">
+                                      ng-model="title" placeholder="Article title..."
+                                      ng-class="{'error' : errors.title}">
                             </textarea>
                             <span class="errors">%%errors.title[0]%%</span>
                         </div>
                         <div class="form-group">
                             <label>Tags</label>
-                            <div id="edit_tags" class="checkbox-style row">
+                            <div id="edit_tags" class="checkbox-style row"
+                                 ng-class="{'error' : errors.tags}">
                                 <label for="edit-tag-%%tag.id%%"
                                        class="col col-sm-4"
                                        ng-repeat="(i,tag) in tags">
@@ -40,7 +42,8 @@
                             <label for="edit-category">Category</label>
                             <select id="edit-category" class="form-control"
                                     ng-model="category"
-                                    ng-options="category.id as category.name for category in categories">
+                                    ng-options="category.id as category.name for category in categories"
+                                    ng-class="{'error' : errors.category}">
                             </select>
                             <span class="errors">%%errors.category[0]%%</span>
                         </div>
@@ -49,7 +52,8 @@
                             <div id="edit-authors" class="checkbox-style row">
                                 <label for="edit-author-%%author.id%%"
                                        class="col col-sm-6"
-                                       ng-repeat="(i,author) in authors">
+                                       ng-repeat="(i,author) in authors"
+                                       ng-class="{'error' : errors.authors}">
                                     <input type="checkbox" id="edit-author-%%author.id%%" ng-model="authors[i].checked">
                                     %%author.name%%
                                 </label>

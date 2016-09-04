@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
         $user->email = 'pvtri96@gmail.com';
         $user->username = 'admin';
         $user->password = bcrypt('admin');
-        $user->tel = '01223200426';
+        $user->tel = '01659331448';
         $user->address = '24 Tăng Bạt Hổ, Đà Nẵng';
         $user->city = 'Đà Nẵng';
         $user->birth = date_create('1996/09/02');
