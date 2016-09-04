@@ -4,7 +4,7 @@
             <div class="modal-content" ng-controller="createTagController">
                 <div class="modal-header">
                     <h5 style="font-weight: bold">Create new tag</h5>
-                    <div class="close" data-dismiss="modal">
+                    <div class="close" data-dismiss="modal" style="margin-top: -20px;">
                         <div class="glyphicon glyphicon-remove"></div>
                     </div>
                 </div>

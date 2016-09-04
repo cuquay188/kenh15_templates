@@ -6,6 +6,9 @@
                     <h5>
                         Edit Category: %%category.name%%
                     </h5>
+                    <div class="close" data-dismiss="modal">
+                        <div class="glyphicon glyphicon-remove"></div>
+                    </div>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">

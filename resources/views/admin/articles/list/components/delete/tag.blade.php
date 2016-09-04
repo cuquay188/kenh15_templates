@@ -4,6 +4,9 @@
         <div class="modal-content" ng-controller="deleteArticleTagController">
             <div class="modal-header">
                 <h5 style="font-weight: bold">Remove tag: %%tag.name%%</h5>
+                <div class="close" data-dismiss="modal">
+                    <div class="glyphicon glyphicon-remove"></div>
+                </div>
             </div>
             <div class="modal-body">
                 <p>Do you want to remove this tag?</p>

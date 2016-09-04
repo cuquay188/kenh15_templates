@@ -333,8 +333,6 @@ body {
   overflow-x: hidden;
   white-space: nowrap;
   width: 95%; }
-.modal-header .close {
-  margin-top: -20px; }
 
 .modal-footer {
   padding: 8px 12px; }
@@ -359,8 +357,7 @@ body {
       position: absolute;
       right: 10px;
       top: 15px;
-      font-size: 24px;
-      margin-top: 0; }
+      font-size: 24px; }
     .wide .modal-header h5 {
       font-size: 24px;
       margin: 0 20px; }

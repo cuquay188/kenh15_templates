@@ -3,7 +3,12 @@
         <div class="modal-dialog">
             <div class="modal-content" style="top: 150px" ng-controller="deleteTagController">
                 <div class="modal-header">
-                    <h5 style="font-weight: bold">Delete Tag: %%tag.name%%</h5>
+                    <h5 style="font-weight: bold">
+                        Delete Tag: %%tag.name%%
+                    </h5>
+                    <div class="close" data-dismiss="modal">
+                        <div class="glyphicon glyphicon-remove"></div>
+                    </div>
                 </div>
                 <div class="modal-body">
                     <strong>Do you want to delete this tag?</strong>

@@ -6,6 +6,9 @@
                     Delete Article:
                     %%article.title | shorten:40%%
                 </h5>
+                <div class="close" data-dismiss="modal">
+                    <div class="glyphicon glyphicon-remove"></div>
+                </div>
             </div>
             <div class="modal-body">
                 <strong>Do you want to delete this article?</strong>

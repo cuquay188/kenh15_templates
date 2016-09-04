@@ -1,4 +1,4 @@
-var app = angular.module("mainApp", ['angularUtils.directives.dirPagination', 'ngSanitize','ngRoute'], function ($interpolateProvider) {
+var app = angular.module("mainApp", ['angularUtils.directives.dirPagination', 'ngSanitize', 'ngRoute'], function ($interpolateProvider) {
     $interpolateProvider.startSymbol('%%');
     $interpolateProvider.endSymbol('%%');
 });
@@ -13,12 +13,11 @@ app.controller('mainController', function ($scope, $http, $articles, $authors, $
 
     $scope.itemsPerPage = {
         items: [
-            5,10,20,40
+            7, 14, 30, 60
         ],
-        item: 5
+        item: $('.body').height() > 900 ? 14 : 7
     };
 });
-
 var numberOfItem = function () {
     var items,
         $body = $('.body .container'),
@@ -91,7 +90,7 @@ app.filter('date', function () {
         if (str && str.length > i)
             for (i - 1; i >= 0; i--)
                 if (str[i] == ' ')
-                    return str.substring(0, i)+'...';
+                    return str.substring(0, i) + '...';
         return str;
     }
 });
