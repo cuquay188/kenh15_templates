@@ -188,7 +188,7 @@ Route::get('/', [
     'uses' => 'HomePageController@getHomePage',
     'as' => 'homepage'
 ]);
-Route::get('/article/{id}', [
+Route::get('/article/{url}', [
     'uses' => 'HomepageController@getArticle'
 ]);
 Route::get('/category/{id}', [

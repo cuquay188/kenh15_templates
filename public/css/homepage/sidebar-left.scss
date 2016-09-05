@@ -1,11 +1,9 @@
 .sidebar-left {
   background-color: #f8fbfb;
-  border-radius: 0 10px 10px 0;
   padding: 10px 20px;
   margin-bottom: 20px;
-  margin-top:10px;
+  margin-top: 10px;
   z-index: 99;
-  box-shadow: 6px 6px 20px -10px #666666;
   a {
     text-decoration: none;
     font-weight: bold;
@@ -22,6 +20,7 @@
 .head-top, .body-top {
   padding-bottom: 5px;
   margin-bottom: 10px;
+  overflow-y: auto;
   ul li {
     margin-bottom: 10px;
   }

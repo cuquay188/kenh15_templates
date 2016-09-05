@@ -61,14 +61,15 @@ header {
   overflow-y: auto;
   height: calc(100vh - 50px);
   position: relative;
-  background-color: #f4f7f7; }
+  /*background-color: #f4f7f7;*/ }
   .body .main-body {
-    padding-top: 10px;
-    padding-bottom: 20px;
-    padding-left: 0;
-    padding-right: 0;
-    box-shadow: -2px 0 20px 0 #d2d2d2;
-    background-color: #fdfdfd; }
+    /* padding-top: 10px;
+     padding-bottom: 20px;
+     padding-left: 0;
+     padding-right: 0;
+     box-shadow: -2px 0 20px 0 #d2d2d2;
+     background-color: #fdfdfd;*/
+    margin-top: 10px; }
 
 /*Scroll bar*/
 ::-webkit-scrollbar-track {
@@ -172,5 +173,9 @@ header {
 
 .glyphicon {
   font-size: 150%; }
+
+.advertisement a img {
+  display: block;
+  margin: auto; }
 
 /*# sourceMappingURL=app.css.map */

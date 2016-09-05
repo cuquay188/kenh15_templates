@@ -67,9 +67,9 @@ class HomePageController extends Controller
         ]);
     }
 
-    public function getArticle($id)
+    public function getArticle($url)
     {
-        $article = Article::find($id);
+        $article = Article::where('url',$url)->first();
         $related_articles = Article::where('category_id', $article->category->id)->orderBy('id', 'desc')->take(6)->get();
         return view('homepage.articles.single_article', [
             'related_articles' => $related_articles,
