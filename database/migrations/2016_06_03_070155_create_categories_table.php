@@ -16,6 +16,7 @@ class CreateCategoriesTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->char('name',40);
+            $table->char('url',40);
             $table->text('note');
         });
     }

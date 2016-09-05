@@ -12,10 +12,6 @@
 */
 
 Route::group(['prefix' => 'admin'], function () {
-    Route::get('/', [
-        'uses' => 'UserController@getLogin',
-        'as' => 'login'
-    ]);
     //User
     Route::group(['prefix' => 'auth'], function () {
         Route::get('/login', [
@@ -58,7 +54,7 @@ Route::group(['prefix' => 'admin'], function () {
         ]);
     });
 
-    Route::get('/index',[
+    Route::get('/',[
         'uses' => 'DashboardController@getIndex',
         'as' => 'admin.index'
     ]);

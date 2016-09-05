@@ -36,6 +36,9 @@ form {
     font-size: 90%;
     font-style: italic; }
 
+.errors {
+  margin: 5px 0; }
+
 .form-group .btn, .form-group .form-control {
   font-size: 18px;
   height: auto; }

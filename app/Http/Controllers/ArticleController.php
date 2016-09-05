@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\CategoryAdvance;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -53,8 +54,8 @@ class ArticleController extends Controller
 
         $article = new Article();
         $article->title = $title;
-        $article->url = $this->convert_title_to_url($title);
-        $article->img_url = $img_url ? $img_url : $this->make_article_img_url($content);
+        $article->url = $this->convert_to_url($title);
+        $article->img_url = $img_url ? $img_url : $this->get_article_img_url($content);
         $article->content = $content;
         $article->category_id = $category_id;
         $article->save();
@@ -96,8 +97,8 @@ class ArticleController extends Controller
         $title = $request->title;
         $content = $request->content;
         $category_id = $request->category;
-        $url = $this->convert_title_to_url($title);
-        $img_url = $request->img_url ? $request->img_url : $this->make_article_img_url($content);
+        $url = $this->convert_to_url($title);
+        $img_url = $request->img_url ? $request->img_url : $this->get_article_img_url($content);
 
         Article::where('id', $id)->update([
             'title' => $title,
@@ -221,34 +222,47 @@ class ArticleController extends Controller
 
     public function refreshDatabase()
     {
-        foreach (Article::all() as $article) {
-            Article::where('id', $article->id)->update(['url' => $this->convert_title_to_url($article->title)]);
-            Article::where('id', $article->id)->update(['img_url' => $this->make_article_img_url($article->content)]);
+        /*foreach (Article::all() as $article) {
+            Article::where('id', $article->id)->update(['url' => $this->convert_to_url($article->title)]);
+            Article::where('id', $article->id)->update(['img_url' => $this->get_article_img_url($article->content)]);
+            $article->authors()->attach(2);
+            $article->tags()->attach(rand(1,23));
         }
-        return redirect()->route('article');
+        foreach (Tag::all() as $tag)
+            Tag::where('id',$tag->id)->update([
+                'url' => $this->convert_to_url($tag->name),
+                'note' => $tag->name
+            ]);
+        foreach (Category::all() as $category) {
+            Category::where('id', $category->id)->update([
+                'url' => $this->convert_to_url($category->name),
+                'note' => $category->name
+            ]);
+            $advance = new CategoryAdvance();
+            $advance->category_id = $category->id;
+            $advance->save();
+        }*/
+        /*DB::table('tag_article')->delete();
+        DB::table('author_article')->delete();*/
+
+        return redirect()->route('admin.index');
     }
 
-    static function convert_title_to_url($str)
+    public static function convert_to_url($str)
     {
-        $str = preg_replace("/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/", 'a', $str);
-        $str = preg_replace("/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/", 'e', $str);
-        $str = preg_replace("/(ì|í|ị|ỉ|ĩ)/", 'i', $str);
-        $str = preg_replace("/(ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ)/", 'o', $str);
-        $str = preg_replace("/(ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ)/", 'u', $str);
-        $str = preg_replace("/(ỳ|ý|ỵ|ỷ|ỹ)/", 'y', $str);
-        $str = preg_replace("/(đ)/", 'd', $str);
-        $str = preg_replace("/(À|Á|Ạ|Ả|Ã|Â|Ầ|Ấ|Ậ|Ẩ|Ẫ|Ă|Ằ|Ắ|Ặ|Ẳ|Ẵ)/", 'A', $str);
-        $str = preg_replace("/(È|É|Ẹ|Ẻ|Ẽ|Ê|Ề|Ế|Ệ|Ể|Ễ)/", 'E', $str);
-        $str = preg_replace("/(Ì|Í|Ị|Ỉ|Ĩ)/", 'I', $str);
-        $str = preg_replace("/(Ò|Ó|Ọ|Ỏ|Õ|Ô|Ồ|Ố|Ộ|Ổ|Ỗ|Ơ|Ờ|Ớ|Ợ|Ở|Ỡ)/", 'O', $str);
-        $str = preg_replace("/(Ù|Ú|Ụ|Ủ|Ũ|Ư|Ừ|Ứ|Ự|Ử|Ữ)/", 'U', $str);
-        $str = preg_replace("/(Ỳ|Ý|Ỵ|Ỷ|Ỹ)/", 'Y', $str);
-        $str = preg_replace("/(Đ)/", 'D', $str);
-        $str = str_replace(" ", "-", str_replace("?", "", str_replace(",", "", str_replace(".", "", str_replace(":", "", $str)))));
+        $str = strtolower($str);
+        $str = preg_replace("/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ|À|Á|Ạ|Ả|Ã|Â|Ầ|Ấ|Ậ|Ẩ|Ẫ|Ă|Ằ|Ắ|Ặ|Ẳ|Ẵ)/", 'a', $str);
+        $str = preg_replace("/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ|È|É|Ẹ|Ẻ|Ẽ|Ê|Ề|Ế|Ệ|Ể|Ễ)/", 'e', $str);
+        $str = preg_replace("/(ì|í|ị|ỉ|ĩ|Ì|Í|Ị|Ỉ|Ĩ)/", 'i', $str);
+        $str = preg_replace("/(ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ|Ò|Ó|Ọ|Ỏ|Õ|Ô|Ồ|Ố|Ộ|Ổ|Ỗ|Ơ|Ờ|Ớ|Ợ|Ở|Ỡ)/", 'o', $str);
+        $str = preg_replace("/(ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ|Ù|Ú|Ụ|Ủ|Ũ|Ư|Ừ|Ứ|Ự|Ử|Ữ)/", 'u', $str);
+        $str = preg_replace("/(ỳ|ý|ỵ|ỷ|ỹ|Ỳ|Ý|Ỵ|Ỷ|Ỹ)/", 'y', $str);
+        $str = preg_replace("/(đ|Đ)/", 'd', $str);
+        $str = str_replace(" ", "-", str_replace("?", "", str_replace(",", "", str_replace(".", "", str_replace(":", "", str_replace("\"","",$str))))));
         return $str;
     }
 
-    static function make_article_img_url($str)
+    static function get_article_img_url($str)
     {
         $pos = strpos($str, "src=");
         $end = strpos($str, "\"", $pos + 5) - $pos - 5;

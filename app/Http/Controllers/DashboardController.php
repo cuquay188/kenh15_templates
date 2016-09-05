@@ -12,7 +12,7 @@ class DashboardController extends Controller
     public function getIndex()
     {
         if (!Auth::check())
-            return redirect()->route('login')->with(['fail' => 'Required login.']);
+            return redirect()->route('admin.auth.login')->with(['fail' => 'Required login.']);
         return view('admin.index');
     }
 

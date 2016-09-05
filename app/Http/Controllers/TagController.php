@@ -55,6 +55,7 @@ class TagController extends Controller
         $name = $request->name;
         $tag = new Tag();
         $tag->name = $name;
+        $tag->url = ArticleController::convert_to_url($name);
         $tag->save();
         return response()->json([
             'message' => 'Create Successful.',
@@ -70,8 +71,10 @@ class TagController extends Controller
 
         $id = $request->id;
         $name = $request->name;
+        $url = ArticleController::convert_to_url($name);
         Tag::where('id', $id)->update([
-            'name' => $name
+            'name' => $name,
+            'url' => $url
         ]);
         return response()->json([
             'message' => 'Update Successful.',

@@ -76,6 +76,7 @@ class CategoryController extends Controller
 
         $category = new Category();
         $category->name = $name;
+        $category->url = ArticleController::convert_to_url($name);
         $category->save();
 
         $category = Category::where('name', $name)->first();
@@ -97,8 +98,10 @@ class CategoryController extends Controller
 
         $id = $request->id;
         $name = $request->name;
+        $url = ArticleController::convert_to_url($name);
         Category::where('id', $id)->update([
-            'name' => $name
+            'name' => $name,
+            'url' => $url
         ]);
 
         return response()->json([
