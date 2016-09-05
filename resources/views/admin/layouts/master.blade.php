@@ -92,6 +92,11 @@
                 profile: {
                     view: '{{route('admin.user.profile')}}'
                 }
+            },
+            plugin:{
+                dirPagination:{
+                    controllerHtmlPath : '{{asset('/angular/angular-utils-pagination/dirPagination.tpl.html')}}'
+                }
             }
         };
     </script>

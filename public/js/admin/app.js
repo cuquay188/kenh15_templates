@@ -3,6 +3,9 @@ var app = angular.module("mainApp", ['angularUtils.directives.dirPagination', 'n
     $interpolateProvider.endSymbol('%%');
 });
 
+app.config(function (paginationTemplateProvider) {
+    paginationTemplateProvider.setPath(url.plugin.dirPagination.controllerHtmlPath);
+});
 
 app.controller('mainController', function ($scope, $http, $articles, $authors, $tags, $categories) {
 
