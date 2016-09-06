@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ArticleView;
 use App\CategoryAdvance;
 use Illuminate\Http\Request;
 
@@ -72,6 +73,11 @@ class ArticleController extends Controller
                 $article->authors()->attach($author);
             }
         }
+
+        $articleView = new ArticleView();
+        $articleView->article_id = $article->id;
+        $articleView->save();
+
         return response()->json([
             'message' => 'Create successful.',
             'article' => $this->getArticleJSON($article->id)
@@ -222,13 +228,18 @@ class ArticleController extends Controller
 
     public function refreshDatabase()
     {
-        /*foreach (Article::all() as $article) {
-            Article::where('id', $article->id)->update(['url' => $this->convert_to_url($article->title)]);
+        foreach (Article::all() as $article) {
+            /*Article::where('id', $article->id)->update(['url' => $this->convert_to_url($article->title)]);
             Article::where('id', $article->id)->update(['img_url' => $this->get_article_img_url($article->content)]);
             $article->authors()->attach(2);
             $article->tags()->attach(rand(1,23));
+
+            //Feed new ArticleView
+            $articleView = new ArticleView();
+            $articleView->article_id = $article->id;
+            $articleView->save();*/
         }
-        foreach (Tag::all() as $tag)
+        /*foreach (Tag::all() as $tag)
             Tag::where('id',$tag->id)->update([
                 'url' => $this->convert_to_url($tag->name),
                 'note' => $tag->name
