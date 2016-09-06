@@ -228,8 +228,8 @@ class ArticleController extends Controller
 
     public function refreshDatabase()
     {
-        foreach (Article::all() as $article) {
-            /*Article::where('id', $article->id)->update(['url' => $this->convert_to_url($article->title)]);
+        /*foreach (Article::all() as $article) {
+            Article::where('id', $article->id)->update(['url' => $this->convert_to_url($article->title)]);
             Article::where('id', $article->id)->update(['img_url' => $this->get_article_img_url($article->content)]);
             $article->authors()->attach(2);
             $article->tags()->attach(rand(1,23));
@@ -237,22 +237,26 @@ class ArticleController extends Controller
             //Feed new ArticleView
             $articleView = new ArticleView();
             $articleView->article_id = $article->id;
-            $articleView->save();*/
-        }
+            $articleView->save();
+        }*/
         /*foreach (Tag::all() as $tag)
             Tag::where('id',$tag->id)->update([
                 'url' => $this->convert_to_url($tag->name),
                 'note' => $tag->name
             ]);
+        */
         foreach (Category::all() as $category) {
-            Category::where('id', $category->id)->update([
+            /*Category::where('id', $category->id)->update([
                 'url' => $this->convert_to_url($category->name),
                 'note' => $category->name
-            ]);
+            ]);*/
+            DB::table('category_advances')->where('category_id',$category->id)->delete();
+        }
+        foreach (Category::all() as $category){
             $advance = new CategoryAdvance();
             $advance->category_id = $category->id;
             $advance->save();
-        }*/
+        }
         /*DB::table('tag_article')->delete();
         DB::table('author_article')->delete();*/
 
