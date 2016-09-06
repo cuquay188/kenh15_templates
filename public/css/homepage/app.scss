@@ -61,7 +61,6 @@ header {
   background-color: #1abc9c;
   color: white;
   width: 100%;
-  margin-bottom: 5px;
   box-shadow: 0 0 10px #95a5a6;
   .title {
     a {
@@ -76,8 +75,18 @@ header {
 
 .body {
   overflow-y: auto;
-  height: calc(100vh - 55px);
+  height: calc(100vh - 50px);
   position: relative;
+  /*background-color: #f4f7f7;*/
+  .main-body {
+   /* padding-top: 10px;
+    padding-bottom: 20px;
+    padding-left: 0;
+    padding-right: 0;
+    box-shadow: -2px 0 20px 0 #d2d2d2;
+    background-color: #fdfdfd;*/
+    margin-top: 10px;
+  }
 }
 
 /*Scroll bar*/
@@ -214,4 +223,11 @@ header {
 
 .glyphicon {
   font-size: 150%;
+}
+
+.advertisement {
+  a img {
+    display: block;
+    margin: auto;
+  }
 }

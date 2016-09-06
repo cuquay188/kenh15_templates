@@ -9,9 +9,7 @@
             </ul>
         </div>
         <div class="info col-lg-4">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem culpa laboriosam molestias natus.
-                Accusamus,
-                aliquid atque dolor dolore esse fuga, odio quae quas quis, soluta suscipit ut vel velit? Beatae.</p>
+            <p>Copyright <i class="fa fa-copyright" aria-hidden="true"></i> by Phạm Văn Trí, Lê Thị Thùy Dung</p>
         </div>
     </div>
 </footer>

@@ -1,7 +1,3 @@
-.new-articles {
-  padding-top: 10px;
-}
-
 .newest-article {
   border-bottom: 1px solid #1abc9c;
   .picture {
@@ -66,7 +62,7 @@
 }
 
 .sidebar-right {
-  padding: 10px 20px;
+  padding: 0 20px 10px 20px;
   .sidebar-header {
     background-color: #f8fbfb;
     padding-top: 5px;
@@ -120,7 +116,7 @@
   .head {
     div {
       display: inline-block;
-      border-radius: 0 0 5px 0;
+      border-radius: 0 0 15px 0;
       background-color: #1abc9c;
       padding: 8px 20px;
       margin-bottom: 15px;

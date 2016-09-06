@@ -2,14 +2,14 @@
   background-color: #f8fbfb;
   padding: 10px 20px;
   margin-bottom: 20px;
+  margin-top: 10px;
   z-index: 99;
   a {
     text-decoration: none;
     font-weight: bold;
-  }
-
-  a:hover {
-    text-decoration: underline;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 
@@ -20,6 +20,7 @@
 .head-top, .body-top {
   padding-bottom: 5px;
   margin-bottom: 10px;
+  overflow-y: auto;
   ul li {
     margin-bottom: 10px;
   }

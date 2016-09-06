@@ -2,13 +2,13 @@
     @foreach($article_first as $article)
         <div class="picture" style="background-image: url('{{$article->img_url}}')">
             <div class="backdrop">
-                <a href="{{route('homepage').'/article/'.$article->id}}">
+                <a href="{{route('homepage').'/article/'.$article->url}}">
                     <img src="{{$article->img_url}}" style="max-height: 200px;max-width: 300px">
                 </a>
             </div>
         </div>
         <div class="title">
-            <a href="{{route('homepage').'/article/'.$article->id}}">{{$article->title}}</a>
+            <a href="{{route('homepage').'/article/'.$article->url}}">{{$article->title}}</a>
         </div>
         <div class="content">
             <p>
@@ -24,13 +24,13 @@
         <div class="article">
             <div class="picture" style="background-image: url('{{$article->img_url}}')">
                 <div class="backdrop">
-                    <a href="{{route('homepage').'/article/'.$article->id}}">
+                    <a href="{{route('homepage').'/article/'.$article->url}}">
                         <img src="{{$article->img_url}}">
                     </a>
                 </div>
             </div>
             <div class="title">
-                <a href="{{route('homepage').'/article/'.$article->id}}">{{$article->title}}</a>
+                <a href="{{route('homepage').'/article/'.$article->url}}">{{$article->title}}</a>
             </div>
         </div>
     @endforeach

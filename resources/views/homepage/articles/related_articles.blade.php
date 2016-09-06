@@ -2,7 +2,7 @@
     <div class="head-top">
         <a href="#">Related Articles</a>
     </div>
-    <div class="body-top" data-spy="affix" data-offset-top="10" data-offset-bottom="200">
+    <div class="body-top">
         <ul>
             <?php
             $related_filter = array();
@@ -18,7 +18,7 @@
             ?>
             @foreach($related_filter as $related_article)
                 <li>
-                    <a href="{{route('homepage').'/article/'.$related_article->id}}">{{$related_article->shorten_title(120)}}</a>
+                    <a href="{{route('homepage').'/article/'.$related_article->url}}">{{$related_article->shorten_title(120)}}</a>
                 </li>
             @endforeach
         </ul>
@@ -27,44 +27,3 @@
         <a href="#">View all</a>
     </div>
 </div>
-<script>
-    $(function () {
-        var offsetPixels = 0;
-        var offsetStopPixels = $('.body .container').height() - $('footer').height() - 500;
-        var bodySidebarHeight = $('.body-top').height();
-        $('.body').scroll(function () {
-            if ($('.body').scrollTop() > offsetPixels) {
-                $('.sidebar-left').css({
-                    'position': 'fixed',
-                    'top': '55px',
-                    'width': '285px'
-                });
-                $('.main-content').css({
-                    'position': 'relative',
-                    'left': '285px'
-                });
-                if ($('.body').scrollTop() > offsetStopPixels) {
-                    $('.body-top').css({
-                        'height': bodySidebarHeight / 2,
-                        'overflow-y': 'auto'
-                    });
-                    $('.main-content').css({
-                        'position': 'relative',
-                        'left': '285px'
-                    });
-                } else {
-                    $('.body-top').css({
-                        'height': bodySidebarHeight + 60
-                    });
-                }
-            } else {
-                $('.sidebar-left').css({
-                    'position': 'static'
-                });
-                $('.main-content').css({
-                    'position': 'static'
-                })
-            }
-        })
-    })
-</script>
