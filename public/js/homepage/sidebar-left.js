@@ -21,4 +21,4 @@ $('.body').scroll(function () {
             'height': bodyTopHeight + 5
         });
     }
-})
+});
