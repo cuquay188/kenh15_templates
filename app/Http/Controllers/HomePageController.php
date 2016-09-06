@@ -82,7 +82,7 @@ class HomePageController extends Controller
         $category = Category::find($id);
         $article_first = Article::where('category_id', $id)->orderBy('id', 'desc')->first();
         $hot_articles = Article::where('category_id', $id)->orderBy('id', 'desc')->take(6)->skip(1)->get();
-        $related_articles = Article::where('category_id', $id)->orderBy('id', 'desc')->take(10)->skip(7)->get();
+        $related_articles = Article::where('category_id', $id)->orderBy('id', 'desc')->paginate(5);
         return view('homepage.categories.single_category', [
             'related_articles' => $related_articles,
             'hot_articles' => $hot_articles,

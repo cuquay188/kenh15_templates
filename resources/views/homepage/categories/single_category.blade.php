@@ -13,10 +13,12 @@
                 <div class="top-articles">
                     <div class="newest-article">
                         @if($article_first)
-                            <div class="picture" style="background-image: url('{{$article_first->img_url}}');background-size: auto 200px">
+                            <div class="picture"
+                                 style="background-image: url('{{$article_first->img_url}}');background-size: auto 200px">
                                 <div class="backdrop">
                                     <a href="{{route('homepage').'/article/'.$article_first->id}}">
-                                        <img src="{{$article_first->img_url}}" alt="" style="max-height: 200px;max-width: 300px">
+                                        <img src="{{$article_first->img_url}}" alt=""
+                                             style="max-height: 200px;max-width: 300px">
                                     </a>
                                 </div>
                             </div>
@@ -64,6 +66,7 @@
                             </div>
                         </div>
                     @endforeach
+                    <?php echo $related_articles->render(); ?>
                 @endif
             </div>
         </div>
