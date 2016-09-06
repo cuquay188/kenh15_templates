@@ -245,18 +245,18 @@ class ArticleController extends Controller
                 'note' => $tag->name
             ]);
         */
-        foreach (Category::all() as $category) {
-            /*Category::where('id', $category->id)->update([
+        /*foreach (Category::all() as $category) {
+            Category::where('id', $category->id)->update([
                 'url' => $this->convert_to_url($category->name),
                 'note' => $category->name
-            ]);*/
+            ]);
             DB::table('category_advances')->where('category_id',$category->id)->delete();
         }
         foreach (Category::all() as $category){
             $advance = new CategoryAdvance();
             $advance->category_id = $category->id;
             $advance->save();
-        }
+        }*/
         /*DB::table('tag_article')->delete();
         DB::table('author_article')->delete();*/
 
