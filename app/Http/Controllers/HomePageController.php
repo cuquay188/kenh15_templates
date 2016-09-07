@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\ArticleView;
 use App\Category;
 use App\CategoryAdvance;
 use Illuminate\Http\Request;
@@ -15,7 +16,12 @@ class HomePageController extends Controller
     {
         /*Check match articles in: articles_top and articles_latest*/
         $articles = Article::orderBy('id', 'desc')->get();
-        $articles_top = Article::orderBy('id', 'desc')->take(5)->get();
+        $articles_topview = ArticleView::orderBy('views', 'desc')->take(5)->get();
+        $articles_top = array();
+        for ($i = 0; $i < count($articles_topview); $i++) {
+            $article_top = Article::where('id', $articles_topview[$i]->article_id)->first();
+            array_push($articles_top, $article_top);
+        }
 
         $mismatch_articles = array();
         $count = 0;
@@ -44,9 +50,6 @@ class HomePageController extends Controller
         }
         /*End check*/
 
-        /*$article_first = Article::orderBy('id', 'desc')->first();*/
-        /*$articles_latest = Article::orderBy('id', 'desc')->skip(1)->take(4)->get();*/
-
         $hot_categories = CategoryAdvance::where('is_hot', '1')->get();
 
         for ($i = 0; $i < count($hot_categories) - 1; $i++) {
@@ -69,11 +72,17 @@ class HomePageController extends Controller
 
     public function getArticle($url)
     {
-        $article = Article::where('url',$url)->first();
+        $article = Article::where('url', $url)->first();
+        $article_view = ArticleView::where('article_id', $article->id)->first();
+        $article_views = $article_view->views;
+        $views = ArticleView::where('article_id', $article->id)->update(['views' => $article_views + 1]);
+        $views_update = ArticleView::where('article_id', $article->id)->first();
+
         $related_articles = Article::where('category_id', $article->category->id)->orderBy('id', 'desc')->take(6)->get();
         return view('homepage.articles.single_article', [
             'related_articles' => $related_articles,
-            'article' => $article
+            'article' => $article,
+            'views_update' => $views_update
         ]);
     }
 
@@ -81,10 +90,28 @@ class HomePageController extends Controller
     {
         $category = Category::find($id);
         $article_first = Article::where('category_id', $id)->orderBy('id', 'desc')->first();
-        $hot_articles = Article::where('category_id', $id)->orderBy('id', 'desc')->take(6)->skip(1)->get();
+
+        $articles_topview = ArticleView::orderBy('views', 'desc')->take(10)->get();
+        $hot_articles = array();
+        for ($i = 0; $i < count($articles_topview); $i++) {
+            $valid_article = [
+                'id' => $articles_topview[$i]->article_id/*,
+                'category_id' => $id*/
+            ];
+            $article_top = Article::where($valid_article)->first();
+            array_push($hot_articles, $article_top);
+        }
+
         $related_articles = Article::where('category_id', $id)->orderBy('id', 'desc')->paginate(5);
+        $mismatch_articles = array();
+        for ($i = 0; $i < count($related_articles); $i++) {
+            if ($related_articles[$i]->id != $article_first->id) {
+                array_push($mismatch_articles, $related_articles[$i]);
+            }
+        }
         return view('homepage.categories.single_category', [
             'related_articles' => $related_articles,
+            'mismatch_articles' => $mismatch_articles,
             'hot_articles' => $hot_articles,
             'article_first' => $article_first,
             'category' => $category

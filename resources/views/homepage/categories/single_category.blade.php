@@ -16,14 +16,14 @@
                             <div class="picture"
                                  style="background-image: url('{{$article_first->img_url}}');background-size: auto 200px">
                                 <div class="backdrop">
-                                    <a href="{{route('homepage').'/article/'.$article_first->id}}">
+                                    <a href="{{route('homepage').'/article/'.$article_first->url}}">
                                         <img src="{{$article_first->img_url}}" alt=""
                                              style="max-height: 200px;max-width: 300px">
                                     </a>
                                 </div>
                             </div>
                             <div class="title">
-                                <a href="{{route('homepage').'/article/'.$article_first->id}}">{{$article_first->title}}</a>
+                                <a href="{{route('homepage').'/article/'.$article_first->url}}">{{$article_first->title}}</a>
                             </div>
                         @endif
                     </div>
@@ -44,8 +44,8 @@
                         @endif
                     </div>
                 </div>
-                @if(count($related_articles))
-                    @foreach($related_articles as $article)
+                @if(count($mismatch_articles))
+                    @foreach($mismatch_articles as $article)
                         <div class="related-news">
                             <div class="picture" style="background-image: url('{{$article->img_url}}')">
                                 <div class="backdrop">
