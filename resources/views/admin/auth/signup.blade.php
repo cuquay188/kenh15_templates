@@ -38,7 +38,7 @@
             <input type="hidden" value="{{Session::token()}}" name="_token">
             <button class="btn btn-primary btn-block" type="submit">Sign up</button>
             <div class="sub">
-                <a href="{{route('login')}}">Already a membership.</a>
+                <a href="{{route('admin.auth.login')}}">Already a membership.</a>
             </div>
         </div>
     </form>
