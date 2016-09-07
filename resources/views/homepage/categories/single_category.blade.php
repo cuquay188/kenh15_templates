@@ -5,7 +5,7 @@
 @endsection
 @section('content')
     <div class="main-body container">
-        <div class="col-lg-8">
+        <div class="col-lg-8 ">
             <div class="category">
                 <p>{{$category->name}}</p>
             </div>
@@ -70,7 +70,7 @@
                 @endif
             </div>
         </div>
-        <div class="col-lg-4 advertisement">
+        <div class="col-lg-3 advertisement">
             <a href="#">
                 <img src="http://www.mixtgoods.com/images/logos/Static_160x578_MixtGoods_Ad.gif" alt="">
             </a>

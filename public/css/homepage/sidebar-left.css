@@ -3,7 +3,8 @@
   padding: 10px 20px;
   margin-bottom: 20px;
   margin-top: 10px;
-  z-index: 99; }
+  z-index: 99;
+  box-shadow: -0.5px 0 10px 0 #adadad; }
   .sidebar-left a {
     text-decoration: none;
     font-weight: bold; }

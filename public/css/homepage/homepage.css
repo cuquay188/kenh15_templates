@@ -1,3 +1,7 @@
+.new-articles {
+  box-shadow: -0.5px 0 10px 0 #adadad;
+  background-color: white; }
+
 .newest-article {
   border-bottom: 1px solid #1abc9c; }
   .newest-article .picture {
@@ -82,37 +86,40 @@
     .sidebar-right .sidebar-body .video-area:last-child {
       border-bottom: none; }
 
-.articles-by-category .category {
-  border-top: 1px solid #1abc9c;
-  padding: 0;
-  margin-bottom: 30px; }
-  .articles-by-category .category .head div {
-    display: inline-block;
-    border-radius: 0 0 15px 0;
-    background-color: #1abc9c;
-    padding: 8px 20px;
-    margin-bottom: 15px;
-    color: white;
-    font-weight: bold;
-    font-size: 18px;
-    text-decoration: none; }
-    .articles-by-category .category .head div:hover {
-      color: #ecf0f1;
-      background-color: #16a085; }
-  .articles-by-category .category .articles {
-    margin: 5px; }
-  .articles-by-category .category .article {
-    margin-left: 15px;
-    display: inline-block;
-    vertical-align: top; }
-  .articles-by-category .category .articles-list {
-    display: inline-block;
-    width: 35%;
-    margin-right: 15px;
-    margin-bottom: 10px;
-    margin-left: 15px; }
-    .articles-by-category .category .articles-list .list ul {
-      padding: 0; }
+.articles-by-category {
+  margin-top: 20px;
+  background-color: white; }
+  .articles-by-category .category {
+    border-top: 1px solid #1abc9c;
+    padding: 0;
+    margin-bottom: 30px; }
+    .articles-by-category .category .head div {
+      display: inline-block;
+      border-radius: 0 0 15px 0;
+      background-color: #1abc9c;
+      padding: 8px 20px;
+      margin-bottom: 15px;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      text-decoration: none; }
+      .articles-by-category .category .head div:hover {
+        color: #ecf0f1;
+        background-color: #16a085; }
+    .articles-by-category .category .articles {
+      margin: 5px; }
+    .articles-by-category .category .article {
+      margin-left: 15px;
+      display: inline-block;
+      vertical-align: top; }
+    .articles-by-category .category .articles-list {
+      display: inline-block;
+      width: 35%;
+      margin-right: 15px;
+      margin-bottom: 10px;
+      margin-left: 15px; }
+      .articles-by-category .category .articles-list .list ul {
+        padding: 0; }
 
 .goto-top {
   position: fixed;
