@@ -60,7 +60,7 @@
                 <button class="btn btn-xs btn-toggle hot" ng-click="setHot()"
                         {{Auth::getUser()->is_admin() || Auth::getUser()->is_author() ? "" : "disabled"}}
                         ng-class="{'btn-default':!category.advance.is_hot,'btn-primary':category.advance.is_hot}"></button>
-                <button class="btn btn-xs btn-toggle header" ng-click="setHeader()"
+                <button class="btn btn-xs btn-toggle" ng-click="setHeader()"
                         {{Auth::getUser()->is_admin() || Auth::getUser()->is_author() ? "" : "disabled"}}
                         ng-show="category.advance.is_hot"
                         ng-class="{'btn-default':!category.advance.is_header,'btn-primary':category.advance.is_header}">

@@ -546,11 +546,10 @@ td {
   }
   &:hover {
     & + span {
+      display: inline-block;
       background: #2c3e50;
       border-radius: 5px;
       color: #fff;
-      right: 0;
-      display: block;
       padding: 5px 10px;
       position: absolute;
       z-index: 999;
@@ -572,6 +571,9 @@ td {
         position: absolute;
         z-index: 999;
       }
+    }
+    &.tooltip-block + span{
+      display: block; 
     }
   }
 }

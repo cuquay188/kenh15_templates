@@ -5,7 +5,7 @@ app.controller('authorsListController', function ($scope, $http, $log, $authors)
         $scope.authors = newVal;
     });
     $scope.sortType = 'name';
-    $scope.sortReverse = 1;
+    $scope.sortReverse = 0;
 });
 
 app.controller('authorController', function ($scope, $log, $author) {
