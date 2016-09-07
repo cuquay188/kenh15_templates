@@ -58,7 +58,7 @@ class UserController extends Controller
 
         $user->save();
 
-        return redirect()->route('login')
+        return redirect()->route('admin.auth.login')
             ->with([
                 'new_username' => $username,
                 'new_password' => $password
