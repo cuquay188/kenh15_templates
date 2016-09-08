@@ -6,11 +6,11 @@
 @section('content')
     <div class="content-area main-body">
         <div class="container">
-            <aside class="sidebar-left col-lg-3">
+            <aside class="sidebar-left shadow col-lg-3">
                 @include('homepage.articles.related_articles')
             </aside>
             <div class="main-content col-lg-9">
-                <div class="col-lg-8">
+                <div class="shadow col-lg-8">
                     <div class="category">
                         <a href="{{route('homepage')}}">Homepage</a>
                         <i class="fa fa-caret-right" aria-hidden="true"></i>

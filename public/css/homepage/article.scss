@@ -1,7 +1,11 @@
 .body {
   position: relative;
 }
-
+.main-content{
+  .shadow{
+    padding: 10px 20px;
+  }
+}
 .category {
   i {
     margin: 0 5px;
