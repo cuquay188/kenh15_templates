@@ -28,13 +28,13 @@
                         @endif
                     </div>
                     <div class="hot-day ">
-                        @if(count($hot_articles))
+                        @if(count($hot_articles_by_category))
                             <div class="title">
                                 <p>Tin hot trong ngày</p>
                             </div>
                             <div class="list-hot">
                                 <ul>
-                                    @foreach($hot_articles as $article)
+                                    @foreach($hot_articles_by_category as $article)
                                         <li>
                                             <a href="{{route('homepage').'/article/'.$article->url}}">{{$article->title}}</a>
                                         </li>
