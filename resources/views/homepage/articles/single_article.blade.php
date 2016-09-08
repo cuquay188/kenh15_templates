@@ -46,6 +46,9 @@
                         <img src="http://www.mixtgoods.com/images/logos/Static_160x578_MixtGoods_Ad.gif" alt="">
                     </a>
                 </div>
+                <div class="comments shadow col col-lg-8">
+                    Comment
+                </div>
             </div>
         </div>
     </div>

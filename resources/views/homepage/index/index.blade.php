@@ -1,5 +1,5 @@
 @extends('homepage.layouts.master')
-@section('title','ABC News')
+@section('title','Kênh 15')
 @section('styles')
     <link rel="stylesheet" href="{{asset('/css/homepage/homepage.css')}}">
 @endsection
