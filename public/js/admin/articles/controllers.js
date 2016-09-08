@@ -5,7 +5,7 @@ app.controller('articlesListController', function ($scope, $http, $log, $article
         $scope.articles = newVal;
     });
 
-    $scope.sortType = 'last_updated';
+    $scope.sortType = 'updated_at';
     $scope.sortReverse = 1;
     $scope.itemsPerPage = {
         items: [5, 10, 20, 50],

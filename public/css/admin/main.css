@@ -421,10 +421,15 @@ td {
     padding: 5px 10px;
     position: absolute;
     z-index: 999;
-    font-size: 12px; }
+    font-size: 12px;
+    text-align: center;
+    width: auto;
+    top: auto; }
     .tooltip-toggle:hover + span h6 {
+      text-align: left;
       font-weight: bold; }
     .tooltip-toggle:hover + span p {
+      text-align: left;
       text-align: justify;
       margin: 5px 0; }
     .tooltip-toggle:hover + span:before {
@@ -433,7 +438,7 @@ td {
       border-width: 0 6px 6px 6px;
       content: "";
       top: -5px;
-      left: 25%;
+      left: 15%;
       position: absolute;
       z-index: 999; }
   .tooltip-toggle:hover.tooltip-block + span {

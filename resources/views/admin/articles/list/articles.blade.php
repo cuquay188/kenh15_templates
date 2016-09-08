@@ -1,68 +1,100 @@
 <div class="body-header">
-    <h2>Articles Management</h2>
+    <h2>
+        Articles Management
+    </h2>
 </div>
 <div class="container">
     <div class="row">
         <div class="col col-lg-1 col-sm-2">
             <div class="form-group">
-                <select class="form-control tooltip-toggle"
-                    ng-options="x for x in itemsPerPage.items"
-                    ng-model="itemsPerPage.item">
+                <select class="form-control tooltip-toggle" ng-model="itemsPerPage.item" ng-options="x for x in itemsPerPage.items">
                 </select>
-                <span style="width:150px">Number of items each page.</span>
+                <span data-top="40" data-width="175">
+                    Number of items each page
+                </span>
             </div>
         </div>
-        <div class="col col-lg-6 col-sm-3"></div>
+        <div class="col col-lg-6 col-sm-3">
+        </div>
         <div class="col col-lg-2 col-sm-2">
             <div class="form-group">
-                <button class="btn btn-toggle btn-block tooltip-toggle btn-default">Show your Article(s)</button>
-                <span>
+                <button class="btn btn-toggle btn-block tooltip-toggle btn-default">
+                    Show your Article(s)
+                </button>
+                <span data-top="40" data-width="inherit">
                     Click to show only your article(s)
                 </span>
             </div>
         </div>
         <div class="col col-lg-3 col-sm-5">
             <div class="form-group">
-                <input type="text" class="form-control search" ng-model="articleFilter" placeholder="Search...">
-                <span><i class="glyphicon glyphicon-search"> </i></span>
+                <input class="form-control search" ng-model="articleFilter" placeholder="Search..." type="text">
+                    <span>
+                        <i class="glyphicon glyphicon-search">
+                        </i>
+                    </span>
+                </input>
             </div>
         </div>
     </div>
     <table class="table table-striped">
         <thead>
             <tr>
-                <th ng-click="sortType = 'title'; sortReverse=!sortReverse;" class="sortable"
-                    ng-class="{'sort': sortType=='title'}" style="width:250px;">
+                <th class="sortable" ng-class="{'sort': sortType=='title'}" ng-click="sortType = 'title'; sortReverse=!sortReverse;" style="width:250px;">
                     Title
-                    <span ng-show="sortType == 'title' && !sortReverse"><i
-                    class="glyphicon glyphicon-sort-by-alphabet"></i></span>
-                    <span ng-show="sortType == 'title' && sortReverse"><i
-                    class="glyphicon glyphicon-sort-by-alphabet-alt"></i></span>
+                    <span ng-show="sortType == 'title' && !sortReverse">
+                        <i class="glyphicon glyphicon-sort-by-alphabet">
+                        </i>
+                    </span>
+                    <span ng-show="sortType == 'title' && sortReverse">
+                        <i class="glyphicon glyphicon-sort-by-alphabet-alt">
+                        </i>
+                    </span>
                 </th>
-                <th style="width:100px;">Category</th>
-                <th ng-click="sortType = 'last_updated'; sortReverse=!sortReverse;" class="sortable"
-                    ng-class="{'sort': sortType=='last_updated'}" style="width:140px;">
+                <th class="sortable" ng-class="{'sort': sortType=='category.name'}" ng-click="sortType = 'category.name'; sortReverse=!sortReverse;" style="width:120px;">
+                    Category
+                    <span ng-show="sortType == 'category.name' && !sortReverse">
+                        <i class="glyphicon glyphicon-sort-by-alphabet">
+                        </i>
+                    </span>
+                    <span ng-show="sortType == 'category.name' && sortReverse">
+                        <i class="glyphicon glyphicon-sort-by-alphabet-alt">
+                        </i>
+                    </span>
+                </th>
+                <th class="sortable" ng-class="{'sort': sortType=='updated_at'}" ng-click="sortType = 'updated_at'; sortReverse=!sortReverse;" style="width:140px;">
                     Last updated
-                    <span ng-show="sortType == 'last_updated' && !sortReverse"><i
-                    class="glyphicon glyphicon-sort-by-alphabet"></i></span>
-                    <span ng-show="sortType == 'last_updated' && sortReverse"><i
-                    class="glyphicon glyphicon-sort-by-alphabet-alt"></i></span>
+                    <span ng-show="sortType == 'updated_at' && !sortReverse">
+                        <i class="glyphicon glyphicon-sort-by-alphabet">
+                        </i>
+                    </span>
+                    <span ng-show="sortType == 'updated_at' && sortReverse">
+                        <i class="glyphicon glyphicon-sort-by-alphabet-alt">
+                        </i>
+                    </span>
                 </th>
-                <th>Author</th>
-                <th>Tags</th>
-                <th style="width:200px;">Action</th>
+                <th>
+                    Author
+                </th>
+                <th>
+                    Tags
+                </th>
+                <th style="width:200px;">
+                    Action
+                </th>
             </tr>
         </thead>
         <tbody>
-            <tr dir-paginate="article in articles | filter : articleFilter | orderBy:sortType:!sortReverse | itemsPerPage: itemsPerPage.item "
-                ng-controller="articleController">
+            <tr dir-paginate="article in articles | filter : articleFilter | orderBy:sortType:sortReverse | itemsPerPage: itemsPerPage.item " ng-controller="articleController">
                 <td>
-                    <a data-toggle="modal" data-target="#preview-article"
-                        ng-click="edit()" class="tooltip-toggle tooltip-block">
+                    <a class="tooltip-toggle tooltip-block" data-target="#preview-article" data-toggle="modal" ng-click="edit()">
                         %%article.title | shorten:25%%
                     </a>
                     <span>
-                        <h6>%%article.title%%<br></h6>
+                        <h6>
+                            %%article.title%%
+                            <br/>
+                        </h6>
                     </span>
                 </td>
                 <td ng-controller="articleCategoryController">
@@ -71,49 +103,68 @@
                     </a>
                 </td>
                 <td style="text-align: center">
-                    {{--a %%article.updated_at.getTime()%%--}}
-                    %%article.updated_at | date%% <br>
-                    %%article.updated_at | time%%
+                    %%article.updated_at | date%%
+                    <br>
+                        %%article.updated_at | time%%
+                    </br>
                 </td>
                 <td ng-controller="articleAuthorController">
                     <div class="tag-border" ng-repeat="author in authors">
-                        <a href="#">%%author.name%%</a><br>
-                        <button class="close" data-toggle="modal" data-target="#delete-article-author"
-                        ng-click="delete(author)">x
-                        </button>
+                        <a href="#">
+                            %%author.name%%
+                        </a>
+                        <br>
+                            <button class="close" data-target="#delete-article-author" data-toggle="modal" ng-click="delete(author)">
+                                x
+                            </button>
+                        </br>
                     </div>
                 </td>
                 <td ng-controller="articleTagController">
                     <div class="tag-border" ng-repeat="tag in tags">
-                        <a href="#">%%tag.name%%</a>
-                        <button class="close" data-toggle="modal" data-target="#delete-article-tag"
-                        ng-click="delete(tag)">x
+                        <a href="#">
+                            %%tag.name%%
+                        </a>
+                        <button class="close" data-target="#delete-article-tag" data-toggle="modal" ng-click="delete(tag)">
+                            x
                         </button>
                     </div>
                 </td>
                 <td>
                     {{--Preview--}}
-                    <button class="btn btn-primary btn-xs" data-toggle="modal"
-                    data-target="#preview-article" ng-click="edit()">Preview
+                    <button class="btn btn-primary btn-xs" data-target="#preview-article" data-toggle="modal" ng-click="edit()">
+                        Preview
                     </button>
                     {{--Edit--}}
-                    <button class="btn btn-primary btn-xs" data-toggle="modal"
-                    data-target="#update-article" ng-click="edit()">Edit
+                    <button class="btn btn-primary btn-xs" data-target="#update-article" data-toggle="modal" ng-click="edit()">
+                        Edit
                     </button>
                     {{--Delete--}}
-                    <button class="btn btn-primary btn-xs" data-toggle="modal"
-                    data-target="#delete-article" ng-click="delete()">Delete
+                    <button class="btn btn-primary btn-xs" data-target="#delete-article" data-toggle="modal" ng-click="delete()">
+                        Delete
                     </button>
                 </td>
             </tr>
             <tr ng-if="articles==null">
-                <td colspan="6" class="empty-table">
+                <td class="empty-table" colspan="6">
                     No articles is available.
-                    <a href="#" data-toggle="modal"
-                    data-target="#create-article">Create a new one</a>.
+                    <a data-target="#create-article" data-toggle="modal" href="#">
+                        Create a new one
+                    </a>
+                    .
                 </td>
             </tr>
         </tbody>
     </table>
-    <dir-pagination-controls></dir-pagination-controls>
+    <dir-pagination-controls>
+    </dir-pagination-controls>
 </div>
+<script>
+    $('span').each(function(){
+        $(this).width($(this).data('width'));
+        $(this).css({
+            'top': $(this).data('top')
+        });
+
+    })
+</script>
