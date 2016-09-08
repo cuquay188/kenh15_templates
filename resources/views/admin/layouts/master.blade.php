@@ -89,8 +89,11 @@
                 create: '{{route('admin.api.tag.create')}}'
             },
             user: {
-                profile: {
-                    view: '{{route('admin.user.profile')}}'
+                view: {
+                    profile: '{{route('admin.user.profile')}}'
+                },
+                auth:{
+                    get: '{{route('admin.api.user.auth')}}'
                 }
             },
             plugin:{
@@ -123,8 +126,15 @@
 
 <!-- Body scripts -->
 <script src="{{asset('/js/admin/app.js')}}"></script>
+<script src="{{asset('/js/admin/filters.js')}}"></script>
 <script src="{{asset('/js/admin/routes.js')}}"></script>
 <script src="{{asset('/js/admin/sidebar.js')}}"></script>
+
+
+{{--Auth--}}
+<script src="{{asset('/js/admin/auth/services.js')}}"></script>
+<script src="{{asset('/js/admin/auth/controller.js')}}"></script>
+{{--End Auth--}}
 
 {{--Article--}}
 <script src="{{asset('/js/admin/articles/services.js')}}"></script>

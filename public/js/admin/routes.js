@@ -21,6 +21,6 @@ app.config(function($routeProvider) {
             controller  : 'authorsListController'
         })
         .when("/profile", {
-            templateUrl : url.user.profile.view
+            templateUrl : url.user.view.profile
         })
 });

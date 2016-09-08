@@ -76,12 +76,12 @@
         </div>
     @endif
     <div class="sidebar-footer">
-        <div class="info">
+        <div class="info" ng-controller="authController">
             <div class="icon"></div>
             <div class="name">
                 <a href="#profile">
-                    {{Auth::getUser()->name ? Auth::getUser()->name : Auth::getUser()->email}}<br>
-                    <label>{{Auth::getUser()->is_admin() ? 'Admin' : (Auth::getUser()->author ? 'Author': 'Normal User')}}</label>
+                    <div>%% user.name?user.name:user.email %%</div>
+                    <label>%% user | role %%</label>
                 </a>
             </div>
         </div>
