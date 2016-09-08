@@ -113,11 +113,9 @@
                         <a href="#">
                             %%author.name%%
                         </a>
-                        <br>
-                            <button class="close" data-target="#delete-article-author" data-toggle="modal" ng-click="delete(author)">
-                                x
-                            </button>
-                        </br>
+                        <button class="close" data-target="#delete-article-author" data-toggle="modal" ng-click="delete(author)">
+                            x
+                        </button>
                     </div>
                 </td>
                 <td ng-controller="articleTagController">
@@ -160,11 +158,10 @@
     </dir-pagination-controls>
 </div>
 <script>
-    $('span').each(function(){
-        $(this).width($(this).data('width'));
+    $('span').each(function() {
         $(this).css({
+            'width': $(this).data('width'),
             'top': $(this).data('top')
         });
-
-    })
+    });
 </script>

@@ -39,12 +39,12 @@
                 <span ng-show="sortType == 'articles' && sortReverse"><i
                             class="glyphicon glyphicon-sort-by-alphabet-alt"></i></span>
             </th>
-            <th ng-click="sortType = 'advance.is_hot'; sortReverse=!sortReverse" class="sortable"
-                ng-class="{'sort': sortType=='advance.is_hot'}" style="width:200px;">
+            <th ng-click="sortType = 'advance.is_hot+advance.is_header'; sortReverse=!sortReverse" class="sortable"
+                ng-class="{'sort': sortType=='advance.is_hot+advance.is_header'}" style="width:200px;">
                 Hot
-                <span ng-show="sortType == 'advance.is_hot' && !sortReverse"><i
+                <span ng-show="sortType == 'advance.is_hot+advance.is_header' && sortReverse"><i
                             class="glyphicon glyphicon-sort-by-alphabet"></i></span>
-                <span ng-show="sortType == 'advance.is_hot' && sortReverse"><i
+                <span ng-show="sortType == 'advance.is_hot+advance.is_header' && !sortReverse"><i
                             class="glyphicon glyphicon-sort-by-alphabet-alt"></i></span>
             </th>
             <th style="width:200px;">Action</th>
