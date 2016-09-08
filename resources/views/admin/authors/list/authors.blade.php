@@ -31,7 +31,6 @@
             <span ng-show="sortType == 'name' && sortReverse"><i
                         class="glyphicon glyphicon-sort-by-alphabet-alt"></i></span>
         </th>
-        <th>Address</th>
         <th ng-click="sortType = 'age'; sortReverse=!sortReverse;" class="sortable"
             ng-class="{'sort': sortType=='age'}" style="width:50px;">
             Age
@@ -40,15 +39,18 @@
             <span ng-show="sortType == 'age' && sortReverse"><i
                         class="glyphicon glyphicon-sort-by-alphabet-alt"></i></span>
         </th>
-        <th>Phone</th>
-        <th ng-click="sortType = 'email'; sortReverse=!sortReverse;" class="sortable"
-            ng-class="{'sort': sortType=='email'}" style="width:150px;">
-            Email
-            <span ng-show="sortType == 'email' && !sortReverse"><i
-                        class="glyphicon glyphicon-sort-by-alphabet"></i></span>
-            <span ng-show="sortType == 'email' && sortReverse"><i
-                        class="glyphicon glyphicon-sort-by-alphabet-alt"></i></span>
-        </th>
+        <th>Address</th>
+        @if(Auth::user()->is_admin())
+            <th>Phone</th>
+            <th ng-click="sortType = 'email'; sortReverse=!sortReverse;" class="sortable"
+                ng-class="{'sort': sortType=='email'}" style="width:150px;">
+                Email
+                <span ng-show="sortType == 'email' && !sortReverse"><i
+                            class="glyphicon glyphicon-sort-by-alphabet"></i></span>
+                <span ng-show="sortType == 'email' && sortReverse"><i
+                            class="glyphicon glyphicon-sort-by-alphabet-alt"></i></span>
+            </th>
+        @endif
         <th style="width:175px;">Action</th>
     </tr>
     </thead>
@@ -56,16 +58,26 @@
     <tr dir-paginate="author in authors | filter: authorFilter | itemsPerPage: itemsPerPage.item | orderBy:sortType:sortReverse"
         ng-controller="authorController">
         <td><a href="#">%%author.name%%</a></td>
-        <td>%%author.address + ( author.city ? (', ' + author.city) : '' )%%</td>
         <td>%%author.age%%</td>
-        <td>%%author.tel%%</td>
-        <td><a href="#" ng-bind="author.email"></a></td>
+        @if(Auth::user()->is_admin())
+            <td>%%author.address + ( author.city ? (', ' + author.city) : '' )%%</td>
+        @endif
+        @if(!Auth::user()->is_admin())
+            <td>%%author.city%%</td>
+        @endif
+        @if(Auth::user()->is_admin())
+            <td>%%author.tel%%</td>
+            <td><a href="#" ng-bind="author.email"></a></td>
+        @endif
         <td>
             {{--Edit Function--}}
-            <button type="submit" class="btn btn-primary btn-xs" data-toggle="modal"
+            <button ng-if="author.email != auth.email"
+                    type="submit" class="btn btn-primary btn-xs" data-toggle="modal"
                     {{Auth::getUser()->is_admin() ? "" : "disabled"}}
                     data-target="#update-author" ng-click="edit()">Update Info
             </button>
+            <a  ng-if="author.email == auth.email"
+                href="#profile" class="btn btn-primary btn-xs">Update Info</a>
 
             {{--Delete Function--}}
             <button type="submit" class="btn btn-primary btn-xs" data-toggle="modal"
