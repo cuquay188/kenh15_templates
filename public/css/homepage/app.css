@@ -12,7 +12,8 @@ ul li {
   list-style: none;
   line-height: 1.8; }
   ul li:before {
-    content: '\f209';
+    content: '\f1e2 ';
+    /*f2ae*/
     margin-right: 5px;
     color: #2c3e50; }
   ul li a {
