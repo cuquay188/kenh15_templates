@@ -87,9 +87,9 @@ header {
 
 ::-webkit-scrollbar-thumb {
   border-radius: 5px;
-  background-color: #1abc9c; }
+  background-color: #bdc3c7; }
   ::-webkit-scrollbar-thumb:hover {
-    background-color: #16a085; }
+    background-color: #95a5a6; }
 
 /*End scroll bar*/
 .menu a {
