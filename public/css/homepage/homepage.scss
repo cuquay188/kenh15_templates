@@ -1,6 +1,5 @@
 .new-articles {
-  box-shadow: -0.5px 0 10px 0 #adadad;
-  background-color: white;
+  padding-top: 10px;
 }
 
 .newest-article {
@@ -68,8 +67,9 @@
 
 .sidebar-right {
   padding: 0 20px 10px 20px;
+  margin-left:15px;
+  width: calc(33.33% - 15px);
   .sidebar-header {
-    background-color: #f8fbfb;
     padding-top: 5px;
     padding-bottom: 5px;
     text-align: center;
@@ -116,9 +116,8 @@
 
 .articles-by-category {
   margin-top: 20px;
-  background-color: white;
+  padding:0;
   .category {
-    border-top: 1px solid #1abc9c;
     padding: 0;
     margin-bottom: 30px;
     .head {
@@ -137,9 +136,6 @@
           background-color: #16a085;
         }
       }
-    }
-    .articles {
-      margin: 5px;
     }
     .article {
       margin-left: 15px;

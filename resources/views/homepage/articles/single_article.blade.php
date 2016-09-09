@@ -6,11 +6,11 @@
 @section('content')
     <div class="content-area main-body">
         <div class="container">
-            <aside class="sidebar-left col-lg-3">
+            <aside class="sidebar-left shadow col-lg-3">
                 @include('homepage.articles.related_articles')
             </aside>
             <div class="main-content col-lg-9">
-                <div class="col-lg-8">
+                <div class="shadow col-lg-8">
                     <div class="category">
                         <a href="{{route('homepage')}}">Homepage</a>
                         <i class="fa fa-caret-right" aria-hidden="true"></i>
@@ -37,7 +37,9 @@
                     <div class="tags">
                         <label>Tag(s)</label>
                         @foreach($article->tags as $tag)
-                            <a href="#">{{$tag->name}}</a>
+                            <a href="#">
+                                <i class="fa fa-tag" aria-hidden="true"></i> {{$tag->name}}
+                            </a>
                         @endforeach
                     </div>
                 </div>
@@ -45,6 +47,9 @@
                     <a href="#">
                         <img src="http://www.mixtgoods.com/images/logos/Static_160x578_MixtGoods_Ad.gif" alt="">
                     </a>
+                </div>
+                <div class="comments shadow col col-lg-8">
+                    Comment
                 </div>
             </div>
         </div>

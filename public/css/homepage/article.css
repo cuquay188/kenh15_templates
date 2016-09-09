@@ -1,6 +1,9 @@
 .body {
   position: relative; }
 
+.main-content .shadow {
+  padding: 10px 20px; }
+
 .category i {
   margin: 0 5px; }
 .category a {
@@ -39,5 +42,8 @@
   clear: both; }
   .tags a {
     font-style: normal; }
+
+.comments {
+  margin-top: 20px; }
 
 /*# sourceMappingURL=article.css.map */

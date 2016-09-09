@@ -1,6 +1,6 @@
 @foreach($hot_categories as $category)
     @if(count($category->category->articles))
-        <div class="category">
+        <div class="category shadow border-top">
             <a href="{{route('homepage').'/category/'.$category->category->id}}"
                class="head">
                 <div>
