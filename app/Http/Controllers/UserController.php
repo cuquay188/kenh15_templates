@@ -54,7 +54,7 @@ class UserController extends Controller
         $user           = new User();
         $user->email    = $email;
         $user->username = $username;
-        $user->password = bcrypt($password);
+        $user->password = Hash::make($password);
 
         $user->save();
 
@@ -76,50 +76,61 @@ class UserController extends Controller
 
     public function postUpdateUser(Request $request)
     {
-        $id      = $request->id;
-        $name    = $request->name;
-        $email   = $request->email;
-        $tel     = $request->tel;
-        $birth   = $request->birth;
-        $address = $request->address;
-        $city    = $request->city;
+        if (Auth::check()) {
+            $id      = $request->id;
+            $name    = $request->name;
+            $email   = $request->email;
+            $tel     = $request->tel;
+            $birth   = $request->birth;
+            $address = $request->address;
+            $city    = $request->city;
 
-        User::where('id', $id)->update([
-            'name'    => $name,
-            'email'   => $email,
-            'tel'     => $tel,
-            'birth'   => $birth,
-            'address' => $address,
-            'city'    => $city,
-        ]);
+            User::where('id', $id)->update([
+                'name'    => $name,
+                'email'   => $email,
+                'tel'     => $tel,
+                'birth'   => $birth,
+                'address' => $address,
+                'city'    => $city,
+            ]);
 
-        return redirect()->back();
+            return [
+                'message' => 'Update Successful.',
+                'user'    => $this->getAuthUser(),
+            ];
+        }
+        return [
+            'message' => 'Method not allowed.',
+        ];
     }
 
-    public function postChangePasswordUser(Request $request)
+    public function postChangeUserPassword(Request $request)
     {
         $new_password = $request->new_password;
 
-//        ----------- Change password -----------
+        //----------- Change password -----------
         $user             = Auth::user();
         $current_password = $request->current_password;
 
         $this->validate($request, [
             'current_password' => 'required',
         ]);
-//        If current_password don't match with password in database -> throw error
+        //If current_password don't match with password in database -> throw error
         if (strlen($current_password) > 0 && !Hash::check($current_password, $user->password)) {
-            return redirect()->back()->with(['fail' => 'Your current password is incorrect.']);
+            return reponse([
+                'password' => 'Your current password is incorrect.',
+            ], 422);
         }
 
-//        If current_password match with password in database -> replace by new_password and save
+        //If current_password match with password in database -> replace by new_password and save
         $user->password = Hash::make($new_password);
         $user->save();
 
-//        ----------- End Change password -----------
-        //
-
-        return redirect()->back();
+        //----------- End Change password -----------
+        return [
+            'message' => 'Update Successful.',
+            'user'    => $this->getAuthUser(),
+        ];
     }
 
     public function getUsers()
@@ -157,7 +168,7 @@ class UserController extends Controller
     {
         if (Auth::check()) {
             $user = Auth::user();
-            return response()->json([
+            return [
                 'id'        => $user->id,
                 'name'      => $user->name,
                 'email'     => $user->email,
@@ -169,10 +180,10 @@ class UserController extends Controller
                 'birth'     => $user->birth,
                 'is_admin'  => $user->is_admin,
                 'is_author' => $user->is_author(),
-            ]);
+            ];
         }
-        return response()->json([
+        return [
             'message' => 'Method not allowed.',
-        ]);
+        ];
     }
 }

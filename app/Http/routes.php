@@ -40,14 +40,6 @@ Route::group(['prefix' => 'admin'], function () {
             'uses' => 'UserController@getUserProfile',
             'as'   => 'admin.user.profile',
         ]);
-        Route::post('/edit/user', [
-            'uses' => 'UserController@postUpdateUser',
-            'as'   => 'admin.user.update.info',
-        ]);
-        Route::post('/change/password/user', [
-            'uses' => 'UserController@postChangePasswordUser',
-            'as'   => 'admin.user.update.password',
-        ]);
         Route::get('/users', [
             'uses' => 'UserController@getUsers',
             'as'   => 'users',
@@ -228,10 +220,6 @@ Route::group(['prefix' => 'api'], function () {
     });
 
     Route::group(['prefix' => 'user'], function () {
-        Route::get('/auth', [
-            'uses' => 'UserController@getAuthUser',
-            'as'   => 'admin.api.user.auth',
-        ]);
         
         Route::get('/select/{id?}', [
             'uses' => 'UserController@getUserJSON',
@@ -240,6 +228,21 @@ Route::group(['prefix' => 'api'], function () {
         Route::post('/update', [
             'uses' => 'UserController@postUpdateAuthor',
             'as'   => 'admin.api.user.update',
+        ]);
+    });
+    Route::group(['prefix'=>'auth'],function(){
+        Route::get('/', [
+            'uses' => 'UserController@getAuthUser',
+            'as'   => 'admin.api.auth.user',
+        ]);
+
+        Route::post('/update/info', [
+            'uses' => 'UserController@postUpdateUser',
+            'as'   => 'admin.api.auth.update.info',
+        ]);
+        Route::post('/update/password', [
+            'uses' => 'UserController@postChangeUserPassword',
+            'as'   => 'admin.api.auth.update.password',
         ]);
     });
 

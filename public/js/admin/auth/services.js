@@ -5,7 +5,7 @@ app.service('$auth', function() {
     		return $auth;
     	},
         load: function($http) {
-            $http.get(url.user.auth.get).then(function(response) {
+            $http.get(url.auth.select).then(function(response) {
                 $auth = response.data;
             })
         }

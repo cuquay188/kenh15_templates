@@ -10,9 +10,8 @@
     <link rel="stylesheet" href="{{asset('/bootstrap/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('/css/admin/main.css')}}">
     <link rel="stylesheet" href="{{asset('/jquery/jquery-ui/themes/flick/jquery-ui.css')}}">
-@yield("styles")
-
-<!-- End Style Sheet -->
+    @yield("styles")
+    <!-- End Style Sheet -->
 
     <!-- Scripts -->
     <!-- jQuery library -->
@@ -90,11 +89,16 @@
                 create: '{{route('admin.api.tag.create')}}'
             },
             user: {
+                
+            },
+            auth:{
                 view: {
                     profile: '{{route('admin.user.profile')}}'
                 },
-                auth:{
-                    get: '{{route('admin.api.user.auth')}}'
+                select: '{{route('admin.api.auth.user')}}',
+                update:{
+                    info: '{{route('admin.api.auth.update.info')}}',
+                    password: '{{route('admin.api.auth.update.password')}}'
                 }
             },
             plugin:{
