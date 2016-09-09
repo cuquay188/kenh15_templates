@@ -35,7 +35,7 @@ app.controller('editAuthorController', function ($scope, $http, $author) {
                 newCity: $scope.author.city,
                 newTel: $scope.author.tel
             };
-            $('#birth').datepicker("setDate", new Date(newVal.birth))
+            $('#birth').datepicker("setDate", new Date(moment(newVal.birth)))
         }
     });
     $scope.dismiss = function () {

@@ -23,6 +23,7 @@
     <script src="{{asset('/jquery/jquery-ui/ui/minified/jquery.ui.mouse.min.js')}}"></script>
     <script src="{{asset('/jquery/jquery-ui/ui/minified/jquery.ui.draggable.min.js')}}"></script>
     <script src="{{asset('/jquery/jquery-ui/ui/minified/jquery.ui.datepicker.min.js')}}"></script>
+    <script src="{{asset('/moment/moment.min.js')}}"></script>
     <!-- End jQuery library-->
 
     <!-- Angular library -->

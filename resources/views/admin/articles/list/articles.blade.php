@@ -103,9 +103,9 @@
                     </a>
                 </td>
                 <td style="text-align: center">
-                    %%article.updated_at | date%%
+                    %%article.updated_at | datetime:'date'%%
                     <br>
-                        %%article.updated_at | time%%
+                        %%article.updated_at | datetime:'time'%%
                     </br>
                 </td>
                 <td ng-controller="articleAuthorController">

@@ -66,4 +66,11 @@
           </div>
       </div>
   </div>
+  <script>
+    $('#birth').datepicker({
+        dateFormat: "dd/mm/yy",
+        minDate: new Date('1950'),
+        maxDate: new Date('2020')
+    });
+  </script>
 @endif
