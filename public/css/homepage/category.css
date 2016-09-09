@@ -2,13 +2,6 @@
   box-shadow: -0.5px 0 10px 0 #adadad;
   background-color: white; }
 
-.title {
-  font-size: 17px; }
-  .title a {
-    color: #34495e; }
-    .title a:hover {
-      color: #2c3e50; }
-
 .category {
   background-color: #1abc9c;
   width: 20%;
@@ -21,6 +14,13 @@
     font-size: 22px;
     font-weight: bold;
     text-align: center; }
+
+.articles .title {
+  font-size: 17px; }
+  .articles .title a {
+    color: #34495e; }
+    .articles .title a:hover {
+      color: #2c3e50; }
 
 .top-articles {
   margin-bottom: 20px; }

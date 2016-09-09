@@ -1,6 +1,6 @@
 @foreach($hot_categories as $category)
     @if(count($category->category->articles))
-        <div class="category shadow border-top">
+        <div class="category shadow">
             <a href="{{route('homepage').'/category/'.$category->category->id}}"
                class="head">
                 <div>
@@ -25,7 +25,7 @@
                     <div class="list">
                         <ul>
                             @foreach(\App\Article::where('category_id',$category->category->id)->orderBy('id','desc')->take(4)->skip(2)->get() as $article)
-                                <li><a href="{{route('homepage').'/article/'.$article->url}}">{{$article->title}}</a>
+                                <li><a href="{{route('homepage').'/article/'.$article->url}}">{{$article->shorten_title(90)}}</a>
                                 </li>
                             @endforeach
                         </ul>

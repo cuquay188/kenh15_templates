@@ -7,7 +7,7 @@
     <div class="main-body container">
         <div class="col-lg-8 ">
             <div class="articles">
-                <div class="top-articles shadow border-top">
+                <div class="top-articles shadow">
                     <div class="category">
                         <p>{{$category->name}}</p>
                     </div>

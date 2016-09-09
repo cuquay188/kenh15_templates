@@ -30,9 +30,15 @@
                     </div>
                     <div class="authors">
                         <label>By </label>
-                        @foreach($article->authors as $author)
-                            <span>{{$author->user->name}}</span>
-                        @endforeach
+                        <?php
+                        for ($i = 0; $i < count($article->authors); $i++) {
+                            if ($i < count($article->authors) - 1) {
+                                echo $article->authors[$i]->user->name . ', ';
+                            }else{
+                                echo $article->authors[$i]->user->name;
+                            }
+                        }
+                        ?>
                     </div>
                     <div class="tags">
                         <label>Tag(s)</label>

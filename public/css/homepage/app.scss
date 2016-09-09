@@ -14,8 +14,7 @@ ul {
 ul li {
   list-style: none;
   &:before {
-    content: '\f1e2 ';
-    /*f2ae*/
+    content: '\f2ae ';
     margin-right: 5px;
     color: #2c3e50;
   }
