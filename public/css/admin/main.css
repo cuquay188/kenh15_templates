@@ -358,6 +358,11 @@ body {
       right: 10px;
       top: 15px;
       font-size: 24px; }
+    .wide .modal-header a {
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      font-size: 14px; }
     .wide .modal-header h5 {
       font-size: 24px;
       margin: 0 20px; }
