@@ -442,96 +442,54 @@ td {
 
 
 /*source user_dashboard_GUI*/
-* {
-  margin: 0;
-  padding: 0;
-}
-
-
-
 html, body {
   height: 100%;
 }
-
-li {
-  list-style-type: none;
-}
-
-.feedback , .request{
-  box-sizing: border-box;
+.request {
+  background-color: red;
   height: 100%;
-
 }
 
-.headFeedback , .headRequest{
-  border-radius: 5px;
-  font-size: 20px;
+.feedback {
+  height: 100%;
+  background-color: green;
+}
+
+.headDashboardUser {
+  font-size: 25px;
   font-weight: bold;
-  color: white;
-  margin-top: 10px ;
-  background-color: #383D4B;
-  margin-bottom: 5px;
-  text-align: center;
-  padding: 5px;
+  margin: 10px 0px;
+  background-color: #b5fbea;
 }
+
+
+table thead {
+  background-color: #011235;
+}
+
+
+table tr td {
+  font-size: 17px;
+  font-weight: 600;
+  color: white;
+}
+
 
 .bodyFeedback {
-  margin-top:10px;
-  max-height: 400px; 
-  overflow: auto;
+  margin-top: 20px;
+  height: 80%;
 }
 
-
-
-
-.bodyFeedback li {
-  text-align:left;
-  font-size:15px;
-  padding-left:5px;
-  transition:0.2s;
-  margin-left: 0px;
-  height: 40px;
-  background-color: rgba(255,255,255,0.8);
-  line-height: 40px;
-  border-bottom: 1px solid #afb7ce;
-}
-
-
-.bodyFeedback li a{
+.bodyFeedback a { 
+  margin: 5px;
   text-decoration: none;
-  color: black;
+  color: white;
 }
-
-.bodyFeedback li a:hover {
-  color: black;
-}
-
-
-.bodyFeedback li:hover {
-  background-color: rgba(48,140,202,0.09);
-}
-
-
-.request {
-  border-left:0;
-}
-
-
 
 .bodyRequest {
-  padding:10px 15px;
-  font-size: 15px;
-  margin-top:10px;
+  margin-top: 25px;
 }
-
-.bodyRequest a {
-  font-size: 17px;
-  text-decoration: none;
+.modal {
+   /* respsonsive width */
+   margin: 0 auto;
 }
-
-
-
-
-
-
-
