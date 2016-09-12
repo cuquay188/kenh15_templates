@@ -6,6 +6,7 @@ use App\Article;
 use App\ArticleView;
 use App\Category;
 use App\CategoryAdvance;
+use App\Tag;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -105,13 +106,17 @@ class HomePageController extends Controller
             array_push($hot_articles, $article_top);
         }
         $hot_articles_by_category = array();
-        for ($i = 0; $i < count($hot_articles); $i++) {
-            if ($hot_articles[$i]->category->name == $article_first->category->name) {
-                array_push($hot_articles_by_category, $hot_articles[$i]);
-                if (count($hot_articles_by_category) == 10) {
-                    break;
+        if ($article_first) {
+            for ($i = 0; $i < count($hot_articles); $i++) {
+                if ($hot_articles[$i]->category->name == $article_first->category->name) {
+                    array_push($hot_articles_by_category, $hot_articles[$i]);
+                    if (count($hot_articles_by_category) == 10) {
+                        break;
+                    }
                 }
             }
+        } else {
+            echo "Sorry! No Article";
         }
         /*End*/
 
@@ -131,6 +136,18 @@ class HomePageController extends Controller
             'hot_articles_by_category' => $hot_articles_by_category,
             'article_first' => $article_first,
             'category' => $category
+        ]);
+    }
+
+    public function getTag($url)
+    {
+        $tag = Tag::where('url', $url)->first();
+        $articles_by_tag = Article::whereHas('tags', function ($query) use ($tag){
+            $query->where('tag_id', $tag->id);
+        })->paginate(5);
+        return view('homepage.tags.single_tag',[
+            'articles_by_tag' => $articles_by_tag,
+            'tag' => $tag,
         ]);
     }
 }

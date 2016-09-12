@@ -34,7 +34,7 @@
                         for ($i = 0; $i < count($article->authors); $i++) {
                             if ($i < count($article->authors) - 1) {
                                 echo $article->authors[$i]->user->name . ', ';
-                            }else{
+                            } else {
                                 echo $article->authors[$i]->user->name;
                             }
                         }
@@ -43,7 +43,7 @@
                     <div class="tags">
                         <label>Tag(s)</label>
                         @foreach($article->tags as $tag)
-                            <a href="#">
+                            <a href="{{route('homepage').'/tag/'.$tag->url}}">
                                 <i class="fa fa-tag" aria-hidden="true"></i> {{$tag->name}}
                             </a>
                         @endforeach
