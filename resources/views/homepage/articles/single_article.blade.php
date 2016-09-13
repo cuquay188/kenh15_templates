@@ -54,8 +54,59 @@
                         <img src="http://www.mixtgoods.com/images/logos/Static_160x578_MixtGoods_Ad.gif" alt="">
                     </a>
                 </div>
-                <div class="comments shadow col col-lg-8">
-                    Comment
+                <div class="comments shadow col col-lg-8" style="padding: 0">
+                    <div class="comment-quantity">
+                        <span>5 bình luận</span>
+                    </div>
+                    <div class="body-comment">
+                        <div class="comment-area row">
+                            <div class="picture col col-lg-2">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/48px-User_icon_2.svg.png"
+                                     alt="">
+                            </div>
+                            <div class="content col col-lg-9">
+                                <p class="name">User</p>
+                                <p class="comment">
+                                    Ngưỡng mộ chị này quá. Tuy là rapper nhưng chị ấy vẫn giữ được vẻ mộc mạc không
+                                    cầu kỳ, đã vậy còn vô cùng tự tin, tuy không rầm rộ nhưng thành tích đáng nể.
+                                    Đây mới là hình mẫu con gái hiện đại nên học tập theo
+                                </p>
+                            </div>
+                            <div class="like col col-lg-1">
+                                <img src="https://www.facebook.com/images/ufi/fbfeed/like.png" alt="">
+                            </div>
+                            <div class="reply">
+                                <div class="col col-lg-2"></div>
+                                <div class="col col-lg-8"></div>
+                                <div class="reply-button col col-lg-2">
+                                    <span>Trả lời</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comment-area row">
+                            <div class="picture col col-lg-2">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/48px-User_icon_2.svg.png"
+                                     alt="">
+                            </div>
+                            <div class="content col col-lg-9">
+                                <p class="name">User</p>
+                                <p class="comment">
+                                    SUBOI tài năng và có thể phát triển hơn nữa hoặc như Lê Cát Trọng Lý chứng tỏ thực
+                                    lực của mình
+                                </p>
+                            </div>
+                            <div class="like col col-lg-1">
+                                <img src="https://www.facebook.com/images/ufi/fbfeed/like.png" alt="">
+                            </div>
+                            <div class="reply">
+                                <div class="col col-lg-2"></div>
+                                <div class="col col-lg-8"></div>
+                                <div class="reply-button col col-lg-2">
+                                    <span>Trả lời</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -6,7 +6,7 @@
     <div class="body-top">
         <ul>
             @foreach($articles_top as $article)
-                <li><a href="{{route('homepage').'/article/'.$article->url}}">{{$article->shorten_title(120)}}</a></li>
+                <li><a href="{{route('homepage').'/article/'.$article->url}}">{{$article->shorten_title(80)}}</a></li>
             @endforeach
         </ul>
     </div>
