@@ -643,7 +643,7 @@ td {
     border: 1px solid #e8ebf5;
     border-radius: 5px;
     padding: 20px;
-    box-shadow: -0.5px 0 10px 0 #adadad;
+    box-shadow: -0.5px 0 5px 0 #adadad;
 }
 
 .feedback {
@@ -675,17 +675,14 @@ td {
 }
 
 .bodyFeedback li a {
-    text-decoration: none;
-    color: black;
+    color: #383D4B;
+    text-decoration:none;
 }
 
-.bodyFeedback li a:hover {
-    color: black;
-}
+
 
 .bodyFeedback li:hover {
     background-color: rgba(48, 140, 202, 0.09);
-    color: black;
 }
 
 .bodyRequest {
@@ -693,10 +690,13 @@ td {
 }
 
 .linkInRequest {
-    color: #383D4B;
+    color: #337ab7;
     font-weight:bold ;
     cursor: pointer;
 }
 
+.linkInRequest:hover {
+    color: #1a4c75;
+}
 
 /*End Dashboard GUI*/
