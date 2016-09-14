@@ -1,5 +1,4 @@
-<div class="body-header">
-    <h2>Dashboard</h2>
-</div>
-<div class="container">
-</div>
+@extends('admin.layouts.components.management')
+@section('header','Dashboard')
+@section('body')
+@endsection

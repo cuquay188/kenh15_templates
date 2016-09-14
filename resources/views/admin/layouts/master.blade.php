@@ -130,6 +130,7 @@
 </div>
 
 <!-- Body scripts -->
+<script src="{{asset('/js/admin/dashboard.js')}}"></script>
 <script src="{{asset('/js/admin/app.js')}}"></script>
 <script src="{{asset('/js/admin/filters.js')}}"></script>
 <script src="{{asset('/js/admin/routes.js')}}"></script>

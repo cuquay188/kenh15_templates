@@ -1,7 +1,6 @@
-<div class="body-header">
-    <h2>Tags Management</h2>
-</div>
-<div class="container">
+@extends('admin.layouts.components.management')
+@section('header','Tags Management')
+@section('body')
     <div class="row">
         <div class="col col-lg-1 col-sm-2">
             <div class="form-group">
@@ -71,4 +70,4 @@
         </tbody>
     </table>
     <dir-pagination-controls></dir-pagination-controls>
-</div>
+@endsection

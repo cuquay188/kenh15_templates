@@ -518,12 +518,14 @@ body {
             top: 15px;
             font-size: 24px;
         }
-        a{
+
+        a {
             position: absolute;
             left: 10px;
             top: 10px;
             font-size: 14px;
         }
+
         h5 {
             font-size: 24px;
             margin: 0 20px;
@@ -647,6 +649,131 @@ td {
 
         &.tooltip-block + span {
             display: block;
+        }
+    }
+}
+
+#loading-toggle {
+    .blob {
+        width: 2rem;
+        height: 2rem;
+        background: #34495e;
+        border-radius: 50%;
+        position: absolute;
+        left: calc(50% - 1rem);
+        top: calc(50% - 1rem);
+        box-shadow: 0 0 1rem rgba(255, 255, 255, 0.15);
+    }
+
+    .blob-2 {
+        animation: animate-to-2 1.5s infinite;
+    }
+
+    .blob-3 {
+        animation: animate-to-3 1.5s infinite;
+    }
+
+    .blob-1 {
+        animation: animate-to-1 1.5s infinite;
+    }
+
+    .blob-4 {
+        animation: animate-to-4 1.5s infinite;
+    }
+
+    .blob-0 {
+        animation: animate-to-0 1.5s infinite;
+    }
+
+    .blob-5 {
+        animation: animate-to-5 1.5s infinite;
+    }
+
+    @keyframes animate-to-2 {
+        25%,
+        75% {
+            transform: translateX(-1.5rem) scale(0.75);
+        }
+
+        95% {
+            transform: translateX(0rem) scale(1);
+        }
+    }
+
+    @keyframes animate-to-3 {
+        25%,
+        75% {
+            transform: translateX(1.5rem) scale(0.75);
+        }
+
+        95% {
+            transform: translateX(0rem) scale(1);
+        }
+    }
+
+    @keyframes animate-to-1 {
+        25% {
+            transform: translateX(-1.5rem) scale(0.75);
+        }
+
+        50%,
+        75% {
+            transform: translateX(-4.5rem) scale(0.6);
+        }
+
+        95% {
+            transform: translateX(0rem) scale(1);
+        }
+    }
+
+    @keyframes animate-to-4 {
+        25% {
+            transform: translateX(1.5rem) scale(0.75);
+        }
+
+        50%,
+        75% {
+            transform: translateX(4.5rem) scale(0.6);
+        }
+
+        95% {
+            transform: translateX(0rem) scale(1);
+        }
+    }
+
+    @keyframes animate-to-0 {
+        25% {
+            transform: translateX(-1.5rem) scale(0.75);
+        }
+
+        50% {
+            transform: translateX(-4.5rem) scale(0.6);
+        }
+
+        75% {
+            transform: translateX(-7.5rem) scale(0.5);
+        }
+
+        95% {
+            transform: translateX(0rem) scale(1);
+        }
+    }
+
+    @keyframes animate-to-5 {
+        25% {
+            transform: translateX(1.5rem) scale(0.75);
+        }
+
+        50% {
+            transform: translateX(4.5rem) scale(0.6);
+        }
+
+        75% {
+            transform: translateX(7.5rem) scale(0.5);
+        }
+
+        95% {
+            transform: translateX(0rem) scale(1);
         }
     }
 }

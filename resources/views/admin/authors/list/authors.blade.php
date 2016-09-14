@@ -1,8 +1,7 @@
-<div class="body-header">
-    <h2>Authors Management</h2>
-</div>
-<div class="container">
-    <div class="row">
+@extends('admin.layouts.components.management')
+@section('header','Authors Management')
+@section('body')
+<div class="row">
     <div class="col col-lg-1 col-sm-2">
         <div class="form-group">
             <select class="form-control"
@@ -94,4 +93,5 @@
     </tr>
     </tbody>
 </table>
-</div>
+<dir-pagination-controls></dir-pagination-controls>
+@endsection
