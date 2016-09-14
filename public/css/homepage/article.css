@@ -22,9 +22,10 @@
   margin-top: 10px; }
 
 .tags a {
+  display: inline-block;
   background-color: #d5ebe8;
   padding: 5px;
-  margin-left: 5px;
+  margin: 0 0 7px 5px;
   text-decoration: none;
   color: black;
   font-weight: normal;
@@ -60,26 +61,42 @@
     .comments .body-comment .comment-area:last-child {
       border-bottom: none; }
     .comments .body-comment .comment-area .picture {
-      padding: 0;
-      width: calc(48px); }
-    .comments .body-comment .comment-area .content .name {
-      margin-bottom: 5px;
-      font-weight: bold; }
-    .comments .body-comment .comment-area .content .comment {
-      margin-bottom: 0; }
+      width: calc(48px);
+      padding: 0; }
+    .comments .body-comment .comment-area .content {
+      padding: 0 0 0 10px; }
+      .comments .body-comment .comment-area .content .name {
+        margin-bottom: 5px;
+        font-weight: bold; }
+      .comments .body-comment .comment-area .content .comment {
+        margin-bottom: 0; }
     .comments .body-comment .comment-area .like {
-      padding-right: 0; }
+      padding-right: 0;
+      margin-left: calc(16.66666667% - 48px); }
+      .comments .body-comment .comment-area .like a:before {
+        content: '\f08a';
+        padding-right: 3px;
+        font-size: 12px; }
+      .comments .body-comment .comment-area .like a:focus {
+        background-color: #1abc9c;
+        color: white;
+        text-decoration: none; }
     .comments .body-comment .comment-area .reply .reply-button {
       padding-right: 0; }
-      .comments .body-comment .comment-area .reply .reply-button span {
-        border-radius: 2px;
-        background-color: #fbfbfb;
-        padding: 5px 6px;
-        color: #1abc9c; }
-        .comments .body-comment .comment-area .reply .reply-button span:hover {
-          text-decoration: none;
-          color: #16a085;
-          background-color: #f2f2f2;
-          cursor: pointer; }
+      .comments .body-comment .comment-area .reply .reply-button span:before {
+        content: '\f112';
+        padding-right: 2px;
+        font-size: 7px; }
+  .comments .body-comment .text-style {
+    border-radius: 2px;
+    background-color: #fbfbfb;
+    padding: 6px 12px;
+    color: #1abc9c;
+    font-weight: normal; }
+    .comments .body-comment .text-style:hover {
+      text-decoration: none;
+      color: #16a085;
+      background-color: #f2f2f2;
+      cursor: pointer; }
 
 /*# sourceMappingURL=article.css.map */
