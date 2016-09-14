@@ -440,23 +440,21 @@ td {
 
 /*Dashboard GUI*/
 .feedback, .request {
-  box-sizing: border-box;
+  border: 1px solid #e8ebf5;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: -0.5px 0 10px 0 #adadad; }
+
+.feedback {
   height: 100%; }
 
 .headFeedback, .headRequest {
-  border-radius: 5px;
-  font-size: 20px;
+  font-size: 25px;
   font-weight: bold;
-  color: white;
-  margin-top: 10px;
-  background-color: #383D4B;
-  margin-bottom: 5px;
-  text-align: center;
-  padding: 5px; }
+  color: #383D4B; }
 
 .bodyFeedback {
-  margin-top: 10px;
-  max-height: 400px;
+  max-height: 83%;
   overflow: auto; }
 
 .bodyFeedback li {
@@ -465,11 +463,11 @@ td {
   font-size: 15px;
   padding-left: 5px;
   transition: 0.2s;
-  margin-left: 0px;
   height: 40px;
   background-color: rgba(255, 255, 255, 0.8);
   line-height: 40px;
-  border-bottom: 1px solid #afb7ce; }
+  border-bottom: 1px solid #afb7ce;
+  cursor: pointer; }
 
 .bodyFeedback li a {
   text-decoration: none;
@@ -479,19 +477,16 @@ td {
   color: black; }
 
 .bodyFeedback li:hover {
-  background-color: rgba(48, 140, 202, 0.09); }
-
-.request {
-  border-left: 0; }
+  background-color: rgba(48, 140, 202, 0.09);
+  color: black; }
 
 .bodyRequest {
-  padding: 10px 15px;
-  font-size: 15px;
-  margin-top: 10px; }
+  font-size: 15px; }
 
-.bodyRequest a {
-  font-size: 17px;
-  text-decoration: none; }
+.linkInRequest {
+  color: #383D4B;
+  font-weight: bold;
+  cursor: pointer; }
 
 /*End Dashboard GUI*/
 
