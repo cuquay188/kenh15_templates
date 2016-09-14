@@ -54,7 +54,7 @@ Route::group(['prefix' => 'admin'], function () {
         ]);
     });
 
-    Route::get('/',[
+    Route::get('/', [
         'uses' => 'DashboardController@getIndex',
         'as' => 'admin.index'
     ]);
@@ -256,6 +256,9 @@ Route::get('/', [
 ]);
 Route::get('/article/{url}', [
     'uses' => 'HomepageController@getArticle'
+]);
+Route::get('/tag/{url}', [
+    'uses' => 'HomepageController@getTag'
 ]);
 Route::get('/category/{id}', [
     'uses' => 'HomepageController@getSingleCategory'

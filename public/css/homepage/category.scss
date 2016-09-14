@@ -1,22 +1,13 @@
-.main-category{
+.main-category {
   box-shadow: -0.5px 0 10px 0 #adadad;
   background-color: white;
-}
-.title {
-  font-size: 17px;
-  a {
-    color: #34495e;
-    &:hover {
-      color: #2c3e50;
-    }
-  }
 }
 
 .category {
   background-color: #1abc9c;
   width: 20%;
   padding: 5px 0;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   border-radius: 0 0 15px 0;
   p {
     margin: 0;
@@ -26,15 +17,25 @@
     text-align: center;
   }
 }
-.body-left{
 
+.articles {
+  .title {
+    font-size: 17px;
+    a {
+      color: #34495e;
+      &:hover {
+        color: #2c3e50;
+      }
+    }
+  }
 }
+
 .top-articles {
   margin-bottom: 20px;
   .newest-article {
     display: inline-block;
     vertical-align: top;
-    margin-right: 20px;
+    margin: 0 5px 0 15px;
     padding: 0;
     width: 316px;
     .picture {
@@ -48,9 +49,12 @@
   .hot-day {
     display: inline-block;
     vertical-align: top;
+    margin-bottom: 20px;
     padding: 0;
     width: 379px;
-    overflow-y: auto;
+    .list-hot {
+      overflow-y: auto;
+    }
     .title {
       p {
         text-transform: uppercase;
@@ -65,52 +69,7 @@
   }
 }
 
-.related-news {
-  margin-bottom: 20px;
-  border-top: 1px solid #1abc9c;
-  padding-top: 20px;
-  .picture {
-    display: inline-block;
-    background-color: rgba(238, 253, 252, 0.88);
-    width: 220px;
-    height: 140px;
-    text-align: center;
-    margin-right: 10px;
-  }
-  .text {
-    display: inline-block;
-    vertical-align: top;
-    .title {
-    }
-    .content {
-      h2 {
-        font-size: 17px;
-        margin-top: 10px;
-      }
-    }
-  }
-}
-
-.pagination {
-  margin: 30px 0 30px 35%;
-  li:before {
-    content: '';
-  }
-  li a {
-    color: #1abc9c;
-    &:hover {
-      color: #16a085;
-    }
-  }
-  .active {
-    span, span:hover {
-      color: white;
-      font-weight: bold;
-      background-color: #16a085;
-    }
-  }
-}
-.advertisement{
- /* margin-left:30px;
-  box-shadow: -0.5px 0 10px 0 #adadad;*/
+.advertisement {
+  /* margin-left:30px;
+   box-shadow: -0.5px 0 10px 0 #adadad;*/
 }

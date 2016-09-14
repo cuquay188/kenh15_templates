@@ -1,6 +1,5 @@
 .new-articles {
-  box-shadow: -0.5px 0 10px 0 #adadad;
-  background-color: white; }
+  padding-top: 10px; }
 
 .newest-article {
   border-bottom: 1px solid #1abc9c; }
@@ -52,9 +51,10 @@
         color: #34495e; }
 
 .sidebar-right {
-  padding: 0 20px 10px 20px; }
+  padding: 0 20px 10px 20px;
+  margin-left: 15px;
+  width: calc(33.33% - 15px); }
   .sidebar-right .sidebar-header {
-    background-color: #f8fbfb;
     padding-top: 5px;
     padding-bottom: 5px;
     text-align: center; }
@@ -88,11 +88,10 @@
 
 .articles-by-category {
   margin-top: 20px;
-  background-color: white; }
+  padding: 0; }
   .articles-by-category .category {
-    border-top: 1px solid #1abc9c;
     padding: 0;
-    margin-bottom: 30px; }
+    margin-bottom: 20px; }
     .articles-by-category .category .head div {
       display: inline-block;
       border-radius: 0 0 15px 0;
@@ -106,8 +105,6 @@
       .articles-by-category .category .head div:hover {
         color: #ecf0f1;
         background-color: #16a085; }
-    .articles-by-category .category .articles {
-      margin: 5px; }
     .articles-by-category .category .article {
       margin-left: 15px;
       display: inline-block;
