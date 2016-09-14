@@ -24,6 +24,6 @@
         </ul>
     </div>
     <div class="footer-top">
-        <a href="#">View all</a>
+        <a href="{{route('homepage').'/category/'.$article->category_id}}">View all</a>
     </div>
 </div>
