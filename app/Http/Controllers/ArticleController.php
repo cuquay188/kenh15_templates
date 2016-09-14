@@ -199,8 +199,15 @@ class ArticleController extends Controller
 
             return $article;
         } else {
-            $articles = array();
-            foreach (Article::orderBy('updated_at', 'desc')->get() as $article) {
+            if (Auth::user()->is_admin()) {
+                $articles = Article::orderBy('updated_at', 'desc')->get();
+            } else {
+                $articles = Article::whereHas('authors', function ($query) {
+                    $query->where('author_id', Auth::user()->author->id);
+                })->orderBy('updated_at', 'desc')->get();
+            }
+            $resultArticles = array();
+            foreach ($articles as $article) {
                 $tags    = array();
                 $authors = array();
                 foreach (DB::table('tag_article')->where('article_id', $article->id)->get() as $tag) {
@@ -211,7 +218,7 @@ class ArticleController extends Controller
                     array_push($authors, $author->author_id);
                 }
 
-                array_push($articles, [
+                array_push($resultArticles, [
                     'id'          => $article->id,
                     'updated_at'  => $article->updated_at,
                     'url'         => $article->url,
@@ -222,7 +229,7 @@ class ArticleController extends Controller
                 ]);
             }
 
-            return $articles;
+            return $resultArticles;
         }
     }
     public function getContentJSON($id = null)
@@ -252,7 +259,7 @@ class ArticleController extends Controller
         $articleView->article_id = $article->id;
         $articleView->save();*/
         }
-        foreach (Tag::all() as $tag) {
+        /*foreach (Tag::all() as $tag) {
             Tag::where('id', $tag->id)->update([
                 'url'  => $this->convert_to_url($tag->name),
                 'note' => $tag->name,
@@ -264,7 +271,7 @@ class ArticleController extends Controller
                 'url'  => $this->convert_to_url($category->name),
                 'note' => $category->name,
             ]);
-        }
+        }*/
         /*foreach (Category::all() as $category){
         $advance = new CategoryAdvance();
         $advance->category_id = $category->id;
@@ -292,7 +299,7 @@ class ArticleController extends Controller
         $str = preg_replace("/(Ù|Ú|Ụ|Ủ|Ũ|Ư|Ừ|Ứ|Ự|Ử|Ữ)/", 'u', $str);
         $str = preg_replace("/(Ỳ|Ý|Ỵ|Ỷ|Ỹ)/", 'y', $str);
         $str = preg_replace("/(Đ)/", 'd', $str);
-        $str = str_replace(" ", "-", str_replace("?", "", str_replace(",", "", str_replace(".", "", str_replace(":", "", $str)))));
+        $str = str_replace(" ", "-", str_replace("?", "", str_replace(",", "", str_replace(".", "", str_replace(":", "", str_replace("/", "", $str))))));
         return $str;
     }
 

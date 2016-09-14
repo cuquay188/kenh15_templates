@@ -178,7 +178,7 @@ class UserController extends Controller
                 'address'   => $user->address,
                 'city'      => $user->city,
                 'birth'     => $user->birth,
-                'is_admin'  => $user->is_admin,
+                'is_admin'  => $user->is_admin(),
                 'is_author' => $user->is_author(),
             ];
         }

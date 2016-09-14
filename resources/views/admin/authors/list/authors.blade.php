@@ -70,12 +70,12 @@
         @endif
         <td>
             {{--Edit Function--}}
-            <button ng-if="author.email != auth.email"
+            <button ng-if="author.email != auth.email || auth.is_admin"
                     type="submit" class="btn btn-primary btn-xs" data-toggle="modal"
                     {{Auth::getUser()->is_admin() ? "" : "disabled"}}
                     data-target="#update-author" ng-click="edit()">Update Info
             </button>
-            <a  ng-if="author.email == auth.email"
+            <a  ng-if="author.email == auth.email && !auth.is_admin"
                 href="#profile" class="btn btn-primary btn-xs">Update Info</a>
 
             {{--Delete Function--}}

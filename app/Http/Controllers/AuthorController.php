@@ -113,7 +113,7 @@ class AuthorController extends Controller
                     'address' => $author->user->address,
                     'city' => $author->user->city,
                     'tel' => $author->user->tel,
-                    'email' => $author->user->email
+                    'email' => $author->user->email,
                 ]);
             }
             return $authors;

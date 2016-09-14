@@ -14,14 +14,14 @@
     <div class="col col-lg-6 col-sm-3">
     </div>
     <div class="col col-lg-2 col-sm-2">
-        <div class="form-group">
+        <!-- <div class="form-group">
             <button class="btn btn-toggle btn-block tooltip-toggle btn-default">
                 Show your Article(s)
             </button>
             <span data-top="40" data-width="inherit">
                 Click to show only your article(s)
             </span>
-        </div>
+        </div> -->
     </div>
     <div class="col col-lg-3 col-sm-5">
         <div class="form-group">
