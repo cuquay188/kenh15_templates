@@ -255,6 +255,9 @@ Route::get('/', [
 Route::get('/article/{url}', [
     'uses' => 'HomepageController@getArticle',
 ]);
+Route::get('/tag/{url}', [
+    'uses' => 'HomepageController@getTag'
+]);
 Route::get('/category/{id}', [
     'uses' => 'HomepageController@getSingleCategory',
 ]);

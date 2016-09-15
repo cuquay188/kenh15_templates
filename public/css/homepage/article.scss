@@ -38,9 +38,10 @@
 
 .tags {
   a {
+    display: inline-block;
     background-color: #d5ebe8;
     padding: 5px;
-    margin-left: 5px;
+    margin: 0 0 7px 5px;
     text-decoration: none;
     color: black;
     font-weight: normal;
@@ -67,4 +68,77 @@
 
 .comments {
   margin-top: 20px;
+  .comment-quantity {
+    background-color: #ecfbf8;
+    padding: 5px 10px;
+    span {
+      font-size: 16px;
+      font-weight: bold;
+      border-bottom: 3px solid black;
+      padding-bottom: 5px;
+    }
+  }
+  .body-comment {
+    .comment-area {
+      margin: 10px 0 0 0;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #1abc9c;
+      &:last-child {
+        border-bottom: none;
+      }
+      .picture {
+        width: calc(48px);
+        padding: 0;
+      }
+      .content {
+        padding: 0 0 0 10px;
+        .name {
+          margin-bottom: 5px;
+          font-weight: bold;
+        }
+        .comment {
+          margin-bottom: 0;
+        }
+      }
+      .like {
+        padding-right: 0;
+        margin-left: calc(16.66666667% - 48px);
+        a {
+          &:before {
+            content: '\f08a';
+            padding-right: 3px;
+            font-size: 12px;
+          }
+          &:focus {
+            background-color: #1abc9c;
+            color: white;
+            text-decoration: none;
+          }
+        }
+      }
+      .reply {
+        .reply-button {
+          padding-right: 0;
+          span:before {
+            content: '\f112';
+            padding-right: 2px;
+            font-size: 7px;
+          }
+        }
+      }
+    }
+    .text-style {
+      border-radius: 2px;
+      background-color: #fbfbfb;
+      padding: 6px 12px;
+      color: #1abc9c;
+      font-weight: normal;
+      &:hover {
+        text-decoration: none;
+        color: #16a085;
+        background-color: #f2f2f2;
+        cursor: pointer;
+      }
+    }
+  }
 }

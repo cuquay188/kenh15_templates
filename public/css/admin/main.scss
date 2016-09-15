@@ -616,6 +616,8 @@ td {
             background: #2c3e50;
             border-radius: 5px;
             color: #fff;
+            right: 0;
+            display: block;
             padding: 5px 10px;
             position: absolute;
             z-index: 999;
@@ -777,3 +779,64 @@ td {
         }
     }
 }
+
+/*Dashboard GUI*/
+.feedback, .request {
+    border: 1px solid #e8ebf5;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: -0.5px 0 5px 0 #adadad;
+}
+
+.feedback {
+    height: 100%;
+}
+
+.headFeedback, .headRequest {
+    font-size: 25px;
+    font-weight: bold;
+    color: #383D4B;
+}
+
+.bodyFeedback {
+    max-height: 83%;
+    overflow: auto;
+}
+
+.bodyFeedback li {
+    list-style-type: none;
+    text-align: left;
+    font-size: 15px;
+    padding-left: 5px;
+    transition: 0.2s;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.8);
+    line-height: 40px;
+    border-bottom: 1px solid #afb7ce;
+    cursor: pointer;
+}
+
+.bodyFeedback li a {
+    color: #383D4B;
+    text-decoration: none;
+}
+
+.bodyFeedback li:hover {
+    background-color: rgba(48, 140, 202, 0.09);
+}
+
+.bodyRequest {
+    font-size: 15px;
+}
+
+.linkInRequest {
+    color: #337ab7;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.linkInRequest:hover {
+    color: #1a4c75;
+}
+
+/*End Dashboard GUI*/

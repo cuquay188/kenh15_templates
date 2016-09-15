@@ -20,5 +20,6 @@ $('.body').scroll(function () {
         $('.body-top').css({
             'height': bodyTopHeight + 5
         });
+        console.log(bodyTopHeight)
     }
 });

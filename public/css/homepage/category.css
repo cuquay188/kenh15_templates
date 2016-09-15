@@ -2,13 +2,6 @@
   box-shadow: -0.5px 0 10px 0 #adadad;
   background-color: white; }
 
-.title {
-  font-size: 17px; }
-  .title a {
-    color: #34495e; }
-    .title a:hover {
-      color: #2c3e50; }
-
 .category {
   background-color: #1abc9c;
   width: 20%;
@@ -21,6 +14,13 @@
     font-size: 22px;
     font-weight: bold;
     text-align: center; }
+
+.articles .title {
+  font-size: 17px; }
+  .articles .title a {
+    color: #34495e; }
+    .articles .title a:hover {
+      color: #2c3e50; }
 
 .top-articles {
   margin-bottom: 20px; }
@@ -51,37 +51,6 @@
       text-shadow: 1px 1px 1px #16a085; }
     .top-articles .hot-day ul {
       padding: 0; }
-
-.related-news {
-  margin: 0 0 20px 0;
-  padding: 0; }
-  .related-news .picture {
-    display: inline-block;
-    background-color: rgba(238, 253, 252, 0.88);
-    width: 220px;
-    height: 140px;
-    text-align: center;
-    margin-right: 10px; }
-  .related-news .text {
-    display: inline-block;
-    vertical-align: top;
-    padding: 10px 0; }
-    .related-news .text .content h2 {
-      font-size: 17px;
-      margin-top: 10px; }
-
-.pagination {
-  margin: 30px 0 30px 35%; }
-  .pagination li:before {
-    content: ''; }
-  .pagination li a {
-    color: #1abc9c; }
-    .pagination li a:hover {
-      color: #16a085; }
-  .pagination .active span, .pagination .active span:hover {
-    color: white;
-    font-weight: bold;
-    background-color: #16a085; }
 
 .advertisement {
   /* margin-left:30px;

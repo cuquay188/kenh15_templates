@@ -14,8 +14,7 @@ ul {
 ul li {
   list-style: none;
   &:before {
-    content: '\f1e2 ';
-    /*f2ae*/
+    content: '\f2ae ';
     margin-right: 5px;
     color: #2c3e50;
   }
@@ -44,6 +43,50 @@ img {
   border-top: 1px solid #1abc9c;
   .articles {
     margin: 5px;
+  }
+}
+
+.related-news {
+  margin: 0 0 20px 0;
+  padding: 0;
+  .picture {
+    display: inline-block;
+    background-color: rgba(238, 253, 252, 0.88);
+    width: 220px;
+    height: 140px;
+    text-align: center;
+    margin-right: 10px;
+  }
+  .text {
+    display: inline-block;
+    vertical-align: top;
+    padding: 10px 0;
+    .content {
+      h2 {
+        font-size: 17px;
+        margin-top: 10px;
+      }
+    }
+  }
+}
+
+.pagination {
+  margin: 30px 0 30px 35%;
+  li:before {
+    content: '';
+  }
+  li a {
+    color: #1abc9c;
+    &:hover {
+      color: #16a085;
+    }
+  }
+  .active {
+    span, span:hover {
+      color: white;
+      font-weight: bold;
+      background-color: #16a085;
+    }
   }
 }
 

@@ -1,0 +1,11 @@
+.tag {
+  display: inline-block;
+  padding: 5px 10px;
+  text-align: center;
+  margin-bottom: 15px;
+  border-radius: 4px; }
+  .tag span {
+    font-weight: bold;
+    font-size: 22px; }
+
+/*# sourceMappingURL=tags.css.map */
