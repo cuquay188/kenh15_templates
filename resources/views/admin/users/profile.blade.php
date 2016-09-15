@@ -10,19 +10,19 @@
                 Username:
             </label>
             <div class="col col-sm-4">
-                <div class="text">
+                <div class="text" ng-show="!showUsername">
                     %%user.username%%
                 </div>
-                <input class="form-control" ng-model="user.username" style="display: none" type="text">
+                <input class="form-control" ng-model="user.username" type="text" ng-show="showUsername">
                 </input>
             </div>
             <div class="col col-sm-4">
-                <i class="glyphicon glyphicon-pencil">
+                <i class="glyphicon glyphicon-pencil" ng-click="showUsername=true" ng-show="!showUsername">
                 </i>
-                <button class="btn btn-success" style="display: none">
+                <button class="btn btn-success" ng-show="showUsername">
                     Update
                 </button>
-                <button class="btn btn-warning" style="display: none">
+                <button class="btn btn-warning" ng-show="showUsername" ng-click="showUsername=false">
                     Cancel
                 </button>
             </div>
@@ -32,19 +32,19 @@
                 Full Name:
             </label>
             <div class="col col-sm-4">
-                <div class="text">
+                <div class="text" ng-show="!showFullName">
                     %%user.name%%
                 </div>
-                <input class="form-control" ng-model="user.name" style="display: none" type="text">
+                <input class="form-control" ng-model="newName" type="text" ng-show="showFullName">
                 </input>
             </div>
             <div class="col col-sm-4">
-                <i class="glyphicon glyphicon-pencil">
+                <i class="glyphicon glyphicon-pencil" ng-click="showFullName=true" ng-show="!showFullName">
                 </i>
-                <button class="btn btn-success" style="display: none">
+                <button class="btn btn-success" ng-click="submitUpdateInfo('name')" ng-show="showFullName">
                     Update
                 </button>
-                <button class="btn btn-warning" style="display: none">
+                <button class="btn btn-warning" ng-click="showFullName=false" ng-show="showFullName">
                     Cancel
                 </button>
             </div>
@@ -54,19 +54,19 @@
                 Email:
             </label>
             <div class="col col-sm-4">
-                <div class="text">
+                <div class="text" ng-show="!showEmail">
                     %%user.email%%
                 </div>
-                <input class="form-control" ng-model="user.email" style="display: none" type="email">
+                <input class="form-control" ng-model="newEmail" type="email" ng-show="showEmail">
                 </input>
             </div>
             <div class="col col-sm-4">
-                <i class="glyphicon glyphicon-pencil">
+                <i class="glyphicon glyphicon-pencil" ng-click="showEmail=true" ng-show="!showEmail">
                 </i>
-                <button class="btn btn-success" style="display: none">
+                <button class="btn btn-success" ng-click="submitUpdateInfo('email')" ng-show="showEmail">
                     Update
                 </button>
-                <button class="btn btn-warning" style="display: none">
+                <button class="btn btn-warning" ng-click="showEmail=false" ng-show="showEmail">
                     Cancel
                 </button>
             </div>
@@ -76,19 +76,19 @@
                 Birthday:
             </label>
             <div class="col col-sm-4">
-                <div class="text">
+                <div class="text" ng-show="!showBirth">
                     %%user.birth | datetime:'date'%%
                 </div>
-                <input class="form-control" style="display: none" type="text">
+                <input class="form-control" id="birth" type="text" ng-show="showBirth">
                 </input>
             </div>
             <div class="col col-sm-4">
-                <i class="glyphicon glyphicon-pencil">
+                <i class="glyphicon glyphicon-pencil" ng-click="showBirth=true" ng-show="!showBirth">
                 </i>
-                <button class="btn btn-success" style="display: none">
+                <button class="btn btn-success" ng-click="submitUpdateInfo('birth')" ng-show="showBirth">
                     Update
                 </button>
-                <button class="btn btn-warning" style="display: none">
+                <button class="btn btn-warning" ng-click="showBirth=false" ng-show="showBirth">
                     Cancel
                 </button>
             </div>
@@ -98,19 +98,19 @@
                 Tel:
             </label>
             <div class="col col-sm-4">
-                <div class="text">
+                <div class="text" ng-show="!showTel">
                     %%user.tel%%
                 </div>
-                <input class="form-control" ng-model="user.tel" style="display: none" type="tel">
+                <input class="form-control" ng-model="newTel" type="tel" ng-show="showTel">
                 </input>
             </div>
             <div class="col col-sm-4">
-                <i class="glyphicon glyphicon-pencil">
+                <i class="glyphicon glyphicon-pencil" ng-click="showTel=true" ng-show="!showTel">
                 </i>
-                <button class="btn btn-success" style="display: none">
+                <button class="btn btn-success" ng-click="submitUpdateInfo('tel')" ng-show="showTel">
                     Update
                 </button>
-                <button class="btn btn-warning" style="display: none">
+                <button class="btn btn-warning" ng-click="showTel=false" ng-show="showTel">
                     Cancel
                 </button>
             </div>
@@ -120,19 +120,19 @@
                 Address:
             </label>
             <div class="col col-sm-4">
-                <div class="text">
+                <div class="text" ng-show="!showAddress">
                     %%user.address%%
                 </div>
-                <input class="form-control" ng-model="user.address" style="display: none" type="text">
+                <input class="form-control" ng-model="newAddress" type="text" ng-show="showAddress">
                 </input>
             </div>
             <div class="col col-sm-4">
-                <i class="glyphicon glyphicon-pencil">
+                <i class="glyphicon glyphicon-pencil" ng-click="showAddress=true" ng-show="!showAddress">
                 </i>
-                <button class="btn btn-success" style="display: none">
+                <button class="btn btn-success" ng-click="submitUpdateInfo('address')" ng-show="showAddress">
                     Update
                 </button>
-                <button class="btn btn-warning" style="display: none">
+                <button class="btn btn-warning" ng-click="showAddress=false" ng-show="showAddress">
                     Cancel
                 </button>
             </div>
@@ -142,19 +142,19 @@
                 City:
             </label>
             <div class="col col-sm-4">
-                <div class="text">
+                <div class="text" ng-show="!showCity">
                     %%user.city%%
                 </div>
-                <input class="form-control" style="display: none" type="text">
+                <input class="form-control" ng-model="newCity" ng-show="showCity" type="text">
                 </input>
             </div>
             <div class="col col-sm-4">
-                <i class="glyphicon glyphicon-pencil">
+                <i class="glyphicon glyphicon-pencil" ng-click="showCity=true" ng-show="!showCity">
                 </i>
-                <button class="btn btn-success" style="display: none">
+                <button class="btn btn-success" ng-click="submitUpdateInfo('city')" ng-show="showCity">
                     Update
                 </button>
-                <button class="btn btn-warning" style="display: none">
+                <button class="btn btn-warning" ng-click="showCity=false" ng-show="showCity">
                     Cancel
                 </button>
             </div>

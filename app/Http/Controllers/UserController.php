@@ -85,15 +85,27 @@ class UserController extends Controller
             $address = $request->address;
             $city    = $request->city;
 
-            User::where('id', $id)->update([
-                'name'    => $name,
-                'email'   => $email,
-                'tel'     => $tel,
-                'birth'   => $birth,
-                'address' => $address,
-                'city'    => $city,
-            ]);
+            $update_rules = array();
+            if ($name['status'] == '1') {
+                $update_rules['name'] = $name['data'];
+            }
+            if ($email['status'] == '1') {
+                $update_rules['email'] = $email['data'];
+            }
+            if ($tel['status'] == '1') {
+                $update_rules['tel'] = $tel['data'];
+            }
+            if ($birth['status'] == '1') {
+                $update_rules['birth'] = $birth['data'];
+            }
+            if ($address['status'] == '1') {
+                $update_rules['address'] = $address['data'];
+            }
+            if ($city['status'] == '1') {
+                $update_rules['city'] = $city['data'];
+            }
 
+            User::where('id', $id)->update($update_rules);
             return [
                 'message' => 'Update Successful.',
                 'user'    => $this->getAuthUser(),
