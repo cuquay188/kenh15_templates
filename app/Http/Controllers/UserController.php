@@ -79,7 +79,6 @@ class UserController extends Controller
         if (Auth::check()) {
             $id      = $request->id;
             $name    = $request->name;
-            $email   = $request->email;
             $tel     = $request->tel;
             $birth   = $request->birth;
             $address = $request->address;
@@ -88,9 +87,6 @@ class UserController extends Controller
             $update_rules = array();
             if ($name['status'] == '1') {
                 $update_rules['name'] = $name['data'];
-            }
-            if ($email['status'] == '1') {
-                $update_rules['email'] = $email['data'];
             }
             if ($tel['status'] == '1') {
                 $update_rules['tel'] = $tel['data'];
@@ -106,9 +102,10 @@ class UserController extends Controller
             }
 
             User::where('id', $id)->update($update_rules);
+            $user = User::find($id);
             return [
                 'message' => 'Update Successful.',
-                'user'    => $this->getAuthUser(),
+                'user'    => $this->getAuthUser($user),
             ];
         }
         return [
@@ -176,10 +173,10 @@ class UserController extends Controller
         }
         return $users;
     }
-    public function getAuthUser()
+    public function getAuthUser($user = null)
     {
         if (Auth::check()) {
-            $user = Auth::user();
+            $user = $user ? $user : Auth::user();
             return [
                 'id'        => $user->id,
                 'name'      => $user->name,

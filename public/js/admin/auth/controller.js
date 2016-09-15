@@ -17,10 +17,6 @@ app.controller('authController', function($scope, $http, $auth) {
                 status: option == 'name' ? 1 : 0,
                 data: $scope.newName,
             },
-            email: {
-                status: option == 'email' ? 1 : 0,
-                data: $scope.newEmail,
-            },
             tel: {
                 status: option == 'tel' ? 1 : 0,
                 data: $scope.newTel,
