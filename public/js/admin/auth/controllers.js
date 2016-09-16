@@ -9,8 +9,19 @@ app.controller('authController', function($scope, $http, $authors, $auth) {
         $scope.newAddress = user.address;
         $scope.newCity = user.city;
         $('#birth').datepicker("setDate", new Date(user.birth));
-    })
-    $scope.submitUpdateInfo = function(option) {
+    });
+    $scope.$watchGroup(['newPassword', 'confirmNewPassword'], function(newVal) {
+        var newPassword = newVal[0],
+            confirmNewPassword = newVal[1];
+        if (confirmNewPassword) {
+            if (confirmNewPassword != newPassword) $scope.confirmPasswordError = "The confirm password is not match with the new password."
+            else {
+                $scope.confirmPasswordError = null;
+                $scope.isSubmitable = true
+            }
+        }
+    });
+    $scope.submitUpdateInfo = function() {
         var user = {
             id: $scope.user.id,
             name: $scope.newName,
@@ -20,5 +31,12 @@ app.controller('authController', function($scope, $http, $authors, $auth) {
             city: $scope.newCity,
         }
         $auth.update.info($scope, $http, $authors, user);
-    }
+    };
+    $scope.submitUpdatePassword = function() {
+        var password = {
+            current_password: $scope.currentPassword,
+            new_password: $scope.newPassword
+        }
+        $auth.update.password($scope, $http, password);
+    };
 })

@@ -16,7 +16,16 @@ app.service('$auth', function() {
                     $authors.remove($auth.id);
                     $authors.add($auth);
                     $scope.errors = null;
-                    $scope.showFullName = $scope.showBirth = $scope.showTel = $scope.showAddress = $scope.showCity = false;
+                    $scope.showUpdateFullName = $scope.showUpdateBirth = $scope.showUpdateTel = $scope.showUpdateAddress = $scope.showUpdateCity = false;
+                }, function(response) {
+                    $scope.errors = response.data;
+                })
+            },
+            password: function($scope, $http, password) {
+                $http.post(url.auth.update.password, password).then(function(response) {
+                    $scope.showUpdatePassword = false;
+                    $scope.errors = null;
+                    $scope.currentPassword = $scope.newPassword = $scope.confirmNewPassword = null;
                 }, function(response) {
                     $scope.errors = response.data;
                 })

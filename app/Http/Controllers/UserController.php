@@ -45,7 +45,7 @@ class UserController extends Controller
     {
         $this->validate($request, [
             'email'    => 'required|email|unique:users,email',
-            'password' => 'required|min:3|max:24',
+            'password' => 'required|between:6,24',
         ]);
 
         $username = $email = $request->email;
@@ -111,30 +111,36 @@ class UserController extends Controller
 
     public function postChangeUserPassword(Request $request)
     {
-        $new_password = $request->new_password;
+        if (Auth::check()) {
+            //----------- Change password -----------
+            $user             = Auth::user();
+            $current_password = $request->current_password;
 
-        //----------- Change password -----------
-        $user             = Auth::user();
-        $current_password = $request->current_password;
+            $this->validate($request, [
+                'current_password' => 'required',
+            ]);
+            //If current_password don't match with password in database -> throw error
+            if (strlen($current_password) > 0 && !Hash::check($current_password, $user->password)) {
+                return response([
+                    'current_password' => ['Your current password is incorrect.'],
+                ], 422);
+            };
+            $this->validate($request, [
+                'new_password' => 'between:6,24',
+            ]);
+            $new_password = $request->new_password;
 
-        $this->validate($request, [
-            'current_password' => 'required',
-        ]);
-        //If current_password don't match with password in database -> throw error
-        if (strlen($current_password) > 0 && !Hash::check($current_password, $user->password)) {
-            return reponse([
-                'password' => 'Your current password is incorrect.',
-            ], 422);
+            //If current_password match with password in database -> replace by new_password and save
+            $user->password = Hash::make($new_password);
+            $user->save();
+
+            //----------- End Change password -----------
+            return [
+                'message' => 'Update Successful.',
+            ];
         }
-
-        //If current_password match with password in database -> replace by new_password and save
-        $user->password = Hash::make($new_password);
-        $user->save();
-
-        //----------- End Change password -----------
         return [
-            'message' => 'Update Successful.',
-            'user'    => $this->getAuthUser(),
+            'message' => 'Method not allowed.',
         ];
     }
 
@@ -152,22 +158,27 @@ class UserController extends Controller
 
     public function getUserJSON($id = null)
     {
-        if ($id) {
-            $user = User::find($id);
-            return response()->json([
-                'name'     => $user->name,
-                'username' => $user->username,
-            ]);
+        if (Auth::check()) {
+            if ($id) {
+                $user = User::find($id);
+                return response()->json([
+                    'name'     => $user->name,
+                    'username' => $user->username,
+                ]);
+            }
+            $allUsers = User::all();
+            $users    = array();
+            foreach ($allUsers as $user) {
+                array_push($users, [
+                    'name'     => $user->name,
+                    'username' => $user->username,
+                ]);
+            }
+            return $users;
         }
-        $allUsers = User::all();
-        $users    = array();
-        foreach ($allUsers as $user) {
-            array_push($users, [
-                'name'     => $user->name,
-                'username' => $user->username,
-            ]);
-        }
-        return $users;
+        return [
+            'message' => 'Method not allowed.',
+        ];
     }
     public function getAuthUser($user = null)
     {
