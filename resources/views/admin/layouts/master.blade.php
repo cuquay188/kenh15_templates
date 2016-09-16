@@ -98,7 +98,8 @@
                 select: '{{route('admin.api.auth.user')}}',
                 update:{
                     info: '{{route('admin.api.auth.update.info')}}',
-                    password: '{{route('admin.api.auth.update.password')}}'
+                    password: '{{route('admin.api.auth.update.password')}}',
+                    username: '{{route('admin.api.auth.update.username')}}'
                 }
             },
             plugin:{
@@ -139,7 +140,7 @@
 
 {{--Auth--}}
 <script src="{{asset('/js/admin/auth/services.js')}}"></script>
-<script src="{{asset('/js/admin/auth/controller.js')}}"></script>
+<script src="{{asset('/js/admin/auth/controllers.js')}}"></script>
 {{--End Auth--}}
 
 {{--Article--}}

@@ -12,13 +12,13 @@ app.controller('articlesListController', function($scope, $http, $log, $articles
     };
 });
 app.filter('array', function() {
-  return function(items) {
-    var filtered = [];
-    angular.forEach(items, function(item) {
-      filtered.push(item);
-    });
-   return filtered;
-  };
+    return function(items) {
+        var filtered = [];
+        angular.forEach(items, function(item) {
+            filtered.push(item);
+        });
+        return filtered;
+    };
 });
 app.controller('articleController', function($scope, $log, $article) {
     $scope.edit = function() {

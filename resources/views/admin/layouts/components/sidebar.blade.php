@@ -10,7 +10,7 @@
         </div>
         <ul class="item-body">
             <li>
-                <a href="#articles">
+                <a href="#articles" ng-class="{'active':(hashPath=='articles')}">
                     Articles
                     <span ng-bind="'('+articleLength+')'"></span>
                 </a>
@@ -18,7 +18,7 @@
                    data-toggle="modal" data-target="#create-article"><i class="glyphicon glyphicon-plus"></i></a>
             </li>
             <li>
-                <a href="#authors">
+                <a href="#authors" ng-class="{'active':(hashPath=='authors')}">
                     Authors
                     <span ng-bind="'('+authorLength+')'"></span>
                 </a>
@@ -27,7 +27,7 @@
                    data-backdrop="false"><i class="glyphicon glyphicon-plus"></i></a>
             </li>
             <li>
-                <a href="#categories">
+                <a href="#categories" ng-class="{'active':(hashPath=='categories')}">
                     Categories
                     <span ng-bind="'('+categoryLength+')'"></span>
                 </a>
@@ -36,7 +36,7 @@
                    data-backdrop="false"><i class="glyphicon glyphicon-plus"></i></a>
             </li>
             <li>
-                <a href="#tags">
+                <a href="#tags" ng-class="{'active':(hashPath=='tags')}">
                     Tags
                     <span ng-bind="'('+tagLength+')'"></span>
                 </a>
@@ -52,7 +52,7 @@
         </div>
         <ul class="item-body">
             <li>
-                <a href="#profile">
+                <a href="#profile" ng-class="{'active':(hashPath=='profile')}">
                     Profile
                 </a>
             </li>
