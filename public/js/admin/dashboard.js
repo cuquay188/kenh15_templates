@@ -38,5 +38,6 @@ var modalEvent = function($scope, modal, more) {
 };
 $('#create-category, #create-tag, #create-author').find('.modal-content').draggable().find('.modal-header').css('cursor', 'pointer');
 var toggleLoading = function(show, target = '#loading-toggle') {
-    $(target).css('display', (show ? 'block' : 'none'))
+    $(target).css('display', (show ? 'block' : 'none'));
+    if (show) $('.container.ng-scope').hide();
 }

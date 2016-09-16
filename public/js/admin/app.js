@@ -2,21 +2,20 @@ var app = angular.module("mainApp", ['angularUtils.directives.dirPagination', 'n
     $interpolateProvider.startSymbol('%%');
     $interpolateProvider.endSymbol('%%');
 });
-
 app.config(function(paginationTemplateProvider) {
     paginationTemplateProvider.setPath(url.plugin.dirPagination.controllerHtmlPath);
 });
 app.controller('mainController', function($rootScope, $scope, $http, $auth, $articles, $authors, $tags, $categories) {
-    $rootScope.$on('$routeChangeStart', function () {
-        toggleLoading(true);
+    $rootScope.$on('$routeChangeStart', function() {
+        toggleLoading(true)
     });
-    $rootScope.$on('$routeChangeSuccess', function () {
+    $rootScope.$on('$routeChangeSuccess', function(e, current, pre) {
         toggleLoading(false);
+        $scope.hashPath = current.$$route.originalPath.substring(1)
     });
-    $rootScope.$on('$routeChangeError', function () {
-        toggleLoading(false);
+    $rootScope.$on('$routeChangeError', function() {
+        toggleLoading(false)
     });
-
     $auth.load($http);
     $articles.load($http);
     $authors.load($http);
