@@ -45,7 +45,7 @@ app.controller('editAuthorController', function($scope, $http, $author, $auth) {
             newName: $scope.author.newName,
             newAddress: $scope.author.newAddress,
             newCity: $scope.author.newCity,
-            newBirth: $('#birth').datepicker("getDate"),
+            newBirth: moment($('#birth').datepicker("getDate")).format('YYYY-MM-DD'),
             newTel: $scope.author.newTel
         })
     };

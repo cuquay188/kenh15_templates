@@ -8,14 +8,14 @@ app.controller('authController', function($scope, $http, $authors, $auth) {
         $scope.newTel = user.tel;
         $scope.newAddress = user.address;
         $scope.newCity = user.city;
-        $('#birth').datepicker("setDate", new Date(moment(user.birth)));
+        $('#birth').datepicker("setDate", new Date(user.birth));
     })
     $scope.submitUpdateInfo = function(option) {
         var user = {
             id: $scope.user.id,
             name: $scope.newName,
             tel: $scope.newTel,
-            birth: $('#birth').datepicker("getDate"),
+            birth: moment($('#birth').datepicker("getDate")).format('YYYY-MM-DD'),
             address: $scope.newAddress,
             city: $scope.newCity,
         }
