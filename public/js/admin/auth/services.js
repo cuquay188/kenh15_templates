@@ -10,12 +10,14 @@ app.service('$auth', function() {
             })
         },
         update: {
-            info: function($scope, $http, user) {
+            info: function($scope, $http, $authors, user) {
                 $http.post(url.auth.update.info, user).then(function(response) {
                     $auth = response.data.user;
+                    $authors.remove($auth.id);
+                    $authors.add($auth);
                     $scope.errors = null;
+                    $scope.showFullName = $scope.showBirth = $scope.showTel = $scope.showAddress = $scope.showCity = false;
                 }, function(response) {
-                    console.log(response)
                     $scope.errors = response.data;
                 })
             }

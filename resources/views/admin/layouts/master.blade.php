@@ -139,7 +139,7 @@
 
 {{--Auth--}}
 <script src="{{asset('/js/admin/auth/services.js')}}"></script>
-<script src="{{asset('/js/admin/auth/controller.js')}}"></script>
+<script src="{{asset('/js/admin/auth/controllers.js')}}"></script>
 {{--End Auth--}}
 
 {{--Article--}}

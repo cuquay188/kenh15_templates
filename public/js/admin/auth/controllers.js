@@ -1,4 +1,4 @@
-app.controller('authController', function($scope, $http, $auth) {
+app.controller('authController', function($scope, $http, $authors, $auth) {
     $scope.$watch(function() {
         return $auth.get()
     }, function(user) {
@@ -8,7 +8,7 @@ app.controller('authController', function($scope, $http, $auth) {
         $scope.newTel = user.tel;
         $scope.newAddress = user.address;
         $scope.newCity = user.city;
-        $('#birth').datepicker("setDate", new Date(user.birth));
+        $('#birth').datepicker("setDate", new Date(moment(user.birth)));
     })
     $scope.submitUpdateInfo = function(option) {
         var user = {
@@ -19,6 +19,6 @@ app.controller('authController', function($scope, $http, $auth) {
             address: $scope.newAddress,
             city: $scope.newCity,
         }
-        $auth.update.info($scope, $http, user);
+        $auth.update.info($scope, $http, $authors, user);
     }
 })

@@ -175,6 +175,7 @@ class UserController extends Controller
             $user = $user ? $user : Auth::user();
             return [
                 'id'        => $user->id,
+                'age'       => $user->age(),
                 'name'      => $user->name,
                 'email'     => $user->email,
                 'username'  => $user->username,
