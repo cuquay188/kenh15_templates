@@ -41,7 +41,7 @@
             <div class="col col-sm-4" ng-if="false">
                 <i class="glyphicon glyphicon-pencil" ng-click="showEmail=true" ng-show="!showEmail">
                 </i>
-                <button class="btn btn-success" ng-click="submitUpdateInfo('email')" ng-show="showEmail">
+                <button class="btn btn-success" ng-click="submitUpdateInfo()" ng-show="showEmail">
                     Update
                 </button>
                 <button class="btn btn-warning" ng-click="showEmail=false" ng-show="showEmail">
@@ -57,13 +57,14 @@
                 <div class="text" ng-show="!showFullName">
                     %%user.name%%
                 </div>
-                <input class="form-control" ng-model="newName" type="text" ng-show="showFullName">
+                <input class="form-control" ng-model="newName" type="text" ng-show="showFullName" ng-class={'error':errors.name}>
                 </input>
+                <span class="errors" ng-show="errors.name&&showFullName">%%errors.name[0]%%</span>
             </div>
             <div class="col col-sm-4">
                 <i class="glyphicon glyphicon-pencil" ng-click="showFullName=true" ng-show="!showFullName">
                 </i>
-                <button class="btn btn-success" ng-click="submitUpdateInfo('name')" ng-show="showFullName">
+                <button class="btn btn-success" ng-click="submitUpdateInfo()" ng-show="showFullName">
                     Update
                 </button>
                 <button class="btn btn-warning" ng-click="showFullName=false" ng-show="showFullName">
@@ -79,13 +80,14 @@
                 <div class="text" ng-show="!showBirth">
                     %%user.birth | datetime:'date'%%
                 </div>
-                <input class="form-control" id="birth" type="text" ng-show="showBirth">
+                <input class="form-control" id="birth" type="text" ng-show="showBirth" ng-class={'error':errors.birth}>
                 </input>
+                <span class="errors" ng-show="errors.birth&&showBirth">%%errors.birth[0]%%</span>
             </div>
             <div class="col col-sm-4">
                 <i class="glyphicon glyphicon-pencil" ng-click="showBirth=true" ng-show="!showBirth">
                 </i>
-                <button class="btn btn-success" ng-click="submitUpdateInfo('birth')" ng-show="showBirth">
+                <button class="btn btn-success" ng-click="submitUpdateInfo()" ng-show="showBirth">
                     Update
                 </button>
                 <button class="btn btn-warning" ng-click="showBirth=false" ng-show="showBirth">
@@ -95,19 +97,20 @@
         </div>
         <div class="form-group">
             <label class="control-label col col-sm-4">
-                Tel:
+                Phone number:
             </label>
             <div class="col col-sm-4">
                 <div class="text" ng-show="!showTel">
                     %%user.tel%%
                 </div>
-                <input class="form-control" ng-model="newTel" type="tel" ng-show="showTel">
+                <input class="form-control" ng-model="newTel" type="tel" ng-show="showTel" ng-class={'error':errors.tel}>
                 </input>
+                <span class="errors" ng-show="errors.tel&&showTel">%%errors.tel[0]%%</span>
             </div>
             <div class="col col-sm-4">
                 <i class="glyphicon glyphicon-pencil" ng-click="showTel=true" ng-show="!showTel">
                 </i>
-                <button class="btn btn-success" ng-click="submitUpdateInfo('tel')" ng-show="showTel">
+                <button class="btn btn-success" ng-click="submitUpdateInfo()" ng-show="showTel">
                     Update
                 </button>
                 <button class="btn btn-warning" ng-click="showTel=false" ng-show="showTel">
@@ -123,13 +126,14 @@
                 <div class="text" ng-show="!showAddress">
                     %%user.address%%
                 </div>
-                <input class="form-control" ng-model="newAddress" type="text" ng-show="showAddress">
+                <input class="form-control" ng-model="newAddress" type="text" ng-show="showAddress" ng-class={'error':errors.address}>
                 </input>
+                <span class="errors" ng-show="errors.address&&showAddress">%%errors.address[0]%%</span>
             </div>
             <div class="col col-sm-4">
                 <i class="glyphicon glyphicon-pencil" ng-click="showAddress=true" ng-show="!showAddress">
                 </i>
-                <button class="btn btn-success" ng-click="submitUpdateInfo('address')" ng-show="showAddress">
+                <button class="btn btn-success" ng-click="submitUpdateInfo()" ng-show="showAddress">
                     Update
                 </button>
                 <button class="btn btn-warning" ng-click="showAddress=false" ng-show="showAddress">
@@ -145,13 +149,14 @@
                 <div class="text" ng-show="!showCity">
                     %%user.city%%
                 </div>
-                <input class="form-control" ng-model="newCity" ng-show="showCity" type="text">
+                <input class="form-control" ng-model="newCity" type="text" ng-show="showCity" ng-class={'error':errors.city}>
                 </input>
+                <span class="errors" ng-show="errors.city&&showCity">%%errors.city[0]%%</span>
             </div>
             <div class="col col-sm-4">
                 <i class="glyphicon glyphicon-pencil" ng-click="showCity=true" ng-show="!showCity">
                 </i>
-                <button class="btn btn-success" ng-click="submitUpdateInfo('city')" ng-show="showCity">
+                <button class="btn btn-success" ng-click="submitUpdateInfo()" ng-show="showCity">
                     Update
                 </button>
                 <button class="btn btn-warning" ng-click="showCity=false" ng-show="showCity">

@@ -13,27 +13,12 @@ app.controller('authController', function($scope, $http, $auth) {
     $scope.submitUpdateInfo = function(option) {
         var user = {
             id: $scope.user.id,
-            name: {
-                status: option == 'name' ? 1 : 0,
-                data: $scope.newName,
-            },
-            tel: {
-                status: option == 'tel' ? 1 : 0,
-                data: $scope.newTel,
-            },
-            birth: {
-                status: option == 'birth' ? 1 : 0,
-                data: $('#birth').datepicker("getDate"),
-            },
-            address: {
-                status: option == 'address' ? 1 : 0,
-                data: $scope.newAddress,
-            },
-            city: {
-                status: option == 'city' ? 1 : 0,
-                data: $scope.newCity,
-            }
+            name: $scope.newName,
+            tel: $scope.newTel,
+            birth: $('#birth').datepicker("getDate"),
+            address: $scope.newAddress,
+            city: $scope.newCity,
         }
-        $auth.update.info($http, user);
+        $auth.update.info($scope, $http, user);
     }
 })

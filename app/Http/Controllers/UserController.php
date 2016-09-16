@@ -77,31 +77,27 @@ class UserController extends Controller
     public function postUpdateUser(Request $request)
     {
         if (Auth::check()) {
+            $this->validate($request, [
+                'name'    => 'required|alpha_spaces|between:6,30',
+                'address' => 'required|alpha_num_spaces',
+                'city'    => 'required|alpha_spaces',
+                'birth'   => 'date',
+                'tel'     => 'required|numeric',
+            ]);
+
             $id      = $request->id;
             $name    = $request->name;
             $tel     = $request->tel;
             $birth   = $request->birth;
             $address = $request->address;
             $city    = $request->city;
-
-            $update_rules = array();
-            if ($name['status'] == '1') {
-                $update_rules['name'] = $name['data'];
-            }
-            if ($tel['status'] == '1') {
-                $update_rules['tel'] = $tel['data'];
-            }
-            if ($birth['status'] == '1') {
-                $update_rules['birth'] = $birth['data'];
-            }
-            if ($address['status'] == '1') {
-                $update_rules['address'] = $address['data'];
-            }
-            if ($city['status'] == '1') {
-                $update_rules['city'] = $city['data'];
-            }
-
-            User::where('id', $id)->update($update_rules);
+            User::where('id', $id)->update([
+                'name'    => $name,
+                'tel'     => $tel,
+                'birth'   => $birth,
+                'address' => $address,
+                'city'    => $city,
+            ]);
             $user = User::find($id);
             return [
                 'message' => 'Update Successful.',

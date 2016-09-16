@@ -10,11 +10,13 @@ app.service('$auth', function() {
             })
         },
         update: {
-            info: function($http, user) {
+            info: function($scope, $http, user) {
                 $http.post(url.auth.update.info, user).then(function(response) {
                     $auth = response.data.user;
-                }, function(reponse) {
-                    console.log(response.data)
+                    $scope.errors = null;
+                }, function(response) {
+                    console.log(response)
+                    $scope.errors = response.data;
                 })
             }
         }
