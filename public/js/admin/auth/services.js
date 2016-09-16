@@ -29,6 +29,17 @@ app.service('$auth', function() {
                 }, function(response) {
                     $scope.errors = response.data;
                 })
+            },
+            username: function($scope, $http, $authors, username) {
+                $http.post(url.auth.update.username, username).then(function(response) {
+                    $auth = response.data.user;
+                    $authors.remove($auth.id);
+                    $authors.add($auth);
+                    $scope.errors = null;
+                    $scope.showUpdateUsername = false;
+                }, function(response) {
+                    $scope.errors = response.data;
+                })
             }
         }
     }

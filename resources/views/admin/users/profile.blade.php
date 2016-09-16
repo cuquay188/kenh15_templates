@@ -10,13 +10,14 @@
             <div class="text" ng-show="!showUpdateUsername">
                 %%user.username%%
             </div>
-            <input class="form-control" ng-model="user.username" ng-show="showUpdateUsername" type="text">
+            <input class="form-control" ng-class="{'error':errors.username}" ng-model="newUsername" ng-show="showUpdateUsername" type="text" placeholder="Enter new username">
             </input>
+            <span class="errors">%%errors.username[0]%%</span>
         </div>
-        <div class="col col-sm-4" ng-if="user.username==user.email">
+        <div class="col col-sm-4" ng-show="user.username==user.email">
             <i class="glyphicon glyphicon-pencil" ng-click="showUpdateUsername=true" ng-show="!showUpdateUsername">
             </i>
-            <button class="btn btn-primary" ng-show="showUpdateUsername">
+            <button class="btn btn-primary" ng-click="submitUpdateUserName()" ng-show="showUpdateUsername">
                 Update
             </button>
             <button class="btn btn-default" ng-click="showUpdateUsername=false" ng-show="showUpdateUsername">

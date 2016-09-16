@@ -98,7 +98,8 @@
                 select: '{{route('admin.api.auth.user')}}',
                 update:{
                     info: '{{route('admin.api.auth.update.info')}}',
-                    password: '{{route('admin.api.auth.update.password')}}'
+                    password: '{{route('admin.api.auth.update.password')}}',
+                    username: '{{route('admin.api.auth.update.username')}}'
                 }
             },
             plugin:{

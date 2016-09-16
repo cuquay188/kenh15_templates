@@ -21,6 +21,12 @@ app.controller('authController', function($scope, $http, $authors, $auth) {
             }
         }
     });
+    $scope.submitUpdateUserName = function() {
+        var username = {
+            username: $scope.newUsername
+        }
+        $auth.update.username($scope, $http, $authors, username);
+    };
     $scope.submitUpdateInfo = function() {
         var user = {
             id: $scope.user.id,

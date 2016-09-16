@@ -220,7 +220,7 @@ Route::group(['prefix' => 'api'], function () {
     });
 
     Route::group(['prefix' => 'user'], function () {
-        
+
         Route::get('/select/{id?}', [
             'uses' => 'UserController@getUserJSON',
             'as'   => 'admin.api.user.select',
@@ -230,7 +230,7 @@ Route::group(['prefix' => 'api'], function () {
             'as'   => 'admin.api.user.update',
         ]);
     });
-    Route::group(['prefix'=>'auth'],function(){
+    Route::group(['prefix' => 'auth'], function () {
         Route::get('/', [
             'uses' => 'UserController@getAuthUser',
             'as'   => 'admin.api.auth.user',
@@ -244,6 +244,10 @@ Route::group(['prefix' => 'api'], function () {
             'uses' => 'UserController@postChangeUserPassword',
             'as'   => 'admin.api.auth.update.password',
         ]);
+        Route::post('/update/username', [
+            'uses' => 'UserController@postChangeUsername',
+            'as'   => 'admin.api.auth.update.username',
+        ]);
     });
 
 });
@@ -256,7 +260,7 @@ Route::get('/article/{url}', [
     'uses' => 'HomepageController@getArticle',
 ]);
 Route::get('/tag/{url}', [
-    'uses' => 'HomepageController@getTag'
+    'uses' => 'HomepageController@getTag',
 ]);
 Route::get('/category/{id}', [
     'uses' => 'HomepageController@getSingleCategory',

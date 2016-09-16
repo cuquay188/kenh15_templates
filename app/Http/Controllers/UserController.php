@@ -143,6 +143,27 @@ class UserController extends Controller
             'message' => 'Method not allowed.',
         ];
     }
+    public function postChangeUsername(Request $request)
+    {
+        if (Auth::check()) {
+            $this->validate($request, [
+                'username' => 'required|between:5,31|unique:users,username',
+            ]);
+            $user     = Auth::user();
+            $username = $request->username;
+
+            $user->username = $username;
+            $user->save();
+
+            return [
+                'message' => 'Update Successful.',
+                'user'    => $this->getAuthUser($user),
+            ];
+        }
+        return [
+            'message' => 'Method not allowed.',
+        ];
+    }
 
     public function getUsers()
     {
