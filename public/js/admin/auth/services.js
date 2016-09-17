@@ -20,7 +20,11 @@ app.service('$auth', function() {
                     notify('Update profile successful.', 'success')
                 }, function(response) {
                     $scope.errors = response.data;
-                    notify('Can not update profile.', 'danger')
+                    var text = '';
+                    $.each($scope.errors, function(index, val) {
+                        text += val[0] + '\n';
+                    });
+                    notify(text, 'danger')
                 })
             },
             password: function($scope, $http, password) {
@@ -41,8 +45,10 @@ app.service('$auth', function() {
                     $authors.add($auth);
                     $scope.errors = null;
                     $scope.showUpdateUsername = false;
+                    notify('Update username successful.', 'success')
                 }, function(response) {
                     $scope.errors = response.data;
+                    notify('Can not update profile.', 'danger')
                 })
             }
         }

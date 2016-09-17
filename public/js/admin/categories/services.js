@@ -75,7 +75,11 @@ app.service('$category', function() {
                     $category = null;
                 }, function(response) {
                     $scope.nameErrors = response.data.name + '';
-                    notify($scope.nameErrors, 'danger');
+                    var text = '';
+                    $.each(response.data, function(index, val) {
+                        text += val[0] + '\n';
+                    });
+                    notify(text, 'danger')
                 })
             },
             hot: function($scope, $http) {
@@ -115,7 +119,11 @@ app.service('$category', function() {
                 $scope.newName = '';
             }, function(response) {
                 $scope.nameErrors = response.data.name + '';
-                notify($scope.nameErrors, 'danger');
+                var text = '';
+                $.each(response.data, function(index, val) {
+                    text += val[0] + '\n';
+                });
+                notify(text, 'danger')
             })
         },
         remove: function($scope, $http, $categories) {

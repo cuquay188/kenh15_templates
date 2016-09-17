@@ -140,10 +140,10 @@
                 </button>
             </td>
         </tr>
-        <tr ng-if="articles==null">
+        <tr ng-if="articles.length==0">
             <td class="empty-table" colspan="6">
                 No articles is available.
-                <a data-target="#create-article" data-toggle="modal" href="#">
+                <a data-target="#create-article" data-toggle="modal">
                     Create a new one
                 </a>
                 .
@@ -151,7 +151,7 @@
         </tr>
     </tbody>
 </table>
-<dir-pagination-controls>
+<dir-pagination-controls  ng-if="articles.length!=0">
 </dir-pagination-controls>
 @endsection
 @section('scripts')

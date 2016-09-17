@@ -92,7 +92,11 @@ app.service('$author', function() {
                 $scope.cityErrors = response.data.city ? (response.data.city + '') : '';
                 $scope.birthErrors = response.data.birth ? (response.data.birth + '') : '';
                 $scope.telErrors = response.data.tel ? (response.data.tel + '') : '';
-                notify('Can not update author: \"' + $author.name + '\".', 'danger');
+                var text = '';
+                $.each(response.data, function(index, val) {
+                    text += val[0] + '\n';
+                });
+                notify(text, 'danger')
             })
         },
         create: function($scope, $http, $authors, $normalUsers, user, more) {

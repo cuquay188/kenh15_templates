@@ -50,7 +50,11 @@ app.service('$tag', function() {
                 notify('Update tag: \"' + $tag.name + '\" successful.', 'success')
             }, function(response) {
                 $scope.nameErrors = response.data.name + '';
-                notify($scope.nameErrors, 'danger')
+                var text = '';
+                $.each(response.data, function(index, val) {
+                    text += val[0] + '\n';
+                });
+                notify(text, 'danger')
             })
         },
         create: function($scope, $http, $tags, name, more) {
@@ -66,7 +70,11 @@ app.service('$tag', function() {
                 $scope.newName = '';
             }, function(response) {
                 $scope.nameErrors = response.data.name + '';
-                notify($scope.nameErrors, 'danger')
+                var text = '';
+                $.each(response.data, function(index, val) {
+                    text += val[0] + '\n';
+                });
+                notify(text, 'danger')
             })
         },
         remove: function($scope, $http, $tags) {

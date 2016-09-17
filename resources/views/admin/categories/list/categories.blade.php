@@ -70,6 +70,7 @@
             {{--Edit Function--}}
             <button type="submit" class="btn btn-primary btn-xs" data-toggle="modal"
                     data-target="#update-category"
+                    {{Auth::getUser()->is_admin() || Auth::getUser()->is_author() ? "" : "disabled"}}
                     ng-click="edit()">Edit
             </button>
             {{--Delete Function--}}
@@ -81,13 +82,17 @@
         </td>
         <td>%%category.note%%</td>
     </tr>
-    <tr ng-if="categories==null">
+    <tr ng-if="categories.length==0">
         <td colspan="6" class="empty-table">
             No categories is available.
-            <a href="#" data-toggle="modal" data-target="#create-category">Create a new one</a>.
+            <a data-toggle="modal" data-target="#create-category">
+                Create a new one
+            </a>
+            .
         </td>
     </tr>
     </tbody>
 </table>
-<dir-pagination-controls></dir-pagination-controls>
+<dir-pagination-controls ng-if="categories.length!=0">
+</dir-pagination-controls>
 @endsection

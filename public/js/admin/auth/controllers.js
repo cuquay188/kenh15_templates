@@ -4,11 +4,15 @@ app.controller('authController', function($scope, $http, $authors, $auth) {
     }, function(user) {
         $scope.user = user;
         $scope.newName = user.name;
-        $scope.newEmail = user.email;
         $scope.newTel = user.tel;
         $scope.newAddress = user.address;
         $scope.newCity = user.city;
         $('#birth').datepicker("setDate", new Date(user.birth));
+        $scope.showUpdateFullName = user.name == '' ? true : false;
+        $scope.showUpdateTel = user.tel == '' ? true : false;
+        $scope.showUpdateAddress = user.address == '' ? true : false;
+        $scope.showUpdateCity = user.city == '' ? true : false;
+        $scope.showUpdateBirth = user.birth == '0000-00-00' ? true : false;
     });
     $scope.$watchGroup(['newPassword', 'confirmNewPassword'], function(newVal) {
         var newPassword = newVal[0],

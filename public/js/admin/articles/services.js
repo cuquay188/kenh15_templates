@@ -71,6 +71,7 @@ app.service('$article', function() {
                 $scope.article.tags_id = $article.tags_id;
                 $scope.article.authors_id = $article.authors_id;
                 $('.modal.in').modal('hide');
+                notify('Update article: \"' + $article.title + '\" successful.', 'success')
                 $article = null;
                 $scope.errors = null;
                 $scope.title = '';
@@ -82,10 +83,13 @@ app.service('$article', function() {
                     val.checked = false;
                 });
                 $scope.category = '?';
-                notify('Update article: \"' + $scope.article.title + '\" successful.', 'success')
             }, function(response) {
                 $scope.errors = response.data;
-                notify('Can not update article: \"' + $scope.article.title + '\".', 'danger')
+                var text = '';
+                $.each($scope.errors, function(index, val) {
+                    text += val[0] + '\n';
+                });
+                notify(text, 'danger')
             })
         },
         create: function($scope, $http, $articles, article, more) {
@@ -99,6 +103,7 @@ app.service('$article', function() {
                 $article = response.data.article;
                 $articles.add($article);
                 if (!more) $('.modal.in').modal('hide');
+                notify('Create article: \"' + $article.title + '\" successful.', 'success')
                 $article = null;
                 $scope.errors = null;
                 $scope.title = '';
@@ -110,10 +115,13 @@ app.service('$article', function() {
                     val.checked = false;
                 });
                 $scope.category = '?';
-                notify('Create article: \"' + $scope.article.title + '\" successful.', 'success')
             }, function(response) {
                 $scope.errors = response.data;
-                notify('Can not create this article.', 'danger')
+                var text = '';
+                $.each($scope.errors, function(index, val) {
+                    text += val[0] + '\n';
+                });
+                notify(text, 'danger')
             })
         },
         remove: {

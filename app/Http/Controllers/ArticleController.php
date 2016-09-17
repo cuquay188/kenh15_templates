@@ -116,22 +116,19 @@ class ArticleController extends Controller
         $article = Article::find($id);
         $tags    = $request->tags;
         $authors = $request->authors;
-        if (!empty($tags)) {
-            DB::table('tag_article')->where('article_id', $id)->delete();
-            foreach ($tags as $tag) {
-                $article->tags()->attach($tag);
-            }
 
-            $article->touch();
+        DB::table('tag_article')->where('article_id', $id)->delete();
+        foreach ($tags as $tag) {
+            $article->tags()->attach($tag);
         }
-        if (!empty($authors)) {
-            DB::table('author_article')->where('article_id', $id)->delete();
-            foreach ($authors as $author) {
-                $article->authors()->attach($author);
-            }
 
-            $article->touch();
+        $article->touch();
+        DB::table('author_article')->where('article_id', $id)->delete();
+        foreach ($authors as $author) {
+            $article->authors()->attach($author);
         }
+
+        $article->touch();
 
         return response()->json([
             'message' => 'Update successful.',
@@ -201,10 +198,12 @@ class ArticleController extends Controller
         } else {
             if (Auth::user()->is_admin()) {
                 $articles = Article::orderBy('updated_at', 'desc')->get();
-            } else {
+            } else if (Auth::user()->is_author()) {
                 $articles = Article::whereHas('authors', function ($query) {
                     $query->where('author_id', Auth::user()->author->id);
                 })->orderBy('updated_at', 'desc')->get();
+            } else {
+                $articles = array();
             }
             $resultArticles = array();
             foreach ($articles as $article) {
@@ -260,17 +259,17 @@ class ArticleController extends Controller
         $articleView->save();*/
         }
         /*foreach (Tag::all() as $tag) {
-            Tag::where('id', $tag->id)->update([
-                'url'  => $this->convert_to_url($tag->name),
-                'note' => $tag->name,
-            ]);
+        Tag::where('id', $tag->id)->update([
+        'url'  => $this->convert_to_url($tag->name),
+        'note' => $tag->name,
+        ]);
         }
 
         foreach (Category::all() as $category) {
-            Category::where('id', $category->id)->update([
-                'url'  => $this->convert_to_url($category->name),
-                'note' => $category->name,
-            ]);
+        Category::where('id', $category->id)->update([
+        'url'  => $this->convert_to_url($category->name),
+        'note' => $category->name,
+        ]);
         }*/
         /*foreach (Category::all() as $category){
         $advance = new CategoryAdvance();

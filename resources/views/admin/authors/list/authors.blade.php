@@ -85,13 +85,14 @@
             </button>
         </td>
     </tr>
-    <tr ng-if="authors==null">
+    <tr ng-if="authors.length==0">
         <td colspan="6" class="empty-table">
             No authors is available. You need to
-            <a href="#" data-toggle="modal" data-target="#create-author">promote a user.</a>.
+            <a data-toggle="modal" data-target="#create-author">promote a user</a>.
         </td>
     </tr>
     </tbody>
 </table>
-<dir-pagination-controls></dir-pagination-controls>
+<dir-pagination-controls  ng-if="authors.length!=0">
+</dir-pagination-controls>
 @endsection
