@@ -8,7 +8,7 @@
 				<hr>
 		</div>
 		<ul class="bodyFeedback">
-			<li><a href="#">User 1 commented your articleser 1 commented your articleser 1 commented your articleser 1 commented your articleser 1 commented your articleser 1 commented your articleser 1 commented your articleser 1 commented your articleser 1 commented your articleser 1 commented your article!</a></li>
+			<li><a href="#">User 1 commented your articleser 1 commented your articleser 1 commented your articleser 1  commented your articleser 1  commented your articleser 1  commented your articleser 1 </a></li>
 			<li><a href="#">User 1 commented your article!</a></li>
 			<li><a href="#">User 1 commented your article!</a></li>
 			<li><a href="#">User 1 commented your article!</a></li>

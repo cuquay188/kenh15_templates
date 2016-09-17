@@ -729,12 +729,12 @@ td {
     overflow: auto;
     margin: 0px;
     li {
+        padding: 7px 0px;
       padding-left: 10px;
       display: -webkit-flex;
       display: flex;
       -webkit-align-items: center;
       align-items: center;
-      min-height: 10%;
       list-style-type: none;
       text-align: left;
       font-size: 15px;
