@@ -1,9 +1,9 @@
 @if(Auth::user()->is_admin())
   <div class="modal fade" role="dialog" id="update-author">
-      <div class="modal-dialog">
-          <div class="modal-content" style=" top: 50px" ng-controller="editAuthorController">
+      <div class="modal-dialog" style="top: 50px" >
+          <div class="modal-content" ng-controller="editAuthorController">
               <div class="modal-header">
-                  <h5 style="font-weight: bold">
+                  <h5>
                       Edit Author: %%author.name%%
                   </h5>
                   <div class="close" data-dismiss="modal">

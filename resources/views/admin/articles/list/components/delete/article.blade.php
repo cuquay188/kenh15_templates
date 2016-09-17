@@ -1,6 +1,6 @@
 <div class="modal fade" role="dialog" id="delete-article">
-    <div class="modal-dialog">
-        <div class="modal-content" style="top: 150px" ng-controller="deleteArticleController">
+    <div class="modal-dialog" style="top: 150px">
+        <div class="modal-content" ng-controller="deleteArticleController">
             <div class="modal-header">
                 <h5 style="font-weight: bold">
                     Delete Article:

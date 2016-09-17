@@ -1,7 +1,7 @@
 @if(Auth::getUser()->is_admin() || Auth::getUser()->is_author())
     <div class="modal fade" role="dialog" id="update-tag">
-        <div class="modal-dialog">
-            <div class="modal-content" style="top: 150px" ng-controller="editTagController">
+        <div class="modal-dialog" style="top: 150px">
+            <div class="modal-content" ng-controller="editTagController">
                 <div class="modal-header">
                     <h5>
                         Edit Tag: %%tag.name%%

@@ -1,7 +1,7 @@
 @if(Auth::getUser()->is_admin() || Auth::getUser()->is_author())
     <div class="modal fade" role="dialog" id="delete-category">
-        <div class="modal-dialog">
-            <div class="modal-content" style="top: 150px" ng-controller="deleteCategoryController">
+        <div class="modal-dialog" style="top: 150px">
+            <div class="modal-content" ng-controller="deleteCategoryController">
                 <div class="modal-header">
                     <h5>
                         Delete Category: %%category.name%%

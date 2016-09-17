@@ -1,9 +1,9 @@
 @if(Auth::user()->is_admin())
     <div class="modal fade" role="dialog" id="delete-author">
-        <div class="modal-dialog">
-            <div class="modal-content" style="top: 150px" ng-controller="deleteAuthorController">
+        <div class="modal-dialog" style="top: 150px">
+            <div class="modal-content" ng-controller="deleteAuthorController">
                 <div class="modal-header">
-                    <h5 style="font-weight: bold">
+                    <h5>
                         Demote %%author.name%%
                     </h5>
                     <div class="close" data-dismiss="modal">

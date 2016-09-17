@@ -55,8 +55,8 @@
 				    <div class="modal-body">
 				    	<form>
 				    		<div class="form-group">
-				    			<label>Reason ! </label>
-				    			<textarea class="form-control" rows="7"></textarea>
+				    			<label>Reason</label>
+				    			<textarea class="form-control" rows="7" placeholder="Type something here..."></textarea>
 				    		</div>
 					    </form>
 				    </div>

@@ -1,9 +1,9 @@
 @if(Auth::getUser()->is_admin() || Auth::getUser()->is_author())
     <div class="modal fade" role="dialog" id="delete-tag">
-        <div class="modal-dialog">
-            <div class="modal-content" style="top: 150px" ng-controller="deleteTagController">
+        <div class="modal-dialog" style="top: 150px">
+            <div class="modal-content" ng-controller="deleteTagController">
                 <div class="modal-header">
-                    <h5 style="font-weight: bold">
+                    <h5>
                         Delete Tag: %%tag.name%%
                     </h5>
                     <div class="close" data-dismiss="modal">

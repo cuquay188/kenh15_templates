@@ -1,6 +1,5 @@
-<div class="modal fade" role="dialog" id="delete-article-tag"
-     style="top: 150px">
-    <div class="modal-dialog">
+<div class="modal fade" role="dialog" id="delete-article-tag">
+    <div class="modal-dialog" style="top: 150px">
         <div class="modal-content" ng-controller="deleteArticleTagController">
             <div class="modal-header">
                 <h5 style="font-weight: bold">Remove tag: %%tag.name%%</h5>
