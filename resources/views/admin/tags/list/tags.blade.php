@@ -53,7 +53,7 @@
                         {{Auth::getUser()->is_admin() || Auth::getUser()->is_author() ? "" : "disabled"}}
                         ng-click="edit()">Edit
                 </button>
-                <button class="btn btn-primary btn-xs"
+                <button class="btn btn-danger btn-xs"
                         data-toggle="modal" data-target="#delete-tag"
                         {{Auth::getUser()->is_admin() || Auth::getUser()->is_author() ? "" : "disabled"}}
                         ng-click="delete()">Delete

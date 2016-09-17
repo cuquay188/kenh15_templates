@@ -1,63 +1,60 @@
-app.service('$articles', function () {
+app.service('$articles', function() {
     var $articles = [];
     return {
-        get: function () {
+        get: function() {
             return $articles;
         },
-        set: function ($newArticles) {
+        set: function($newArticles) {
             $articles = $newArticles;
             return $articles
         },
-        size: function () {
+        size: function() {
             return $articles.length;
         },
-        load: function ($http) {
-            $http.get(url.article.select.articles)
-                .then(function (response) {
-                    $articles = response.data;
-                    $.each($articles, function (i, article) {
-                        article.updated_at = new Date(article.updated_at.date);
-                    });
-                    return $articles;
+        load: function($http) {
+            $http.get(url.article.select.articles).then(function(response) {
+                $articles = response.data;
+                $.each($articles, function(i, article) {
+                    article.updated_at = new Date(article.updated_at.date);
                 });
+                return $articles;
+            });
         },
-        add: function ($article) {
+        add: function($article) {
             $article.updated_at = new Date($article.updated_at.date);
             $articles.push($article);
         },
-        remove: function (id) {
-            $articles = $articles.filter(function (article) {
+        remove: function(id) {
+            $articles = $articles.filter(function(article) {
                 return article.id != id
             });
             return $articles;
         }
     };
 });
-app.service('$article', function () {
+app.service('$article', function() {
     var $article = {};
     return {
         get: {
-            article: function () {
+            article: function() {
                 return $article;
             },
-            content: function ($http) {
-                if ($article.content)
-                    CKEDITOR.instances.edit_article.setData($article.content);
+            content: function($http) {
+                if ($article.content) CKEDITOR.instances.edit_article.setData($article.content);
                 else {
-                    $http.get(url.article.select.content($article.id))
-                        .then(function (response) {
-                            $article.content = response.data.content;
-                            CKEDITOR.instances.edit_article.setData($article.content);
-                        });
+                    $http.get(url.article.select.content($article.id)).then(function(response) {
+                        $article.content = response.data.content;
+                        CKEDITOR.instances.edit_article.setData($article.content);
+                    });
                 }
                 return $article.content
             }
         },
-        set: function ($newArticle) {
+        set: function($newArticle) {
             $article = $newArticle;
             return $article
         },
-        update: function ($scope, $http, article) {
+        update: function($scope, $http, article) {
             $http.post(url.article.update, {
                 id: $article.id,
                 title: article.title,
@@ -65,95 +62,102 @@ app.service('$article', function () {
                 category: article.category,
                 tags: article.tags,
                 authors: article.authors
-            }).then(function (response) {
-                    $article = response.data.article;
-
-                    $scope.article.title = $article.title;
-                    $scope.article.updated_at = new Date($article.updated_at.date);
-                    $scope.article.url = $article.url;
-                    $scope.article.category_id = $article.category_id;
-                    $scope.article.tags_id = $article.tags_id;
-                    $scope.article.authors_id = $article.authors_id;
-
-                    $('.modal.in').modal('hide');
-                    $article = null;
-                    $scope.errors = null;
-                    $scope.title = '';
-                    CKEDITOR.instances.create_article.setData('');
-                    $.each($scope.tags, function (i, val) {
-                        val.checked = false;
-                    });
-                    $.each($scope.authors, function (i, val) {
-                        val.checked = false;
-                    });
-                    $scope.category = '?';
-                }, function (response) {
-                    $scope.errors = response.data;
-                }
-            )
+            }).then(function(response) {
+                $article = response.data.article;
+                $scope.article.title = $article.title;
+                $scope.article.updated_at = new Date($article.updated_at.date);
+                $scope.article.url = $article.url;
+                $scope.article.category_id = $article.category_id;
+                $scope.article.tags_id = $article.tags_id;
+                $scope.article.authors_id = $article.authors_id;
+                $('.modal.in').modal('hide');
+                $article = null;
+                $scope.errors = null;
+                $scope.title = '';
+                CKEDITOR.instances.create_article.setData('');
+                $.each($scope.tags, function(i, val) {
+                    val.checked = false;
+                });
+                $.each($scope.authors, function(i, val) {
+                    val.checked = false;
+                });
+                $scope.category = '?';
+                notify('Update article: \"' + $scope.article.title + '\" successful.', 'success')
+            }, function(response) {
+                $scope.errors = response.data;
+                notify('Can not update article: \"' + $scope.article.title + '\".', 'danger')
+            })
         },
-        create: function ($scope, $http, $articles, article, more) {
+        create: function($scope, $http, $articles, article, more) {
             $http.post(url.article.create, {
                 title: article.title,
                 content: article.content,
                 category: article.category,
                 tags: article.tags,
                 authors: article.authors
-            }).then(function (response) {
+            }).then(function(response) {
                 $article = response.data.article;
                 $articles.add($article);
-                if (!more)
-                    $('.modal.in').modal('hide');
+                if (!more) $('.modal.in').modal('hide');
                 $article = null;
                 $scope.errors = null;
                 $scope.title = '';
                 CKEDITOR.instances.create_article.setData('');
-                $.each($scope.tags, function (i, val) {
+                $.each($scope.tags, function(i, val) {
                     val.checked = false;
                 });
-                $.each($scope.authors, function (i, val) {
+                $.each($scope.authors, function(i, val) {
                     val.checked = false;
                 });
                 $scope.category = '?';
-            }, function (response) {
-                console.log(response);
+                notify('Create article: \"' + $scope.article.title + '\" successful.', 'success')
+            }, function(response) {
                 $scope.errors = response.data;
+                notify('Can not create this article.', 'danger')
             })
         },
         remove: {
-            article: function ($scope, $http, $articles) {
+            article: function($scope, $http, $articles) {
                 $http.post(url.article.remove.article, {
                     id: $article.id
-                }).then(function (response) {
+                }).then(function(response) {
                     $articles.remove(response.data.article.id);
                     $('.modal.in').modal('hide');
+                    notify('Remove article: \"' + $scope.article.title + '\" successful.', 'success')
+                }, function() {
+                    notify('Can not remove article: \"' + $scope.article.title + '\".', 'danger')
                 })
             },
-            tag: function ($scope, $http, $tag) {
+            tag: function($scope, $http, $tag) {
                 $http.post(url.article.remove.tag, {
                     article_id: $article.id,
                     tag_id: $tag.get().id
-                }).then(function (response) {
+                }).then(function(response) {
                     $article = response.data.article;
                     $scope.article.tags_id = $article.tags_id;
                     $('.modal.in').modal('hide');
+                    notify('Remove tag: \"' + $tag.get().name + '\" from article: \"' + $scope.article.title + '\" successful.', 'success')
                     $article = null;
                     $tag.set(null);
+                }, function() {
+                    notify('Can not remove tag: \"' + $tag.get().name + '\" from article: \"' + $scope.article.title + '\".', 'danger')
                 })
             },
-            author: function ($scope, $http, $author) {
+            author: function($scope, $http, $author) {
                 $http.post(url.article.remove.author, {
                     article_id: $article.id,
                     author_id: $author.get().id
-                }).then(function (response) {
+                }).then(function(response) {
                     $article = response.data.article;
                     $scope.article.authors_id = $article.authors_id;
                     $('.modal.in').modal('hide');
+                    notify('Remove tag: \"' + $author.get().name + '\" from article: \"' + $scope.article.title + '\" successful.', 'success')
                     $article = null;
                     $author.set(null);
+                }, function() {
+                    notify('Can not remove author: \"' + $author.get().name + '\" from article: \"' + $scope.article.title + '\".', 'danger')
                 })
             }
         }
     }
-})
-;
+});

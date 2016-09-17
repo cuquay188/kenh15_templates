@@ -3,10 +3,8 @@
     <title>@yield("title")</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="_token" content="{{Session::token()}}">
 
     <!-- Style Sheet -->
-
     <link rel="stylesheet" href="{{asset('/bootstrap/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('/css/admin/main.css')}}">
     <link rel="stylesheet" href="{{asset('/jquery/jquery-ui/themes/flick/jquery-ui.css')}}">
@@ -23,6 +21,7 @@
     <script src="{{asset('/jquery/jquery-ui/ui/minified/jquery.ui.draggable.min.js')}}"></script>
     <script src="{{asset('/jquery/jquery-ui/ui/minified/jquery.ui.datepicker.min.js')}}"></script>
     <script src="{{asset('/moment/moment.min.js')}}"></script>
+    <script src="{{asset('/notify/notify.min.js')}}"></script>
     <!-- End jQuery library-->
 
     <!-- Angular library -->

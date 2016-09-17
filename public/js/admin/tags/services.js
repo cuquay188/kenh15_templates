@@ -1,78 +1,83 @@
-app.service('$tags', function () {
+app.service('$tags', function() {
     var $tags = [];
     return {
-        get: function () {
+        get: function() {
             return $tags;
         },
-        set: function ($newTags) {
+        set: function($newTags) {
             $tags = $newTags;
             return $tags
         },
-        size: function () {
+        size: function() {
             return $tags.length;
         },
-        load: function ($http) {
-            $http.get(url.tag.select)
-                .then(function (response) {
-                    $tags = response.data;
-                    return $tags;
-                });
+        load: function($http) {
+            $http.get(url.tag.select).then(function(response) {
+                $tags = response.data;
+                return $tags;
+            });
         },
-        add: function ($tag) {
+        add: function($tag) {
             $tags.push($tag);
         },
-        remove: function (id) {
-            $tags = $tags.filter(function (tag) {
+        remove: function(id) {
+            $tags = $tags.filter(function(tag) {
                 return tag.id != id
             });
             return $tags;
         }
     };
 });
-app.service('$tag', function () {
+app.service('$tag', function() {
     var $tag = {};
     return {
-        get: function () {
+        get: function() {
             return $tag;
         },
-        set: function ($newTag) {
+        set: function($newTag) {
             $tag = $newTag;
             return $tag
         },
-        update: function ($scope, $http, name) {
+        update: function($scope, $http, name) {
             $http.post(url.tag.update, {
                 id: $tag.id,
                 name: name
-            }).then(function (response) {
+            }).then(function(response) {
                 $tag = response.data.tag;
                 $scope.tag.name = $tag.name;
                 $('.modal.in').modal('hide');
                 $scope.nameErrors = '';
-            }, function (response) {
+                notify('Update tag: \"' + $tag.name + '\" successful.', 'success')
+            }, function(response) {
                 $scope.nameErrors = response.data.name + '';
+                notify($scope.nameErrors, 'danger')
             })
         },
-        create: function ($scope, $http, $tags, name, more) {
+        create: function($scope, $http, $tags, name, more) {
             $http.post(url.tag.create, {
                 name: name
-            }).then(function (response) {
+            }).then(function(response) {
                 $tag = response.data.tag;
                 $tags.add($tag);
-                if (!more)
-                    $('.modal.in').modal('hide');
+                if (!more) $('.modal.in').modal('hide');
+                notify('Create tag: \"' + $tag.name + '\" successful.', 'success')
                 $tag = null;
                 $scope.nameErrors = '';
                 $scope.newName = '';
-            }, function (response) {
+            }, function(response) {
                 $scope.nameErrors = response.data.name + '';
+                notify($scope.nameErrors, 'danger')
             })
         },
-        remove: function ($scope, $http, $tags) {
+        remove: function($scope, $http, $tags) {
             $http.post(url.tag.remove, {
                 id: $tag.id
-            }).then(function (response) {
+            }).then(function(response) {
                 $tags.remove(response.data.tag.id);
                 $('.modal.in').modal('hide');
+                notify('Remove tag: \"' + $tag.name + '\" successful.', 'success')
+            }, function() {
+                notify('Can not remove tag: \"' + $tag.name + '\" successful.', 'danger')
             })
         }
     }

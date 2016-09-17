@@ -57,7 +57,7 @@
             </div>
             <input class="form-control" ng-class="{'error':errors.name}" ng-model="newName" ng-show="showUpdateFullName" type="text">
             </input>
-            <span class="errors" ng-show="errors.name&&showFullName">
+            <span class="errors" ng-show="errors.name&&showUpdateFullName">
                 %%errors.name[0]%%
             </span>
         </div>
@@ -82,7 +82,7 @@
             </div>
             <input class="form-control" id="birth" ng-class="{'error':errors.birth}" ng-show="showUpdateBirth" type="text">
             </input>
-            <span class="errors" ng-show="errors.birth&&showBirth">
+            <span class="errors" ng-show="errors.birth&&showUpdateBirth">
                 %%errors.birth[0]%%
             </span>
         </div>
@@ -107,7 +107,7 @@
             </div>
             <input class="form-control" ng-class="{'error':errors.tel}" ng-model="newTel" ng-show="showUpdateTel" type="tel">
             </input>
-            <span class="errors" ng-show="errors.tel&&showTel">
+            <span class="errors" ng-show="errors.tel&&showUpdateTel">
                 %%errors.tel[0]%%
             </span>
         </div>
@@ -132,7 +132,7 @@
             </div>
             <input class="form-control" ng-class="{'error':errors.address}" ng-model="newAddress" ng-show="showUpdateAddress" type="text">
             </input>
-            <span class="errors" ng-show="errors.address&&showAddress">
+            <span class="errors" ng-show="errors.address&&showUpdateAddress">
                 %%errors.address[0]%%
             </span>
         </div>
@@ -157,7 +157,7 @@
             </div>
             <input class="form-control" ng-class="{'error':errors.city}" ng-model="newCity" ng-show="showUpdateCity" type="text">
             </input>
-            <span class="errors" ng-show="errors.city&&showCity">
+            <span class="errors" ng-show="errors.city&&showUpdateCity">
                 %%errors.city[0]%%
             </span>
         </div>

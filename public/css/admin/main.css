@@ -28,7 +28,8 @@
   border-radius: 0px; }
   .navbar.navbar-inverse .nav.navbar-nav li a {
     color: white; }
-  .navbar.navbar-inverse .nav.navbar-nav > li > a:focus, .navbar.navbar-inverse .nav.navbar-nav > li > a:hover {
+  .navbar.navbar-inverse .nav.navbar-nav > li > a:focus,
+  .navbar.navbar-inverse .nav.navbar-nav > li > a:hover {
     color: #d8f3fd; }
   .navbar.navbar-inverse .nav.navbar-nav .dropdown .dropdown-menu li a {
     color: black; }
@@ -407,7 +408,8 @@ body {
   cursor: pointer; }
   .table .sortable.sort {
     color: #3498db; }
-.table th.center, .table td.center {
+.table th.center,
+.table td.center {
   text-align: center; }
 
 td {
@@ -474,13 +476,13 @@ td {
   animation: animate-to-5 1.5s infinite; }
 @keyframes animate-to-2 {
   25%,
-        75% {
+    75% {
     transform: translateX(-1.5rem) scale(0.75); }
   95% {
     transform: translateX(0rem) scale(1); } }
 @keyframes animate-to-3 {
   25%,
-        75% {
+    75% {
     transform: translateX(1.5rem) scale(0.75); }
   95% {
     transform: translateX(0rem) scale(1); } }
@@ -488,7 +490,7 @@ td {
   25% {
     transform: translateX(-1.5rem) scale(0.75); }
   50%,
-        75% {
+    75% {
     transform: translateX(-4.5rem) scale(0.6); }
   95% {
     transform: translateX(0rem) scale(1); } }
@@ -496,7 +498,7 @@ td {
   25% {
     transform: translateX(1.5rem) scale(0.75); }
   50%,
-        75% {
+    75% {
     transform: translateX(4.5rem) scale(0.6); }
   95% {
     transform: translateX(0rem) scale(1); } }
@@ -519,7 +521,8 @@ td {
   95% {
     transform: translateX(0rem) scale(1); } }
 /*Dashboard GUI*/
-.feedback, .request {
+.feedback,
+.request {
   border: 1px solid #e8ebf5;
   border-radius: 5px;
   padding: 20px;
@@ -528,7 +531,8 @@ td {
 .feedback {
   height: 100%; }
 
-.headFeedback, .headRequest {
+.headFeedback,
+.headRequest {
   font-size: 25px;
   font-weight: bold;
   color: #383D4B; }
@@ -568,5 +572,42 @@ td {
   color: #1a4c75; }
 
 /*End Dashboard GUI*/
+/*NotifyJS UI*/
+.notifyjs-app-base {
+  background-color: #337ab7;
+  padding: 16px 24px;
+  color: #fff;
+  font-size: 14px;
+  border-radius: 8px;
+  max-width: 350px;
+  z-index: 9000;
+  box-shadow: -0.5px 0 5px 0 #bdc3c7; }
+
+.notifyjs-app-default {
+  color: #337ab7;
+  background-color: #fff;
+  border: 1px solid #337ab7; }
+
+.notifyjs-app-primary {
+  background-color: #337ab7; }
+  .notifyjs-app-primary:hover {
+    background-color: #286090; }
+
+.notifyjs-app-success {
+  background-color: #5cb85c; }
+  .notifyjs-app-success:hover {
+    background-color: #449d44; }
+
+.notifyjs-app-warning {
+  background-color: #f0ad4e; }
+  .notifyjs-app-warning:hover {
+    background-color: #ec971f; }
+
+.notifyjs-app-danger {
+  background-color: #d9534f; }
+  .notifyjs-app-danger:hover {
+    background-color: #c9302c; }
+
+/*End NotifyJS*/
 
 /*# sourceMappingURL=main.css.map */

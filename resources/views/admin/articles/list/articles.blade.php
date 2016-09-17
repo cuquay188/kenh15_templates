@@ -95,7 +95,7 @@
                 </span>
             </td>
             <td ng-controller="articleCategoryController">
-                <a href="{{route('admin.category')}}/%%article.category.id%%">
+                <a>
                     %%article.category.name%%
                 </a>
             </td>
@@ -107,7 +107,7 @@
             </td>
             <td ng-controller="articleAuthorController">
                 <div class="tag-border" ng-repeat="author in authors">
-                    <a href="#">
+                    <a>
                         %%author.name%%
                     </a>
                     <button class="close" data-target="#delete-article-author" data-toggle="modal" ng-click="delete(author)">
@@ -117,7 +117,7 @@
             </td>
             <td ng-controller="articleTagController">
                 <div class="tag-border" ng-repeat="tag in tags">
-                    <a href="#">
+                    <a>
                         %%tag.name%%
                     </a>
                     <button class="close" data-target="#delete-article-tag" data-toggle="modal" ng-click="delete(tag)">
@@ -135,7 +135,7 @@
                     Edit
                 </button>
                 {{--Delete--}}
-                <button class="btn btn-primary btn-xs" data-target="#delete-article" data-toggle="modal" ng-click="delete()">
+                <button class="btn btn-danger btn-xs" data-target="#delete-article" data-toggle="modal" ng-click="delete()">
                     Delete
                 </button>
             </td>

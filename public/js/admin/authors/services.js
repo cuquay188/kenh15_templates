@@ -84,12 +84,15 @@ app.service('$author', function() {
                 $('.modal.in').modal('hide');
                 $scope.nameErrors = $scope.addressErrors = $scope.cityErrors = $scope.birthErrors = $scope.telErrors = $scope.emailErrors = '';
                 if ($author.id == $auth.get().id) $auth.load($http);
+                notify('Update author: \"' + $author.name + '\" successful.', 'success');
+                $author = null;
             }, function(response) {
                 $scope.nameErrors = response.data.name ? (response.data.name + '') : '';
                 $scope.addressErrors = response.data.address ? (response.data.address + '') : '';
                 $scope.cityErrors = response.data.city ? (response.data.city + '') : '';
                 $scope.birthErrors = response.data.birth ? (response.data.birth + '') : '';
                 $scope.telErrors = response.data.tel ? (response.data.tel + '') : '';
+                notify('Can not update author: \"' + $author.name + '\".', 'danger');
             })
         },
         create: function($scope, $http, $authors, $normalUsers, user, more) {
@@ -99,11 +102,13 @@ app.service('$author', function() {
                 $author = response.data.author;
                 $authors.add($author);
                 if (!more) $('.modal.in').modal('hide');
+                notify('Promote user: \"' + $author.name + '\" successful.', 'success');
                 $author = null;
                 $normalUsers.remove(user.id);
                 $scope.userError = '';
             }, function() {
                 $scope.userError = 'You need to select an user to promote.';
+                notify('You need to select an user to promote.', 'warning')
             })
         },
         remove: function($scope, $http, $authors, $normalUsers) {
@@ -113,6 +118,9 @@ app.service('$author', function() {
                 $authors.remove(response.data.author.id);
                 $normalUsers.load($http);
                 $('.modal.in').modal('hide');
+                notify('Demote author: \"' + $author.name + '\" successful.', 'success');
+            }, function() {
+                notify('Can not demote author: \"' + $author.name + '\".', 'success');
             })
         }
     }

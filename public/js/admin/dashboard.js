@@ -40,4 +40,20 @@ $('#create-category, #create-tag, #create-author').find('.modal-content').dragga
 var toggleLoading = function(show, target = '#loading-toggle') {
     $(target).css('display', (show ? 'block' : 'none'));
     if (show) $('.container.ng-scope').hide();
-}
+};
+$.notify.defaults({
+    showAnimation: 'slideDown',
+    showDuration: 300,
+    hideAnimation: 'slideUp',
+    hideDuration: 200,
+    autoHideDelay: 4000,
+});
+$.notify.addStyle('app', {
+    html: "<div><i data-notify-text/></div>",
+});
+var notify = function(text = 'Unknown message.', style = 'primary') {
+    $.notify(text, {
+        'style': 'app',
+        'className': style,
+    });
+};

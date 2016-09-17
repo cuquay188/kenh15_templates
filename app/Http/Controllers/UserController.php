@@ -126,7 +126,7 @@ class UserController extends Controller
                 ], 422);
             };
             $this->validate($request, [
-                'new_password' => 'between:6,24',
+                'new_password' => 'required|between:6,24',
             ]);
             $new_password = $request->new_password;
 

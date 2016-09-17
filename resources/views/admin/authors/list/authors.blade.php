@@ -79,7 +79,7 @@
                 href="#profile" class="btn btn-primary btn-xs">Update Info</a>
 
             {{--Delete Function--}}
-            <button type="submit" class="btn btn-primary btn-xs" data-toggle="modal"
+            <button type="submit" class="btn btn-danger btn-xs" data-toggle="modal"
                     {{Auth::getUser()->is_admin() ? "" : "disabled"}}
                     data-target="#delete-author" ng-click="delete()">Demote
             </button>

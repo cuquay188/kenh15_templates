@@ -7,14 +7,16 @@ app.config(function(paginationTemplateProvider) {
 });
 app.controller('mainController', function($rootScope, $scope, $http, $auth, $articles, $authors, $tags, $categories) {
     $rootScope.$on('$routeChangeStart', function() {
-        toggleLoading(true)
+        toggleLoading(true);
     });
     $rootScope.$on('$routeChangeSuccess', function(e, current, pre) {
         toggleLoading(false);
-        $scope.hashPath = current.$$route.originalPath.substring(1)
+        $scope.hashPath = current.$$route.originalPath.substring(1);
+        notify('Loading ' + $scope.hashPath + ' successful.', 'success');
     });
     $rootScope.$on('$routeChangeError', function() {
-        toggleLoading(false)
+        toggleLoading(false);
+        notify('Loading has failed.', 'danger');
     });
     $auth.load($http);
     $articles.load($http);

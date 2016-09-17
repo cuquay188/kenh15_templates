@@ -73,7 +73,7 @@
                     ng-click="edit()">Edit
             </button>
             {{--Delete Function--}}
-            <button type="submit" class="btn btn-primary btn-xs" data-toggle="modal"
+            <button type="submit" class="btn btn-danger btn-xs" data-toggle="modal"
                     data-target="#delete-category"
                     {{Auth::getUser()->is_admin() || Auth::getUser()->is_author() ? "" : "disabled"}}
                     ng-click="delete()">Delete

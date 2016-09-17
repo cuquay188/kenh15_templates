@@ -17,8 +17,10 @@ app.service('$auth', function() {
                     $authors.add($auth);
                     $scope.errors = null;
                     $scope.showUpdateFullName = $scope.showUpdateBirth = $scope.showUpdateTel = $scope.showUpdateAddress = $scope.showUpdateCity = false;
+                    notify('Update profile successful.', 'success')
                 }, function(response) {
                     $scope.errors = response.data;
+                    notify('Can not update profile.', 'danger')
                 })
             },
             password: function($scope, $http, password) {
@@ -26,8 +28,10 @@ app.service('$auth', function() {
                     $scope.showUpdatePassword = false;
                     $scope.errors = null;
                     $scope.currentPassword = $scope.newPassword = $scope.confirmNewPassword = null;
+                    notify('Update profile password successful.', 'success')
                 }, function(response) {
                     $scope.errors = response.data;
+                    notify($scope.errors.current_password ? $scope.errors.current_password : $scope.errors.new_password, 'danger')
                 })
             },
             username: function($scope, $http, $authors, username) {

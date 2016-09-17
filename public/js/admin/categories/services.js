@@ -1,122 +1,127 @@
-app.service('$categories', function () {
+app.service('$categories', function() {
     var $categories = [];
     return {
-        get: function () {
+        get: function() {
             return $categories;
         },
-        set: function ($newCategories) {
+        set: function($newCategories) {
             $categories = $newCategories;
             return $categories
         },
         sizeOf: {
-            categories: function () {
+            categories: function() {
                 return $categories.length;
             },
-            is_header: function () {
+            is_header: function() {
                 if ($categories.length) {
                     var count = 0;
-                    $.each($categories, function (i, category) {
-                        if (category.advance.is_header == 1)
-                            count++;
+                    $.each($categories, function(i, category) {
+                        if (category.advance.is_header == 1) count++;
                     });
                     return count;
                 }
                 return 0;
             },
-            is_hot: function () {
+            is_hot: function() {
                 if ($categories.length) {
                     var count = 0;
-                    $.each($categories, function (i, category) {
-                        if (category.advance.is_hot == 1)
-                            count++;
+                    $.each($categories, function(i, category) {
+                        if (category.advance.is_hot == 1) count++;
                     });
                     return count;
                 }
                 return 0;
             }
         },
-        load: function ($http) {
-            $http.get(url.category.select)
-                .then(function (response) {
-                    $categories = response.data;
-                    return $categories;
-                });
+        load: function($http) {
+            $http.get(url.category.select).then(function(response) {
+                $categories = response.data;
+                return $categories;
+            });
         },
-        add: function ($category) {
+        add: function($category) {
             $categories.push($category);
             return $categories
         },
-        remove: function (id) {
-            $categories = $categories.filter(function (category) {
+        remove: function(id) {
+            $categories = $categories.filter(function(category) {
                 return category.id != id
             });
             return $categories;
         }
     };
 });
-app.service('$category', function () {
+app.service('$category', function() {
     var $category = {};
     return {
-        get: function () {
+        get: function() {
             return $category;
         },
-        set: function ($newCategory) {
+        set: function($newCategory) {
             $category = $newCategory;
             return $category
         },
         update: {
-            name: function ($scope, $http, name) {
+            name: function($scope, $http, name) {
                 $http.post(url.category.update.name, {
                     id: $category.id,
                     name: name
-                }).then(function (response) {
+                }).then(function(response) {
                     $category = response.data.category;
                     $scope.category.name = $category.name;
                     $('.modal.in').modal('hide');
                     $scope.nameErrors = '';
-                }, function (response) {
+                    notify('Update category: \"' + $category.name + '\" successful.', 'success');
+                    $category = null;
+                }, function(response) {
                     $scope.nameErrors = response.data.name + '';
+                    notify($scope.nameErrors, 'danger');
                 })
             },
-            hot: function ($scope, $http) {
+            hot: function($scope, $http) {
                 $http.post(url.category.update.hot, {
                     id: $category.id
-                }).then(function (response) {
+                }).then(function(response) {
                     $category = response.data.category;
                     $scope.category.advance.is_hot = $category.advance.is_hot;
                     $scope.category.advance.is_header = $category.advance.is_header;
+                    if ($scope.category.advance.is_hot) notify('Add category \"' + $category.name + '\" to hot categories.', 'success')
+                    else notify('Remove category \"' + $category.name + '\" from hot categories.', 'danger')
                     $category = null;
                 })
             },
-            header: function ($scope, $http) {
+            header: function($scope, $http) {
                 $http.post(url.category.update.header, {
                     id: $category.id
-                }).then(function (response) {
+                }).then(function(response) {
                     $category = response.data.category;
                     $scope.category.advance.is_header = $category.advance.is_header;
+                    if ($scope.category.advance.is_header) notify('Add category \"' + $category.name + '\" to homepage header bar.', 'success')
+                    else notify('Remove category \"' + $category.name + '\" from homepage header bar.', 'danger')
                     $category = null;
                 })
             }
         },
-        create: function ($scope, $http, $categories, name, more) {
+        create: function($scope, $http, $categories, name, more) {
             $http.post(url.category.create, {
                 name: name
-            }).then(function (response) {
+            }).then(function(response) {
                 $category = response.data.category;
                 $categories.add($category);
-                if (!more)
-                    $('.modal.in').modal('hide');
+                if (!more) $('.modal.in').modal('hide');
+                notify('Create category: \"' + $category.name + '\" successful.', 'success');
                 $category = null;
                 $scope.nameErrors = '';
                 $scope.newName = '';
-            }, function (response) {
+            }, function(response) {
                 $scope.nameErrors = response.data.name + '';
+                notify($scope.nameErrors, 'danger');
             })
         },
-        remove: function ($scope, $http, $categories) {
+        remove: function($scope, $http, $categories) {
             $http.post(url.category.remove, {
                 id: $category.id
-            }).then(function (response) {
+            }).then(function(response) {
                 $categories.remove(response.data.category.id);
                 $('.modal.in').modal('hide');
             })
