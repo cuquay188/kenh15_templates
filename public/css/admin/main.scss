@@ -781,62 +781,86 @@ td {
 }
 
 /*Dashboard GUI*/
-.feedback, .request {
+%headContent {
     border: 1px solid #e8ebf5;
     border-radius: 5px;
     padding: 20px;
     box-shadow: -0.5px 0 5px 0 #adadad;
+    min-width:30%;
 }
 
-.feedback {
-    height: 100%;
-}
-
-.headFeedback, .headRequest {
+%headRequestFeedback {
     font-size: 25px;
     font-weight: bold;
     color: #383D4B;
+   
 }
 
-.bodyFeedback {
-    max-height: 83%;
-    overflow: auto;
+.feedback {
+    @extend %headContent;
+    width: 66%;
+    max-width: 66%;
+    height:auto;
+    .headFeedback {
+        @extend %headRequestFeedback;
+    }
+    .bodyFeedback {
+        padding:0px 5px;
+        max-height: 75%;
+        overflow: auto;
+        margin :0px;
+        li {
+            padding-left: 10px;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-align-items: center;
+            align-items: center;
+            min-height: 10%;
+            list-style-type: none;
+            text-align: left;
+            font-size: 15px;
+            transition: 0.2s;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-bottom: 1px solid #afb7ce;
+            cursor: pointer;
+            height: auto;
+            &:hover {
+                background-color: rgba(48, 140, 202, 0.09);
+            }
+            a {
+                color: #383D4B;
+                text-decoration: none;
+            }
+        }
+    }
+}
+// request
+
+.request {
+    @extend %headContent;
+    margin-left: 2%;
+    max-width: 32%;
+
+    height: auto;
+    .headRequest {
+        @extend %headRequestFeedback;
+    }
+
+    .bodyRequest {
+        font-size: 15px;
+        height: auto;
+        max-height: 83%;
+        overflow: auto;
+        .linkInRequest {
+            color: #337ab7;
+            font-weight: bold;
+            cursor: pointer;
+            &:hover {
+                color: #1a4c75;
+            }
+        }
+    }
 }
 
-.bodyFeedback li {
-    list-style-type: none;
-    text-align: left;
-    font-size: 15px;
-    padding-left: 5px;
-    transition: 0.2s;
-    height: 40px;
-    background-color: rgba(255, 255, 255, 0.8);
-    line-height: 40px;
-    border-bottom: 1px solid #afb7ce;
-    cursor: pointer;
-}
-
-.bodyFeedback li a {
-    color: #383D4B;
-    text-decoration: none;
-}
-
-.bodyFeedback li:hover {
-    background-color: rgba(48, 140, 202, 0.09);
-}
-
-.bodyRequest {
-    font-size: 15px;
-}
-
-.linkInRequest {
-    color: #337ab7;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.linkInRequest:hover {
-    color: #1a4c75;
-}
 
 /*End Dashboard GUI*/
