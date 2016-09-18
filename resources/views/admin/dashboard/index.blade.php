@@ -4,50 +4,41 @@
 <div class="row">
 	<div class="feedback col-md-7 col-xs-7">
 		<div class="headFeedback">
-				Feedback
+				News Feed
 				<hr>
 		</div>
 		<ul class="bodyFeedback">
 			<li><a>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</a></li>
-			<li><a>User 1 commented your article!</a></li>
-			<li><a>User 1 commented your article!</a></li>
-			<li><a>User 1 commented your article!</a></li>
-			<li><a>User 1 commented your article!</a></li>
-			<li><a>User 1 commented your article!</a></li>
+			tempor incididunt ut labore et dolore magna aliqua. Consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua.</a></li>
 			<li><a>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</a></li>
-			<li><a>User 1 commented your article!</a></li>
-			<li><a>User 1 commented your article!</a></li>
-			<li><a>User 1 commented your article!</a></li>
-			<li><a>User 1 commented your article!</a></li>
+			tempor incididunt ut labore et dolore magna aliqua.</a></li>
 			<li><a>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</a></li>
+			tempor incididunt ut labore et dolore magna aliqua. Consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua.</a></li>
+			<li><a>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua.</a></li>
+			<li><a>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua. Consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua.</a></li>
 		</ul>
 	</div>
-
 	<div class="request col-md-4 col-xs-4">
 		<div class="headRequest">
-			Request
+			Notification
 			<hr>
 		</div>
 		<div class="bodyRequest">
-			<div>You haven't updated your information, please <a class="btn-link linkInRequest" href="admin#/profile">Update</a> it !</div>
-
-			<div>You want to become author, please <a class="btn-link linkInRequest" data-toggle="modal" data-target=".bs-example-modal-lg">Request</a> admin</div>
-
+			<div>
+				You haven't updated your information. Please 
+				<a class="btn-link linkInRequest" href="admin#/profile">Update</a> 
+				it !
+			</div>
+			<div>
+				Do you want to make some articles? Please send a 
+				<a class="btn-link linkInRequest" data-toggle="modal" data-target=".bs-example-modal-lg">request</a> 
+				to the admin.
+			</div>
 			<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
 			  <div class="modal-dialog modal-lg" role="document">
 			    <div class="modal-content">
@@ -69,6 +60,5 @@
 			</div>
 		</div>
 	</div>
-
 </div>
 @endsection

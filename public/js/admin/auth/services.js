@@ -13,8 +13,10 @@ app.service('$auth', function() {
             info: function($scope, $http, $authors, user) {
                 $http.post(url.auth.update.info, user).then(function(response) {
                     $auth = response.data.user;
-                    $authors.remove($auth.id);
-                    $authors.add($auth);
+                    if ($auth.is_author) {
+                        $authors.remove($auth.id);
+                        $authors.add($auth);
+                    }
                     $scope.errors = null;
                     $scope.showUpdateFullName = $scope.showUpdateBirth = $scope.showUpdateTel = $scope.showUpdateAddress = $scope.showUpdateCity = false;
                     notify('Update profile successful.', 'success')
