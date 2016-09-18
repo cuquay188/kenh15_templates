@@ -78,26 +78,31 @@ class UserController extends Controller
     {
         if (Auth::check()) {
             $this->validate($request, [
-                'name'    => 'required|alpha_spaces|between:6,30',
-                'address' => 'required|alpha_num_spaces',
-                'city'    => 'required|alpha_spaces',
-                'birth'   => 'date',
-                'tel'     => 'required|numeric',
+                'name'    => isset($request->name) ? 'required|alpha_spaces|between:6,30' : '',
+                'tel'     => isset($request->tel) ? 'required|numeric' : '',
+                'birth'   => isset($request->birth) ? 'required|date' : '',
+                'address' => isset($request->address) ? 'required|alpha_num_spaces' : '',
+                'city'    => isset($request->city) ? 'required|alpha_spaces' : '',
             ]);
 
-            $id      = $request->id;
-            $name    = $request->name;
-            $tel     = $request->tel;
-            $birth   = $request->birth;
-            $address = $request->address;
-            $city    = $request->city;
-            User::where('id', $id)->update([
-                'name'    => $name,
-                'tel'     => $tel,
-                'birth'   => $birth,
-                'address' => $address,
-                'city'    => $city,
-            ]);
+            $id    = $request->id;
+            $query = array();
+            if (isset($request->name)) {
+                $query['name'] = $request->name;
+            }
+            if (isset($request->tel)) {
+                $query['tel'] = $request->tel;
+            }
+            if (isset($request->birth)) {
+                $query['birth'] = $request->birth;
+            }
+            if (isset($request->address)) {
+                $query['address'] = $request->address;
+            }
+            if (isset($request->city)) {
+                $query['city'] = $request->city;
+            }
+            User::where('id', $id)->update($query);
             $user = User::find($id);
             return [
                 'message' => 'Update Successful.',

@@ -34,12 +34,13 @@ app.controller('authController', function($scope, $http, $authors, $auth) {
     $scope.submitUpdateInfo = function() {
         var user = {
             id: $scope.user.id,
-            name: $scope.newName,
-            tel: $scope.newTel,
-            birth: moment($('#birth').datepicker("getDate")).format('YYYY-MM-DD'),
-            address: $scope.newAddress,
-            city: $scope.newCity,
-        }
+        };
+        if ($scope.newName != $scope.user.name) user.name = $scope.newName;
+        if ($scope.newTel != $scope.user.tel) user.tel = $scope.newTel;
+        if ($scope.newAddress != $scope.user.address) user.address = $scope.newAddress;
+        if ($scope.newCity != $scope.user.city) user.city = $scope.newCity;
+        var newBirth = moment($('#birth').datepicker("getDate")).format('YYYY-MM-DD');
+        if (newBirth != moment($scope.user.birth).format('YYYY-MM-DD')) user.birth = newBirth;
         $auth.update.info($scope, $http, $authors, user);
     };
     $scope.submitUpdatePassword = function() {
