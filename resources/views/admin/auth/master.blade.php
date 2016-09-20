@@ -7,15 +7,13 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="{{asset('public/bootstrap/css/bootstrap.min.css')}}">
 
-    <link rel="stylesheet" href="{{asset('publiccss/admin/auth.css')}}">
+    <link rel="stylesheet" href="{{asset('public/css/admin/auth.css')}}">
 
     <!-- jQuery library -->
     <script src="{{asset('public/jquery/jquery-2.2.4.min.js')}}"></script>
 
     <!-- Latest compiled JavaScript -->
     <script src="{{asset('public/bootstrap/js/bootstrap.min.js')}}"></script>
-
-    <script type="text/javascript" src="{{asset('public/ckeditor/ckeditor.js')}}"></script>
 
     @yield("styles")
     @yield("scripts")
