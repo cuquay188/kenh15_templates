@@ -55,8 +55,28 @@
                     </a>
                 </div>
                 <div class="comments shadow col col-lg-8" style="padding: 0">
+                    <div class="new-comment">
+                        <div class="new-comment-form row">
+                            <div class="picture col col-lg-2">
+                                <img src="https://media.foody.vn/default/s30/user-default-male.png"
+                                     alt="">
+                            </div>
+                            <div class="new-comment-content col col-lg-10">
+                                <textarea name="new-comment-content" id="new-comment-content" cols="64" rows="4" placeholder="Your comment..."></textarea>
+                            </div>
+                            <div class="new-comment-send col-lg-12">
+                                <div class="col col-lg-2"></div>
+                                <div class="col col-lg-7"></div>
+                                <div class="send-button col col-lg-3">
+                                    <button class="btn btn-primary">
+                                        <span>Gửi bình luận</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="comment-quantity">
-                        <span>5 bình luận</span>
+                        <span>52 bình luận</span>
                     </div>
                     <div class="body-comment">
                         <div class="comment-area row">
@@ -82,6 +102,32 @@
                                 <div class="col col-lg-8"></div>
                                 <div class="reply-button col col-lg-2">
                                     <span class="text-style">Trả lời</span>
+                                </div>
+                            </div>
+                            <div class="reply-form col col-lg-12">
+                                <div class="reply-form-top row">
+                                    <div class="title col col-lg-11">Trả lời</div>
+                                    <div class="cancel col col-lg-1">
+                                        <i class="fa fa-times" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                                <div class="reply-form-body row">
+                                    <div class="picture col col-lg-2">
+                                        <img src="https://media.foody.vn/default/s30/user-default-male.png"
+                                             alt="">
+                                    </div>
+                                    <div class="reply-content col col-lg-10">
+                                        <textarea name="reply-content" id="reply-content" cols="57" rows="5"></textarea>
+                                    </div>
+                                    <div class="reply-send col-lg-12">
+                                        <div class="col col-lg-2"></div>
+                                        <div class="col col-lg-7"></div>
+                                        <div class="send-button col col-lg-3">
+                                            <button class="btn btn-primary">
+                                                <span>Gửi bình luận</span>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -117,4 +163,12 @@
 @endsection
 @section('body.scripts')
     <script src="{{asset('/js/homepage/sidebar-left.js')}}"></script>
+    <script>
+        $('.reply-button').click(function () {
+            $('.reply-form').slideDown(400);
+        });
+        $('.cancel').click(function () {
+            $('.reply-form').slideUp(400);
+        });
+    </script>
 @endsection
