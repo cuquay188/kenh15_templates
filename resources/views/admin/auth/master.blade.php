@@ -5,17 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--    BOOTSTRAP CDN-->
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="{{asset('/bootstrap/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('public/bootstrap/css/bootstrap.min.css')}}">
 
-    <link rel="stylesheet" href="{{asset('css/admin/auth.css')}}">
+    <link rel="stylesheet" href="{{asset('publiccss/admin/auth.css')}}">
 
     <!-- jQuery library -->
-    <script src="{{asset('/jquery/jquery-2.2.4.min.js')}}"></script>
+    <script src="{{asset('public/jquery/jquery-2.2.4.min.js')}}"></script>
 
     <!-- Latest compiled JavaScript -->
-    <script src="{{asset('/bootstrap/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('public/bootstrap/js/bootstrap.min.js')}}"></script>
 
-    <script type="text/javascript" src="{{asset('/ckeditor/ckeditor.js')}}"></script>
+    <script type="text/javascript" src="{{asset('public/ckeditor/ckeditor.js')}}"></script>
 
     @yield("styles")
     @yield("scripts")

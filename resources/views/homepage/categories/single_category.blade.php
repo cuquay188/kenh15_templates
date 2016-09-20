@@ -1,7 +1,7 @@
 @extends('homepage.layouts.single')
 @section('single.title',$category->name)
 @section('single.styles')
-    <link rel="stylesheet" href="{{asset('/css/homepage/category.css')}}">
+    <link rel="stylesheet" href="{{asset('public/css/homepage/category.css')}}">
 @endsection
 @section('single.top')
     <div class="top-articles shadow">

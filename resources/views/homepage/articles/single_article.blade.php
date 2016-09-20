@@ -1,7 +1,7 @@
 @extends('homepage.layouts.master')
 @section('title',$article->title)
 @section('styles')
-    <link rel="stylesheet" href="{{asset('/css/homepage/article.css')}}">
+    <link rel="stylesheet" href="{{asset('public/css/homepage/article.css')}}">
 @endsection
 @section('content')
     <div class="content-area main-body">
@@ -116,5 +116,5 @@
     </div>
 @endsection
 @section('body.scripts')
-    <script src="{{asset('/js/homepage/sidebar-left.js')}}"></script>
+    <script src="{{asset('public/js/homepage/sidebar-left.js')}}"></script>
 @endsection

@@ -1,7 +1,7 @@
 @extends('homepage.layouts.single')
 @section('single.title',$tag->name)
 @section('single.styles')
-    <link rel="stylesheet" href="{{asset('/css/homepage/tags.css')}}">
+    <link rel="stylesheet" href="{{asset('public/css/homepage/tags.css')}}">
 @endsection
 @section('single.top')
     <div class="tag shadow">
