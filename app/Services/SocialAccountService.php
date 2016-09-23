@@ -1,7 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Services;
 
+use App\SocialAccount;
 use Laravel\Socialite\Contracts\User as ProviderUser;
 
 class SocialAccountService
@@ -35,8 +36,6 @@ class SocialAccountService
             $account->save();
 
             return $user;
-
         }
-
     }
 }
