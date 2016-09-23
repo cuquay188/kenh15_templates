@@ -9,6 +9,8 @@ class User extends Model implements \Illuminate\Contracts\Auth\Authenticatable
 {
     use Authenticatable;
 
+    protected $fillable = ['username', 'email', 'name'];
+
     public function author()
     {
         return $this->hasOne('\App\Author');
@@ -31,15 +33,17 @@ class User extends Model implements \Illuminate\Contracts\Auth\Authenticatable
 
     public function formatBirth($separate = null)
     {
-        if (!$separate)
+        if (!$separate) {
             $separate = '/';
+        }
+
         return date_format(date_create($this->birth), "Y" . $separate . "m" . $separate . "d");
     }
 
     public function age()
     {
-        $birth =  date('Y', strtotime($this->birth));
-        $now = date('Y');
+        $birth = date('Y', strtotime($this->birth));
+        $now   = date('Y');
         return $now - $birth;
     }
 }

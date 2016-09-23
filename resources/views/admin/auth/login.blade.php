@@ -31,6 +31,7 @@
             <button class="btn btn-primary btn-block" type="submit">Login</button>
             <div class="sub">
                 <a href="{{route('admin.auth.signup')}}">Register new membership.</a>
+                <a href="{{route('admin.user.facebook.login')}}">or Login with your facebook account.</a>
                 <a href="{{route('admin.auth.signup')}}">Forgot my password.</a>
             </div>
         </div>

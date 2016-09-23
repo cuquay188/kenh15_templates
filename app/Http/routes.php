@@ -12,6 +12,7 @@
 |
  */
 
+//Admin Router
 Route::group(['prefix' => 'admin'], function () {
     //User
     Route::group(['prefix' => 'auth'], function () {
@@ -35,7 +36,6 @@ Route::group(['prefix' => 'admin'], function () {
             'uses' => 'UserController@postSignUp',
             'as'   => 'admin.auth.signup.post',
         ]);
-
         Route::get('/profile', [
             'uses' => 'UserController@getUserProfile',
             'as'   => 'admin.user.profile',
@@ -44,6 +44,12 @@ Route::group(['prefix' => 'admin'], function () {
             'uses' => 'UserController@getUsers',
             'as'   => 'users',
         ]);
+        Route::get('/redirect', [
+            'uses' => 'SocialAuthController@redirect',
+            'as'   => 'admin.user.facebook.login',
+        ]);
+        //Facebook callback hooker
+        Route::get('/callback', 'SocialAuthController@callback');
     });
 
     Route::get('/', [
