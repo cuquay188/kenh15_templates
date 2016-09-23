@@ -121,9 +121,6 @@ class UserController extends Controller
             $user             = Auth::user();
             $current_password = $request->current_password;
 
-            $this->validate($request, [
-                'current_password' => 'required',
-            ]);
             //If current_password don't match with password in database -> throw error
             if (strlen($current_password) > 0 && !Hash::check($current_password, $user->password)) {
                 return response([
