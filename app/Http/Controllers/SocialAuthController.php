@@ -8,14 +8,18 @@ use Socialite;
 
 class SocialAuthController extends Controller
 {
-    public function redirect()
+    public function redirect($social)
     {
-        return Socialite::driver('facebook')->redirect();
+        return Socialite::driver($social)->redirect();
     }
-
-    public function callback(Service $service)
+    public function redirectToGoogle()
     {
-        $user = $service->createOrGetUser(Socialite::driver('facebook')->user());
+        return Socialite::driver('google')->redirect();
+    }
+    public function callback(Service $service, $social)
+    {
+
+        $user = $service->createOrGetUser(Socialite::driver($social)->user(), $social);
 
         auth()->login($user);
 

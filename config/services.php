@@ -37,6 +37,11 @@ return [
     'facebook'  => [
         'client_id'     => '1672018796445883',
         'client_secret' => 'bfee55fd9696a4afa51a89e089b09d9c',
-        'redirect'      => env('APP_URL') . '/admin/auth/callback',
+        'redirect'      => env('APP_URL') . '/admin/auth/callback=facebook',
+    ],
+    'google'    => [
+        'client_id'     => '560720322562-58fun4h6vqqmooe4h5p694ldnt65bbe1.apps.googleusercontent.com',
+        'client_secret' => 'f5COwuZQUTPTp31Wg1_BXHHQ',
+        'redirect'      => env('APP_URL') . '/admin/auth/callback=google',
     ],
 ];

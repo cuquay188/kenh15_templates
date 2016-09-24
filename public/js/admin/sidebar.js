@@ -26,16 +26,13 @@ app.directive('userAvatar', function() {
         link: function(scope, el) {
             scope.$watch('user', function(user) {
                 if (!angular.equals(user, {})) {
-                    /*Remove url type*/
-                    var url = user.img_url;
-                    url = url.substr(0, url.indexOf('?type'));
                     /*Set img*/
                     var $img = angular.element(el[0].querySelector('img'));
                     $img.css({
                         'width': '35px',
                         'border-radius': '50%'
                     }).attr({
-                        'src': url,
+                        'src': user.img_url,
                     });
                 }
             })

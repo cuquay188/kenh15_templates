@@ -30,9 +30,8 @@
             <input type="hidden" value="{{Session::token()}}" name="_token">
             <button class="btn btn-primary btn-block" type="submit">Login</button>
             <div class="sub">
-                <a href="{{route('admin.auth.signup')}}">Register new membership.</a>
-                <a href="{{route('admin.user.facebook.login')}}">or Login with your facebook account.</a>
-                <a href="{{route('admin.auth.signup')}}">Forgot my password.</a>
+                <a href="{{route('admin.user.login.redirectTo','facebook')}}">Login with my Facebook account.</a>
+                <a href="{{route('admin.user.login.redirectTo','google')}}">Login with my Google+ account.</a>
             </div>
         </div>
     </form>

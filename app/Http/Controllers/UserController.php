@@ -35,36 +35,6 @@ class UserController extends Controller
         Auth::logout();
         return redirect()->route('admin.auth.login');
     }
-
-    public function getSignUp()
-    {
-        return view('admin.auth.signup');
-    }
-
-    public function postSignUp(Request $request)
-    {
-        $this->validate($request, [
-            'email'    => 'required|email|unique:users,email',
-            'password' => 'required|between:6,24',
-        ]);
-
-        $username = $email = $request->email;
-        $password = $request->password;
-
-        $user           = new User();
-        $user->email    = $email;
-        $user->username = $username;
-        $user->password = Hash::make($password);
-
-        $user->save();
-
-        return redirect()->route('admin.auth.login')
-            ->with([
-                'new_username' => $username,
-                'new_password' => $password,
-            ]);
-    }
-
     public function getUserProfile()
     {
         if (!Auth::check()) {
