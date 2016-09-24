@@ -177,11 +177,11 @@
             Password:
         </label>
         <div class="col col-sm-4">
-            <div ng-show="!issetPW" class="text errors">Update your password first.</div>
-            <div class="text" ng-show="!showUpdatePassword&&issetPW">
+            <div ng-show="!user.issetPW" class="text">No password.</div>
+            <div class="text" ng-show="!showUpdatePassword&&user.issetPW">
                 ******
             </div>
-            <input class="form-control" ng-class="{'error':errors.current_password}" ng-model="currentPassword" ng-show="showUpdatePassword&&issetPW" placeholder="Current Password..." type="password">
+            <input class="form-control" ng-class="{'error':errors.current_password}" ng-model="currentPassword" ng-show="showUpdatePassword&&user.issetPW" placeholder="Current Password..." type="password">
             </input>
             <span class="errors">
                 %%errors.current_password[0]%%

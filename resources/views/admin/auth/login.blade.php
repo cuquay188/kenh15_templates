@@ -3,11 +3,11 @@
 @section('content')
     <form action="{{route('admin.auth.login.post')}}" method="POST">
         @if(count($errors)>0)
-            <ul class="errors">
+            <div class="errors">
                 @foreach($errors->all() as $error)
-                    <li>* {{$error}}</li>
+                    <div>* {{$error}}</div>
                 @endforeach
-            </ul>
+            </div>
         @endif
         @if(Session::has('fail'))
             <div class="errors">
