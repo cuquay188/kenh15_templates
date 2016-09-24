@@ -77,7 +77,7 @@
     @endif
     <div class="sidebar-footer">
         <div class="info" ng-controller="authController">
-            <div class="icon"></div>
+            <div class="icon" user-avatar></div>
             <div class="name">
                 <a href="#profile">
                     <div>%% user.name?user.name:user.email %%</div>

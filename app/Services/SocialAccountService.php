@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\SocialAccount;
+use App\User;
 use Laravel\Socialite\Contracts\User as ProviderUser;
 
 class SocialAccountService
@@ -29,6 +30,7 @@ class SocialAccountService
                 $user->name     = $providerUser->getName();
                 $user->email    = $providerUser->getEmail();
                 $user->username = $providerUser->getEmail();
+                $user->img_url  = $providerUser->getAvatar();
                 $user->save();
             }
 

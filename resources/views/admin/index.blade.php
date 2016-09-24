@@ -7,8 +7,6 @@
 @endsection
 @section('body.scripts')
 <script>
-	if (location.hash && location.hash == '#_=_')
-	        location.hash = '';
-    if (!location.hash)location.hash = '#/dashboard'
+    if ( location.hash == '#_=_' || !location.hash) location.hash = '#/dashboard'
 </script>
 @endsection

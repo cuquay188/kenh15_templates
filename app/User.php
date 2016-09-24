@@ -9,7 +9,7 @@ class User extends Model implements \Illuminate\Contracts\Auth\Authenticatable
 {
     use Authenticatable;
 
-    protected $fillable = ['username', 'email', 'name'];
+    protected $fillable = ['username', 'email', 'name', 'img_url'];
 
     public function author()
     {
