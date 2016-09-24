@@ -220,6 +220,7 @@ class UserController extends Controller
                 'birth'     => $user->birth,
                 'is_admin'  => $user->is_admin(),
                 'is_author' => $user->is_author(),
+                'issetPW'   => !!$user->password,
             ];
         }
         return [
