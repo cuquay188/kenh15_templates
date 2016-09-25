@@ -15,8 +15,6 @@
     <!-- Latest compiled JavaScript -->
     <script src="{{asset('/bootstrap/js/bootstrap.min.js')}}"></script>
 
-    <script type="text/javascript" src="{{asset('/ckeditor/ckeditor.js')}}"></script>
-
     @yield("styles")
     @yield("scripts")
 </head>
