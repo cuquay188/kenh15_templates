@@ -9,6 +9,10 @@
 
     <link rel="stylesheet" href="{{asset('css/admin/auth.css')}}">
 
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="{{asset('/font-awesome/css/font-awesome.min.css')}}">
+   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+
     <!-- jQuery library -->
     <script src="{{asset('/jquery/jquery-2.2.4.min.js')}}"></script>
 

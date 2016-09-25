@@ -28,11 +28,10 @@
         </div>
         <div class="form-group">
             <input type="hidden" value="{{Session::token()}}" name="_token">
-            <button class="btn btn-primary btn-block" type="submit">Login</button>
-            <div class="sub">
-                <a href="{{route('admin.user.login.redirectTo','facebook')}}">Login with my Facebook account.</a>
-                <a href="{{route('admin.user.login.redirectTo','google')}}">Login with my Google+ account.</a>
-            </div>
+            <button class="btn btn-primary" id="btn-login" type="submit">Login</button>
+            <a class="btn" id="btn-login-fb" href="{{route('admin.user.login.redirectTo','facebook')}}"><i class="fa fa-facebook-square"></i></a>
+            <a class="btn" id="btn-login-gm" href="{{route('admin.user.login.redirectTo','google')}}"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+           
         </div>
     </form>
 @endsection
