@@ -60,11 +60,42 @@ form {
     font-weight: normal;
     color: #ecf0f1;
   }
-  .sub{
-    margin:6px auto;
-    a{
+  
+    
+   /*  a{
       display: block;
-      color: #ecf0f1;
+      
+    } */
+
+    #btn-login {
+      width:69%;
     }
+
+
+    #btn-login-fb {
+      background-color:#344e86;
+      color: #f5f5f5;
+      width:14%;
+      padding: 7px 0px;
+      font-size:23px;
+      &:hover {
+        background-color:#223b6f;
+        color: white;
+      }
+    }
+    #btn-login-gm {
+      background-color: #e05050;
+      color: #f5f5f5;
+      width:14%;
+      padding: 10px 0px;
+      font-size: 17px;
+      &:hover {
+        background-color: #da1010;
+        color: white;
+      }
+   
   }
+  
+  
+  /* btn login fb and gm */
 }
