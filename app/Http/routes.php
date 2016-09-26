@@ -105,9 +105,13 @@ Route::group(['prefix' => 'admin'], function () {
 Route::group(['prefix' => 'api'], function () {
 
     Route::group(['prefix' => 'article'], function () {
-        Route::get('/select/{id?}', [
+        Route::get('/select/id={id?}', [
             'uses' => 'ArticleController@getArticleJSON',
             'as'   => 'admin.api.article.select',
+        ]);
+        Route::get('/select/category_id={id?}',[
+            'uses' => 'ArticleController@getArticleByCategoryJSON',
+            'as'   => 'admin.api.article.select.byCategory'
         ]);
         Route::get('selectContent/{id?}', [
             'uses' => 'ArticleController@getContentJSON',
@@ -261,6 +265,6 @@ Route::get('/article/{url}', [
 Route::get('/tag/{url}', [
     'uses' => 'HomepageController@getTag',
 ]);
-Route::get('/category/{id}', [
+Route::get('/category/{url?}', [
     'uses' => 'HomepageController@getSingleCategory',
 ]);

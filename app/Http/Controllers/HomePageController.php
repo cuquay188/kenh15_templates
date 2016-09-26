@@ -87,56 +87,9 @@ class HomePageController extends Controller
         ]);
     }
 
-    public function getSingleCategory($id)
+    public function getSingleCategory($url)
     {
-        $category = Category::find($id);
-
-        /*Get Newest Article*/
-        $article_first = Article::where('category_id', $id)->orderBy('id', 'desc')->first();
-        /*End*/
-
-        /*Get Hot Articles (Top view) by Category*/
-        $articles_topview = ArticleView::orderBy('views', 'desc')->where('views', '<>', 0)->get();
-        $hot_articles = array();
-        for ($i = 0; $i < count($articles_topview); $i++) {
-            $valid_article = [
-                'id' => $articles_topview[$i]->article_id
-            ];
-            $article_top = Article::where($valid_article)->first();
-            array_push($hot_articles, $article_top);
-        }
-        $hot_articles_by_category = array();
-        if ($article_first) {
-            for ($i = 0; $i < count($hot_articles); $i++) {
-                if ($hot_articles[$i]->category->name == $article_first->category->name) {
-                    array_push($hot_articles_by_category, $hot_articles[$i]);
-                    if (count($hot_articles_by_category) == 10) {
-                        break;
-                    }
-                }
-            }
-        } else {
-            echo "Sorry! No Article";
-        }
-        /*End*/
-
-        /*Related Articles (không trùng với tin đầu tiên)*/
-        $related_articles = Article::where('category_id', $id)->orderBy('id', 'desc')->paginate(5);
-        $mismatch_articles = array();
-        for ($i = 0; $i < count($related_articles); $i++) {
-            if ($related_articles[$i]->id != $article_first->id) {
-                array_push($mismatch_articles, $related_articles[$i]);
-            }
-        }
-        /*End*/
-
-        return view('homepage.categories.single_category', [
-            'related_articles' => $related_articles,
-            'mismatch_articles' => $mismatch_articles,
-            'hot_articles_by_category' => $hot_articles_by_category,
-            'article_first' => $article_first,
-            'category' => $category
-        ]);
+        return view('homepage.categories.single_category');
     }
 
     public function getTag($url)
