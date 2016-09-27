@@ -35,36 +35,6 @@ class UserController extends Controller
         Auth::logout();
         return redirect()->route('admin.auth.login');
     }
-
-    public function getSignUp()
-    {
-        return view('admin.auth.signup');
-    }
-
-    public function postSignUp(Request $request)
-    {
-        $this->validate($request, [
-            'email'    => 'required|email|unique:users,email',
-            'password' => 'required|between:6,24',
-        ]);
-
-        $username = $email = $request->email;
-        $password = $request->password;
-
-        $user           = new User();
-        $user->email    = $email;
-        $user->username = $username;
-        $user->password = Hash::make($password);
-
-        $user->save();
-
-        return redirect()->route('admin.auth.login')
-            ->with([
-                'new_username' => $username,
-                'new_password' => $password,
-            ]);
-    }
-
     public function getUserProfile()
     {
         if (!Auth::check()) {
@@ -121,9 +91,6 @@ class UserController extends Controller
             $user             = Auth::user();
             $current_password = $request->current_password;
 
-            $this->validate($request, [
-                'current_password' => 'required',
-            ]);
             //If current_password don't match with password in database -> throw error
             if (strlen($current_password) > 0 && !Hash::check($current_password, $user->password)) {
                 return response([
@@ -223,6 +190,7 @@ class UserController extends Controller
                 'birth'     => $user->birth,
                 'is_admin'  => $user->is_admin(),
                 'is_author' => $user->is_author(),
+                'issetPW'   => !!$user->password,
             ];
         }
         return [

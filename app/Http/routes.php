@@ -12,6 +12,7 @@
 |
  */
 
+//Admin Router
 Route::group(['prefix' => 'admin'], function () {
     //User
     Route::group(['prefix' => 'auth'], function () {
@@ -27,15 +28,6 @@ Route::group(['prefix' => 'admin'], function () {
             'uses' => 'UserController@getLogout',
             'as'   => 'admin.auth.logout',
         ]);
-        Route::get('/signup', [
-            'uses' => 'UserController@getSignUp',
-            'as'   => 'admin.auth.signup',
-        ]);
-        Route::post('/signup/user', [
-            'uses' => 'UserController@postSignUp',
-            'as'   => 'admin.auth.signup.post',
-        ]);
-
         Route::get('/profile', [
             'uses' => 'UserController@getUserProfile',
             'as'   => 'admin.user.profile',
@@ -44,6 +36,13 @@ Route::group(['prefix' => 'admin'], function () {
             'uses' => 'UserController@getUsers',
             'as'   => 'users',
         ]);
+        //Redirect to Socialite auth
+        Route::get('/redirect={social}', [
+            'uses' => 'SocialAuthController@redirect',
+            'as'   => 'admin.user.login.redirectTo',
+        ]);
+        //Hook Auth callback
+        Route::get('/callback={social}', 'SocialAuthController@callback');
     });
 
     Route::get('/', [

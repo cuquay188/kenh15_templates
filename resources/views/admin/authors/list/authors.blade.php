@@ -75,7 +75,7 @@
                     {{Auth::getUser()->is_admin() ? "" : "disabled"}}
                     data-target="#update-author" ng-click="edit()">Update Info
             </button>
-            <a  ng-if="author.email == auth.email && !auth.is_admin"
+            <a  ng-if="author.email == auth.email && !auth.is_admin" style="color: #fff" 
                 href="#profile" class="btn btn-primary btn-xs">Update Info</a>
 
             {{--Delete Function--}}
