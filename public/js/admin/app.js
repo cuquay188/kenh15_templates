@@ -5,7 +5,7 @@ var app = angular.module("mainApp", ['angularUtils.directives.dirPagination', 'n
 app.config(function(paginationTemplateProvider) {
     paginationTemplateProvider.setPath(url.plugin.dirPagination.controllerHtmlPath);
 });
-app.controller('mainController', function($rootScope, $scope, $http, $auth, $articles, $authors, $tags, $categories) {
+app.controller('mainController', function($rootScope, $scope, $http, $auth, $articles, $authors, $tags, $categories, $auth) {
     $rootScope.$on('$routeChangeStart', function() {
         toggleLoading(true);
     });
@@ -29,6 +29,12 @@ app.controller('mainController', function($rootScope, $scope, $http, $auth, $art
         ],
         item: $('.body').height() > 900 ? 14 : 7
     };
+
+    $rootScope.$watch(function() {
+        return $auth.get()
+    }, function(user) {
+        $rootScope.auth = user;
+    });
 });
 app.directive('thSortable', function($rootScope) {
     return {

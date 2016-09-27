@@ -36,10 +36,10 @@
         <td class="center">%%category.articles%%</td>
         <td>
             <button class="btn btn-xs btn-toggle hot" ng-click="setHot()"
-                    {{Auth::getUser()->is_admin() || Auth::getUser()->is_author() ? "" : "disabled"}}
+                    ng-disabled="!auth.is_admin"
                     ng-class="{'btn-default':!category.advance.is_hot,'btn-primary':category.advance.is_hot}"></button>
             <button class="btn btn-xs btn-toggle" ng-click="setHeader()"
-                    {{Auth::getUser()->is_admin() || Auth::getUser()->is_author() ? "" : "disabled"}}
+                    ng-disabled="!auth.is_admin"
                     ng-show="category.advance.is_hot"
                     ng-class="{'btn-default':!category.advance.is_header,'btn-primary':category.advance.is_header}">
                 Show to header
@@ -49,28 +49,28 @@
             {{--Edit Function--}}
             <button type="submit" class="btn btn-primary btn-xs" data-toggle="modal"
                     data-target="#update-category"
-                    {{Auth::getUser()->is_admin() || Auth::getUser()->is_author() ? "" : "disabled"}}
+                    ng-disabled="!auth.is_admin"
                     ng-click="edit()">Edit
             </button>
             {{--Delete Function--}}
             <button type="submit" class="btn btn-danger btn-xs" data-toggle="modal"
                     data-target="#delete-category"
-                    {{Auth::getUser()->is_admin() || Auth::getUser()->is_author() ? "" : "disabled"}}
+                    ng-disabled="!auth.is_admin"
                     ng-click="delete()">Delete
             </button>
         </td>
         <td>%%category.note%%</td>
     </tr>
-    <tr ng-if="categories.length==0">
-        <td colspan="6" class="empty-table">
-            No categories is available.
-            <a data-toggle="modal" data-target="#create-category">
-                Create a new one
-            </a>
-            .
-        </td>
-    </tr>
     </tbody>
 </table>
+<div ng-if="categories.length==0" class="empty-list">
+    <td class="empty-table">
+        No categories is available.
+        <a data-toggle="modal" data-target="#create-category">
+            Create a new one
+        </a>
+        .
+    </td>
+</div>
 <dir-pagination-controls ng-if="categories.length!=0">
 @endsection

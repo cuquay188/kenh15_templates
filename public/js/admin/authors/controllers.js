@@ -7,12 +7,7 @@ app.controller('authorsListController', function($rootScope, $scope, $http, $log
     $rootScope.sortType = 'name';
     $rootScope.sortReverse = false;
 });
-app.controller('authorController', function($scope, $log, $author, $auth) {
-    $scope.$watch(function() {
-        return $auth.get()
-    }, function(user) {
-        $scope.auth = user;
-    })
+app.controller('authorController', function($scope, $log, $author) {
     $scope.edit = function() {
         $author.set($scope.author);
     };

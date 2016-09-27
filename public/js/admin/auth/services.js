@@ -14,7 +14,7 @@ app.service('$auth', function() {
                 $http.post(url.auth.update.info, user).then(function(response) {
                     $auth = response.data.user;
                     if ($auth.is_author) {
-                        $authors.remove($auth.id);
+                        $authors.remove($auth.author.id);
                         $authors.add($auth);
                     }
                     $scope.errors = null;
@@ -43,8 +43,10 @@ app.service('$auth', function() {
             username: function($scope, $http, $authors, username) {
                 $http.post(url.auth.update.username, username).then(function(response) {
                     $auth = response.data.user;
-                    $authors.remove($auth.id);
-                    $authors.add($auth);
+                    if ($auth.is_author) {
+                        $authors.remove($auth.author.id);
+                        $authors.add($auth);
+                    }
                     $scope.errors = null;
                     $scope.showUpdateUsername = false;
                     notify('Update username successful.', 'success')

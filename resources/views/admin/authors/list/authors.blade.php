@@ -22,14 +22,11 @@
 <table class="table table-striped">
     <thead>
     <tr>
-        
         <th th-sortable sort-by="name" title="Name" width="200px"></th>
         <th th-sortable sort-by="age" title="Age" width="75px"></th>
         <th>Address</th>
-        @if(Auth::user()->is_admin())
-            <th>Phone</th>
-            <th th-sortable sort-by="email" title="Email" width="150px"></th>
-        @endif
+        <th ng-if="auth.is_admin">Phone</th>
+        <th ng-if="auth.is_admin" th-sortable sort-by="email" title="Email" width="150px"></th>
         <th style="width:175px;">Action</th>
     </tr>
     </thead>
@@ -38,21 +35,21 @@
         ng-controller="authorController">
         <td><a href="#">%%author.name%%</a></td>
         <td>%%author.age%%</td>
-        @if(Auth::user()->is_admin())
-            <td>%%author.address + ( author.city ? (', ' + author.city) : '' )%%</td>
-        @endif
-        @if(!Auth::user()->is_admin())
-            <td>%%author.city%%</td>
-        @endif
-        @if(Auth::user()->is_admin())
-            <td>%%author.tel%%</td>
-            <td><a href="#" ng-bind="author.email"></a></td>
-        @endif
+        <td>
+            <div ng-if="auth.is_admin">
+                %%author.address + ( author.city ? (', ' + author.city) : '' )%%
+            </div>
+            <div ng-if="!auth.is_admin">
+                %%author.city%%
+            </div>
+        </td>
+        <td ng-if="auth.is_admin">%%author.tel%%</td>
+        <td ng-if="auth.is_admin"><a href="#" ng-bind="author.email"></a></td>
         <td>
             {{--Edit Function--}}
             <button ng-if="author.email != auth.email || auth.is_admin"
                     type="submit" class="btn btn-primary btn-xs" data-toggle="modal"
-                    {{Auth::getUser()->is_admin() ? "" : "disabled"}}
+                    ng-disabled="!auth.is_admin"
                     data-target="#update-author" ng-click="edit()">Update Info
             </button>
             <a  ng-if="author.email == auth.email && !auth.is_admin" style="color: #fff" 
@@ -60,19 +57,18 @@
 
             {{--Delete Function--}}
             <button type="submit" class="btn btn-danger btn-xs" data-toggle="modal"
-                    {{Auth::getUser()->is_admin() ? "" : "disabled"}}
+                    ng-disabled="!auth.is_admin"
                     data-target="#delete-author" ng-click="delete()">Demote
             </button>
         </td>
     </tr>
-    <tr ng-if="authors.length==0">
-        <td colspan="6" class="empty-table">
-            No authors is available. You need to
-            <a data-toggle="modal" data-target="#create-author">promote a user</a>.
-        </td>
-    </tr>
     </tbody>
 </table>
+<div ng-if="authors.length==0" class="empty-list">
+    <td class="empty-table">
+        No authors is available. You need to
+        <a data-toggle="modal" data-target="#create-author">promote a user</a>.
+    </td>
+</div>
 <dir-pagination-controls  ng-if="authors.length!=0">
-</dir-pagination-controls>
 @endsection

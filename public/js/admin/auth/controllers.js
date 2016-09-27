@@ -1,8 +1,8 @@
-app.controller('authController', function($scope, $http, $authors, $auth) {
-    $scope.$watch(function() {
+app.controller('authController', function($rootScope, $scope, $http, $authors, $auth) {
+    $rootScope.$watch(function() {
         return $auth.get()
     }, function(user) {
-        $scope.user = user;
+        $rootScope.user = user;
         $scope.newName = user.name;
         $scope.newTel = user.tel;
         $scope.newAddress = user.address;

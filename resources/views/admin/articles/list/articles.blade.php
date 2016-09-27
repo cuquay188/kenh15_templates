@@ -11,26 +11,12 @@
             </span>
         </div>
     </div>
-    <div class="col col-lg-6 col-sm-3">
-    </div>
-    <div class="col col-lg-2 col-sm-2">
-        <!-- <div class="form-group">
-            <button class="btn btn-toggle btn-block tooltip-toggle btn-default">
-                Show your Article(s)
-            </button>
-            <span data-top="40" data-width="inherit">
-                Click to show only your article(s)
-            </span>
-        </div> -->
-    </div>
+    <div class="col col-lg-6 col-sm-3"></div>
+    <div class="col col-lg-2 col-sm-2"></div>
     <div class="col col-lg-3 col-sm-5">
         <div class="form-group">
             <input class="form-control search" ng-model="articleFilter" placeholder="Search..." type="text">
-                <span>
-                    <i class="glyphicon glyphicon-search">
-                    </i>
-                </span>
-            </input>
+            <span><i class="glyphicon glyphicon-search"></i></span>
         </div>
     </div>
 </div>
@@ -104,19 +90,18 @@
                 </button>
             </td>
         </tr>
-        <tr ng-if="articles.length==0">
-            <td class="empty-table" colspan="6">
-                No articles is available.
-                <a data-target="#create-article" data-toggle="modal">
-                    Create a new one
-                </a>
-                .
-            </td>
-        </tr>
     </tbody>
 </table>
+<div ng-if="articles.length==0" class="empty-list">
+    <td class="empty-table" colspan="6">
+        No articles is available.
+        <a data-target="#create-article" data-toggle="modal">
+            Create a new one
+        </a>
+        .
+    </td>
+</div>
 <dir-pagination-controls  ng-if="articles.length!=0">
-</dir-pagination-controls>
 @endsection
 @section('scripts')
 <script>
