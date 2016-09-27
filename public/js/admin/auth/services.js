@@ -1,4 +1,4 @@
-app.service('$auth', function() {
+app.service('$auth', function($window, $timeout) {
     var $auth = {};
     return {
         get: function() {
@@ -21,12 +21,19 @@ app.service('$auth', function() {
                     $scope.showUpdateFullName = $scope.showUpdateBirth = $scope.showUpdateTel = $scope.showUpdateAddress = $scope.showUpdateCity = false;
                     notify('Update profile successful.', 'success')
                 }, function(response) {
-                    $scope.errors = response.data;
-                    var text = '';
-                    $.each($scope.errors, function(index, val) {
-                        text += val[0] + '\n';
-                    });
-                    notify(text, 'danger')
+                    if (response.status == errorStatus) {
+                        notify('Unknown problem. The page will automatically refresh after ' + delayToRefresh / 1000 + ' seconds or you can press F5 to quick refresh.', 'warning')
+                        $timeout(function() {
+                            $window.location.reload();
+                        }, delayToRefresh);
+                    } else {
+                        $scope.errors = response.data;
+                        var text = '';
+                        $.each($scope.errors, function(index, val) {
+                            text += val[0] + '\n';
+                        });
+                        notify(text, 'danger')
+                    }
                 })
             },
             password: function($scope, $http, password) {
@@ -36,8 +43,15 @@ app.service('$auth', function() {
                     $scope.currentPassword = $scope.newPassword = $scope.confirmNewPassword = null;
                     notify('Update profile password successful.', 'success')
                 }, function(response) {
-                    $scope.errors = response.data;
-                    notify($scope.errors.current_password ? $scope.errors.current_password : $scope.errors.new_password, 'danger')
+                    if (response.status == errorStatus) {
+                        notify('Unknown problem. The page will automatically refresh after ' + delayToRefresh / 1000 + ' seconds or you can press F5 to quick refresh.', 'warning')
+                        $timeout(function() {
+                            $window.location.reload();
+                        }, delayToRefresh);
+                    } else {
+                        $scope.errors = response.data;
+                        notify($scope.errors.current_password ? $scope.errors.current_password : $scope.errors.new_password, 'danger')
+                    }
                 })
             },
             username: function($scope, $http, $authors, username) {
@@ -51,8 +65,15 @@ app.service('$auth', function() {
                     $scope.showUpdateUsername = false;
                     notify('Update username successful.', 'success')
                 }, function(response) {
-                    $scope.errors = response.data;
-                    notify('Can not update profile.', 'danger')
+                    if (response.status == errorStatus) {
+                        notify('Unknown problem. The page will automatically refresh after ' + delayToRefresh / 1000 + ' seconds or you can press F5 to quick refresh.', 'warning')
+                        $timeout(function() {
+                            $window.location.reload();
+                        }, delayToRefresh);
+                    } else {
+                        $scope.errors = response.data;
+                        notify('Can not update profile.', 'danger')
+                    }
                 })
             }
         }

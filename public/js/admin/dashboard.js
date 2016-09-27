@@ -52,8 +52,12 @@ $.notify.addStyle('app', {
     html: "<div><i data-notify-text/></div>",
 });
 var notify = function(text = 'Unknown message.', style = 'primary') {
-    $.notify(text, {
+    var options = {
         'style': 'app',
         'className': style,
-    });
+    }
+    if (style == 'warning') options.autoHideDelay = delayToRefresh;
+    $.notify(text, options);
 };
+var delayToRefresh = 5000,
+    errorStatus = 500;

@@ -56,7 +56,7 @@ app.service('$normalUsers', function() {
         }
     }
 });
-app.service('$author', function() {
+app.service('$author', function($window, $timeout) {
     var $author = {};
     return {
         get: function() {
@@ -87,16 +87,23 @@ app.service('$author', function() {
                 notify('Update author: \"' + $author.name + '\" successful.', 'success');
                 $author = null;
             }, function(response) {
-                $scope.nameErrors = response.data.name ? (response.data.name + '') : '';
-                $scope.addressErrors = response.data.address ? (response.data.address + '') : '';
-                $scope.cityErrors = response.data.city ? (response.data.city + '') : '';
-                $scope.birthErrors = response.data.birth ? (response.data.birth + '') : '';
-                $scope.telErrors = response.data.tel ? (response.data.tel + '') : '';
-                var text = '';
-                $.each(response.data, function(index, val) {
-                    text += val[0] + '\n';
-                });
-                notify(text, 'danger')
+                if (response.status == errorStatus) {
+                    notify('Unknown problem. The page will automatically refresh after ' + delayToRefresh / 1000 + ' seconds or you can press F5 to quick refresh.', 'warning')
+                    $timeout(function() {
+                        $window.location.reload();
+                    }, delayToRefresh);
+                } else {
+                    $scope.nameErrors = response.data.name ? (response.data.name + '') : '';
+                    $scope.addressErrors = response.data.address ? (response.data.address + '') : '';
+                    $scope.cityErrors = response.data.city ? (response.data.city + '') : '';
+                    $scope.birthErrors = response.data.birth ? (response.data.birth + '') : '';
+                    $scope.telErrors = response.data.tel ? (response.data.tel + '') : '';
+                    var text = '';
+                    $.each(response.data, function(index, val) {
+                        text += val[0] + '\n';
+                    });
+                    notify(text, 'danger')
+                }
             })
         },
         create: function($scope, $http, $authors, $normalUsers, user, more) {
@@ -110,9 +117,16 @@ app.service('$author', function() {
                 $author = null;
                 $normalUsers.remove(user.id);
                 $scope.userError = '';
-            }, function() {
-                $scope.userError = 'You need to select an user to promote.';
-                notify('You need to select an user to promote.', 'warning')
+            }, function(response) {
+                if (response.status == errorStatus) {
+                    notify('Unknown problem. The page will automatically refresh after ' + delayToRefresh / 1000 + ' seconds or you can press F5 to quick refresh.', 'warning')
+                    $timeout(function() {
+                        $window.location.reload();
+                    }, delayToRefresh);
+                } else {
+                    $scope.userError = 'You need to select an user to promote.';
+                    notify('You need to select an user to promote.', 'warning')
+                }
             })
         },
         remove: function($scope, $http, $authors, $normalUsers) {
@@ -124,7 +138,14 @@ app.service('$author', function() {
                 $('.modal.in').modal('hide');
                 notify('Demote author: \"' + $author.name + '\" successful.', 'success');
             }, function() {
-                notify('Can not demote author: \"' + $author.name + '\".', 'success');
+                if (response.status == errorStatus) {
+                    notify('Unknown problem. The page will automatically refresh after ' + delayToRefresh / 1000 + ' seconds or you can press F5 to quick refresh.', 'warning')
+                    $timeout(function() {
+                        $window.location.reload();
+                    }, delayToRefresh);
+                } else {
+                    notify('Can not demote author: \"' + $author.name + '\".', 'success');
+                }
             })
         }
     }

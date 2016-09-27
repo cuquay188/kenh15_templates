@@ -32,7 +32,7 @@ app.service('$articles', function() {
         }
     };
 });
-app.service('$article', function() {
+app.service('$article', function($window, $timeout) {
     var $article = {};
     return {
         get: {
@@ -84,12 +84,19 @@ app.service('$article', function() {
                 });
                 $scope.category = '?';
             }, function(response) {
-                $scope.errors = response.data;
-                var text = '';
-                $.each($scope.errors, function(index, val) {
-                    text += val[0] + '\n';
-                });
-                notify(text, 'danger')
+                if (response.status == errorStatus) {
+                    notify('Unknown problem. The page will automatically refresh after ' + delayToRefresh / 1000 + ' seconds or you can press F5 to quick refresh.', 'warning')
+                    $timeout(function() {
+                        $window.location.reload();
+                    }, delayToRefresh);
+                } else {
+                    $scope.errors = response.data;
+                    var text = '';
+                    $.each($scope.errors, function(index, val) {
+                        text += val[0] + '\n';
+                    });
+                    notify(text, 'danger')
+                }
             })
         },
         create: function($scope, $http, $articles, article, more) {
@@ -116,12 +123,19 @@ app.service('$article', function() {
                 });
                 $scope.category = '?';
             }, function(response) {
-                $scope.errors = response.data;
-                var text = '';
-                $.each($scope.errors, function(index, val) {
-                    text += val[0] + '\n';
-                });
-                notify(text, 'danger')
+                if (response.status == errorStatus) {
+                    notify('Unknown problem. The page will automatically refresh after ' + delayToRefresh / 1000 + ' seconds or you can press F5 to quick refresh.', 'warning')
+                    $timeout(function() {
+                        $window.location.reload();
+                    }, delayToRefresh);
+                } else {
+                    $scope.errors = response.data;
+                    var text = '';
+                    $.each($scope.errors, function(index, val) {
+                        text += val[0] + '\n';
+                    });
+                    notify(text, 'danger')
+                }
             })
         },
         remove: {
@@ -133,7 +147,14 @@ app.service('$article', function() {
                     $('.modal.in').modal('hide');
                     notify('Remove article: \"' + $scope.article.title + '\" successful.', 'success')
                 }, function() {
-                    notify('Can not remove article: \"' + $scope.article.title + '\".', 'danger')
+                    if (response.status == errorStatus) {
+                        notify('Unknown problem. The page will automatically refresh after ' + delayToRefresh / 1000 + ' seconds or you can press F5 to quick refresh.', 'warning')
+                        $timeout(function() {
+                            $window.location.reload();
+                        }, delayToRefresh);
+                    } else {
+                        notify('Can not remove article: \"' + $scope.article.title + '\".', 'danger')
+                    }
                 })
             },
             tag: function($scope, $http, $tag) {
@@ -148,7 +169,14 @@ app.service('$article', function() {
                     $article = null;
                     $tag.set(null);
                 }, function() {
-                    notify('Can not remove tag: \"' + $tag.get().name + '\" from article: \"' + $scope.article.title + '\".', 'danger')
+                    if (response.status == errorStatus) {
+                        notify('Unknown problem. The page will automatically refresh after ' + delayToRefresh / 1000 + ' seconds or you can press F5 to quick refresh.', 'warning')
+                        $timeout(function() {
+                            $window.location.reload();
+                        }, delayToRefresh);
+                    } else {
+                        notify('Can not remove tag: \"' + $tag.get().name + '\" from article: \"' + $scope.article.title + '\".', 'danger')
+                    }
                 })
             },
             author: function($scope, $http, $author) {
@@ -163,7 +191,14 @@ app.service('$article', function() {
                     $article = null;
                     $author.set(null);
                 }, function() {
-                    notify('Can not remove author: \"' + $author.get().name + '\" from article: \"' + $scope.article.title + '\".', 'danger')
+                    if (response.status == errorStatus) {
+                        notify('Unknown problem. The page will automatically refresh after ' + delayToRefresh / 1000 + ' seconds or you can press F5 to quick refresh.', 'warning')
+                        $timeout(function() {
+                            $window.location.reload();
+                        }, delayToRefresh);
+                    } else {
+                        notify('Can not remove author: \"' + $author.get().name + '\" from article: \"' + $scope.article.title + '\".', 'danger')
+                    }
                 })
             }
         }

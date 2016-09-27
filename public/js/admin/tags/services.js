@@ -28,7 +28,7 @@ app.service('$tags', function() {
         }
     };
 });
-app.service('$tag', function() {
+app.service('$tag', function($window,$timeout) {
     var $tag = {};
     return {
         get: function() {
@@ -49,12 +49,19 @@ app.service('$tag', function() {
                 $scope.nameErrors = '';
                 notify('Update tag: \"' + $tag.name + '\" successful.', 'success')
             }, function(response) {
-                $scope.nameErrors = response.data.name + '';
-                var text = '';
-                $.each(response.data, function(index, val) {
-                    text += val[0] + '\n';
-                });
-                notify(text, 'danger')
+                if (response.status == errorStatus) {
+                    notify('Unknown problem. The page will automatically refresh after ' + delayToRefresh / 1000 + ' seconds or you can press F5 to quick refresh.', 'warning')
+                    $timeout(function() {
+                        $window.location.reload();
+                    }, delayToRefresh);
+                } else {
+                    $scope.nameErrors = response.data.name + '';
+                    var text = '';
+                    $.each(response.data, function(index, val) {
+                        text += val[0] + '\n';
+                    });
+                    notify(text, 'danger')
+                }
             })
         },
         create: function($scope, $http, $tags, name, more) {
@@ -69,12 +76,19 @@ app.service('$tag', function() {
                 $scope.nameErrors = '';
                 $scope.newName = '';
             }, function(response) {
-                $scope.nameErrors = response.data.name + '';
-                var text = '';
-                $.each(response.data, function(index, val) {
-                    text += val[0] + '\n';
-                });
-                notify(text, 'danger')
+                if (response.status == errorStatus) {
+                    notify('Unknown problem. The page will automatically refresh after ' + delayToRefresh / 1000 + ' seconds or you can press F5 to quick refresh.', 'warning')
+                    $timeout(function() {
+                        $window.location.reload();
+                    }, delayToRefresh);
+                } else {
+                    $scope.nameErrors = response.data.name + '';
+                    var text = '';
+                    $.each(response.data, function(index, val) {
+                        text += val[0] + '\n';
+                    });
+                    notify(text, 'danger')
+                }
             })
         },
         remove: function($scope, $http, $tags) {
@@ -85,7 +99,14 @@ app.service('$tag', function() {
                 $('.modal.in').modal('hide');
                 notify('Remove tag: \"' + $tag.name + '\" successful.', 'success')
             }, function() {
-                notify('Can not remove tag: \"' + $tag.name + '\" successful.', 'danger')
+                if (response.status == errorStatus) {
+                    notify('Unknown problem. The page will automatically refresh after ' + delayToRefresh / 1000 + ' seconds or you can press F5 to quick refresh.', 'warning')
+                    $timeout(function() {
+                        $window.location.reload();
+                    }, delayToRefresh);
+                } else {
+                    notify('Can not remove tag: \"' + $tag.name + '\" successful.', 'danger')
+                }
             })
         }
     }
