@@ -7,13 +7,30 @@ app.controller('categoryController', function ($scope, category) {
         $scope.category = newVal
     })
 });
-app.controller('hotArticlesByCategoryController', function ($scope, articles) {
-    articles.load(getCategoryIdPath());
+app.controller('relatedArticlesByCategoryController', function ($scope, relatedArticles) {
+    relatedArticles.load(getCategoryIdPath());
 
     $scope.$watch(function () {
-        return articles.get()
+        return relatedArticles.get()
     }, function (newVal) {
         $scope.articles = newVal;
-        console.log(newVal);
+    })
+});
+app.controller('newestArticleByCategoryController', function ($scope, newestArticle) {
+    newestArticle.load(getCategoryIdPath());
+
+    $scope.$watch(function () {
+        return newestArticle.get()
+    }, function (newVal) {
+        $scope.newestArticle = newVal;
+    })
+});
+app.controller('hotArticlesByCategoryController', function ($scope, hotArticles) {
+    hotArticles.load(getCategoryIdPath());
+
+    $scope.$watch(function () {
+        return hotArticles.get()
+    }, function (newVal) {
+        $scope.articles = newVal;
     })
 });

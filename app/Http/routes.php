@@ -109,9 +109,17 @@ Route::group(['prefix' => 'api'], function () {
             'uses' => 'ArticleController@getArticleJSON',
             'as'   => 'admin.api.article.select',
         ]);
-        Route::get('/select/category_id={id?}',[
-            'uses' => 'ArticleController@getArticleByCategoryJSON',
+        Route::get('/select/related_article/category_id={id?}',[
+            'uses' => 'ArticleController@getRelatedArticleByCategoryJSON',
             'as'   => 'admin.api.article.select.byCategory'
+        ]);
+        Route::get('/select/new_article/category_id={id?}',[
+            'uses' => 'ArticleController@getNewestArticleByCategoryJSON',
+            'as'   => 'admin.api.article.select.newestArticle.byCategory'
+        ]);
+        Route::get('/select/hot_articles/category_id={id?}',[
+            'uses' => 'ArticleController@getHotArticlesByCategoryJSON',
+            'as'   => 'admin.api.article.select.hotArticle.byCategory'
         ]);
         Route::get('selectContent/{id?}', [
             'uses' => 'ArticleController@getContentJSON',
