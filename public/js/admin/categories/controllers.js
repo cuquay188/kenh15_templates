@@ -1,4 +1,4 @@
-app.controller('categoriesListController', function($scope, $http, $log, $categories) {
+app.controller('categoriesListController', function($rootScope, $scope, $http, $log, $categories) {
     $scope.$watch(function() {
         return $categories.get()
     }, function(newVal) {
@@ -9,8 +9,8 @@ app.controller('categoriesListController', function($scope, $http, $log, $catego
     }, function(newVal, oldVal) {
         if (newVal > oldVal && newVal > 5) notify('You should\'nt place more than 5 category to homepage header bar.', 'warning')
     });
-    $scope.sortType = 'advance.is_hot+advance.is_header';
-    $scope.sortReverse = 1;
+    $rootScope.sortType = 'advance.is_hot+advance.is_header';
+    $rootScope.sortReverse = true;
 });
 app.controller('categoryController', function($scope, $http, $log, $category) {
     $scope.edit = function() {

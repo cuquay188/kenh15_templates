@@ -1,11 +1,11 @@
-app.controller('authorsListController', function($scope, $http, $log, $authors) {
+app.controller('authorsListController', function($rootScope, $scope, $http, $log, $authors) {
     $scope.$watch(function() {
         return $authors.get()
     }, function(newVal) {
         $scope.authors = newVal;
     });
-    $scope.sortType = 'name';
-    $scope.sortReverse = 0;
+    $rootScope.sortType = 'name';
+    $rootScope.sortReverse = false;
 });
 app.controller('authorController', function($scope, $log, $author, $auth) {
     $scope.$watch(function() {

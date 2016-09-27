@@ -1,11 +1,11 @@
-app.controller('articlesListController', function($scope, $http, $log, $articles) {
+app.controller('articlesListController', function($rootScope, $scope, $http, $log, $articles) {
     $scope.$watch(function() {
         return $articles.get()
     }, function(newVal) {
         $scope.articles = newVal;
     });
-    $scope.sortType = 'updated_at';
-    $scope.sortReverse = 1;
+    $rootScope.sortType = 'updated_at';
+    $rootScope.sortReverse = false;
     $scope.itemsPerPage = {
         items: [5, 10, 20, 50],
         item: 5

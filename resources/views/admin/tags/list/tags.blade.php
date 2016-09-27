@@ -22,22 +22,8 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th ng-click="sortType = 'name'; sortReverse=!sortReverse;" class="sortable"
-                ng-class="{'sort': sortType=='name'}" style="width:250px;">
-                Name
-                <span ng-show="sortType == 'name' && !sortReverse"><i
-                            class="glyphicon glyphicon-sort-by-alphabet"></i></span>
-                <span ng-show="sortType == 'name' && sortReverse"><i
-                            class="glyphicon glyphicon-sort-by-alphabet-alt"></i></span>
-            </th>
-            <th ng-click="sortType = 'articles'; sortReverse=!sortReverse" class="center sortable"
-                ng-class="{'sort': sortType=='articles'}" style="width:150px;">
-                Article(s)
-                <span ng-show="sortType == 'articles' && !sortReverse"><i
-                            class="glyphicon glyphicon-sort-by-alphabet"></i></span>
-                <span ng-show="sortType == 'articles' && sortReverse"><i
-                            class="glyphicon glyphicon-sort-by-alphabet-alt"></i></span>
-            </th>
+            <th th-sortable sort-by="name" title="Name" width="250px"></th>
+            <th th-sortable sort-by="articles" title="Article(s)" width="150px"></th>
             <th style="width:200px;">Action</th>
             <th>Note</th>
         </tr>

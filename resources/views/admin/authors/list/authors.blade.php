@@ -22,33 +22,13 @@
 <table class="table table-striped">
     <thead>
     <tr>
-        <th ng-click="sortType = 'name'; sortReverse=!sortReverse;" class="sortable"
-            ng-class="{'sort': sortType=='name'}" style="width:200px;">
-            Name
-            <span ng-show="sortType == 'name' && !sortReverse"><i
-                        class="glyphicon glyphicon-sort-by-alphabet"></i></span>
-            <span ng-show="sortType == 'name' && sortReverse"><i
-                        class="glyphicon glyphicon-sort-by-alphabet-alt"></i></span>
-        </th>
-        <th ng-click="sortType = 'age'; sortReverse=!sortReverse;" class="sortable"
-            ng-class="{'sort': sortType=='age'}" style="width:50px;">
-            Age
-            <span ng-show="sortType == 'age' && !sortReverse"><i
-                        class="glyphicon glyphicon-sort-by-alphabet"></i></span>
-            <span ng-show="sortType == 'age' && sortReverse"><i
-                        class="glyphicon glyphicon-sort-by-alphabet-alt"></i></span>
-        </th>
+        
+        <th th-sortable sort-by="name" title="Name" width="200px"></th>
+        <th th-sortable sort-by="age" title="Age" width="75px"></th>
         <th>Address</th>
         @if(Auth::user()->is_admin())
             <th>Phone</th>
-            <th ng-click="sortType = 'email'; sortReverse=!sortReverse;" class="sortable"
-                ng-class="{'sort': sortType=='email'}" style="width:150px;">
-                Email
-                <span ng-show="sortType == 'email' && !sortReverse"><i
-                            class="glyphicon glyphicon-sort-by-alphabet"></i></span>
-                <span ng-show="sortType == 'email' && sortReverse"><i
-                            class="glyphicon glyphicon-sort-by-alphabet-alt"></i></span>
-            </th>
+            <th th-sortable sort-by="email" title="Email" width="150px"></th>
         @endif
         <th style="width:175px;">Action</th>
     </tr>

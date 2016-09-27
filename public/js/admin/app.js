@@ -30,3 +30,25 @@ app.controller('mainController', function($rootScope, $scope, $http, $auth, $art
         item: $('.body').height() > 900 ? 14 : 7
     };
 });
+app.directive('thSortable', function($rootScope) {
+    return {
+        templateUrl: 'th-sortable-directive',
+        scope: {},
+        link: function(scope, el, attrs) {
+            scope.sortBy = attrs.sortBy;
+            scope.sortReverse = true;
+            scope.title = attrs.title;
+            scope.width = attrs.width;
+            scope.$watchGroup(['type', 'reverse'], function(sort) {
+                $rootScope.sortType = sort[0];
+                $rootScope.sortReverse = sort[1];
+            });
+            $rootScope.$watch('sortType', function(sort) {
+                scope.type = sort;
+            });
+            $rootScope.$watch('sortReverse', function(sort) {
+                scope.reverse = sort;
+            });
+        }
+    }
+});

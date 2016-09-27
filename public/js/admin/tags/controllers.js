@@ -1,11 +1,11 @@
-app.controller('tagsListController', function ($scope, $http, $log, $tags) {
+app.controller('tagsListController', function ($rootScope, $scope, $http, $log, $tags) {
     $scope.$watch(function () {
         return $tags.get()
     }, function (newVal) {
         $scope.tags = newVal;
     });
-    $scope.sortType = 'articles';
-    $scope.sortReverse = 1;
+    $rootScope.sortType = 'articles';
+    $rootScope.sortReverse = false;
 });
 
 app.controller('tagController', function ($scope, $log, $tag) {

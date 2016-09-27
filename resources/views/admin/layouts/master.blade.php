@@ -136,7 +136,6 @@
 <script src="{{asset('/js/admin/routes.js')}}"></script>
 <script src="{{asset('/js/admin/sidebar.js')}}"></script>
 
-
 {{--Auth--}}
 <script src="{{asset('/js/admin/auth/services.js')}}"></script>
 <script src="{{asset('/js/admin/auth/controllers.js')}}"></script>
@@ -161,6 +160,11 @@
 <script src="{{asset('/js/admin/tags/services.js')}}"></script>
 <script src="{{asset('/js/admin/tags/controllers.js')}}"></script>
 {{--End Tag--}}
+
+<!-- ng-template -->
+@include('admin.layouts.components.directive-template')
+<!-- End ng-template -->
+
 @yield("body.scripts")
 
 <!-- End body scripts -->
