@@ -1,4 +1,21 @@
-app.service('category', function ($http) {
+app.factory('categoryFactory', function ($http) {
+    return {
+        load: {
+            category: function (category_id) {
+                var newUrl = url.category.info(category_id);
+                return $http.get(newUrl)
+            },
+            articles: function (category_id, type) {
+                var newUrl = '';
+                if (category_id) {
+                    newUrl = url.category.relatedArticles(category_id);
+                    return $http.get(newUrl)
+                }
+            }
+        }
+    }
+});
+app.service('category', function (categoryFactory) {
     var category = {};
     return {
         get: function () {
@@ -8,14 +25,13 @@ app.service('category', function ($http) {
             category = newCategory;
             return category
         },
-        load: function (id) {
-            $http.get(url.category(id))
+        load: function () {
+            categoryFactory.load.category(getCategoryIdPath())
                 .then(function (response) {
-                        category = response.data;
-                    },
-                    function (response) {
-                        console.log(response)
-                    })
+                    category = response.data
+                }, function (response) {
+                    console.log(response)
+                })
         }
     }
 });

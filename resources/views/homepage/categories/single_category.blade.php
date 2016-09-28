@@ -67,18 +67,21 @@
     </script>
     <script>
         var url = {
-            category: function (id) {
-                return '{{route('admin.api.category.select')}}/' + id;
-            },
-            articles: function (id) {
-                return '{{route('admin.api.article.select.byCategory')}}' + id;
-            },
-            newestArticle: function (id) {
-                return '{{route('admin.api.article.select.newestArticle.byCategory')}}' + id;
-            },
-            hotArticles: function (id) {
-                return '{{route('admin.api.article.select.hotArticle.byCategory')}}' + id;
+            category: {
+                info: function (id) {
+                    return '{{route('admin.api.category.select')}}/' + id;
+                },
+                relatedArticles: function (id) {
+                    return '{{route('admin.api.article.select.byCategory')}}' + id;
+                },
+                newestArticle: function (id) {
+                    return '{{route('admin.api.article.select.newestArticle.byCategory')}}' + id;
+                },
+                hotArticles: function (id) {
+                    return '{{route('admin.api.article.select.hotArticle.byCategory')}}' + id;
+                }
             }
+
         };
     </script>
 
