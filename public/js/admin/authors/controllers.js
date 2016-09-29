@@ -1,4 +1,4 @@
-app.controller('authorsListController', function($rootScope, $scope, $http, $log, $authors) {
+app.controller('authorsListController', function($rootScope, $scope, $authors) {
     $scope.$watch(function() {
         return $authors.get()
     }, function(newVal) {
@@ -7,7 +7,7 @@ app.controller('authorsListController', function($rootScope, $scope, $http, $log
     $rootScope.sortType = 'name';
     $rootScope.sortReverse = false;
 });
-app.controller('authorController', function($scope, $log, $author) {
+app.controller('authorController', function($scope, $author) {
     $scope.edit = function() {
         $author.set($scope.author);
     };
@@ -15,7 +15,7 @@ app.controller('authorController', function($scope, $log, $author) {
         $author.set($scope.author);
     }
 });
-app.controller('editAuthorController', function($scope, $http, $author, $auth) {
+app.controller('editAuthorController', function($scope, $author, $auth) {
     $scope.$watch(function() {
         return $author.get()
     }, function(newVal) {
@@ -36,7 +36,7 @@ app.controller('editAuthorController', function($scope, $http, $author, $auth) {
         $scope.nameErrors = '';
     };
     $scope.submit = function() {
-        $author.update($scope, $http, $auth, {
+        $author.update($scope, $auth, {
             newName: $scope.author.newName,
             newAddress: $scope.author.newAddress,
             newCity: $scope.author.newCity,
@@ -45,7 +45,7 @@ app.controller('editAuthorController', function($scope, $http, $author, $auth) {
         })
     };
 });
-app.controller('deleteAuthorController', function($scope, $http, $authors, $author, $normalUsers) {
+app.controller('deleteAuthorController', function($scope, $authors, $author, $normalUsers) {
     $scope.$watch(function() {
         return $author.get()
     }, function(newVal) {
@@ -55,20 +55,20 @@ app.controller('deleteAuthorController', function($scope, $http, $authors, $auth
         $author.set(null);
     };
     $scope.submit = function() {
-        $author.remove($scope, $http, $authors, $normalUsers)
+        $author.remove($scope, $authors, $normalUsers)
     };
     modalEvent($scope, 'delete-author')
 });
-app.controller('createAuthorController', function($scope, $http, $authors, $author, $normalUsers) {
+app.controller('createAuthorController', function($scope, $authors, $author, $normalUsers) {
     $scope.$watch(function() {
         return $normalUsers.get()
     }, function(newVal) {
         $scope.users = newVal;
         $scope.user = $normalUsers.get(0);
     });
-    $normalUsers.load($http);
+    $normalUsers.load();
     $scope.submit = function(more) {
-        $author.create($scope, $http, $authors, $normalUsers, $scope.user, more);
+        $author.create($scope, $authors, $normalUsers, $scope.user, more);
     };
     $scope.dismiss = function() {
         $scope.userError = '';

@@ -1,4 +1,4 @@
-app.service('$categories', function(appFactory) {
+app.service('$categories', function($http, appFactory) {
     var $categories = [];
     return {
         get: function() {
@@ -33,11 +33,11 @@ app.service('$categories', function(appFactory) {
                 return 0;
             }
         },
-        load: function($http) {
+        load: function() {
             $http.get(url.category.select).then(function(response) {
                 $categories = response.data;
                 return $categories;
-            },appFactory.errorPage);
+            }, appFactory.errorPage);
         },
         add: function($category) {
             $categories.push($category);
@@ -51,7 +51,7 @@ app.service('$categories', function(appFactory) {
         }
     };
 });
-app.service('$category', function(appFactory) {
+app.service('$category', function($http, appFactory) {
     var $category = {};
     return {
         get: function() {
@@ -62,7 +62,7 @@ app.service('$category', function(appFactory) {
             return $category
         },
         update: {
-            name: function($scope, $http, name) {
+            name: function($scope, name) {
                 $http.post(url.category.update.name, {
                     id: $category.id,
                     name: name
@@ -84,7 +84,7 @@ app.service('$category', function(appFactory) {
                     })
                 })
             },
-            hot: function($scope, $http) {
+            hot: function($scope) {
                 $http.post(url.category.update.hot, {
                     id: $category.id
                 }).then(function(response) {
@@ -96,7 +96,7 @@ app.service('$category', function(appFactory) {
                     $category = null;
                 }, appFactory.errorPage)
             },
-            header: function($scope, $http) {
+            header: function($scope) {
                 $http.post(url.category.update.header, {
                     id: $category.id
                 }).then(function(response) {
@@ -108,7 +108,7 @@ app.service('$category', function(appFactory) {
                 }, appFactory.errorPage)
             }
         },
-        create: function($scope, $http, $categories, name, more) {
+        create: function($scope, $categories, name, more) {
             $http.post(url.category.create, {
                 name: name
             }).then(function(response) {
@@ -130,7 +130,7 @@ app.service('$category', function(appFactory) {
                 })
             })
         },
-        remove: function($scope, $http, $categories) {
+        remove: function($scope, $categories) {
             $http.post(url.category.remove, {
                 id: $category.id
             }).then(function(response) {

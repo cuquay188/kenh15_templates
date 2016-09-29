@@ -1,4 +1,4 @@
-app.service('$articles', function(appFactory) {
+app.service('$articles', function($http,appFactory) {
     var $articles = [];
     return {
         get: function() {
@@ -11,7 +11,7 @@ app.service('$articles', function(appFactory) {
         size: function() {
             return $articles.length;
         },
-        load: function($http) {
+        load: function() {
             $http.get(url.article.select.articles).then(function(response) {
                 $articles = response.data;
                 $.each($articles, function(i, article) {
@@ -32,14 +32,14 @@ app.service('$articles', function(appFactory) {
         }
     };
 });
-app.service('$article', function(appFactory) {
+app.service('$article', function($http,appFactory) {
     var $article = {};
     return {
         get: {
             article: function() {
                 return $article;
             },
-            content: function($http) {
+            content: function() {
                 if ($article.content) CKEDITOR.instances.edit_article.setData($article.content);
                 else {
                     $http.get(url.article.select.content($article.id)).then(function(response) {
@@ -54,7 +54,7 @@ app.service('$article', function(appFactory) {
             $article = $newArticle;
             return $article
         },
-        update: function($scope, $http, article) {
+        update: function($scope, article) {
             $http.post(url.article.update, {
                 id: $article.id,
                 title: article.title,
@@ -94,7 +94,7 @@ app.service('$article', function(appFactory) {
                 })
             })
         },
-        create: function($scope, $http, $articles, article, more) {
+        create: function($scope, $articles, article, more) {
             $http.post(url.article.create, {
                 title: article.title,
                 content: article.content,
@@ -129,7 +129,7 @@ app.service('$article', function(appFactory) {
             })
         },
         remove: {
-            article: function($scope, $http, $articles) {
+            article: function($scope, $articles) {
                 $http.post(url.article.remove.article, {
                     id: $article.id
                 }).then(function(response) {
@@ -142,7 +142,7 @@ app.service('$article', function(appFactory) {
                     })
                 })
             },
-            tag: function($scope, $http, $tag) {
+            tag: function($scope, $tag) {
                 $http.post(url.article.remove.tag, {
                     article_id: $article.id,
                     tag_id: $tag.get().id
@@ -159,7 +159,7 @@ app.service('$article', function(appFactory) {
                     })
                 })
             },
-            author: function($scope, $http, $author) {
+            author: function($scope, $author) {
                 $http.post(url.article.remove.author, {
                     article_id: $article.id,
                     author_id: $author.get().id

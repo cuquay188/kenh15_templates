@@ -1,4 +1,4 @@
-app.service('$authors', function(appFactory) {
+app.service('$authors', function($http, appFactory) {
     var $authors = [];
     return {
         get: function() {
@@ -11,7 +11,7 @@ app.service('$authors', function(appFactory) {
         size: function() {
             return $authors.length;
         },
-        load: function($http) {
+        load: function() {
             $http.get(url.author.select.authors).then(function(response) {
                 $authors = response.data;
                 return $authors;
@@ -28,7 +28,7 @@ app.service('$authors', function(appFactory) {
         }
     };
 });
-app.service('$normalUsers', function(appFactory) {
+app.service('$normalUsers', function($http, appFactory) {
     var $users = [{
         label: '-- Select one --'
     }];
@@ -40,7 +40,7 @@ app.service('$normalUsers', function(appFactory) {
         set: function($newUsers) {
             $users = $newUsers
         },
-        load: function($http) {
+        load: function() {
             $users.splice(1, $users.length - 1);
             $http.get(url.author.select.users).then(function(response) {
                 $.each(response.data, function(i, user) {
@@ -56,7 +56,7 @@ app.service('$normalUsers', function(appFactory) {
         }
     }
 });
-app.service('$author', function(appFactory) {
+app.service('$author', function($http, appFactory) {
     var $author = {};
     return {
         get: function() {
@@ -66,7 +66,7 @@ app.service('$author', function(appFactory) {
             $author = $newAuthor;
             return $author
         },
-        update: function($scope, $http, $auth, author) {
+        update: function($scope, $auth, author) {
             $http.post(url.author.update, {
                 id: $author.id,
                 name: author.newName,
@@ -83,7 +83,7 @@ app.service('$author', function(appFactory) {
                 $author.tel = response.data.author.tel;
                 $('.modal.in').modal('hide');
                 $scope.nameErrors = $scope.addressErrors = $scope.cityErrors = $scope.birthErrors = $scope.telErrors = $scope.emailErrors = '';
-                if ($author.id == $auth.get().id) $auth.load($http);
+                if ($author.id == $auth.get().id) $auth.load();
                 appFactory.notify('Update author: \"' + $author.name + '\" successful.', 'success');
                 $author = null;
             }, function(response) {
@@ -101,7 +101,7 @@ app.service('$author', function(appFactory) {
                 })
             })
         },
-        create: function($scope, $http, $authors, $normalUsers, user, more) {
+        create: function($scope, $authors, $normalUsers, user, more) {
             $http.post(url.author.create, {
                 id: user.id
             }).then(function(response) {
@@ -119,12 +119,12 @@ app.service('$author', function(appFactory) {
                 })
             })
         },
-        remove: function($scope, $http, $authors, $normalUsers) {
+        remove: function($scope, $authors, $normalUsers) {
             $http.post(url.author.remove, {
                 id: $author.id
             }).then(function(response) {
                 $authors.remove(response.data.author.id);
-                $normalUsers.load($http);
+                $normalUsers.load();
                 $('.modal.in').modal('hide');
                 appFactory.notify('Demote author: \"' + $author.name + '\" successful.', 'success');
             }, function(response) {

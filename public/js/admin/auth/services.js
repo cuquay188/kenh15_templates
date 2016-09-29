@@ -1,16 +1,16 @@
-app.service('$auth', function(appFactory) {
+app.service('$auth', function($http,appFactory) {
     var $auth = {};
     return {
         get: function() {
             return $auth;
         },
-        load: function($http) {
+        load: function() {
             $http.get(url.auth.select).then(function(response) {
                 $auth = response.data;
             })
         },
         update: {
-            info: function($scope, $http, $authors, user) {
+            info: function($scope, $authors, user) {
                 $http.post(url.auth.update.info, user).then(function(response) {
                     $auth = response.data.user;
                     if ($auth.is_author) {
@@ -31,7 +31,7 @@ app.service('$auth', function(appFactory) {
                     })
                 })
             },
-            password: function($scope, $http, password) {
+            password: function($scope, password) {
                 $http.post(url.auth.update.password, password).then(function(response) {
                     $scope.showUpdatePassword = false;
                     $scope.errors = null;
@@ -44,7 +44,7 @@ app.service('$auth', function(appFactory) {
                     })
                 })
             },
-            username: function($scope, $http, $authors, username) {
+            username: function($scope, $authors, username) {
                 $http.post(url.auth.update.username, username).then(function(response) {
                     $auth = response.data.user;
                     if ($auth.is_author) {

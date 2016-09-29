@@ -1,4 +1,4 @@
-app.service('$tags', function(appFactory) {
+app.service('$tags', function($http, appFactory) {
     var $tags = [];
     return {
         get: function() {
@@ -11,7 +11,7 @@ app.service('$tags', function(appFactory) {
         size: function() {
             return $tags.length;
         },
-        load: function($http) {
+        load: function() {
             $http.get(url.tag.select).then(function(response) {
                 $tags = response.data;
                 return $tags;
@@ -28,7 +28,7 @@ app.service('$tags', function(appFactory) {
         }
     };
 });
-app.service('$tag', function(appFactory) {
+app.service('$tag', function($http, appFactory) {
     var $tag = {};
     return {
         get: function() {
@@ -38,7 +38,7 @@ app.service('$tag', function(appFactory) {
             $tag = $newTag;
             return $tag
         },
-        update: function($scope, $http, name) {
+        update: function($scope, name) {
             $http.post(url.tag.update, {
                 id: $tag.id,
                 name: name
@@ -59,7 +59,7 @@ app.service('$tag', function(appFactory) {
                 })
             })
         },
-        create: function($scope, $http, $tags, name, more) {
+        create: function($scope, $tags, name, more) {
             $http.post(url.tag.create, {
                 name: name
             }).then(function(response) {
@@ -81,7 +81,7 @@ app.service('$tag', function(appFactory) {
                 })
             })
         },
-        remove: function($scope, $http, $tags) {
+        remove: function($scope, $tags) {
             $http.post(url.tag.remove, {
                 id: $tag.id
             }).then(function(response) {

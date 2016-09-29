@@ -1,11 +1,11 @@
-app.controller('articlesListController', function($rootScope, $scope, $http, $log, $articles) {
+app.controller('articlesListController', function($rootScope, $scope, $articles) {
     $scope.$watch(function() {
         return $articles.get()
     }, function(newVal) {
         $scope.articles = newVal;
     });
     $rootScope.sortType = 'updated_at';
-    $rootScope.sortReverse = false;
+    $rootScope.sortReverse = true;
     $scope.itemsPerPage = {
         items: [5, 10, 20, 50],
         item: 5
@@ -73,7 +73,7 @@ app.controller('articleAuthorController', function($scope, $authors, $article, $
         $author.set(author)
     }
 });
-app.controller('editArticleController', function($scope, $http, $article, $tags, $authors, $categories) {
+app.controller('editArticleController', function($scope, $article, $tags, $authors, $categories) {
     $scope.$watchGroup([
         function() {
             return $tags.get()
@@ -94,7 +94,7 @@ app.controller('editArticleController', function($scope, $http, $article, $tags,
         $scope.article = newVal[3];
         if (newVal[3]) {
             if (newVal[3].id) {
-                $article.get.content($http);
+                $article.get.content();
                 $scope.category = $scope.article.category.id;
                 $scope.title = $scope.article.title;
             }
@@ -156,10 +156,10 @@ app.controller('editArticleController', function($scope, $http, $article, $tags,
             title: $scope.title,
             content: CKEDITOR.instances.edit_article.getData()
         };
-        $article.update($scope, $http, $scope.newArticle)
+        $article.update($scope, $scope.newArticle)
     };
 });
-app.controller('deleteArticleController', function($scope, $http, $articles, $article) {
+app.controller('deleteArticleController', function($scope, $articles, $article) {
     $scope.$watch(function() {
         return $article.get.article()
     }, function(newVal) {
@@ -169,11 +169,11 @@ app.controller('deleteArticleController', function($scope, $http, $articles, $ar
         $article.set(null);
     };
     $scope.submit = function() {
-        $article.remove.article($scope, $http, $articles)
+        $article.remove.article($scope, $articles)
     };
     modalEvent($scope, 'delete-article')
 });
-app.controller('deleteArticleTagController', function($scope, $http, $article, $tag) {
+app.controller('deleteArticleTagController', function($scope, $article, $tag) {
     $scope.$watch(function() {
         return $article.get.article()
     }, function(newVal) {
@@ -185,11 +185,11 @@ app.controller('deleteArticleTagController', function($scope, $http, $article, $
         $scope.tag = newVal;
     });
     $scope.submit = function() {
-        $article.remove.tag($scope, $http, $tag);
+        $article.remove.tag($scope, $tag);
     };
     modalEvent($scope, 'delete-article-tag')
 });
-app.controller('deleteArticleAuthorController', function($scope, $http, $article, $author) {
+app.controller('deleteArticleAuthorController', function($scope, $article, $author) {
     $scope.$watch(function() {
         return $article.get.article()
     }, function(newVal) {
@@ -201,11 +201,11 @@ app.controller('deleteArticleAuthorController', function($scope, $http, $article
         $scope.author = newVal;
     });
     $scope.submit = function() {
-        $article.remove.author($scope, $http, $author);
+        $article.remove.author($scope, $author);
     };
     modalEvent($scope, 'delete-article-author')
 });
-app.controller('createArticleController', function($scope, $http, $articles, $article, $tags, $authors, $categories) {
+app.controller('createArticleController', function($scope, $articles, $article, $tags, $authors, $categories) {
     $scope.$watch(function() {
         return $tags.get()
     }, function(newVal) {
@@ -238,6 +238,6 @@ app.controller('createArticleController', function($scope, $http, $articles, $ar
             title: $scope.title,
             content: CKEDITOR.instances.create_article.getData()
         };
-        $article.create($scope, $http, $articles, $scope.newArticle, more);
+        $article.create($scope, $articles, $scope.newArticle, more);
     };
 });

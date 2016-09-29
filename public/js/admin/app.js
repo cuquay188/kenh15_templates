@@ -72,7 +72,7 @@ app.factory('appFactory', function($window, $timeout, delayToRefresh, errorStatu
                 $window.location.reload();
             }, delayToRefresh);
         } else {
-            callback;
+            callback();
         }
     };
     factory.notify = function(text = 'Unknown message.', style = 'primary') {
