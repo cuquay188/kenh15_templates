@@ -8,8 +8,16 @@ app.factory('categoryFactory', function ($http) {
             articles: function (category_id, type) {
                 var newUrl = '';
                 if (category_id) {
-                    newUrl = url.category.relatedArticles(category_id);
-                    return $http.get(newUrl)
+                    if (type == 1) {
+                        newUrl = url.category.newestArticle(category_id);
+                        return $http.get(newUrl)
+                    } else if (type == 2) {
+                        newUrl = url.category.hotArticles(category_id);
+                        return $http.get(newUrl)
+                    } else {
+                        newUrl = url.category.relatedArticles(category_id);
+                        return $http.get(newUrl)
+                    }
                 }
             }
         }

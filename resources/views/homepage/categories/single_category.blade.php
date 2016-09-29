@@ -14,13 +14,13 @@
                      style="background-image: url('[[newestArticle.img_url]]');background-size: auto 200px">
                     <div class="backdrop">
                         <a href="#">
-                            <img src="[[newestArticle.img_url]]" alt=""
+                            <img src="[[article.img_url]]" alt=""
                                  style="max-height: 200px;max-width: 300px">
                         </a>
                     </div>
                 </div>
                 <div class="title">
-                    <a href="#">[[newestArticle.title]]</a>
+                    <a href="#">[[article.title]]</a>
                 </div>
             </div>
             <div class="hot-day">
@@ -71,14 +71,14 @@
                 info: function (id) {
                     return '{{route('admin.api.category.select')}}/' + id;
                 },
-                relatedArticles: function (id) {
-                    return '{{route('admin.api.article.select.byCategory')}}' + id;
-                },
                 newestArticle: function (id) {
                     return '{{route('admin.api.article.select.newestArticle.byCategory')}}' + id;
                 },
                 hotArticles: function (id) {
                     return '{{route('admin.api.article.select.hotArticle.byCategory')}}' + id;
+                },
+                relatedArticles: function (id) {
+                    return '{{route('admin.api.article.select.byCategory')}}' + id;
                 }
             }
 
