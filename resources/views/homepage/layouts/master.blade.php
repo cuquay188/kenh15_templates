@@ -21,6 +21,7 @@
 
     {{--Angular lib--}}
     <script src="{{asset('/angular/angular.min.js')}}"></script>
+    <script src="{{asset('/angular/angular-utils-pagination/dirPagination.js')}}"></script>
     {{--End angular--}}
 
 

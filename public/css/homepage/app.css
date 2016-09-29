@@ -36,7 +36,7 @@ img {
     margin: 5px; }
 
 .related-news {
-  margin: 0 0 20px 0;
+  margin: 0 0 10px 0;
   padding: 0; }
   .related-news .picture {
     display: inline-block;
@@ -61,10 +61,14 @@ img {
     color: #1abc9c; }
     .pagination li a:hover {
       color: #16a085; }
-  .pagination .active span, .pagination .active span:hover {
+  .pagination li.active a {
+    background-color: #1abc9c;
+    border-color: #1abc9c; }
+  .pagination li.active a:hover, .pagination li.active a:focus {
     color: white;
     font-weight: bold;
-    background-color: #16a085; }
+    background-color: #16a085;
+    border-color: #16a085; }
 
 .backdrop {
   position: absolute;

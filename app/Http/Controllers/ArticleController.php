@@ -232,7 +232,7 @@ class ArticleController extends Controller
         }
     }
 
-    public function getRelatedArticleByCategoryJSON($id)
+    public function getArticlesByCategoryJSON($id)
     {
         $articles = Article::where('category_id', $id)->orderby('id', 'desc')->get();
 
@@ -244,34 +244,16 @@ class ArticleController extends Controller
             $resultArticle['img_url'] = $article->img_url;
             $resultArticle['shorten_content'] = $article->shorten_content();
 
+            $article_view = ArticleView::where('article_id', $id)->first();
+            $resultArticle['views'] = $article_view->views;
+
+            $resultArticle['created_at'] = $article->created_at;
+
             array_push($resultArticles, $resultArticle);
         }
 
         return $resultArticles;
 
-    }
-
-    public function getNewestArticleByCategoryJSON($id)
-    {
-        $newestArticle = Article::where('category_id', $id)->orderBy('id', 'desc')->first();
-        $resultArticle = $this->getArticleJSON($newestArticle->id);
-        $resultArticle['img_url'] = $newestArticle->img_url;
-
-        return $resultArticle;
-    }
-
-    public function getHotArticlesByCategoryJSON($id)
-    {
-        $articles = Article::where('category_id', $id)->get();
-        $resultArticles = array();
-        foreach ($articles as $article) {
-            $article_view = ArticleView::where('article_id', $article->id)->first();
-            $article = $this->getArticleJSON($article->id);
-            $article['views'] = $article_view->views;
-            array_push($resultArticles, $article);
-        }
-
-        return $resultArticles;
     }
 
     public function getContentJSON($id = null)

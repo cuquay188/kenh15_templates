@@ -40,7 +40,7 @@
 @endsection
 @section('single.related_articles')
     <section ng-controller="relatedArticlesByCategoryController">
-        <div class="related-news shadow row" ng-repeat="article in articles">
+        <div class="related-news shadow row" dir-paginate="article in articles | itemsPerPage:5">
             <div class="picture col col-lg-4" style="background-image: url('[[article.img_url]]')">
                 <div class="backdrop">
                     <a href="#">
@@ -57,6 +57,7 @@
                 </div>
             </div>
         </div>
+        <dir-pagination-controls></dir-pagination-controls>
     </section>
 @endsection
 @section('single.body.scripts')
@@ -68,17 +69,11 @@
     <script>
         var url = {
             category: {
-                info: function (id) {
-                    return '{{route('admin.api.category.select')}}/' + id;
+                info: function (category_id) {
+                    return '{{route('admin.api.category.select')}}/' + category_id;
                 },
-                newestArticle: function (id) {
-                    return '{{route('admin.api.article.select.newestArticle.byCategory')}}' + id;
-                },
-                hotArticles: function (id) {
-                    return '{{route('admin.api.article.select.hotArticle.byCategory')}}' + id;
-                },
-                relatedArticles: function (id) {
-                    return '{{route('admin.api.article.select.byCategory')}}' + id;
+                articles: function (category_id) {
+                    return '{{route('admin.api.category.select.articles')}}' + category_id
                 }
             }
 

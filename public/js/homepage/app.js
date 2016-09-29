@@ -1,4 +1,4 @@
-var app = angular.module('mainApp', [], function ($interpolateProvider) {
+var app = angular.module('mainApp', ['angularUtils.directives.dirPagination'], function ($interpolateProvider) {
     $interpolateProvider.startSymbol('[[');
     $interpolateProvider.endSymbol(']]');
 });

@@ -105,21 +105,9 @@ Route::group(['prefix' => 'admin'], function () {
 Route::group(['prefix' => 'api'], function () {
 
     Route::group(['prefix' => 'article'], function () {
-        Route::get('/select/id={id?}', [
+        Route::get('/select/{id?}', [
             'uses' => 'ArticleController@getArticleJSON',
             'as'   => 'admin.api.article.select',
-        ]);
-        Route::get('/select/related_article/category_id={id?}',[
-            'uses' => 'ArticleController@getRelatedArticleByCategoryJSON',
-            'as'   => 'admin.api.article.select.byCategory'
-        ]);
-        Route::get('/select/new_article/category_id={id?}',[
-            'uses' => 'ArticleController@getNewestArticleByCategoryJSON',
-            'as'   => 'admin.api.article.select.newestArticle.byCategory'
-        ]);
-        Route::get('/select/hot_articles/category_id={id?}',[
-            'uses' => 'ArticleController@getHotArticlesByCategoryJSON',
-            'as'   => 'admin.api.article.select.hotArticle.byCategory'
         ]);
         Route::get('selectContent/{id?}', [
             'uses' => 'ArticleController@getContentJSON',
@@ -185,6 +173,11 @@ Route::group(['prefix' => 'api'], function () {
         Route::get('/select/{id?}', [
             'uses' => 'CategoryController@getCategoryJSON',
             'as'   => 'admin.api.category.select',
+        ]);
+
+        Route::get('/get/articles/category_id={id?}',[
+            'uses' => 'ArticleController@getArticlesByCategoryJSON',
+            'as'   => 'admin.api.category.select.articles'
         ]);
 
         Route::post('/update/name', [

@@ -1,53 +1,35 @@
-app.controller('categoryController', function ($scope, category) {
+app.controller('categoryController', function ($scope, category, articles) {
     category.load();
     $scope.$watch(function () {
         return category.get()
     }, function (newVal) {
-        $scope.category = newVal
+        if (newVal.id) {
+            $scope.category = newVal;
+            articles.load()
+        }
     })
 });
-app.controller('newestArticleByCategoryController', function ($scope, categoryFactory, category) {
+app.controller('newestArticleByCategoryController', function ($scope, articles) {
     $scope.article = {};
     $scope.$watch(function () {
-        return category.get()
-    }, function (newVal) {
-        if (newVal.id) {
-            categoryFactory.load.articles(newVal.id, 1)
-                .then(function (response) {
-                    $scope.article = response.data
-                }, function (response) {
-
-                })
-        }
+        return articles.get.all()
+    }, function () {
+        $scope.article = articles.get.newest()
     })
 });
-app.controller('hotArticlesByCategoryController', function ($scope, categoryFactory, category) {
+app.controller('hotArticlesByCategoryController', function ($scope, articles) {
     $scope.articles = [];
     $scope.$watch(function () {
-        return category.get()
+        return articles.get.all()
     }, function (newVal) {
-        if (newVal.id) {
-            categoryFactory.load.articles(newVal.id, 2)
-                .then(function (response) {
-                    $scope.articles = response.data
-                }, function (response) {
-
-                })
-        }
+        $scope.articles = newVal;
     })
 });
-app.controller('relatedArticlesByCategoryController', function ($scope, categoryFactory, category) {
+app.controller('relatedArticlesByCategoryController', function ($scope, articles) {
     $scope.articles = [];
     $scope.$watch(function () {
-        return category.get()
-    }, function (newVal) {
-        if (newVal.id) {
-            categoryFactory.load.articles(newVal.id)
-                .then(function (response) {
-                    $scope.articles = response.data;
-                }, function (response) {
-
-                })
-        }
+        return articles.get.newest()
+    }, function () {
+        $scope.articles = articles.get.related()
     })
 });
