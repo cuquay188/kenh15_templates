@@ -60,11 +60,11 @@ app.directive('thSortable', function($rootScope) {
 app.constant('delayToRefresh', 5000).constant('errorStatus', 500);
 app.factory('appFactory', function($window, $timeout, delayToRefresh, errorStatus) {
     var factory = {};
-        /**
-         * [errorPage description]
-         * @param  {[type]}   response the response return from api
-         * @param  {Function} callback run script if the response status is not 500
-         */
+    /**
+     * [errorPage description]
+     * @param  {[type]}   response the response return from api
+     * @param  {Function} callback run script if the response status is not 500
+     */
     factory.errorPage = function(response, callback) {
         if (response.status == errorStatus) {
             factory.notify('Unknown problem. The page will automatically refresh after ' + delayToRefresh / 1000 + ' seconds or you can press F5 to quick refresh.', 'warning')
@@ -75,6 +75,11 @@ app.factory('appFactory', function($window, $timeout, delayToRefresh, errorStatu
             callback();
         }
     };
+    /**
+     * [notify description]
+     * @param  {String} text  what to notify.
+     * @param  {String} style style (default, primary, success, warning, danger, error). Default is 'primary'.
+     */
     factory.notify = function(text = 'Unknown message.', style = 'primary') {
         var options = {
             'style': 'app',

@@ -1,4 +1,4 @@
-app.service('$articles', function($http,appFactory) {
+app.service('$articles', function($http, appFactory) {
     var $articles = [];
     return {
         get: function() {
@@ -32,7 +32,7 @@ app.service('$articles', function($http,appFactory) {
         }
     };
 });
-app.service('$article', function($http,appFactory) {
+app.service('$article', function($http, appFactory) {
     var $article = {};
     return {
         get: {

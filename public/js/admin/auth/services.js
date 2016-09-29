@@ -1,4 +1,4 @@
-app.service('$auth', function($http,appFactory) {
+app.service('$auth', function($http, appFactory) {
     var $auth = {};
     return {
         get: function() {
