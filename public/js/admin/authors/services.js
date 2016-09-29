@@ -1,4 +1,4 @@
-app.service('$authors', function() {
+app.service('$authors', function(appFactory) {
     var $authors = [];
     return {
         get: function() {
@@ -15,7 +15,7 @@ app.service('$authors', function() {
             $http.get(url.author.select.authors).then(function(response) {
                 $authors = response.data;
                 return $authors;
-            });
+            }, appFactory.errorPage);
         },
         add: function($author) {
             $authors.push($author);
@@ -28,7 +28,7 @@ app.service('$authors', function() {
         }
     };
 });
-app.service('$normalUsers', function() {
+app.service('$normalUsers', function(appFactory) {
     var $users = [{
         label: '-- Select one --'
     }];
@@ -47,7 +47,7 @@ app.service('$normalUsers', function() {
                     user.label = user.name + ' - ' + user.username;
                     $users.push(user);
                 })
-            });
+            }, appFactory.errorPage);
         },
         remove: function(id) {
             $users = $users.filter(function(user) {
@@ -56,7 +56,7 @@ app.service('$normalUsers', function() {
         }
     }
 });
-app.service('$author', function($window, $timeout) {
+app.service('$author', function(appFactory) {
     var $author = {};
     return {
         get: function() {
@@ -84,15 +84,10 @@ app.service('$author', function($window, $timeout) {
                 $('.modal.in').modal('hide');
                 $scope.nameErrors = $scope.addressErrors = $scope.cityErrors = $scope.birthErrors = $scope.telErrors = $scope.emailErrors = '';
                 if ($author.id == $auth.get().id) $auth.load($http);
-                notify('Update author: \"' + $author.name + '\" successful.', 'success');
+                appFactory.notify('Update author: \"' + $author.name + '\" successful.', 'success');
                 $author = null;
             }, function(response) {
-                if (response.status == errorStatus) {
-                    notify('Unknown problem. The page will automatically refresh after ' + delayToRefresh / 1000 + ' seconds or you can press F5 to quick refresh.', 'warning')
-                    $timeout(function() {
-                        $window.location.reload();
-                    }, delayToRefresh);
-                } else {
+                return appFactory.errorPage(response, function() {
                     $scope.nameErrors = response.data.name ? (response.data.name + '') : '';
                     $scope.addressErrors = response.data.address ? (response.data.address + '') : '';
                     $scope.cityErrors = response.data.city ? (response.data.city + '') : '';
@@ -102,8 +97,8 @@ app.service('$author', function($window, $timeout) {
                     $.each(response.data, function(index, val) {
                         text += val[0] + '\n';
                     });
-                    notify(text, 'danger')
-                }
+                    appFactory.notify(text, 'danger')
+                })
             })
         },
         create: function($scope, $http, $authors, $normalUsers, user, more) {
@@ -113,20 +108,15 @@ app.service('$author', function($window, $timeout) {
                 $author = response.data.author;
                 $authors.add($author);
                 if (!more) $('.modal.in').modal('hide');
-                notify('Promote user: \"' + $author.name + '\" successful.', 'success');
+                appFactory.notify('Promote user: \"' + $author.name + '\" successful.', 'success');
                 $author = null;
                 $normalUsers.remove(user.id);
                 $scope.userError = '';
             }, function(response) {
-                if (response.status == errorStatus) {
-                    notify('Unknown problem. The page will automatically refresh after ' + delayToRefresh / 1000 + ' seconds or you can press F5 to quick refresh.', 'warning')
-                    $timeout(function() {
-                        $window.location.reload();
-                    }, delayToRefresh);
-                } else {
+                return appFactory.errorPage(response, function() {
                     $scope.userError = 'You need to select an user to promote.';
-                    notify('You need to select an user to promote.', 'warning')
-                }
+                    appFactory.notify('You need to select an user to promote.', 'warning')
+                })
             })
         },
         remove: function($scope, $http, $authors, $normalUsers) {
@@ -136,16 +126,11 @@ app.service('$author', function($window, $timeout) {
                 $authors.remove(response.data.author.id);
                 $normalUsers.load($http);
                 $('.modal.in').modal('hide');
-                notify('Demote author: \"' + $author.name + '\" successful.', 'success');
-            }, function() {
-                if (response.status == errorStatus) {
-                    notify('Unknown problem. The page will automatically refresh after ' + delayToRefresh / 1000 + ' seconds or you can press F5 to quick refresh.', 'warning')
-                    $timeout(function() {
-                        $window.location.reload();
-                    }, delayToRefresh);
-                } else {
-                    notify('Can not demote author: \"' + $author.name + '\".', 'success');
-                }
+                appFactory.notify('Demote author: \"' + $author.name + '\" successful.', 'success');
+            }, function(response) {
+                return appFactory.errorPage(response, function() {
+                    appFactory.notify('Can not demote author: \"' + $author.name + '\".', 'success');
+                })
             })
         }
     }

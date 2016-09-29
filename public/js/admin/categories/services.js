@@ -1,4 +1,4 @@
-app.service('$categories', function() {
+app.service('$categories', function(appFactory) {
     var $categories = [];
     return {
         get: function() {
@@ -37,7 +37,7 @@ app.service('$categories', function() {
             $http.get(url.category.select).then(function(response) {
                 $categories = response.data;
                 return $categories;
-            });
+            },appFactory.errorPage);
         },
         add: function($category) {
             $categories.push($category);
@@ -51,7 +51,7 @@ app.service('$categories', function() {
         }
     };
 });
-app.service('$category', function($window, $timeout) {
+app.service('$category', function(appFactory) {
     var $category = {};
     return {
         get: function() {
@@ -71,22 +71,17 @@ app.service('$category', function($window, $timeout) {
                     $scope.category.name = $category.name;
                     $('.modal.in').modal('hide');
                     $scope.nameErrors = '';
-                    notify('Update category: \"' + $category.name + '\" successful.', 'success');
+                    appFactory.notify('Update category: \"' + $category.name + '\" successful.', 'success');
                     $category = null;
                 }, function(response) {
-                    if (response.status == errorStatus) {
-                        notify('Unknown problem. The page will automatically refresh after ' + delayToRefresh / 1000 + ' seconds or you can press F5 to quick refresh.', 'warning')
-                        $timeout(function() {
-                            $window.location.reload();
-                        }, delayToRefresh);
-                    } else {
+                    return appFactory.errorPage(response, function() {
                         $scope.nameErrors = response.data.name + '';
                         var text = '';
                         $.each(response.data, function(index, val) {
                             text += val[0] + '\n';
                         });
-                        notify(text, 'danger')
-                    }
+                        appFactory.notify(text, 'danger')
+                    })
                 })
             },
             hot: function($scope, $http) {
@@ -96,17 +91,10 @@ app.service('$category', function($window, $timeout) {
                     $category = response.data.category;
                     $scope.category.advance.is_hot = $category.advance.is_hot;
                     $scope.category.advance.is_header = $category.advance.is_header;
-                    if ($scope.category.advance.is_hot) notify('Add category \"' + $category.name + '\" to hot categories.', 'success')
-                    else notify('Remove category \"' + $category.name + '\" from hot categories.', 'danger')
+                    if ($scope.category.advance.is_hot) appFactory.notify('Add category \"' + $category.name + '\" to hot categories.', 'success')
+                    else appFactory.notify('Remove category \"' + $category.name + '\" from hot categories.', 'danger')
                     $category = null;
-                }, function(response) {
-                    if (response.status == errorStatus) {
-                        notify('Unknown problem. The page will automatically refresh after ' + delayToRefresh / 1000 + ' seconds or you can press F5 to quick refresh.', 'warning')
-                        $timeout(function() {
-                            $window.location.reload();
-                        }, delayToRefresh);
-                    }
-                })
+                }, appFactory.errorPage)
             },
             header: function($scope, $http) {
                 $http.post(url.category.update.header, {
@@ -114,17 +102,10 @@ app.service('$category', function($window, $timeout) {
                 }).then(function(response) {
                     $category = response.data.category;
                     $scope.category.advance.is_header = $category.advance.is_header;
-                    if ($scope.category.advance.is_header) notify('Add category \"' + $category.name + '\" to homepage header bar.', 'success')
-                    else notify('Remove category \"' + $category.name + '\" from homepage header bar.', 'danger')
+                    if ($scope.category.advance.is_header) appFactory.notify('Add category \"' + $category.name + '\" to homepage header bar.', 'success')
+                    else appFactory.notify('Remove category \"' + $category.name + '\" from homepage header bar.', 'danger')
                     $category = null;
-                }, function(response) {
-                    if (response.status == errorStatus) {
-                        notify('Unknown problem. The page will automatically refresh after ' + delayToRefresh / 1000 + ' seconds or you can press F5 to quick refresh.', 'warning')
-                        $timeout(function() {
-                            $window.location.reload();
-                        }, delayToRefresh);
-                    }
-                })
+                }, appFactory.errorPage)
             }
         },
         create: function($scope, $http, $categories, name, more) {
@@ -134,24 +115,19 @@ app.service('$category', function($window, $timeout) {
                 $category = response.data.category;
                 $categories.add($category);
                 if (!more) $('.modal.in').modal('hide');
-                notify('Create category: \"' + $category.name + '\" successful.', 'success');
+                appFactory.notify('Create category: \"' + $category.name + '\" successful.', 'success');
                 $category = null;
                 $scope.nameErrors = '';
                 $scope.newName = '';
             }, function(response) {
-                if (response.status == errorStatus) {
-                    notify('Unknown problem. The page will automatically refresh after ' + delayToRefresh / 1000 + ' seconds or you can press F5 to quick refresh.', 'warning')
-                    $timeout(function() {
-                        $window.location.reload();
-                    }, delayToRefresh);
-                } else {
+                return appFactory.errorPage(response, function() {
                     $scope.nameErrors = response.data.name + '';
                     var text = '';
                     $.each(response.data, function(index, val) {
                         text += val[0] + '\n';
                     });
-                    notify(text, 'danger')
-                }
+                    appFactory.notify(text, 'danger')
+                })
             })
         },
         remove: function($scope, $http, $categories) {
@@ -160,14 +136,7 @@ app.service('$category', function($window, $timeout) {
             }).then(function(response) {
                 $categories.remove(response.data.category.id);
                 $('.modal.in').modal('hide');
-            }, function(response) {
-                if (response.status == errorStatus) {
-                    notify('Unknown problem. The page will automatically refresh after ' + delayToRefresh / 1000 + ' seconds or you can press F5 to quick refresh.', 'warning')
-                    $timeout(function() {
-                        $window.location.reload();
-                    }, delayToRefresh);
-                }
-            })
+            }, appFactory.errorPage(response))
         }
     }
 });

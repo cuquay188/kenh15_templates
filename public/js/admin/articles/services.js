@@ -1,4 +1,4 @@
-app.service('$articles', function() {
+app.service('$articles', function(appFactory) {
     var $articles = [];
     return {
         get: function() {
@@ -18,7 +18,7 @@ app.service('$articles', function() {
                     article.updated_at = new Date(article.updated_at.date);
                 });
                 return $articles;
-            });
+            }, appFactory.errorPage);
         },
         add: function($article) {
             $article.updated_at = new Date($article.updated_at.date);
@@ -32,7 +32,7 @@ app.service('$articles', function() {
         }
     };
 });
-app.service('$article', function($window, $timeout) {
+app.service('$article', function(appFactory) {
     var $article = {};
     return {
         get: {
@@ -45,7 +45,7 @@ app.service('$article', function($window, $timeout) {
                     $http.get(url.article.select.content($article.id)).then(function(response) {
                         $article.content = response.data.content;
                         CKEDITOR.instances.edit_article.setData($article.content);
-                    });
+                    }, appFactory.errorPage);
                 }
                 return $article.content
             }
@@ -71,7 +71,7 @@ app.service('$article', function($window, $timeout) {
                 $scope.article.tags_id = $article.tags_id;
                 $scope.article.authors_id = $article.authors_id;
                 $('.modal.in').modal('hide');
-                notify('Update article: \"' + $article.title + '\" successful.', 'success')
+                appFactory.notify('Update article: \"' + $article.title + '\" successful.', 'success')
                 $article = null;
                 $scope.errors = null;
                 $scope.title = '';
@@ -84,19 +84,14 @@ app.service('$article', function($window, $timeout) {
                 });
                 $scope.category = '?';
             }, function(response) {
-                if (response.status == errorStatus) {
-                    notify('Unknown problem. The page will automatically refresh after ' + delayToRefresh / 1000 + ' seconds or you can press F5 to quick refresh.', 'warning')
-                    $timeout(function() {
-                        $window.location.reload();
-                    }, delayToRefresh);
-                } else {
+                return appFactory.errorPage(response, function() {
                     $scope.errors = response.data;
                     var text = '';
                     $.each($scope.errors, function(index, val) {
                         text += val[0] + '\n';
                     });
-                    notify(text, 'danger')
-                }
+                    appFactory.notify(text, 'danger')
+                })
             })
         },
         create: function($scope, $http, $articles, article, more) {
@@ -110,7 +105,7 @@ app.service('$article', function($window, $timeout) {
                 $article = response.data.article;
                 $articles.add($article);
                 if (!more) $('.modal.in').modal('hide');
-                notify('Create article: \"' + $article.title + '\" successful.', 'success')
+                appFactory.notify('Create article: \"' + $article.title + '\" successful.', 'success')
                 $article = null;
                 $scope.errors = null;
                 $scope.title = '';
@@ -123,19 +118,14 @@ app.service('$article', function($window, $timeout) {
                 });
                 $scope.category = '?';
             }, function(response) {
-                if (response.status == errorStatus) {
-                    notify('Unknown problem. The page will automatically refresh after ' + delayToRefresh / 1000 + ' seconds or you can press F5 to quick refresh.', 'warning')
-                    $timeout(function() {
-                        $window.location.reload();
-                    }, delayToRefresh);
-                } else {
+                return appFactory.errorPage(response, function() {
                     $scope.errors = response.data;
                     var text = '';
                     $.each($scope.errors, function(index, val) {
                         text += val[0] + '\n';
                     });
-                    notify(text, 'danger')
-                }
+                    appFactory.notify(text, 'danger')
+                })
             })
         },
         remove: {
@@ -145,16 +135,11 @@ app.service('$article', function($window, $timeout) {
                 }).then(function(response) {
                     $articles.remove(response.data.article.id);
                     $('.modal.in').modal('hide');
-                    notify('Remove article: \"' + $scope.article.title + '\" successful.', 'success')
-                }, function() {
-                    if (response.status == errorStatus) {
-                        notify('Unknown problem. The page will automatically refresh after ' + delayToRefresh / 1000 + ' seconds or you can press F5 to quick refresh.', 'warning')
-                        $timeout(function() {
-                            $window.location.reload();
-                        }, delayToRefresh);
-                    } else {
-                        notify('Can not remove article: \"' + $scope.article.title + '\".', 'danger')
-                    }
+                    appFactory.notify('Remove article: \"' + $scope.article.title + '\" successful.', 'success')
+                }, function(response) {
+                    return appFactory.errorPage(response, function() {
+                        appFactory.notify('Can not remove article: \"' + $scope.article.title + '\".', 'danger')
+                    })
                 })
             },
             tag: function($scope, $http, $tag) {
@@ -165,18 +150,13 @@ app.service('$article', function($window, $timeout) {
                     $article = response.data.article;
                     $scope.article.tags_id = $article.tags_id;
                     $('.modal.in').modal('hide');
-                    notify('Remove tag: \"' + $tag.get().name + '\" from article: \"' + $scope.article.title + '\" successful.', 'success')
+                    appFactory.notify('Remove tag: \"' + $tag.get().name + '\" from article: \"' + $scope.article.title + '\" successful.', 'success')
                     $article = null;
                     $tag.set(null);
-                }, function() {
-                    if (response.status == errorStatus) {
-                        notify('Unknown problem. The page will automatically refresh after ' + delayToRefresh / 1000 + ' seconds or you can press F5 to quick refresh.', 'warning')
-                        $timeout(function() {
-                            $window.location.reload();
-                        }, delayToRefresh);
-                    } else {
-                        notify('Can not remove tag: \"' + $tag.get().name + '\" from article: \"' + $scope.article.title + '\".', 'danger')
-                    }
+                }, function(response) {
+                    return appFactory.errorPage(response, function() {
+                        appFactory.notify('Can not remove tag: \"' + $tag.get().name + '\" from article: \"' + $scope.article.title + '\".', 'danger')
+                    })
                 })
             },
             author: function($scope, $http, $author) {
@@ -187,18 +167,13 @@ app.service('$article', function($window, $timeout) {
                     $article = response.data.article;
                     $scope.article.authors_id = $article.authors_id;
                     $('.modal.in').modal('hide');
-                    notify('Remove tag: \"' + $author.get().name + '\" from article: \"' + $scope.article.title + '\" successful.', 'success')
+                    appFactory.notify('Remove tag: \"' + $author.get().name + '\" from article: \"' + $scope.article.title + '\" successful.', 'success')
                     $article = null;
                     $author.set(null);
-                }, function() {
-                    if (response.status == errorStatus) {
-                        notify('Unknown problem. The page will automatically refresh after ' + delayToRefresh / 1000 + ' seconds or you can press F5 to quick refresh.', 'warning')
-                        $timeout(function() {
-                            $window.location.reload();
-                        }, delayToRefresh);
-                    } else {
-                        notify('Can not remove author: \"' + $author.get().name + '\" from article: \"' + $scope.article.title + '\".', 'danger')
-                    }
+                }, function(response) {
+                    return appFactory.errorPage(response, function() {
+                        appFactory.notify('Can not remove author: \"' + $author.get().name + '\" from article: \"' + $scope.article.title + '\".', 'danger')
+                    })
                 })
             }
         }

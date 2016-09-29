@@ -1,4 +1,4 @@
-app.service('$auth', function($window, $timeout) {
+app.service('$auth', function(appFactory) {
     var $auth = {};
     return {
         get: function() {
@@ -19,21 +19,16 @@ app.service('$auth', function($window, $timeout) {
                     }
                     $scope.errors = null;
                     $scope.showUpdateFullName = $scope.showUpdateBirth = $scope.showUpdateTel = $scope.showUpdateAddress = $scope.showUpdateCity = false;
-                    notify('Update profile successful.', 'success')
+                    appFactory.notify('Update profile successful.', 'success')
                 }, function(response) {
-                    if (response.status == errorStatus) {
-                        notify('Unknown problem. The page will automatically refresh after ' + delayToRefresh / 1000 + ' seconds or you can press F5 to quick refresh.', 'warning')
-                        $timeout(function() {
-                            $window.location.reload();
-                        }, delayToRefresh);
-                    } else {
+                    return appFactory.errorPage(response, function() {
                         $scope.errors = response.data;
                         var text = '';
                         $.each($scope.errors, function(index, val) {
                             text += val[0] + '\n';
                         });
-                        notify(text, 'danger')
-                    }
+                        appFactory.notify(text, 'danger')
+                    })
                 })
             },
             password: function($scope, $http, password) {
@@ -41,17 +36,12 @@ app.service('$auth', function($window, $timeout) {
                     $scope.showUpdatePassword = false;
                     $scope.errors = null;
                     $scope.currentPassword = $scope.newPassword = $scope.confirmNewPassword = null;
-                    notify('Update profile password successful.', 'success')
+                    appFactory.notify('Update profile password successful.', 'success')
                 }, function(response) {
-                    if (response.status == errorStatus) {
-                        notify('Unknown problem. The page will automatically refresh after ' + delayToRefresh / 1000 + ' seconds or you can press F5 to quick refresh.', 'warning')
-                        $timeout(function() {
-                            $window.location.reload();
-                        }, delayToRefresh);
-                    } else {
+                    return appFactory.errorPage(response, function() {
                         $scope.errors = response.data;
-                        notify($scope.errors.current_password ? $scope.errors.current_password : $scope.errors.new_password, 'danger')
-                    }
+                        appFactory.notify($scope.errors.current_password ? $scope.errors.current_password : $scope.errors.new_password, 'danger')
+                    })
                 })
             },
             username: function($scope, $http, $authors, username) {
@@ -63,17 +53,12 @@ app.service('$auth', function($window, $timeout) {
                     }
                     $scope.errors = null;
                     $scope.showUpdateUsername = false;
-                    notify('Update username successful.', 'success')
+                    appFactory.notify('Update username successful.', 'success')
                 }, function(response) {
-                    if (response.status == errorStatus) {
-                        notify('Unknown problem. The page will automatically refresh after ' + delayToRefresh / 1000 + ' seconds or you can press F5 to quick refresh.', 'warning')
-                        $timeout(function() {
-                            $window.location.reload();
-                        }, delayToRefresh);
-                    } else {
+                    return appFactory.errorPage(response, function() {
                         $scope.errors = response.data;
-                        notify('Can not update profile.', 'danger')
-                    }
+                        appFactory.notify('Can not update profile.', 'danger')
+                    })
                 })
             }
         }

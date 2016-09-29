@@ -1,4 +1,4 @@
-app.service('$tags', function() {
+app.service('$tags', function(appFactory) {
     var $tags = [];
     return {
         get: function() {
@@ -15,7 +15,7 @@ app.service('$tags', function() {
             $http.get(url.tag.select).then(function(response) {
                 $tags = response.data;
                 return $tags;
-            });
+            }, appFactory.errorPage);
         },
         add: function($tag) {
             $tags.push($tag);
@@ -28,7 +28,7 @@ app.service('$tags', function() {
         }
     };
 });
-app.service('$tag', function($window,$timeout) {
+app.service('$tag', function(appFactory) {
     var $tag = {};
     return {
         get: function() {
@@ -47,21 +47,16 @@ app.service('$tag', function($window,$timeout) {
                 $scope.tag.name = $tag.name;
                 $('.modal.in').modal('hide');
                 $scope.nameErrors = '';
-                notify('Update tag: \"' + $tag.name + '\" successful.', 'success')
+                appFactory.notify('Update tag: \"' + $tag.name + '\" successful.', 'success')
             }, function(response) {
-                if (response.status == errorStatus) {
-                    notify('Unknown problem. The page will automatically refresh after ' + delayToRefresh / 1000 + ' seconds or you can press F5 to quick refresh.', 'warning')
-                    $timeout(function() {
-                        $window.location.reload();
-                    }, delayToRefresh);
-                } else {
+                return appFactory.errorPage(response, function() {
                     $scope.nameErrors = response.data.name + '';
                     var text = '';
                     $.each(response.data, function(index, val) {
                         text += val[0] + '\n';
                     });
-                    notify(text, 'danger')
-                }
+                    appFactory.notify(text, 'danger')
+                })
             })
         },
         create: function($scope, $http, $tags, name, more) {
@@ -71,24 +66,19 @@ app.service('$tag', function($window,$timeout) {
                 $tag = response.data.tag;
                 $tags.add($tag);
                 if (!more) $('.modal.in').modal('hide');
-                notify('Create tag: \"' + $tag.name + '\" successful.', 'success')
+                appFactory.notify('Create tag: \"' + $tag.name + '\" successful.', 'success')
                 $tag = null;
                 $scope.nameErrors = '';
                 $scope.newName = '';
             }, function(response) {
-                if (response.status == errorStatus) {
-                    notify('Unknown problem. The page will automatically refresh after ' + delayToRefresh / 1000 + ' seconds or you can press F5 to quick refresh.', 'warning')
-                    $timeout(function() {
-                        $window.location.reload();
-                    }, delayToRefresh);
-                } else {
+                return appFactory.errorPage(response, function() {
                     $scope.nameErrors = response.data.name + '';
                     var text = '';
                     $.each(response.data, function(index, val) {
                         text += val[0] + '\n';
                     });
-                    notify(text, 'danger')
-                }
+                    appFactory.notify(text, 'danger')
+                })
             })
         },
         remove: function($scope, $http, $tags) {
@@ -97,17 +87,8 @@ app.service('$tag', function($window,$timeout) {
             }).then(function(response) {
                 $tags.remove(response.data.tag.id);
                 $('.modal.in').modal('hide');
-                notify('Remove tag: \"' + $tag.name + '\" successful.', 'success')
-            }, function() {
-                if (response.status == errorStatus) {
-                    notify('Unknown problem. The page will automatically refresh after ' + delayToRefresh / 1000 + ' seconds or you can press F5 to quick refresh.', 'warning')
-                    $timeout(function() {
-                        $window.location.reload();
-                    }, delayToRefresh);
-                } else {
-                    notify('Can not remove tag: \"' + $tag.name + '\" successful.', 'danger')
-                }
-            })
+                appFactory.notify('Remove tag: \"' + $tag.name + '\" successful.', 'success')
+            }, appFactory.errorPage)
         }
     }
 });
