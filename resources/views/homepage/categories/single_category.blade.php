@@ -66,18 +66,4 @@
             'height': $('.newest-article').height() - $('.hot-day .title').height()
         });
     </script>
-    <script>
-        var url = {
-            category: {
-                info: function (category_id) {
-                    return '{{route('admin.api.category.select')}}/' + category_id;
-                },
-                articles: function (category_id) {
-                    return '{{route('admin.api.category.select.articles')}}' + category_id
-                }
-            }
-
-        };
-    </script>
-
 @endsection

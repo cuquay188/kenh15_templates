@@ -184,18 +184,22 @@ Route::group(['prefix' => 'api'], function () {
             'uses' => 'CategoryController@postUpdateCategory',
             'as'   => 'admin.api.category.update.name',
         ]);
+
         Route::post('/update/hot', [
             'uses' => 'CategoryController@postHotCategory',
             'as'   => 'admin.api.category.update.hot',
         ]);
+
         Route::post('/update/header', [
             'uses' => 'CategoryController@postHeaderCategory',
             'as'   => 'admin.api.category.update.header',
         ]);
+
         Route::post('/delete', [
             'uses' => 'CategoryController@postRemoveCategory',
             'as'   => 'admin.api.category.remove',
         ]);
+
         Route::post('/create', [
             'uses' => 'CategoryController@postCreateCategory',
             'as'   => 'admin.api.category.create',
@@ -207,6 +211,11 @@ Route::group(['prefix' => 'api'], function () {
         Route::get('/select/{id?}', [
             'uses' => 'TagController@getTagJSON',
             'as'   => 'admin.api.tag.select',
+        ]);
+
+        Route::get('/get/articles/tag_id={id?}',[
+            'uses' => 'ArticleController@getArticlesByTagJSON',
+            'as'   => 'admin.api.tag.select.articles'
         ]);
 
         Route::post('/update', [
@@ -263,7 +272,7 @@ Route::get('/', [
 Route::get('/article/{url}', [
     'uses' => 'HomepageController@getArticle',
 ]);
-Route::get('/tag/{url}', [
+Route::get('/tag/{url?}', [
     'uses' => 'HomepageController@getTag',
 ]);
 Route::get('/category/{url?}', [

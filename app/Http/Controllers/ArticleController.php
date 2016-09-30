@@ -256,6 +256,21 @@ class ArticleController extends Controller
 
     }
 
+    public function getArticlesByTagJSON($id)
+    {
+        $articles = DB::table('tag_article')->where('tag_id', $id)->get();
+        $resultArticles = array();
+        foreach ($articles as $article) {
+            $resultArticle = Article::where('id', $article->article_id)->first();
+            $article_tag = $this->getArticleJSON($resultArticle->id);
+            $article_tag['shorten_content'] = $resultArticle->shorten_content();
+            $article_tag['img_url'] = $resultArticle->img_url;
+            array_push($resultArticles, $article_tag);
+        }
+
+        return $resultArticles;
+    }
+
     public function getContentJSON($id = null)
     {
         if ($id) {

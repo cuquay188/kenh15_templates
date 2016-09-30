@@ -1,35 +1,35 @@
-app.controller('categoryController', function ($scope, category, articles) {
+app.controller('categoryController', function ($scope, category, articlesByCategory) {
     category.load();
     $scope.$watch(function () {
         return category.get()
     }, function (newVal) {
         if (newVal.id) {
             $scope.category = newVal;
-            articles.load()
+            articlesByCategory.load()
         }
     })
 });
-app.controller('newestArticleByCategoryController', function ($scope, articles) {
+app.controller('newestArticleByCategoryController', function ($scope, articlesByCategory) {
     $scope.article = {};
     $scope.$watch(function () {
-        return articles.get.all()
+        return articlesByCategory.get.all()
     }, function () {
-        $scope.article = articles.get.newest()
+        $scope.article = articlesByCategory.get.newest()
     })
 });
-app.controller('hotArticlesByCategoryController', function ($scope, articles) {
+app.controller('hotArticlesByCategoryController', function ($scope, articlesByCategory) {
     $scope.articles = [];
     $scope.$watch(function () {
-        return articles.get.all()
+        return articlesByCategory.get.all()
     }, function (newVal) {
         $scope.articles = newVal;
     })
 });
-app.controller('relatedArticlesByCategoryController', function ($scope, articles) {
+app.controller('relatedArticlesByCategoryController', function ($scope, articlesByCategory) {
     $scope.articles = [];
     $scope.$watch(function () {
-        return articles.get.newest()
+        return articlesByCategory.get.newest()
     }, function () {
-        $scope.articles = articles.get.related()
+        $scope.articles = articlesByCategory.get.related()
     })
 });

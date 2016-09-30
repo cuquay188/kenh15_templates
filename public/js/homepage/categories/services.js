@@ -23,7 +23,7 @@ app.service('category', function (categoryFactory) {
             return category
         },
         load: function () {
-            categoryFactory.load.category(getCategoryIdPath())
+            categoryFactory.load.category(getIdPath())
                 .then(function (response) {
                     category = response.data
                 }, function (response) {
@@ -32,7 +32,7 @@ app.service('category', function (categoryFactory) {
         }
     }
 });
-app.service('articles', function (categoryFactory) {
+app.service('articlesByCategory', function (categoryFactory) {
     var articles = [],
         newest_article = {};
     return {
@@ -76,7 +76,7 @@ app.service('articles', function (categoryFactory) {
             return articles
         },
         load: function () {
-            categoryFactory.load.articles(getCategoryIdPath())
+            categoryFactory.load.articles(getIdPath())
                 .then(function (response) {
                     articles = response.data
                 }, function (response) {

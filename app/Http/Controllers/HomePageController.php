@@ -94,13 +94,6 @@ class HomePageController extends Controller
 
     public function getTag($url)
     {
-        $tag = Tag::where('url', $url)->first();
-        $articles_by_tag = Article::whereHas('tags', function ($query) use ($tag){
-            $query->where('tag_id', $tag->id);
-        })->paginate(5);
-        return view('homepage.tags.single_tag',[
-            'articles_by_tag' => $articles_by_tag,
-            'tag' => $tag,
-        ]);
+        return view('homepage.tags.single_tag');
     }
 }

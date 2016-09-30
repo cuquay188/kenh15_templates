@@ -43,7 +43,7 @@
                     <div class="tags">
                         <label>Tag(s)</label>
                         @foreach($article->tags as $tag)
-                            <a href="{{route('homepage').'/tag/'.$tag->url}}">
+                            <a href="{{route('homepage').'/tag/'.$tag->id}}">
                                 <i class="fa fa-tag" aria-hidden="true"></i> {{$tag->name}}
                             </a>
                         @endforeach

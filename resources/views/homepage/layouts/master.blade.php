@@ -46,12 +46,37 @@
     {{--Angular Services--}}
     <script src="{{asset('/js/homepage/articles/services.js')}}"></script>
     <script src="{{asset('/js/homepage/categories/services.js')}}"></script>
+    <script src="{{asset('/js/homepage/tags/services.js')}}"></script>
     {{--End Angular Services--}}
 
     {{--Angular Controllers--}}
     <script src="{{asset('/js/homepage/articles/controllers.js')}}"></script>
     <script src="{{asset('/js/homepage/categories/controllers.js')}}"></script>
+    <script src="{{asset('/js/homepage/tags/controllers.js')}}"></script>
     {{--End Angular Controllers--}}
+
+    <script>
+        var url = {
+            category: {
+                info: function (category_id) {
+                    return '{{route('admin.api.category.select')}}/' + category_id;
+                },
+                articles: function (category_id) {
+                    return '{{route('admin.api.category.select.articles')}}' + category_id
+                }
+            },
+            tag: {
+                info: function (tag_id) {
+                    return '{{route('admin.api.tag.select')}}/' + tag_id
+                },
+                articles: function (tag_id) {
+                    return '{{route('admin.api.tag.select.articles')}}' + tag_id
+                }
+            }
+        }
+    </script>
+
+
 </div>
 </body>
 </html>
