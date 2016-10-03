@@ -46,6 +46,12 @@ class TagController extends Controller
         }
     }
 
+    public function getTagByUrlJSON($url)
+    {
+        $id = Tag::where('url', $url)->first()->id;
+        return $this->getTagJSON($id);
+    }
+
     public function postCreateTag(Request $request)
     {
         $this->validate($request, [

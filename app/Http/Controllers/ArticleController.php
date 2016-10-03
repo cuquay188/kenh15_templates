@@ -7,6 +7,7 @@ use App\ArticleView;
 use App\Author;
 use App\Category;
 use App\Tag;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -232,9 +233,35 @@ class ArticleController extends Controller
         }
     }
 
-    public function getArticlesByCategoryJSON($id)
+    public function getSingleArticleJSON($url)
     {
-        $articles = Article::where('category_id', $id)->orderby('id', 'desc')->get();
+        $id = Article::where('url', $url)->first()->id;
+        $article = $this->getArticleJSON($id);
+        $tags = array();
+        $authors = array();
+        foreach ($article['tags_id'] as $tag_id) {
+            $tag = Tag::where('id', $tag_id)->first();
+            array_push($tags, $tag);
+        }
+        foreach ($article['authors_id'] as $author_id) {
+            $author = Author::where('id', $author_id)->first();
+            $author->name = $author->user->name;
+            array_push($authors, $author);
+        }
+        $category = Category::where('id', $article['category_id'])->first();
+
+        $article['content'] = Article::find($id)->content;
+        $article['category'] = $category;
+        $article['tags'] = $tags;
+        $article['authors'] = $authors;
+
+        return $article;
+    }
+
+    public function getArticlesByCategoryJSON($url)
+    {
+        $category_id = Category::where('url', $url)->first()->id;
+        $articles = Article::where('category_id', $category_id)->orderby('id', 'desc')->get();
 
         $resultArticles = array();
 
@@ -256,9 +283,10 @@ class ArticleController extends Controller
 
     }
 
-    public function getArticlesByTagJSON($id)
+    public function getArticlesByTagJSON($url)
     {
-        $articles = DB::table('tag_article')->where('tag_id', $id)->get();
+        $tag_id = Tag::where('url', $url)->first()->id;
+        $articles = DB::table('tag_article')->where('tag_id', $tag_id)->get();
         $resultArticles = array();
         foreach ($articles as $article) {
             $resultArticle = Article::where('id', $article->article_id)->first();

@@ -109,6 +109,10 @@ Route::group(['prefix' => 'api'], function () {
             'uses' => 'ArticleController@getArticleJSON',
             'as'   => 'admin.api.article.select',
         ]);
+        Route::get('/get/article_id={url?}',[
+            'uses' => 'ArticleController@getSingleArticleJSON',
+            'as'   => 'admin.api.article.get'
+        ]);
         Route::get('selectContent/{id?}', [
             'uses' => 'ArticleController@getContentJSON',
             'as'   => 'admin.api.article.select.content',
@@ -175,7 +179,12 @@ Route::group(['prefix' => 'api'], function () {
             'as'   => 'admin.api.category.select',
         ]);
 
-        Route::get('/get/articles/category_id={id?}',[
+        Route::get('/get/url={url?}',[
+            'uses' => 'CategoryController@getCategoryByUrlJSON',
+            'as'   => 'admin.api.category.select.byUrl'
+        ]);
+
+        Route::get('/get/articles/category_url={url?}',[
             'uses' => 'ArticleController@getArticlesByCategoryJSON',
             'as'   => 'admin.api.category.select.articles'
         ]);
@@ -213,7 +222,12 @@ Route::group(['prefix' => 'api'], function () {
             'as'   => 'admin.api.tag.select',
         ]);
 
-        Route::get('/get/articles/tag_id={id?}',[
+        Route::get('/get/url={url?}',[
+            'uses' => 'TagController@getTagByUrlJSON',
+            'as'   => 'admin.api.tag.select.byUrl'
+        ]);
+
+        Route::get('/get/articles/tag_url={url?}',[
             'uses' => 'ArticleController@getArticlesByTagJSON',
             'as'   => 'admin.api.tag.select.articles'
         ]);
@@ -243,6 +257,7 @@ Route::group(['prefix' => 'api'], function () {
             'as'   => 'admin.api.user.update',
         ]);
     });
+
     Route::group(['prefix' => 'auth'], function () {
         Route::get('/', [
             'uses' => 'UserController@getAuthUser',
@@ -269,7 +284,7 @@ Route::get('/', [
     'uses' => 'HomePageController@getHomePage',
     'as'   => 'homepage',
 ]);
-Route::get('/article/{url}', [
+Route::get('/article/{url?}', [
     'uses' => 'HomepageController@getArticle',
 ]);
 Route::get('/tag/{url?}', [

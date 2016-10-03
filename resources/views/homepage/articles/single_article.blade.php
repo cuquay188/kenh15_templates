@@ -1,10 +1,10 @@
 @extends('homepage.layouts.master')
-@section('title',$article->title)
+@section('title','Article')
 @section('styles')
     <link rel="stylesheet" href="{{asset('/css/homepage/article.css')}}">
 @endsection
 @section('content')
-    <div class="content-area main-body">
+    <div class="content-area main-body" ng-controller="articleController">
         <div class="container">
             <aside class="sidebar-left shadow col-lg-3">
                 @include('homepage.articles.related_articles')
@@ -14,39 +14,25 @@
                     <div class="category">
                         <a href="{{route('homepage')}}">Homepage</a>
                         <i class="fa fa-caret-right" aria-hidden="true"></i>
-                        <a href="#">{{$article->category->name}}</a>
+                        <a href="{{route('homepage')}}/category/[[article.category.url]]">[[article.category.name]]</a>
                     </div>
                     <div class="title">
-                        <h1>{{$article->title}}</h1>
+                        <h1>[[article.title]]</h1>
                         <p class="time">
-                            <label>{{$article->updated_at->format('d/m/Y')}}</label>
-                            Last updated at: {{$article->updated_at->format('H:i')}}
+                            <label>[[article.updated_at.date | date:'dd/MM/yyyy']]</label>
+                            Last updated at: [[article.updated_at.date | date:'HH:mm']]
                         </p>
                     </div>
-                    <div class="article-content">
-                        <?php
-                        echo $article->content;
-                        ?>
-                    </div>
+                    <div class="article-content" ng-bind-html="article.content"></div>
                     <div class="authors">
-                        <label>By </label>
-                        <?php
-                        for ($i = 0; $i < count($article->authors); $i++) {
-                            if ($i < count($article->authors) - 1) {
-                                echo $article->authors[$i]->user->name . ', ';
-                            } else {
-                                echo $article->authors[$i]->user->name;
-                            }
-                        }
-                        ?>
+                        <label>By</label>
+                        <span ng-repeat="author in article.authors">[[author.name]], </span>
                     </div>
                     <div class="tags">
                         <label>Tag(s)</label>
-                        @foreach($article->tags as $tag)
-                            <a href="{{route('homepage').'/tag/'.$tag->id}}">
-                                <i class="fa fa-tag" aria-hidden="true"></i> {{$tag->name}}
-                            </a>
-                        @endforeach
+                        <a href="{{route('homepage')}}/tag/[[tag.url]]" ng-repeat="tag in article.tags">
+                            <i class="fa fa-tag" aria-hidden="true"></i> [[tag.name]]
+                        </a>
                     </div>
                 </div>
                 <div class="col-lg-4 advertisement">
@@ -62,7 +48,8 @@
                                      alt="">
                             </div>
                             <div class="new-comment-content col col-lg-10">
-                                <textarea name="new-comment-content" id="new-comment-content" cols="64" rows="4" placeholder="Your comment..."></textarea>
+                                <textarea name="new-comment-content" id="new-comment-content" cols="64" rows="4"
+                                          placeholder="Your comment..."></textarea>
                             </div>
                             <div class="new-comment-send col-lg-12">
                                 <div class="col col-lg-2"></div>
@@ -170,5 +157,14 @@
         $('.cancel').click(function () {
             $('.reply-form').slideUp(400);
         });
+    </script>
+    <script>
+        var url = {
+            article: {
+                info: function (article_id) {
+                    return '{{route('admin.api.article.get')}}' + article_id
+                }
+            }
+        }
     </script>
 @endsection

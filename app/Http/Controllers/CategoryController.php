@@ -66,6 +66,12 @@ class CategoryController extends Controller
         }
     }
 
+    public function getCategoryByUrlJSON($url)
+    {
+        $id = Category::where('url', $url)->first()->id;
+        return $this->getCategoryJSON($id);
+    }
+
     public function postCreateCategory(Request $request)
     {
         $this->validate($request, [

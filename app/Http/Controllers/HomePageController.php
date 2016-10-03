@@ -71,28 +71,17 @@ class HomePageController extends Controller
         ]);
     }
 
-    public function getArticle($url)
+    public function getArticle()
     {
-        $article = Article::where('url', $url)->first();
-        $article_view = ArticleView::where('article_id', $article->id)->first();
-        $article_views = $article_view->views;
-        $views = ArticleView::where('article_id', $article->id)->update(['views' => $article_views + 1]);
-        $views_update = ArticleView::where('article_id', $article->id)->first();
-
-        $related_articles = Article::where('category_id', $article->category->id)->orderBy('id', 'desc')->take(6)->get();
-        return view('homepage.articles.single_article', [
-            'related_articles' => $related_articles,
-            'article' => $article,
-            'views_update' => $views_update
-        ]);
+        return view('homepage.articles.single_article');
     }
 
-    public function getSingleCategory($url)
+    public function getSingleCategory()
     {
         return view('homepage.categories.single_category');
     }
 
-    public function getTag($url)
+    public function getTag()
     {
         return view('homepage.tags.single_tag');
     }

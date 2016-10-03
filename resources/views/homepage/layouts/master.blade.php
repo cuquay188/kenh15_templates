@@ -22,6 +22,7 @@
     {{--Angular lib--}}
     <script src="{{asset('/angular/angular.min.js')}}"></script>
     <script src="{{asset('/angular/angular-utils-pagination/dirPagination.js')}}"></script>
+    <script src="{{asset('/angular/angular-sanitize.min.js')}}"></script>
     {{--End angular--}}
 
 
@@ -58,19 +59,24 @@
     <script>
         var url = {
             category: {
-                info: function (category_id) {
-                    return '{{route('admin.api.category.select')}}/' + category_id;
+                info: function (category_url) {
+                    return '{{route('admin.api.category.select.byUrl')}}' + category_url;
                 },
-                articles: function (category_id) {
-                    return '{{route('admin.api.category.select.articles')}}' + category_id
+                articles: function (category_url) {
+                    return '{{route('admin.api.category.select.articles')}}' + category_url
                 }
             },
             tag: {
-                info: function (tag_id) {
-                    return '{{route('admin.api.tag.select')}}/' + tag_id
+                info: function (tag_url) {
+                    return '{{route('admin.api.tag.select.byUrl')}}' + tag_url
                 },
-                articles: function (tag_id) {
-                    return '{{route('admin.api.tag.select.articles')}}' + tag_id
+                articles: function (tag_url) {
+                    return '{{route('admin.api.tag.select.articles')}}' + tag_url
+                }
+            },
+            article: {
+                info: function (article_url) {
+                    return '{{route('admin.api.article.get')}}' + article_url
                 }
             }
         }

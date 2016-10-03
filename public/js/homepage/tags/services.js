@@ -1,12 +1,12 @@
 app.factory('tagFactory', function ($http) {
     return {
         load: {
-            tag: function (tag_id) {
-                var newUrl = url.tag.info(tag_id);
+            tag: function (tag_url) {
+                var newUrl = url.tag.info(tag_url);
                 return $http.get(newUrl)
             },
-            articles: function (tag_id) {
-                var newUrl = url.tag.articles(tag_id);
+            articles: function (tag_url) {
+                var newUrl = url.tag.articles(tag_url);
                 return $http.get(newUrl)
             }
         }
@@ -23,7 +23,7 @@ app.service('tag', function (tagFactory) {
             return tag
         },
         load: function () {
-            tagFactory.load.tag(getIdPath())
+            tagFactory.load.tag(getUrlPath())
                 .then(function (response) {
                     tag = response.data
                 }, function (response) {
@@ -43,7 +43,7 @@ app.service('articlesByTag', function (tagFactory) {
             return articles
         },
         load: function () {
-            tagFactory.load.articles(getIdPath())
+            tagFactory.load.articles(getUrlPath())
                 .then(function (response) {
                     articles = response.data
                 }, function (response) {

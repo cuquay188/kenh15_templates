@@ -1,12 +1,12 @@
 app.factory('categoryFactory', function ($http) {
     return {
         load: {
-            category: function (category_id) {
-                var newUrl = url.category.info(category_id);
+            category: function (category_url) {
+                var newUrl = url.category.info(category_url);
                 return $http.get(newUrl)
             },
-            articles: function (category_id) {
-                var newUrl = url.category.articles(category_id);
+            articles: function (category_url) {
+                var newUrl = url.category.articles(category_url);
                 return $http.get(newUrl)
             }
         }
@@ -23,7 +23,7 @@ app.service('category', function (categoryFactory) {
             return category
         },
         load: function () {
-            categoryFactory.load.category(getIdPath())
+            categoryFactory.load.category(getUrlPath())
                 .then(function (response) {
                     category = response.data
                 }, function (response) {
@@ -76,8 +76,9 @@ app.service('articlesByCategory', function (categoryFactory) {
             return articles
         },
         load: function () {
-            categoryFactory.load.articles(getIdPath())
+            categoryFactory.load.articles(getUrlPath())
                 .then(function (response) {
+                    console.log(response.data)
                     articles = response.data
                 }, function (response) {
 
