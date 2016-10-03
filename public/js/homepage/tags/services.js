@@ -32,23 +32,3 @@ app.service('tag', function (tagFactory) {
         }
     }
 });
-app.service('articlesByTag', function (tagFactory) {
-    var articles = [];
-    return {
-        get: function () {
-            return articles
-        },
-        set: function (newArticles) {
-            articles = newArticles;
-            return articles
-        },
-        load: function () {
-            tagFactory.load.articles(getUrlPath())
-                .then(function (response) {
-                    articles = response.data
-                }, function (response) {
-                    console.log(response)
-                })
-        }
-    }
-});

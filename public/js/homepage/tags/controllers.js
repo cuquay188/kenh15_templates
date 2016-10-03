@@ -1,15 +1,17 @@
-app.controller('tagController', function ($scope, tag) {
+app.controller('tagController', function ($scope, tag, articles) {
     tag.load();
     $scope.$watch(function () {
         return tag.get()
     }, function (newVal) {
-        $scope.tag = newVal
+        if (newVal.id) {
+            $scope.tag = newVal;
+            articles.load(2)
+        }
     })
 });
-app.controller('relatedArticlesByTagController', function ($scope, articlesByTag) {
-    articlesByTag.load();
+app.controller('relatedArticlesByTagController', function ($scope, articles) {
     $scope.$watch(function () {
-        return articlesByTag.get()
+        return articles.get.all()
     }, function (newVal) {
         $scope.articles = newVal
     })
