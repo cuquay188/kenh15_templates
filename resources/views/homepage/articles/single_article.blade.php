@@ -26,11 +26,14 @@
                     <div class="article-content" ng-bind-html="article.content"></div>
                     <div class="authors">
                         <label>By</label>
-                        <span ng-repeat="author in article.authors">[[author.name]], </span>
+                        <span ng-repeat="author in article.authors track by $index">
+                            <span ng-if="$index < article.authors.length - 1">[[author.name]], </span>
+                            <span ng-if="$index == article.authors.length - 1">[[author.name]]</span>
+                        </span>
                     </div>
                     <div class="tags">
                         <label>Tag(s)</label>
-                        <a href="{{route('homepage')}}/tag/[[tag.url]]" ng-repeat="tag in article.tags">
+                        <a href="{{route('homepage')}}/tag/[[tag.url]]" ng-repeat="tag in article.tags track by $index">
                             <i class="fa fa-tag" aria-hidden="true"></i> [[tag.name]]
                         </a>
                     </div>
