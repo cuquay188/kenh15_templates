@@ -4,8 +4,8 @@
     </div>
     <div class="body-top">
         <ul>
-            <li>
-                <a href="#"></a>
+            <li ng-repeat="article in articles | orderBy: '-id' | limitTo: 5">
+                <a href="#">[[article.shorten_title]]</a>
             </li>
         </ul>
     </div>

@@ -4,28 +4,50 @@ app.factory('articleFactory', function ($http) {
             article: function (article_url) {
                 var newUrl = url.article.info(article_url);
                 return $http.get(newUrl)
+            },
+            articles: function (article_url) {
+                var newUrl = url.article.articles(article_url);
+                return $http.get(newUrl)
             }
         }
     }
 });
 app.service('article', function (articleFactory) {
     var article = {};
+    var relatedArticles = [];
     return {
-        get: function () {
-            return article
+        get: {
+            article: function () {
+                return article
+            },
+            relatedArticles: function () {
+                return relatedArticles.filter(function (related_article) {
+                    return related_article.id != article.id
+                })
+            }
         },
         set: function (newArticle) {
             article = newArticle;
             return article
         },
-        load: function () {
-            articleFactory.load.article(getUrlPath())
-                .then(function (response) {
-                    article = response.data;
-                    article.updated_at.date = new Date(article.updated_at.date)
-                }, function (response) {
-                    console.log(response)
-                })
+        load: {
+            article: function () {
+                articleFactory.load.article(getUrlPath())
+                    .then(function (response) {
+                        article = response.data;
+                        article.updated_at.date = new Date(article.updated_at.date)
+                    }, function (response) {
+                        console.log(response)
+                    })
+            },
+            relatedArticles: function () {
+                articleFactory.load.articles(getUrlPath())
+                    .then(function (response) {
+                        relatedArticles = response.data
+                    }, function (response) {
+                        console.log(response)
+                    })
+            }
         }
     }
 });

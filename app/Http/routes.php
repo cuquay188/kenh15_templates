@@ -109,10 +109,17 @@ Route::group(['prefix' => 'api'], function () {
             'uses' => 'ArticleController@getArticleJSON',
             'as'   => 'admin.api.article.select',
         ]);
+
         Route::get('/get/article_url={url?}',[
             'uses' => 'ArticleController@getSingleArticleJSON',
             'as'   => 'admin.api.article.get'
         ]);
+
+        Route::get('/get/relatedArticles/article_url={url?}',[
+            'uses' => 'ArticleController@getRelatedArticlesJSON',
+            'as'   => 'admin.api.article.get.related'
+        ]);
+
         Route::get('selectContent/{id?}', [
             'uses' => 'ArticleController@getContentJSON',
             'as'   => 'admin.api.article.select.content',
