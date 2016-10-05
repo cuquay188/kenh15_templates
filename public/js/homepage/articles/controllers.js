@@ -1,18 +1,18 @@
-app.controller('articleController', function ($scope, article) {
-    article.load.article();
+app.controller('articleController', function ($scope, article, articles) {
+    article.load();
     $scope.$watch(function () {
-        return article.get.article()
+        return article.get()
     }, function (newVal) {
         if (newVal.id) {
             $scope.article = newVal;
+            articles.load(1, article.get().category.url);
         }
     })
 });
-app.controller('relatedArticlesController', function ($scope, article) {
-    article.load.relatedArticles();
+app.controller('relatedArticlesController', function ($scope, articles, article) {
     $scope.$watch(function () {
-        return article.get.relatedArticles()
-    }, function (newVal) {
-        $scope.articles = newVal
+        return articles.get.all()
+    }, function () {
+        $scope.articles = articles.get.related.byArticle(article.get().id)
     })
 });

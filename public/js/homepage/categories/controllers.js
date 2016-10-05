@@ -30,6 +30,6 @@ app.controller('relatedArticlesByCategoryController', function ($scope, articles
     $scope.$watch(function () {
         return articles.get.newest()
     }, function () {
-        $scope.articles = articles.get.related()
+        $scope.articles = articles.get.related.byCategory()
     })
 });

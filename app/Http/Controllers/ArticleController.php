@@ -236,6 +236,7 @@ class ArticleController extends Controller
     public function getSingleArticleJSON($url)
     {
         $id = Article::where('url', $url)->first()->id;
+
         $article = $this->getArticleJSON($id);
         $tags = array();
         $authors = array();
@@ -258,22 +259,6 @@ class ArticleController extends Controller
         return $article;
     }
 
-    public function getRelatedArticlesJSON($url)
-    {
-        $article = Article::where('url', $url)->first();
-        $category_id = $article->category_id;
-        $articles = Article::where('category_id', $category_id)->get();
-        $resultArticles = array();
-        foreach ($articles as $article) {
-            $resultArticle['id'] = $article->id;
-            $resultArticle['shorten_title'] = $article->shorten_title(120);
-            $resultArticle['url'] = $article->url;
-            array_push($resultArticles, $resultArticle);
-        }
-
-        return $resultArticles;
-    }
-
     public function getArticlesByCategoryJSON($url)
     {
         $category_id = Category::where('url', $url)->first()->id;
@@ -284,6 +269,7 @@ class ArticleController extends Controller
         foreach ($articles as $article) {
             $id = $article->id;
             $resultArticle = $this->getArticleJSON($id);
+            $resultArticle['shorten_title'] = $article->shorten_title(120);
             $resultArticle['img_url'] = $article->img_url;
             $resultArticle['shorten_content'] = $article->shorten_content();
 

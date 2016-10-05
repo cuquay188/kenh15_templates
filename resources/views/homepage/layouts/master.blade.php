@@ -77,10 +77,6 @@
             article: {
                 info: function (article_url) {
                     return '{{route('admin.api.article.get')}}' + article_url
-                },
-                // related articles
-                articles: function (article_url) {
-                    return '{{route('admin.api.article.get.related')}}' + article_url
                 }
             }
         }

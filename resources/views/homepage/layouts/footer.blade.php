@@ -4,7 +4,7 @@
             <ul class="row">
                 @foreach(\App\Category::all() as $category)
                     <li class="col-sm-4 col-lg-2"><a
-                                href="{{route('homepage').'/category/'.$category->id}}">{{$category->name}}</a></li>
+                                href="{{route('homepage').'/category/'.$category->url}}">{{$category->name}}</a></li>
                 @endforeach
             </ul>
         </div>

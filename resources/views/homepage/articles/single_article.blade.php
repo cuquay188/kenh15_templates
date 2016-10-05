@@ -6,7 +6,7 @@
 @section('content')
     <div class="content-area main-body" ng-controller="articleController">
         <div class="container">
-            <aside class="sidebar-left shadow col-lg-3" ng-controller="relatedArticlesController">
+            <aside class="sidebar-left shadow col-lg-3">
                 @include('homepage.articles.related_articles')
             </aside>
             <div class="main-content col-lg-9">

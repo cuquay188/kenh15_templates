@@ -1,4 +1,4 @@
-<div class="top-view">
+<div class="top-view" ng-controller="relatedArticlesController">
     <div class="head-top">
         <a href="#">Related Articles</a>
     </div>
@@ -10,6 +10,6 @@
         </ul>
     </div>
     <div class="footer-top">
-        <a href="#">View all</a>
+        <a href="{{route('homepage').'/category/'}}[[article.category.url]]">View all</a>
     </div>
 </div>

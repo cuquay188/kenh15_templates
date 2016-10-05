@@ -4,50 +4,28 @@ app.factory('articleFactory', function ($http) {
             article: function (article_url) {
                 var newUrl = url.article.info(article_url);
                 return $http.get(newUrl)
-            },
-            articles: function (article_url) {
-                var newUrl = url.article.articles(article_url);
-                return $http.get(newUrl)
             }
         }
     }
 });
 app.service('article', function (articleFactory) {
     var article = {};
-    var relatedArticles = [];
     return {
-        get: {
-            article: function () {
-                return article
-            },
-            relatedArticles: function () {
-                return relatedArticles.filter(function (related_article) {
-                    return related_article.id != article.id
-                })
-            }
+        get: function () {
+            return article
         },
         set: function (newArticle) {
             article = newArticle;
             return article
         },
-        load: {
-            article: function () {
-                articleFactory.load.article(getUrlPath())
-                    .then(function (response) {
-                        article = response.data;
-                        article.updated_at.date = new Date(article.updated_at.date)
-                    }, function (response) {
-                        console.log(response)
-                    })
-            },
-            relatedArticles: function () {
-                articleFactory.load.articles(getUrlPath())
-                    .then(function (response) {
-                        relatedArticles = response.data
-                    }, function (response) {
-                        console.log(response)
-                    })
-            }
+        load: function () {
+            articleFactory.load.article(getUrlPath())
+                .then(function (response) {
+                    article = response.data;
+                    article.updated_at.date = new Date(article.updated_at.date)
+                }, function (response) {
+                    console.log(response)
+                })
         }
     }
 });
@@ -84,25 +62,36 @@ app.service('articles', function (categoryFactory, tagFactory) {
                     return newest_article;
                 }
             },
-            related: function () {
-                return articles.filter(function (article) {
-                    return article.id != newest_article.id
-                });
+            related: {
+                byCategory: function () {
+                    return articles.filter(function (article) {
+                        return article.id != newest_article.id
+                    });
+                },
+                byArticle: function (article_id) {
+                    return articles.filter(function (article) {
+                        return article.id != article_id
+                    })
+                }
             }
         },
         set: function (newArticles) {
             articles = newArticles;
             return articles
         },
-        load: function (type) {
-            var factory;
+        load: function (type, categoryUrl) {
+            var factory,
+                url = getUrlPath();
             if (type == 1) {
                 factory = categoryFactory
             }
             if (type == 2) {
                 factory = tagFactory
             }
-            factory.load.articles(getUrlPath())
+            if (type == 1 && categoryUrl) {
+                url = categoryUrl
+            }
+            factory.load.articles(url)
                 .then(function (response) {
                     articles = response.data
                 }, function (response) {
