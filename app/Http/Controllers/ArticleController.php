@@ -233,6 +233,27 @@ class ArticleController extends Controller
         }
     }
 
+    public function getArticlesJSON()
+    {
+        $articles = Article::all();
+        $resultArticles = array();
+        foreach ($articles as $article) {
+            $article_views = DB::table('article_views')->where('article_id', $article->id)->first()->views;
+            array_push($resultArticles, [
+                'id' => $article->id,
+                'title' => $article->title,
+                'shorten_title' => $article->shorten_title(100),
+                'url' => $article->url,
+                'updated_at' => $article->updated_at,
+                'created_at' => $article->created_at,
+                'category_id' => $article->category_id,
+                'img_url' => $article->img_url,
+                'views' => $article_views
+            ]);
+        }
+        return $resultArticles;
+    }
+
     public function getSingleArticleJSON($url)
     {
         $id = Article::where('url', $url)->first()->id;

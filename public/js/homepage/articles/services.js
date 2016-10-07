@@ -4,6 +4,10 @@ app.factory('articleFactory', function ($http) {
             article: function (article_url) {
                 var newUrl = url.article.info(article_url);
                 return $http.get(newUrl)
+            },
+            articles: function () {
+                var newUrl = url.article.all();
+                return $http.get(newUrl)
             }
         }
     }
@@ -29,7 +33,7 @@ app.service('article', function (articleFactory) {
         }
     }
 });
-app.service('articles', function (categoryFactory, tagFactory) {
+app.service('articles', function (categoryFactory, tagFactory, articleFactory) {
     var articles = [],
         newest_article = {};
     return {
@@ -82,15 +86,26 @@ app.service('articles', function (categoryFactory, tagFactory) {
         load: function (type, categoryUrl) {
             var factory,
                 url = getUrlPath();
+            // load articles by category
             if (type == 1) {
                 factory = categoryFactory
             }
+
+            // load articles by tag
             if (type == 2) {
                 factory = tagFactory
             }
+
+            //load all articles in database
+            if (type == 3) {
+                factory = articleFactory
+            }
+
+            //
             if (type == 1 && categoryUrl) {
                 url = categoryUrl
             }
+
             factory.load.articles(url)
                 .then(function (response) {
                     articles = response.data

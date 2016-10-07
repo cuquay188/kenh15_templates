@@ -1,5 +1,5 @@
 <header>
-    <div class="container" ng-controller="categoriesController">
+    <div class="container">
         <div class="title col-lg-2">
             <a href="{{route('homepage')}}">Kênh 15</a>
         </div>

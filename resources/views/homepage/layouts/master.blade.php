@@ -80,6 +80,9 @@
             article: {
                 info: function (article_url) {
                     return '{{route('admin.api.article.get')}}' + article_url
+                },
+                all: function () {
+                    return '{{route('admin.api.article.select.all')}}'
                 }
             }
         }

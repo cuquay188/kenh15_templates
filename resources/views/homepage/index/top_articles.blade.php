@@ -5,7 +5,9 @@
     </div>
     <div class="body-top">
         <ul>
-            <li><a href="#"></a></li>
+            <li ng-repeat="article in articles | orderBy: '-views' | limitTo: 5">
+                <a href="#">[[article.shorten_title]]</a>
+            </li>
         </ul>
     </div>
     <div class="footer-top">

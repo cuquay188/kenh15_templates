@@ -5,7 +5,7 @@
 @endsection
 @section('content')
     <div class="content-area main-body">
-        <div class="container">
+        <div class="container" ng-controller="articlesController">
             <!-- bài đọc nhiều nhất -->
             <aside class="sidebar-left shadow col-lg-3">
                 @include('homepage.index.top_articles')
@@ -25,9 +25,11 @@
                 </aside>
                 <!-- end -->
 
-                <div class="articles-by-category col-lg-12" ng-controller="hotCategoriesController">
-                    @include('homepage.index.hot_categories')
-                </div>
+                <section ng-controller="categoriesController">
+                    <div class="articles-by-category col-lg-12" ng-controller="hotCategoriesController">
+                        @include('homepage.index.hot_categories')
+                    </div>
+                </section>
             </div>
         </div>
     </div>

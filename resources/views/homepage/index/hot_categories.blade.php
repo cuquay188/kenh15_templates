@@ -9,8 +9,7 @@
         <div class="article">
             <div class="picture" style="">
                 <div class="backdrop">
-                    <a href="#"><img
-                                src=""></a>
+                    <a href="#"><img src=""></a>
                 </div>
             </div>
             <div class="title">
