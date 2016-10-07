@@ -1,3 +1,6 @@
+.container {
+  position: relative; }
+
 .new-articles {
   padding-top: 10px; }
 

@@ -1,37 +1,29 @@
 <div class="newest-article">
-    @foreach($article_first as $article)
-        <div class="picture" style="background-image: url('{{$article->img_url}}')">
+    <div class="picture" style="">
+        <div class="backdrop">
+            <a href="#">
+                <img src="" style="max-height: 200px;max-width: 300px">
+            </a>
+        </div>
+    </div>
+    <div class="title">
+        <a href="#"></a>
+    </div>
+    <div class="content">
+
+    </div>
+</div>
+<div class="latest-articles">
+    <div class="article">
+        <div class="picture" style="">
             <div class="backdrop">
-                <a href="{{route('homepage').'/article/'.$article->url}}">
-                    <img src="{{$article->img_url}}" style="max-height: 200px;max-width: 300px">
+                <a href="#">
+                    <img src="">
                 </a>
             </div>
         </div>
         <div class="title">
-            <a href="{{route('homepage').'/article/'.$article->url}}">{{$article->title}}</a>
+            <a href="#"></a>
         </div>
-        <div class="content">
-            <p>
-                <?php
-                echo $article->shorten_content(300)
-                ?>
-            </p>
-        </div>
-    @endforeach
-</div>
-<div class="latest-articles">
-    @foreach($articles_latest as $article)
-        <div class="article">
-            <div class="picture" style="background-image: url('{{$article->img_url}}')">
-                <div class="backdrop">
-                    <a href="{{route('homepage').'/article/'.$article->url}}">
-                        <img src="{{$article->img_url}}">
-                    </a>
-                </div>
-            </div>
-            <div class="title">
-                <a href="{{route('homepage').'/article/'.$article->url}}">{{$article->title}}</a>
-            </div>
-        </div>
-    @endforeach
+    </div>
 </div>

@@ -25,7 +25,7 @@
                 </aside>
                 <!-- end -->
 
-                <div class="articles-by-category col-lg-12">
+                <div class="articles-by-category col-lg-12" ng-controller="hotCategoriesController">
                     @include('homepage.index.hot_categories')
                 </div>
             </div>

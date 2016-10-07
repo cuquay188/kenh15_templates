@@ -1,24 +1,24 @@
-var sidebarLeftWidth = $('.sidebar-left').width() + (parseInt($('.sidebar-left').css('padding-left')) * 2) - 2;
-var contentHeight = $('.content-area .container').height() - $('footer .container').height() * 8;
+var $sidebar = $('.sidebar-left');
+var mainContentOffset = $sidebar.width() + parseInt($sidebar.css('padding-right')) * 2;
 var bodyTopHeight = $('.body-top').height();
-$('.sidebar-left').css({
-    'position': 'fixed',
-    'top': '50px',
-    'width': sidebarLeftWidth
+$sidebar.css({
+    'position': 'absolute',
+    'top': $('.content-area').css('margin-top'),
+    'width': mainContentOffset
 });
 $('.main-content').css({
-    'position': 'relative',
-    'left': sidebarLeftWidth
+    'margin-left': mainContentOffset
 });
-
 $('.body').scroll(function () {
-    if ($('.body').scrollTop() > contentHeight) {
-        $('.body-top').css({
-            'height': bodyTopHeight / 1.333
-        });
-    } else {
-        $('.body-top').css({
-            'height': bodyTopHeight + 5
-        });
+    var topOffset = parseInt($('.content-area').css('margin-top')) + $(this).scrollTop();
+    $sidebar.css('top', topOffset);
+    var offset = $('.main-content').height() - $(this).height();
+    /*console.log(offset + ' ' + $(this).scrollTop());*/
+    if ($(this).scrollTop() > offset) {
+        //if ($sidebar.height() > 429) {
+            $('.body-top').height(bodyTopHeight/2);
+        //}
+    }else{
+        $('.body-top').height(bodyTopHeight)
     }
 });

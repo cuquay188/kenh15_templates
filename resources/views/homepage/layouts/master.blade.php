@@ -62,6 +62,9 @@
                 info: function (category_url) {
                     return '{{route('admin.api.category.select.byUrl')}}' + category_url;
                 },
+                hot: function () {
+                    return '{{route('admin.api.category.select')}}'
+                },
                 articles: function (category_url) {
                     return '{{route('admin.api.category.select.articles')}}' + category_url
                 }

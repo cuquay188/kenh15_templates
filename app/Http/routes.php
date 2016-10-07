@@ -1,4 +1,3 @@
-
 <?php
 
 /*
@@ -184,6 +183,11 @@ Route::group(['prefix' => 'api'], function () {
         Route::get('/get/url={url?}',[
             'uses' => 'CategoryController@getCategoryByUrlJSON',
             'as'   => 'admin.api.category.select.byUrl'
+        ]);
+
+        Route::get('/get/hotCategories',[
+            'uses' => 'CategoryController@getHotCategoriesJSON',
+            'as'   => 'admin.api.category.select.hot'
         ]);
 
         Route::get('/get/articles/category_url={url?}',[

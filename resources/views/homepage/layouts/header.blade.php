@@ -1,5 +1,5 @@
 <header>
-    <div class="container">
+    <div class="container" ng-controller="categoriesController">
         <div class="title col-lg-2">
             <a href="{{route('homepage')}}">Kênh 15</a>
         </div>
@@ -39,6 +39,3 @@
         </div>
     </div>
 </header>
-<script>
-
-</script>

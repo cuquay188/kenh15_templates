@@ -33,3 +33,18 @@ app.controller('relatedArticlesByCategoryController', function ($scope, articles
         $scope.articles = articles.get.related.byCategory()
     })
 });
+app.controller('categoriesController', function ($scope, categories) {
+    categories.load();
+    $scope.$watch(function () {
+        return categories.get.all()
+    }, function (newVal) {
+        $scope.categories = newVal;
+    })
+});
+app.controller('hotCategoriesController', function ($scope, categories) {
+    $scope.$watch(function () {
+        return categories.get.all()
+    }, function () {
+        $scope.categories = categories.get.hot();
+    })
+});
