@@ -6,7 +6,7 @@
     <div class="body-top">
         <ul>
             <li ng-repeat="article in articles | orderBy: '-views' | limitTo: 5">
-                <a href="#">[[article.shorten_title]]</a>
+                <a href="{{route('homepage')}}/article/[[article.url]]">[[article.shorten_title]]</a>
             </li>
         </ul>
     </div>

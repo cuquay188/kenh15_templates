@@ -248,7 +248,8 @@ class ArticleController extends Controller
                 'created_at' => $article->created_at,
                 'category_id' => $article->category_id,
                 'img_url' => $article->img_url,
-                'views' => $article_views
+                'views' => $article_views,
+                'shorten_content' => $article->shorten_content()
             ]);
         }
         return $resultArticles;
