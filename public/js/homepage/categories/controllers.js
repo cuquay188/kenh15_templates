@@ -48,6 +48,11 @@ app.controller('hotCategoriesController', function ($scope, categories) {
         $scope.categories = categories.get.hot();
     })
 });
-app.controller('articlesByHotCategoryController', function ($scope, articles, categories) {
-
+app.controller('articlesByHotCategoryController', function ($http, $scope, articles, categories) {
+    $http.get(url.category.hotArticles($scope.category.id))
+        .then(function (response) {
+            $scope.articles = response.data
+        }, function (response) {
+            console.log(response)
+        })
 });

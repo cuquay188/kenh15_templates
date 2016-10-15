@@ -67,6 +67,9 @@
                 },
                 articles: function (category_url) {
                     return '{{route('admin.api.category.select.articles')}}' + category_url
+                },
+                hotArticles: function (category_id) {
+                    return '{{route('admin.api.category.select.allArticles')}}' + category_id
                 }
             },
             tag: {

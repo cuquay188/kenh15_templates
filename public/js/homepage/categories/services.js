@@ -12,6 +12,10 @@ app.factory('categoryFactory', function ($http) {
             articles: function (category_url) {
                 var newUrl = url.category.articles(category_url);
                 return $http.get(newUrl)
+            },
+            hotArticles: function () {
+                var newUrl = url.category.hotArticles();
+                return $http.get(newUrl)
             }
         }
     }

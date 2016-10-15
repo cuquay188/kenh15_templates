@@ -1,26 +1,26 @@
-<div class="category shadow" ng-repeat="category in categories">
-    <a href="#"
+<div class="category shadow" ng-repeat="category in categories | orderBy: '-articles'">
+    <a href="{{route('homepage')}}/category/[[category.url]]"
        class="head">
         <div>
             [[category.name]]
         </div>
     </a>
-    <div class="articles">
+    <div class="articles" ng-controller="articlesByHotCategoryController">
         <div class="article">
-            <div class="picture" style="">
+            <div class="picture" style="background-image: url('[[articles[0].img_url]]')">
                 <div class="backdrop">
-                    <a href="#"><img src=""></a>
+                    <a href="{{route('homepage')}}/article/[[articles[0].url]]"><img src="[[articles[0].img_url]]"></a>
                 </div>
             </div>
             <div class="title">
-                <a href="#"></a>
+                <a href="{{route('homepage')}}/article/[[articles[0].url]]">[[articles[0].shorten_title]]</a>
             </div>
         </div>
         <div class="articles-list">
             <div class="list">
                 <ul>
-                    <li>
-                        <a href="#"></a>
+                    <li ng-repeat="article in articles" ng-if="article.id != articles[0].id">
+                        <a href="{{route('homepage')}}/article/[[article.url]]">[[article.shorten_title]]</a>
                     </li>
                 </ul>
             </div>

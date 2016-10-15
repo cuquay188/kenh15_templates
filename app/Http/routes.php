@@ -195,6 +195,11 @@ Route::group(['prefix' => 'api'], function () {
             'as'   => 'admin.api.category.select.hot'
         ]);
 
+        Route::get('/get/articles/category_id={id?}',[
+            'uses' => 'CategoryController@getHotArticlesByCategoryJSON',
+            'as'   => 'admin.api.category.select.allArticles'
+        ]);
+
         Route::get('/get/articles/category_url={url?}',[
             'uses' => 'ArticleController@getArticlesByCategoryJSON',
             'as'   => 'admin.api.category.select.articles'

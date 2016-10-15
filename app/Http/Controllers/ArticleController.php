@@ -304,7 +304,31 @@ class ArticleController extends Controller
         }
 
         return $resultArticles;
+    }
 
+
+    public function getAllArticlesByCategoryJSON()
+    {
+        $categories = Category::all();
+        $resultCategories = array();
+        foreach ($categories as $category) {
+            $articles = Article::where('category_id', $category->id)->get();
+            $resultArticles = array();
+            foreach ($articles as $article) {
+                $resultArticle = [
+                    'id' => $article->id,
+                    'shorten_title' => $article->shorten_title(120),
+                    'url' => $article->url,
+                    'img_url' => $article->img_url,
+                    'created_at' => $article->created_at,
+                    'category_id' => $article->category_id
+                ];
+                array_push($resultArticles, $resultArticle);
+            }
+            $category->articles = $resultArticles;
+            array_push($resultCategories, $category->articles);
+        }
+        return $resultCategories;
     }
 
     public function getArticlesByTagJSON($url)
