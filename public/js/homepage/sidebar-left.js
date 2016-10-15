@@ -9,7 +9,5 @@ $('.main-content').css({
     'margin-left': mainContentOffset
 });
 $('.body').scroll(function () {
-    var topOffset = parseInt($('.content-area').css('margin-top')) + $(this).scrollTop();
-    $sidebar.css('top', topOffset);
-
+    $sidebar.css('top', $(this).scrollTop());
 });
