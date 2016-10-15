@@ -5,6 +5,7 @@ app.controller('categoryController', function ($scope, category, articles) {
     }, function (newVal) {
         if (newVal.id) {
             $scope.category = newVal;
+            document.title = newVal.name;
             articles.load(1)
         }
     })

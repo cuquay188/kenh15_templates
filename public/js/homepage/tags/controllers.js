@@ -5,6 +5,7 @@ app.controller('tagController', function ($scope, tag, articles) {
     }, function (newVal) {
         if (newVal.id) {
             $scope.tag = newVal;
+            document.title = newVal.name;
             articles.load(2)
         }
     })

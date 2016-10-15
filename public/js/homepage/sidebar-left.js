@@ -2,7 +2,7 @@ var $sidebar = $('.sidebar-left');
 var mainContentOffset = $sidebar.width() + parseInt($sidebar.css('padding-right')) * 2;
 $sidebar.css({
     'position': 'absolute',
-    'top': $('.content-area').css('margin-top'),
+    'top': 0,
     'width': mainContentOffset
 });
 $('.main-content').css({
