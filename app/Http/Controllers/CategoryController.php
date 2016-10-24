@@ -12,6 +12,7 @@ use App\Http\Requests;
 use App\Category;
 use App\Author;
 use App\Tag;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
@@ -66,7 +67,31 @@ class CategoryController extends Controller
         }
     }
 
-    public function postCreateCategory(Request $request)
+    public function getHotArticlesByCategoryJSON($category_id)
+    {
+        $resultArticles = array();
+        $articles = Article::where('category_id', $category_id)->orderBy('created_at', 'desc')->limit(5)->get();
+        foreach ($articles as $article) {
+            $articleInfo = [
+                'id' => $article->id,
+                'shorten_title' => $article->shorten_title(100),
+                'created_at' => $article->created_at,
+                'url' => $article->url
+            ];
+            array_push($resultArticles, $articleInfo);
+        }
+        return $resultArticles;
+    }
+
+    public
+    function getCategoryByUrlJSON($url)
+    {
+        $id = Category::where('url', $url)->first()->id;
+        return $this->getCategoryJSON($id);
+    }
+
+    public
+    function postCreateCategory(Request $request)
     {
         $this->validate($request, [
             'name' => 'required|alpha_spaces|between:3,15|unique:categories,name'
@@ -90,7 +115,8 @@ class CategoryController extends Controller
         ]);
     }
 
-    public function postUpdateCategory(Request $request)
+    public
+    function postUpdateCategory(Request $request)
     {
         $this->validate($request, [
             'name' => 'required|alpha_spaces|between:3,15|unique:categories,name'
@@ -110,7 +136,8 @@ class CategoryController extends Controller
         ]);
     }
 
-    public function postHotCategory(Request $request)
+    public
+    function postHotCategory(Request $request)
     {
         $id = $request->id;
         $category = Category::find($id);
@@ -125,7 +152,8 @@ class CategoryController extends Controller
         ]);
     }
 
-    public function postHeaderCategory(Request $request)
+    public
+    function postHeaderCategory(Request $request)
     {
         $id = $request->id;
         $category = Category::find($id);
@@ -138,7 +166,8 @@ class CategoryController extends Controller
         ]);
     }
 
-    public function postRemoveCategory(Request $request)
+    public
+    function postRemoveCategory(Request $request)
     {
         $id = $request->id;
 

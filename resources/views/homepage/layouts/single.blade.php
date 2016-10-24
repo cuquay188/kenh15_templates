@@ -1,21 +1,11 @@
-@extends('homepage.layouts.master')
-@section('title')
-    @yield('single.title')
-@endsection
-@section('styles')
-    @yield('single.styles')
-@endsection
-@section('content')
-    <div class="main-body container">
-        <div class="col-lg-8 ">
-            <div class="articles">
-                @yield('single.top')
-                @yield('single.related_articles')
-            </div>
+@yield('single.styles')
+<div class="main-body container">
+    <div class="col-lg-8 ">
+        <div class="articles">
+            @yield('single.top')
+            @yield('single.related_articles')
         </div>
-        @include('homepage.layouts.advertisement.single_page')
     </div>
-@endsection
-@section('body.scripts')
-    @yield('single.body.scripts')
-@endsection
+    @include('homepage.layouts.advertisement.single_page')
+</div>
+@yield('single.body.scripts')
