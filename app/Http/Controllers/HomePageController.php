@@ -13,9 +13,12 @@ use App\Http\Requests;
 
 class HomePageController extends Controller
 {
+    public function getIndex(){
+        return view('homepage.index');
+    }
     public function getHomePage()
     {
-        return view('homepage.index.index');
+        return view('homepage.home.index');
     }
 
     public function getArticle()

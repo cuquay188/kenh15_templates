@@ -1,5 +1,6 @@
 body {
   font-family: 'FontAwesome';
+  overflow-y: hidden;
 }
 
 a {
@@ -138,10 +139,10 @@ header {
 .body {
   overflow-y: auto;
   height: calc(100vh - 50px);
-  position: relative;
   background-color: #f6f6f6;
   .main-body {
     margin-top: 10px;
+    position: relative;
   }
 }
 

@@ -24,6 +24,7 @@ app.controller('hotArticlesByCategoryController', function ($scope, articles) {
         return articles.get.all()
     }, function (newVal) {
         $scope.articles = newVal;
+        setListHotHeight();
     })
 });
 app.controller('relatedArticlesByCategoryController', function ($scope, articles) {

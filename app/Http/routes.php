@@ -297,15 +297,21 @@ Route::group(['prefix' => 'api'], function () {
 });
 // Home page
 Route::get('/', [
+    'uses' => 'HomePageController@getIndex',
+]);
+Route::get('/home', [
     'uses' => 'HomePageController@getHomePage',
-    'as'   => 'homepage',
+    'as'   => 'homepage.home',
 ]);
 Route::get('/article/{url?}', [
     'uses' => 'HomepageController@getArticle',
+    'as'   => 'homepage.article'
 ]);
 Route::get('/tag/{url?}', [
     'uses' => 'HomepageController@getTag',
+    'as'   => 'homepage.tag'
 ]);
 Route::get('/category/{url?}', [
     'uses' => 'HomepageController@getSingleCategory',
+    'as'   => 'homepage.category'
 ]);

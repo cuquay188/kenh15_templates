@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="{{asset('/css/homepage/category.css')}}">
 @endsection
 @section('single.top')
-    <div class="top-articles shadow" ng-controller="categoryController">
+    <div class="top-articles shadow">
         <div class="category">
             <p>[[category.name]]</p>
         </div>
@@ -13,14 +13,14 @@
                 <div class="picture"
                      style="background-image: url('[[newestArticle.img_url]]');background-size: auto 200px">
                     <div class="backdrop">
-                        <a href="{{route('homepage')}}/article/[[article.url]]">
+                        <a href="[[article | parseUrl: 'article']]">
                             <img src="[[article.img_url]]" alt=""
                                  style="max-height: 200px;max-width: 300px">
                         </a>
                     </div>
                 </div>
                 <div class="title">
-                    <a href="{{route('homepage')}}/article/[[article.url]]">[[article.title]]</a>
+                    <a href="[[article | parseUrl: 'article']]">[[article.title]]</a>
                 </div>
             </div>
             <div class="hot-day">
@@ -30,7 +30,7 @@
                 <div class="list-hot" ng-controller="hotArticlesByCategoryController">
                     <ul>
                         <li ng-repeat="article in articles | orderBy: '-views' | limitTo: 10">
-                            <a href="{{route('homepage')}}/article/[[article.url]]">[[article.title]]</a>
+                            <a href="[[article | parseUrl: 'article']]">[[article.title]]</a>
                         </li>
                     </ul>
                 </div>
@@ -43,14 +43,14 @@
         <div class="related-news shadow row" dir-paginate="article in articles | itemsPerPage:5">
             <div class="picture col col-lg-4" style="background-image: url('[[article.img_url]]')">
                 <div class="backdrop">
-                    <a href="{{route('homepage')}}/article/[[article.url]]">
+                    <a href="[[article | parseUrl: 'article']]">
                         <img src="[[article.img_url]]" alt="">
                     </a>
                 </div>
             </div>
             <div class="text col col-lg-8">
                 <div class="title">
-                    <a href="{{route('homepage')}}/article/[[article.url]]">[[article.title]]</a>
+                    <a href="[[article | parseUrl: 'article']]">[[article.title]]</a>
                 </div>
                 <div class="content">
                     [[article.shorten_content]]
@@ -59,11 +59,4 @@
         </div>
         <dir-pagination-controls></dir-pagination-controls>
     </section>
-@endsection
-@section('single.body.scripts')
-    <script>
-        $('.list-hot').css({
-            'height': $('.newest-article').height() - $('.hot-day .title').height()
-        });
-    </script>
 @endsection

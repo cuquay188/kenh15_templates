@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="{{asset('/css/homepage/tags.css')}}">
 @endsection
 @section('single.top')
-    <div class="tag shadow" ng-controller="tagController">
+    <div class="tag shadow">
         <span>Tag: [[tag.name]]</span>
     </div>
 @endsection
@@ -13,14 +13,14 @@
         <div class="related-news shadow row" dir-paginate="article in articles | itemsPerPage:5">
             <div class="picture col col-lg-4" style="background-image: url('[[article.img_url]]')">
                 <div class="backdrop">
-                    <a href="{{route('homepage')}}/article/[[article.url]]">
+                    <a href="[[article | parseUrl: 'article']]">
                         <img src="[[article.img_url]]" alt="">
                     </a>
                 </div>
             </div>
             <div class="text col col-lg-8">
                 <div class="title">
-                    <a href="{{route('homepage')}}/article/[[article.url]]">[[article.title]]</a>
+                    <a href="[[article | parseUrl: 'article']]">[[article.title]]</a>
                 </div>
                 <div class="content">
                     [[article.shorten_content]]
