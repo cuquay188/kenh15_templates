@@ -1,5 +1,6 @@
 body {
   font-family: 'FontAwesome';
+  overflow-y: hidden;
 }
 
 a {
@@ -47,7 +48,7 @@ img {
 }
 
 .related-news {
-  margin: 0 0 20px 0;
+  margin: 0 0 10px 0;
   padding: 0;
   .picture {
     display: inline-block;
@@ -81,11 +82,16 @@ img {
       color: #16a085;
     }
   }
-  .active {
-    span, span:hover {
+  li.active {
+    a{
+      background-color: #1abc9c;
+      border-color: #1abc9c;
+    }
+    a:hover,a:focus {
       color: white;
       font-weight: bold;
       background-color: #16a085;
+      border-color: #16a085;
     }
   }
 }
@@ -133,10 +139,10 @@ header {
 .body {
   overflow-y: auto;
   height: calc(100vh - 50px);
-  position: relative;
   background-color: #f6f6f6;
   .main-body {
     margin-top: 10px;
+    position: relative;
   }
 }
 

@@ -1,4 +1,4 @@
-app.service('$categories', function() {
+app.service('$categories', function($http, appFactory) {
     var $categories = [];
     return {
         get: function() {
@@ -33,11 +33,11 @@ app.service('$categories', function() {
                 return 0;
             }
         },
-        load: function($http) {
+        load: function() {
             $http.get(url.category.select).then(function(response) {
                 $categories = response.data;
                 return $categories;
-            });
+            }, appFactory.errorPage);
         },
         add: function($category) {
             $categories.push($category);
@@ -51,7 +51,7 @@ app.service('$categories', function() {
         }
     };
 });
-app.service('$category', function() {
+app.service('$category', function($http, appFactory) {
     var $category = {};
     return {
         get: function() {
@@ -62,7 +62,7 @@ app.service('$category', function() {
             return $category
         },
         update: {
-            name: function($scope, $http, name) {
+            name: function($scope, name) {
                 $http.post(url.category.update.name, {
                     id: $category.id,
                     name: name
@@ -71,68 +71,72 @@ app.service('$category', function() {
                     $scope.category.name = $category.name;
                     $('.modal.in').modal('hide');
                     $scope.nameErrors = '';
-                    notify('Update category: \"' + $category.name + '\" successful.', 'success');
+                    appFactory.notify('Update category: \"' + $category.name + '\" successful.', 'success');
                     $category = null;
                 }, function(response) {
-                    $scope.nameErrors = response.data.name + '';
-                    var text = '';
-                    $.each(response.data, function(index, val) {
-                        text += val[0] + '\n';
-                    });
-                    notify(text, 'danger')
+                    return appFactory.errorPage(response, function() {
+                        $scope.nameErrors = response.data.name + '';
+                        var text = '';
+                        $.each(response.data, function(index, val) {
+                            text += val[0] + '\n';
+                        });
+                        appFactory.notify(text, 'danger')
+                    })
                 })
             },
-            hot: function($scope, $http) {
+            hot: function($scope) {
                 $http.post(url.category.update.hot, {
                     id: $category.id
                 }).then(function(response) {
                     $category = response.data.category;
                     $scope.category.advance.is_hot = $category.advance.is_hot;
                     $scope.category.advance.is_header = $category.advance.is_header;
-                    if ($scope.category.advance.is_hot) notify('Add category \"' + $category.name + '\" to hot categories.', 'success')
-                    else notify('Remove category \"' + $category.name + '\" from hot categories.', 'danger')
+                    if ($scope.category.advance.is_hot) appFactory.notify('Add category \"' + $category.name + '\" to hot categories.', 'success')
+                    else appFactory.notify('Remove category \"' + $category.name + '\" from hot categories.', 'danger')
                     $category = null;
-                })
+                }, appFactory.errorPage)
             },
-            header: function($scope, $http) {
+            header: function($scope) {
                 $http.post(url.category.update.header, {
                     id: $category.id
                 }).then(function(response) {
                     $category = response.data.category;
                     $scope.category.advance.is_header = $category.advance.is_header;
-                    if ($scope.category.advance.is_header) notify('Add category \"' + $category.name + '\" to homepage header bar.', 'success')
-                    else notify('Remove category \"' + $category.name + '\" from homepage header bar.', 'danger')
+                    if ($scope.category.advance.is_header) appFactory.notify('Add category \"' + $category.name + '\" to homepage header bar.', 'success')
+                    else appFactory.notify('Remove category \"' + $category.name + '\" from homepage header bar.', 'danger')
                     $category = null;
-                })
+                }, appFactory.errorPage)
             }
         },
-        create: function($scope, $http, $categories, name, more) {
+        create: function($scope, $categories, name, more) {
             $http.post(url.category.create, {
                 name: name
             }).then(function(response) {
                 $category = response.data.category;
                 $categories.add($category);
                 if (!more) $('.modal.in').modal('hide');
-                notify('Create category: \"' + $category.name + '\" successful.', 'success');
+                appFactory.notify('Create category: \"' + $category.name + '\" successful.', 'success');
                 $category = null;
                 $scope.nameErrors = '';
                 $scope.newName = '';
             }, function(response) {
-                $scope.nameErrors = response.data.name + '';
-                var text = '';
-                $.each(response.data, function(index, val) {
-                    text += val[0] + '\n';
-                });
-                notify(text, 'danger')
+                return appFactory.errorPage(response, function() {
+                    $scope.nameErrors = response.data.name + '';
+                    var text = '';
+                    $.each(response.data, function(index, val) {
+                        text += val[0] + '\n';
+                    });
+                    appFactory.notify(text, 'danger')
+                })
             })
         },
-        remove: function($scope, $http, $categories) {
+        remove: function($scope, $categories) {
             $http.post(url.category.remove, {
                 id: $category.id
             }).then(function(response) {
                 $categories.remove(response.data.category.id);
                 $('.modal.in').modal('hide');
-            })
+            }, appFactory.errorPage(response))
         }
     }
 });
