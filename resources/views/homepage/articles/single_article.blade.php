@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="{{asset('/css/homepage/article.css')}}">
+<link rel="stylesheet" href="{{asset('public/css/homepage/article.css')}}">
 <div class="content-area main-body">
     <div class="container">
         <aside class="sidebar-left shadow col-lg-3">

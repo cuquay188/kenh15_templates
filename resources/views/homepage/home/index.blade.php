@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="{{asset('/css/homepage/homepage.css')}}">
+<link rel="stylesheet" href="{{asset('public/css/homepage/homepage.css')}}">
 <div class="content-area main-body">
     <div class="container">
         <!-- bài đọc nhiều nhất -->
