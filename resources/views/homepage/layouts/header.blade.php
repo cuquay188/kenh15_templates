@@ -1,10 +1,10 @@
 <header>
     <div class="container">
         <div class="title col-lg-2">
-            <a href="#home">Kênh 15</a>
+            <a href="#/">Kênh 15</a>
         </div>
         <div class="menu col-lg-7">
-            <a href="#home">
+            <a href="#/">
                 <div class="menu-item {{Route::getCurrentRoute()->getName()=='homepage'?'active':''}}">
                     <i class="fa fa-home" aria-hidden="true"></i>
                 </div>
