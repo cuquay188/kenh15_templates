@@ -43,19 +43,19 @@
         });
     </script>
     @yield('body.scripts')
-    <script src="{{asset('/js/homepage/app.js')}}"></script>
-    <script src="{{asset('/js/homepage/routes.js')}}"></script>
+    <script src="{{asset('public/js/homepage/app.js')}}"></script>
+    <script src="{{asset('public/js/homepage/routes.js')}}"></script>
 
     {{--Angular Services--}}
-    <script src="{{asset('/js/homepage/articles/services.js')}}"></script>
-    <script src="{{asset('/js/homepage/categories/services.js')}}"></script>
-    <script src="{{asset('/js/homepage/tags/services.js')}}"></script>
+    <script src="{{asset('public/js/homepage/articles/services.js')}}"></script>
+    <script src="{{asset('public/js/homepage/categories/services.js')}}"></script>
+    <script src="{{asset('public/js/homepage/tags/services.js')}}"></script>
     {{--End Angular Services--}}
 
     {{--Angular Controllers--}}
-    <script src="{{asset('/js/homepage/articles/controllers.js')}}"></script>
-    <script src="{{asset('/js/homepage/categories/controllers.js')}}"></script>
-    <script src="{{asset('/js/homepage/tags/controllers.js')}}"></script>
+    <script src="{{asset('public/js/homepage/articles/controllers.js')}}"></script>
+    <script src="{{asset('public/js/homepage/categories/controllers.js')}}"></script>
+    <script src="{{asset('public/js/homepage/tags/controllers.js')}}"></script>
     {{--End Angular Controllers--}}
 
     <script>
