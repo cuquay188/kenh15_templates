@@ -1,79 +1,62 @@
 @extends('homepage.layouts.single')
-@section('single.title',$category->name)
+@section('single.title',"Category")
 @section('single.styles')
-    <link rel="stylesheet" href="{{asset('/css/homepage/category.css')}}">
+    <link rel="stylesheet" href="{{asset('public/css/homepage/category.css')}}">
 @endsection
 @section('single.top')
     <div class="top-articles shadow">
         <div class="category">
-            <p>{{$category->name}}</p>
+            <p>[[category.name]]</p>
         </div>
         <div class="articles">
-            <div class="newest-article">
-                @if($article_first)
-                    <div class="picture"
-                         style="background-image: url('{{$article_first->img_url}}');background-size: auto 200px">
-                        <div class="backdrop">
-                            <a href="{{route('homepage').'/article/'.$article_first->url}}">
-                                <img src="{{$article_first->img_url}}" alt=""
-                                     style="max-height: 200px;max-width: 300px">
-                            </a>
-                        </div>
+            <div class="newest-article" ng-controller="newestArticleByCategoryController">
+                <div class="picture"
+                     style="background-image: url('[[newestArticle.img_url]]');background-size: auto 200px">
+                    <div class="backdrop">
+                        <a href="[[article | parseUrl: 'article']]">
+                            <img src="[[article.img_url]]" alt=""
+                                 style="max-height: 200px;max-width: 300px">
+                        </a>
                     </div>
-                    <div class="title">
-                        <a href="{{route('homepage').'/article/'.$article_first->url}}">{{$article_first->title}}</a>
-                    </div>
-                @endif
+                </div>
+                <div class="title">
+                    <a href="[[article | parseUrl: 'article']]">[[article.title]]</a>
+                </div>
             </div>
-            <div class="hot-day ">
-                @if(count($hot_articles_by_category))
-                    <div class="title">
-                        <p>Tin hot trong ngày</p>
-                    </div>
-                    <div class="list-hot">
-                        <ul>
-                            @foreach($hot_articles_by_category as $article)
-                                <li>
-                                    <a href="{{route('homepage').'/article/'.$article->url}}">{{$article->title}}</a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
+            <div class="hot-day">
+                <div class="title">
+                    <p>Tin hot trong ngày</p>
+                </div>
+                <div class="list-hot" ng-controller="hotArticlesByCategoryController">
+                    <ul>
+                        <li ng-repeat="article in articles | orderBy: '-views' | limitTo: 10">
+                            <a href="[[article | parseUrl: 'article']]">[[article.title]]</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
 @endsection
 @section('single.related_articles')
-    @if(count($mismatch_articles))
-        @foreach($mismatch_articles as $article)
-            <div class="related-news shadow row">
-                <div class="picture col col-lg-4" style="background-image: url('{{$article->img_url}}')">
-                    <div class="backdrop">
-                        <a href="{{route('homepage').'/article/'.$article->url}}">
-                            <img src="{{$article->img_url}}" alt="">
-                        </a>
-                    </div>
-                </div>
-                <div class="text col col-lg-8">
-                    <div class="title">
-                        <a href="{{route('homepage').'/article/'.$article->url}}">{{$article->title}}</a>
-                    </div>
-                    <div class="content">
-                        <?php
-                        echo $article->shorten_content(300)
-                        ?>
-                    </div>
+    <section ng-controller="relatedArticlesByCategoryController">
+        <div class="related-news shadow row" dir-paginate="article in articles | itemsPerPage:5">
+            <div class="picture col col-lg-4" style="background-image: url('[[article.img_url]]')">
+                <div class="backdrop">
+                    <a href="[[article | parseUrl: 'article']]">
+                        <img src="[[article.img_url]]" alt="">
+                    </a>
                 </div>
             </div>
-        @endforeach
-        <?php echo $related_articles->render(); ?>
-    @endif
-@endsection
-@section('single.body.scripts')
-    <script>
-        $('.list-hot').css({
-            'height': $('.newest-article').height() - $('.hot-day .title').height()
-        });
-    </script>
+            <div class="text col col-lg-8">
+                <div class="title">
+                    <a href="[[article | parseUrl: 'article']]">[[article.title]]</a>
+                </div>
+                <div class="content">
+                    [[article.shorten_content]]
+                </div>
+            </div>
+        </div>
+        <dir-pagination-controls></dir-pagination-controls>
+    </section>
 @endsection

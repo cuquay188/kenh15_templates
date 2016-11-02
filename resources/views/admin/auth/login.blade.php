@@ -3,11 +3,11 @@
 @section('content')
     <form action="{{route('admin.auth.login.post')}}" method="POST">
         @if(count($errors)>0)
-            <ul class="errors">
+            <div class="errors">
                 @foreach($errors->all() as $error)
-                    <li>* {{$error}}</li>
+                    <div>* {{$error}}</div>
                 @endforeach
-            </ul>
+            </div>
         @endif
         @if(Session::has('fail'))
             <div class="errors">
@@ -28,11 +28,10 @@
         </div>
         <div class="form-group">
             <input type="hidden" value="{{Session::token()}}" name="_token">
-            <button class="btn btn-primary btn-block" type="submit">Login</button>
-            <div class="sub">
-                <a href="{{route('admin.auth.signup')}}">Register new membership.</a>
-                <a href="{{route('admin.auth.signup')}}">Forgot my password.</a>
-            </div>
+            <button class="btn btn-primary" id="btn-login" type="submit">Login</button>
+            <a class="btn" id="btn-login-fb" href="{{route('admin.user.login.redirectTo','facebook')}}"><i class="fa fa-facebook-square"></i></a>
+            <a class="btn" id="btn-login-gm" href="{{route('admin.user.login.redirectTo','google')}}"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+           
         </div>
     </form>
 @endsection

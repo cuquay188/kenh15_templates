@@ -1,25 +1,13 @@
-var sidebarLeftWidth = $('.sidebar-left').width() + (parseInt($('.sidebar-left').css('padding-left')) * 2) - 2;
-var contentHeight = $('.content-area .container').height() - $('footer .container').height() * 8;
-var bodyTopHeight = $('.body-top').height();
-$('.sidebar-left').css({
-    'position': 'fixed',
-    'top': '50px',
-    'width': sidebarLeftWidth
+var $sidebar = $('.sidebar-left');
+var mainContentOffset = $sidebar.width() + parseInt($sidebar.css('padding-right')) * 2;
+$sidebar.css({
+    'position': 'absolute',
+    'top': 0,
+    'width': mainContentOffset
 });
 $('.main-content').css({
-    'position': 'relative',
-    'left': sidebarLeftWidth
+    'margin-left': mainContentOffset
 });
-
 $('.body').scroll(function () {
-    if ($('.body').scrollTop() > contentHeight) {
-        $('.body-top').css({
-            'height': bodyTopHeight / 1.333
-        });
-    } else {
-        $('.body-top').css({
-            'height': bodyTopHeight + 5
-        });
-        console.log(bodyTopHeight)
-    }
+    $sidebar.css('top', $(this).scrollTop());
 });

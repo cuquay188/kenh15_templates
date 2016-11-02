@@ -1,4 +1,3 @@
-
 <?php
 
 /*
@@ -12,6 +11,7 @@
 |
  */
 
+//Admin Router
 Route::group(['prefix' => 'admin'], function () {
     //User
     Route::group(['prefix' => 'auth'], function () {
@@ -27,15 +27,6 @@ Route::group(['prefix' => 'admin'], function () {
             'uses' => 'UserController@getLogout',
             'as'   => 'admin.auth.logout',
         ]);
-        Route::get('/signup', [
-            'uses' => 'UserController@getSignUp',
-            'as'   => 'admin.auth.signup',
-        ]);
-        Route::post('/signup/user', [
-            'uses' => 'UserController@postSignUp',
-            'as'   => 'admin.auth.signup.post',
-        ]);
-
         Route::get('/profile', [
             'uses' => 'UserController@getUserProfile',
             'as'   => 'admin.user.profile',
@@ -44,6 +35,13 @@ Route::group(['prefix' => 'admin'], function () {
             'uses' => 'UserController@getUsers',
             'as'   => 'users',
         ]);
+        //Redirect to Socialite auth
+        Route::get('/redirect={social}', [
+            'uses' => 'SocialAuthController@redirect',
+            'as'   => 'admin.user.login.redirectTo',
+        ]);
+        //Hook Auth callback
+        Route::get('/callback={social}', 'SocialAuthController@callback');
     });
 
     Route::get('/', [
@@ -110,6 +108,17 @@ Route::group(['prefix' => 'api'], function () {
             'uses' => 'ArticleController@getArticleJSON',
             'as'   => 'admin.api.article.select',
         ]);
+
+        Route::get('/get/all',[
+            'uses' => 'ArticleController@getArticlesJSON',
+            'as'   => 'admin.api.article.select.all'
+        ]);
+
+        Route::get('/get/article_url={url?}',[
+            'uses' => 'ArticleController@getSingleArticleJSON',
+            'as'   => 'admin.api.article.get'
+        ]);
+
         Route::get('selectContent/{id?}', [
             'uses' => 'ArticleController@getContentJSON',
             'as'   => 'admin.api.article.select.content',
@@ -176,22 +185,46 @@ Route::group(['prefix' => 'api'], function () {
             'as'   => 'admin.api.category.select',
         ]);
 
+        Route::get('/get/url={url?}',[
+            'uses' => 'CategoryController@getCategoryByUrlJSON',
+            'as'   => 'admin.api.category.select.byUrl'
+        ]);
+
+        Route::get('/get/hotCategories',[
+            'uses' => 'CategoryController@getHotCategoriesJSON',
+            'as'   => 'admin.api.category.select.hot'
+        ]);
+
+        Route::get('/get/articles/category_id={id?}',[
+            'uses' => 'CategoryController@getHotArticlesByCategoryJSON',
+            'as'   => 'admin.api.category.select.allArticles'
+        ]);
+
+        Route::get('/get/articles/category_url={url?}',[
+            'uses' => 'ArticleController@getArticlesByCategoryJSON',
+            'as'   => 'admin.api.category.select.articles'
+        ]);
+
         Route::post('/update/name', [
             'uses' => 'CategoryController@postUpdateCategory',
             'as'   => 'admin.api.category.update.name',
         ]);
+
         Route::post('/update/hot', [
             'uses' => 'CategoryController@postHotCategory',
             'as'   => 'admin.api.category.update.hot',
         ]);
+
         Route::post('/update/header', [
             'uses' => 'CategoryController@postHeaderCategory',
             'as'   => 'admin.api.category.update.header',
         ]);
+
         Route::post('/delete', [
             'uses' => 'CategoryController@postRemoveCategory',
             'as'   => 'admin.api.category.remove',
         ]);
+
         Route::post('/create', [
             'uses' => 'CategoryController@postCreateCategory',
             'as'   => 'admin.api.category.create',
@@ -203,6 +236,16 @@ Route::group(['prefix' => 'api'], function () {
         Route::get('/select/{id?}', [
             'uses' => 'TagController@getTagJSON',
             'as'   => 'admin.api.tag.select',
+        ]);
+
+        Route::get('/get/url={url?}',[
+            'uses' => 'TagController@getTagByUrlJSON',
+            'as'   => 'admin.api.tag.select.byUrl'
+        ]);
+
+        Route::get('/get/articles/tag_url={url?}',[
+            'uses' => 'ArticleController@getArticlesByTagJSON',
+            'as'   => 'admin.api.tag.select.articles'
         ]);
 
         Route::post('/update', [
@@ -230,6 +273,7 @@ Route::group(['prefix' => 'api'], function () {
             'as'   => 'admin.api.user.update',
         ]);
     });
+
     Route::group(['prefix' => 'auth'], function () {
         Route::get('/', [
             'uses' => 'UserController@getAuthUser',
@@ -253,15 +297,21 @@ Route::group(['prefix' => 'api'], function () {
 });
 // Home page
 Route::get('/', [
+    'uses' => 'HomePageController@getIndex',
+]);
+Route::get('/home', [
     'uses' => 'HomePageController@getHomePage',
-    'as'   => 'homepage',
+    'as'   => 'homepage.home',
 ]);
-Route::get('/article/{url}', [
+Route::get('/article/{url?}', [
     'uses' => 'HomepageController@getArticle',
+    'as'   => 'homepage.article'
 ]);
-Route::get('/tag/{url}', [
+Route::get('/tag/{url?}', [
     'uses' => 'HomepageController@getTag',
+    'as'   => 'homepage.tag'
 ]);
-Route::get('/category/{id}', [
+Route::get('/category/{url?}', [
     'uses' => 'HomepageController@getSingleCategory',
+    'as'   => 'homepage.category'
 ]);

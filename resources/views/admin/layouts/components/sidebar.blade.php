@@ -14,7 +14,7 @@
                     Articles
                     <span ng-bind="'('+articleLength+')'"></span>
                 </a>
-                <a class="create"
+                <a class="create" ng-click="notAllowed(auth.is_admin)"
                    data-toggle="modal" data-target="#create-article"><i class="glyphicon glyphicon-plus"></i></a>
             </li>
             <li>
@@ -22,7 +22,7 @@
                     Authors
                     <span ng-bind="'('+authorLength+')'"></span>
                 </a>
-                <a class="create"
+                <a class="create" ng-click="notAllowed(auth.is_admin)"
                    data-toggle="modal" data-target="#create-author"
                    data-backdrop="false"><i class="glyphicon glyphicon-plus"></i></a>
             </li>
@@ -31,7 +31,7 @@
                     Categories
                     <span ng-bind="'('+categoryLength+')'"></span>
                 </a>
-                <a class="create"
+                <a class="create" ng-click="notAllowed(auth.is_admin)"
                    data-toggle="modal" data-target="#create-category"
                    data-backdrop="false"><i class="glyphicon glyphicon-plus"></i></a>
             </li>
@@ -40,7 +40,7 @@
                     Tags
                     <span ng-bind="'('+tagLength+')'"></span>
                 </a>
-                <a class="create"
+                <a class="create" ng-click="notAllowed(auth.is_admin)"
                    data-toggle="modal" data-target="#create-tag"
                    data-backdrop="false"><i class="glyphicon glyphicon-plus"></i></a>
             </li>
@@ -61,23 +61,21 @@
             </li>
         </ul>
     </div>
-    @if(Auth::getUser()->is_admin())
-        <div class="item">
-            <div class="item-header">
-                Admin
-            </div>
-            <ul class="item-body">
-                <li>
-                    <a>
-                        Users
-                    </a>
-                </li>
-            </ul>
+    <div class="item" ng-if="auth.is_admin">
+        <div class="item-header">
+            Admin
         </div>
-    @endif
+        <ul class="item-body">
+            <li>
+                <a>
+                    Users
+                </a>
+            </li>
+        </ul>
+    </div>
     <div class="sidebar-footer">
         <div class="info" ng-controller="authController">
-            <div class="icon"></div>
+            <div class="icon" user-avatar></div>
             <div class="name">
                 <a href="#profile">
                     <div>%% user.name?user.name:user.email %%</div>

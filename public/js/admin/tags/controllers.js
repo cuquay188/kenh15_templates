@@ -1,11 +1,11 @@
-app.controller('tagsListController', function ($scope, $http, $log, $tags) {
+app.controller('tagsListController', function ($rootScope, $scope, $tags) {
     $scope.$watch(function () {
         return $tags.get()
     }, function (newVal) {
         $scope.tags = newVal;
     });
-    $scope.sortType = 'articles';
-    $scope.sortReverse = 1;
+    $rootScope.sortType = 'articles';
+    $rootScope.sortReverse = false;
 });
 
 app.controller('tagController', function ($scope, $log, $tag) {
@@ -17,7 +17,7 @@ app.controller('tagController', function ($scope, $log, $tag) {
     }
 });
 
-app.controller('editTagController', function ($scope, $http, $tag) {
+app.controller('editTagController', function ($scope, $tag) {
     $scope.$watch(function () {
         return $tag.get()
     }, function (newVal) {
@@ -30,12 +30,12 @@ app.controller('editTagController', function ($scope, $http, $tag) {
         $scope.nameErrors = '';
     };
     $scope.submit = function () {
-        $tag.update($scope, $http, $scope.tag.newName)
+        $tag.update($scope, $scope.tag.newName)
     };
     modalEvent($scope,'edit-tag')
 });
 
-app.controller('deleteTagController', function ($scope, $http, $tags, $tag) {
+app.controller('deleteTagController', function ($scope, $tags, $tag) {
     $scope.$watch(function () {
         return $tag.get()
     }, function (newVal) {
@@ -45,14 +45,14 @@ app.controller('deleteTagController', function ($scope, $http, $tags, $tag) {
         $tag.set(null);
     };
     $scope.submit = function () {
-        $tag.remove($scope, $http, $tags)
+        $tag.remove($scope, $tags)
     };
     modalEvent($scope,'delete-tag')
 });
 
-app.controller('createTagController', function ($scope, $http, $tags, $tag) {
+app.controller('createTagController', function ($scope, $tags, $tag) {
     $scope.submit = function (more) {
-        $tag.create($scope, $http, $tags, $scope.newName, more);
+        $tag.create($scope, $tags, $scope.newName, more);
     };
     modalEvent($scope,'create-tag',1)
 });

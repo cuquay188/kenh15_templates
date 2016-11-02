@@ -12,15 +12,15 @@ return [
     | default location for this type of information, allowing packages
     | to have a conventional place to find your various credentials.
     |
-    */
+     */
 
-    'mailgun' => [
+    'mailgun'   => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),
     ],
 
-    'ses' => [
-        'key' => env('SES_KEY'),
+    'ses'       => [
+        'key'    => env('SES_KEY'),
         'secret' => env('SES_SECRET'),
         'region' => 'us-east-1',
     ],
@@ -29,10 +29,19 @@ return [
         'secret' => env('SPARKPOST_SECRET'),
     ],
 
-    'stripe' => [
-        'model' => App\User::class,
-        'key' => env('STRIPE_KEY'),
+    'stripe'    => [
+        'model'  => App\User::class,
+        'key'    => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
-
+    'facebook'  => [
+        'client_id'     => '1672018796445883',
+        'client_secret' => 'bfee55fd9696a4afa51a89e089b09d9c',
+        'redirect'      => env('APP_URL') . '/admin/auth/callback=facebook',
+    ],
+    'google'    => [
+        'client_id'     => '560720322562-58fun4h6vqqmooe4h5p694ldnt65bbe1.apps.googleusercontent.com',
+        'client_secret' => 'f5COwuZQUTPTp31Wg1_BXHHQ',
+        'redirect'      => env('APP_URL') . '/admin/auth/callback=google',
+    ],
 ];
