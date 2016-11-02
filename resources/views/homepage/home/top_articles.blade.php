@@ -5,9 +5,9 @@
     </div>
     <div class="body-top">
         <ul>
-            @foreach($articles_top as $article)
-                <li><a href="{{route('homepage').'/article/'.$article->url}}">{{$article->shorten_title(80)}}</a></li>
-            @endforeach
+            <li ng-repeat="article in articles | orderBy: '-views' | limitTo: 5">
+                <a href="[[article | parseUrl:'article']]">[[article.shorten_title]]</a>
+            </li>
         </ul>
     </div>
     <div class="footer-top">

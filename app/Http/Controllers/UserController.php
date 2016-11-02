@@ -191,6 +191,7 @@ class UserController extends Controller
                 'is_admin'  => $user->is_admin(),
                 'is_author' => $user->is_author(),
                 'issetPW'   => !!$user->password,
+                'author'    => $user->author,
             ];
         }
         return [

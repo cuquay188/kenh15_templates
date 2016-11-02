@@ -1,4 +1,4 @@
-app.controller('categoriesListController', function($scope, $http, $log, $categories) {
+app.controller('categoriesListController', function($rootScope, $scope, $categories) {
     $scope.$watch(function() {
         return $categories.get()
     }, function(newVal) {
@@ -9,10 +9,10 @@ app.controller('categoriesListController', function($scope, $http, $log, $catego
     }, function(newVal, oldVal) {
         if (newVal > oldVal && newVal > 5) notify('You should\'nt place more than 5 category to homepage header bar.', 'warning')
     });
-    $scope.sortType = 'advance.is_hot+advance.is_header';
-    $scope.sortReverse = 1;
+    $rootScope.sortType = 'advance.is_hot+advance.is_header';
+    $rootScope.sortReverse = true;
 });
-app.controller('categoryController', function($scope, $http, $log, $category) {
+app.controller('categoryController', function($scope, $category) {
     $scope.edit = function() {
         $category.set($scope.category);
     };
@@ -21,14 +21,14 @@ app.controller('categoryController', function($scope, $http, $log, $category) {
     };
     $scope.setHot = function() {
         $category.set($scope.category);
-        $category.update.hot($scope, $http);
+        $category.update.hot($scope);
     };
     $scope.setHeader = function() {
         $category.set($scope.category);
-        $category.update.header($scope, $http);
+        $category.update.header($scope);
     }
 });
-app.controller('editCategoryController', function($scope, $http, $category) {
+app.controller('editCategoryController', function($scope, $category) {
     $scope.$watch(function() {
         return $category.get()
     }, function(newVal) {
@@ -40,11 +40,11 @@ app.controller('editCategoryController', function($scope, $http, $category) {
         $scope.nameErrors = '';
     };
     $scope.submit = function() {
-        $category.update.name($scope, $http, $scope.category.newName)
+        $category.update.name($scope, $scope.category.newName)
     };
     modalEvent($scope, 'edit-category')
 });
-app.controller('deleteCategoryController', function($scope, $http, $categories, $category) {
+app.controller('deleteCategoryController', function($scope, $categories, $category) {
     $scope.$watch(function() {
         return $category.get()
     }, function(newVal) {
@@ -54,13 +54,13 @@ app.controller('deleteCategoryController', function($scope, $http, $categories, 
         $category.set(null);
     };
     $scope.submit = function() {
-        $category.remove($scope, $http, $categories)
+        $category.remove($scope, $categories)
     };
     modalEvent($scope, 'delete-category')
 });
-app.controller('createCategoryController', function($scope, $http, $categories, $category) {
+app.controller('createCategoryController', function($scope, $categories, $category) {
     $scope.submit = function(more) {
-        $category.create($scope, $http, $categories, $scope.newName, more);
+        $category.create($scope, $categories, $scope.newName, more);
     };
     modalEvent($scope, 'create-category', 1)
 });

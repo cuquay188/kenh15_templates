@@ -7,6 +7,7 @@ use App\ArticleView;
 use App\Author;
 use App\Category;
 use App\Tag;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -37,10 +38,10 @@ class ArticleController extends Controller
     public function validateArticle(Request $request)
     {
         $this->validate($request, [
-            'title'    => 'required|between:5,150',
-            'content'  => 'required|min:30',
+            'title' => 'required|between:5,150',
+            'content' => 'required|min:30',
             'category' => 'required|numeric',
-            'authors'  => 'required',
+            'authors' => 'required',
         ]);
     }
 
@@ -48,20 +49,20 @@ class ArticleController extends Controller
     {
         $this->validateArticle($request);
 
-        $title       = $request->title;
-        $content     = $request->content;
+        $title = $request->title;
+        $content = $request->content;
         $category_id = $request->category;
-        $img_url     = $request->img_url;
+        $img_url = $request->img_url;
 
-        $article              = new Article();
-        $article->title       = $title;
-        $article->url         = $this->convert_to_url($title);
-        $article->img_url     = $img_url ? $img_url : $this->get_article_img_url($content);
-        $article->content     = $content;
+        $article = new Article();
+        $article->title = $title;
+        $article->url = $this->convert_to_url($title);
+        $article->img_url = $img_url ? $img_url : $this->get_article_img_url($content);
+        $article->content = $content;
         $article->category_id = $category_id;
         $article->save();
 
-        $tags    = $request->tags;
+        $tags = $request->tags;
         $authors = $request->authors;
         if (!empty($tags)) {
             foreach ($tags as $tag) {
@@ -74,7 +75,7 @@ class ArticleController extends Controller
             }
         }
 
-        $articleView             = new ArticleView();
+        $articleView = new ArticleView();
         $articleView->article_id = $article->id;
         $articleView->save();
 
@@ -86,7 +87,7 @@ class ArticleController extends Controller
 
     public function postRemoveArticle(Request $request)
     {
-        $id      = $request->id;
+        $id = $request->id;
         $article = $this->getArticleJSON($id);
         Article::where('id', $id)->delete();
         return response()->json([
@@ -99,22 +100,22 @@ class ArticleController extends Controller
     {
         $this->validateArticle($request);
 
-        $id          = $request->id;
-        $title       = $request->title;
-        $content     = $request->content;
+        $id = $request->id;
+        $title = $request->title;
+        $content = $request->content;
         $category_id = $request->category;
-        $url         = $this->convert_to_url($title);
-        $img_url     = $request->img_url ? $request->img_url : $this->get_article_img_url($content);
+        $url = $this->convert_to_url($title);
+        $img_url = $request->img_url ? $request->img_url : $this->get_article_img_url($content);
 
         Article::where('id', $id)->update([
-            'title'       => $title,
-            'content'     => $content,
+            'title' => $title,
+            'content' => $content,
             'category_id' => $category_id,
-            'url'         => $url,
-            'img_url'     => $img_url,
+            'url' => $url,
+            'img_url' => $img_url,
         ]);
         $article = Article::find($id);
-        $tags    = $request->tags;
+        $tags = $request->tags;
         $authors = $request->authors;
 
         DB::table('tag_article')->where('article_id', $id)->delete();
@@ -138,9 +139,9 @@ class ArticleController extends Controller
 
     public function postRemoveTag(Request $request)
     {
-        $tag_id     = $request->tag_id;
+        $tag_id = $request->tag_id;
         $article_id = $request->article_id;
-        $tag        = Tag::find($tag_id);
+        $tag = Tag::find($tag_id);
         DB::table('tag_article')->where('article_id', $article_id)->where('tag_id', $tag_id)->delete();
         return response()->json([
             'message' => 'Delete ' . $tag->name . ' successful.',
@@ -150,9 +151,9 @@ class ArticleController extends Controller
 
     public function postRemoveAuthor(Request $request)
     {
-        $author_id  = $request->author_id;
+        $author_id = $request->author_id;
         $article_id = $request->article_id;
-        $author     = Author::find($author_id);
+        $author = Author::find($author_id);
         DB::table('author_article')->where('article_id', $article_id)->where('author_id', $author_id)->delete();
         return response()->json([
             'message' => 'Delete' . $author->user->name . ' successful.',
@@ -174,7 +175,7 @@ class ArticleController extends Controller
         if ($id) {
             $article = Article::find($id);
 
-            $tags    = array();
+            $tags = array();
             $authors = array();
             foreach (DB::table('tag_article')->where('article_id', $article->id)->get() as $tag) {
                 array_push($tags, $tag->tag_id);
@@ -185,13 +186,13 @@ class ArticleController extends Controller
             }
 
             $article = [
-                'id'          => $article->id,
-                'updated_at'  => $article->updated_at,
-                'url'         => $article->url,
-                'title'       => $article->title,
+                'id' => $article->id,
+                'updated_at' => $article->updated_at,
+                'url' => $article->url,
+                'title' => $article->title,
                 'category_id' => $article->category->id,
-                'tags_id'     => $tags,
-                'authors_id'  => $authors,
+                'tags_id' => $tags,
+                'authors_id' => $authors,
             ];
 
             return $article;
@@ -207,7 +208,7 @@ class ArticleController extends Controller
             }
             $resultArticles = array();
             foreach ($articles as $article) {
-                $tags    = array();
+                $tags = array();
                 $authors = array();
                 foreach (DB::table('tag_article')->where('article_id', $article->id)->get() as $tag) {
                     array_push($tags, $tag->tag_id);
@@ -218,19 +219,134 @@ class ArticleController extends Controller
                 }
 
                 array_push($resultArticles, [
-                    'id'          => $article->id,
-                    'updated_at'  => $article->updated_at,
-                    'url'         => $article->url,
-                    'title'       => $article->title,
+                    'id' => $article->id,
+                    'updated_at' => $article->updated_at,
+                    'url' => $article->url,
+                    'title' => $article->title,
                     'category_id' => $article->category->id,
-                    'tags_id'     => $tags,
-                    'authors_id'  => $authors,
+                    'tags_id' => $tags,
+                    'authors_id' => $authors,
                 ]);
             }
 
             return $resultArticles;
         }
     }
+
+    public function getArticlesJSON()
+    {
+        $articles = Article::all();
+        $resultArticles = array();
+        foreach ($articles as $article) {
+            $article_views = DB::table('article_views')->where('article_id', $article->id)->first()->views;
+            array_push($resultArticles, [
+                'id' => $article->id,
+                'title' => $article->title,
+                'shorten_title' => $article->shorten_title(100),
+                'url' => $article->url,
+                'updated_at' => $article->updated_at,
+                'created_at' => $article->created_at,
+                'category_id' => $article->category_id,
+                'img_url' => $article->img_url,
+                'views' => $article_views,
+                'shorten_content' => $article->shorten_content()
+            ]);
+        }
+        return $resultArticles;
+    }
+
+    public function getSingleArticleJSON($url)
+    {
+        $id = Article::where('url', $url)->first()->id;
+
+        $article = $this->getArticleJSON($id);
+        $tags = array();
+        $authors = array();
+        foreach ($article['tags_id'] as $tag_id) {
+            $tag = Tag::where('id', $tag_id)->first();
+            array_push($tags, $tag);
+        }
+        foreach ($article['authors_id'] as $author_id) {
+            $author = Author::where('id', $author_id)->first();
+            $author->name = $author->user->name;
+            array_push($authors, $author);
+        }
+        $category = Category::where('id', $article['category_id'])->first();
+
+        $article['content'] = Article::find($id)->content;
+        $article['category'] = $category;
+        $article['tags'] = $tags;
+        $article['authors'] = $authors;
+
+        return $article;
+    }
+
+    public function getArticlesByCategoryJSON($url)
+    {
+        $category_id = Category::where('url', $url)->first()->id;
+        $articles = Article::where('category_id', $category_id)->orderby('id', 'desc')->get();
+
+        $resultArticles = array();
+
+        foreach ($articles as $article) {
+            $id = $article->id;
+            $resultArticle = $this->getArticleJSON($id);
+            $resultArticle['shorten_title'] = $article->shorten_title(120);
+            $resultArticle['img_url'] = $article->img_url;
+            $resultArticle['shorten_content'] = $article->shorten_content();
+
+            $article_view = ArticleView::where('article_id', $id)->first();
+            $resultArticle['views'] = $article_view->views;
+
+            $resultArticle['created_at'] = $article->created_at;
+
+            array_push($resultArticles, $resultArticle);
+        }
+
+        return $resultArticles;
+    }
+
+
+    public function getAllArticlesByCategoryJSON()
+    {
+        $categories = Category::all();
+        $resultCategories = array();
+        foreach ($categories as $category) {
+            $articles = Article::where('category_id', $category->id)->get();
+            $resultArticles = array();
+            foreach ($articles as $article) {
+                $resultArticle = [
+                    'id' => $article->id,
+                    'shorten_title' => $article->shorten_title(120),
+                    'url' => $article->url,
+                    'img_url' => $article->img_url,
+                    'created_at' => $article->created_at,
+                    'category_id' => $article->category_id
+                ];
+                array_push($resultArticles, $resultArticle);
+            }
+            $category->articles = $resultArticles;
+            array_push($resultCategories, $category->articles);
+        }
+        return $resultCategories;
+    }
+
+    public function getArticlesByTagJSON($url)
+    {
+        $tag_id = Tag::where('url', $url)->first()->id;
+        $articles = DB::table('tag_article')->where('tag_id', $tag_id)->get();
+        $resultArticles = array();
+        foreach ($articles as $article) {
+            $resultArticle = Article::where('id', $article->article_id)->first();
+            $article_tag = $this->getArticleJSON($resultArticle->id);
+            $article_tag['shorten_content'] = $resultArticle->shorten_content();
+            $article_tag['img_url'] = $resultArticle->img_url;
+            array_push($resultArticles, $article_tag);
+        }
+
+        return $resultArticles;
+    }
+
     public function getContentJSON($id = null)
     {
         if ($id) {

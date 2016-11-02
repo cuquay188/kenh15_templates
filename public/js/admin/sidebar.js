@@ -19,6 +19,9 @@ app.controller('sidebarController', function($scope, $http, $location, $articles
     }, function(newVal) {
         $scope.categoryLength = newVal
     });
+    $scope.notAllowed = function(isAllowed) {
+        if (!isAllowed) notify('You are not allowed to do this.', 'danger');
+    }
 });
 app.directive('userAvatar', function() {
     return {

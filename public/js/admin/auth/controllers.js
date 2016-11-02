@@ -1,8 +1,8 @@
-app.controller('authController', function($scope, $http, $authors, $auth) {
-    $scope.$watch(function() {
+app.controller('authController', function($rootScope, $scope, $authors, $auth) {
+    $rootScope.$watch(function() {
         return $auth.get()
     }, function(user) {
-        $scope.user = user;
+        $rootScope.user = user;
         $scope.newName = user.name;
         $scope.newTel = user.tel;
         $scope.newAddress = user.address;
@@ -29,7 +29,7 @@ app.controller('authController', function($scope, $http, $authors, $auth) {
         var username = {
             username: $scope.newUsername
         }
-        $auth.update.username($scope, $http, $authors, username);
+        $auth.update.username($scope, $authors, username);
     };
     $scope.submitUpdateInfo = function() {
         var user = {
@@ -41,13 +41,13 @@ app.controller('authController', function($scope, $http, $authors, $auth) {
         if ($scope.newCity != $scope.user.city) user.city = $scope.newCity;
         var newBirth = moment($('#birth').datepicker("getDate")).format('YYYY-MM-DD');
         if (newBirth != moment($scope.user.birth).format('YYYY-MM-DD')) user.birth = newBirth;
-        $auth.update.info($scope, $http, $authors, user);
+        $auth.update.info($scope, $authors, user);
     };
     $scope.submitUpdatePassword = function() {
         var password = {
             current_password: $scope.currentPassword,
             new_password: $scope.newPassword
         }
-        $auth.update.password($scope, $http, password);
+        $auth.update.password($scope, password);
     };
 })
