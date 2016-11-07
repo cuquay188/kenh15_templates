@@ -298,6 +298,7 @@ Route::group(['prefix' => 'api'], function () {
 // Home page
 Route::get('/', [
     'uses' => 'HomePageController@getIndex',
+    'as'   => 'homepage'
 ]);
 Route::get('/home', [
     'uses' => 'HomePageController@getHomePage',
